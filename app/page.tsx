@@ -1,41 +1,15 @@
 // app/page.tsx
-import dynamic from "next/dynamic";
-
-// ⚡ charge léger d'abord, lourd ensuite
-const Hero = dynamic(() => import("./components/Hero"));
-
-// below-the-fold (chunk-splitting + fallback propre)
-const BrainReflexes = dynamic(() => import("./components/BrainReflexes"), {
-  loading: () => <SectionFallback title="Chargement des insights…" />,
-});
-const DataVisualization = dynamic(() => import("./components/DataVisualization"), {
-  // si ce composant utilise des charts côté client, il restera cloisonné automatiquement
-  loading: () => <ChartFallback />,
-});
-const StatsPillars = dynamic(() => import("./components/StatsPillars"), {
-  loading: () => <SectionFallback title="Chargement des chiffres…" />,
-});
-const ComparisonTable = dynamic(() => import("./components/ComparisonTable"), {
-  loading: () => <SectionFallback title="Comparatif en cours…" />,
-});
-const Methodology = dynamic(() => import("./components/Methodology"), {
-  loading: () => <SectionFallback title="Notre méthode…" />,
-});
-const TestimonialsMarquee = dynamic(() => import("./components/TestimonialsMarquee"), {
-  loading: () => <SectionFallback title="Avis clients…" />,
-});
-const PricingPlans = dynamic(() => import("./components/PricingPlans"), {
-  loading: () => <SectionFallback title="Forfaits…" />,
-});
-const FaqAccordion = dynamic(() => import("./components/FaqAccordion"), {
-  loading: () => <SectionFallback title="FAQ…" />,
-});
-const FinalCta = dynamic(() => import("./components/FinalCta"), {
-  loading: () => <SectionFallback title="Dernier pas…" />,
-});
-
-// composant client OK à importer tel quel
-const ScrollToHash = dynamic(() => import("./components/ScrollToHash"), { ssr: false });
+import Hero from "./components/Hero";
+import BrainReflexes from "./components/BrainReflexes";
+import DataVisualization from "./components/DataVisualization"; // ⬅️ charts
+import StatsPillars from "./components/StatsPillars";
+import ComparisonTable from "./components/ComparisonTable";
+import Methodology from "./components/Methodology";
+import TestimonialsMarquee from "./components/TestimonialsMarquee";
+import PricingPlans from "./components/PricingPlans";
+import FaqAccordion from "./components/FaqAccordion";
+import FinalCta from "./components/FinalCta";
+import ScrollToHash from "./components/ScrollToHash";
 
 export default function Page() {
   return (
@@ -52,9 +26,9 @@ export default function Page() {
         <BrainReflexes />
       </section>
 
-      {/* 3. Trafic & conversions */}
+      {/* 3. Trafic & conversions (déplacé ici + version large) */}
       <section id="insights" className="anchor">
-        <DataVisualization />
+        <DataVisualization variant="wide" />
       </section>
 
       {/* 4. Les chiffres */}
@@ -62,7 +36,7 @@ export default function Page() {
         <StatsPillars />
       </section>
 
-      {/* 5. SEO vs GEO */}
+      {/* 5. SEO vs GEO (comparatif) */}
       <section id="seo-vs-geo" className="anchor">
         <ComparisonTable />
       </section>
@@ -72,7 +46,7 @@ export default function Page() {
         <Methodology />
       </section>
 
-      {/* 7. Avis */}
+      {/* 7. Ce qu’on dit de TANSE */}
       <section id="trust" className="anchor">
         <TestimonialsMarquee />
       </section>
@@ -92,30 +66,5 @@ export default function Page() {
         <FinalCta />
       </section>
     </main>
-  );
-}
-
-/* ---------------- Fallbacks ultra simples (SSR-safe) ---------------- */
-function SectionFallback({ title }: { title: string }) {
-  return (
-    <div className="mx-auto max-w-6xl px-6 py-16">
-      <div className="h-7 w-64 rounded-lg bg-black/5" aria-hidden />
-      <p className="mt-3 text-sm text-neutral-500">{title}</p>
-      <div className="mt-6 grid gap-4 md:grid-cols-3">
-        <div className="h-28 rounded-2xl bg-black/5" />
-        <div className="h-28 rounded-2xl bg-black/5" />
-        <div className="h-28 rounded-2xl bg-black/5" />
-      </div>
-    </div>
-  );
-}
-
-function ChartFallback() {
-  return (
-    <div className="mx-auto max-w-6xl px-6 py-16">
-      <div className="h-7 w-64 rounded-lg bg-black/5" aria-hidden />
-      <div className="mt-6 h-64 rounded-2xl bg-black/5" aria-hidden />
-      <p className="mt-3 text-xs text-neutral-500">Préparation du graphique…</p>
-    </div>
   );
 }
