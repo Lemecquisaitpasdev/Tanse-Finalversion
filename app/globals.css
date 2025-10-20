@@ -1,26 +1,119 @@
+/* Tailwind v4 */
 @import "tailwindcss";
 
+/* ===== Base ===== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #ffffff;
+  --fg: #0b0b0c;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+*,
+*::before,
+*::after { box-sizing: border-box; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html, body { height: 100%; }
+
+html { scroll-behavior: smooth; }           /* scroll fluide vers les #ancres */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* FIX — Empêche le 1er enfant de “pousser” en dehors du body */
+main { border-top: 1px solid transparent; }
+
+/* (bonus) si une page n’utilise pas <main>, on protège quand même le 1er bloc */
+body > :first-child { border-top: 1px solid transparent; }
+
+/* Décale l’ancre sous la topbar sticky (adapte la valeur si besoin) */
+.anchor { scroll-margin-top: clamp(72px, 10vh, 120px); }
+
+/* ===== Hero plein écran ===== */
+#hero-fullbleed {
+  position: relative;
+  width: 100vw;
+  height: 100lvh;            /* évite le bug mobile 100vh */
+  overflow: hidden;          /* pas de scroll parasite */
+  background: #E4E4E4;
+  display: block;
+}
+
+/* ===== Sections Spline (communes) ===== */
+.section-guard {
+  position: relative;
+  width: 100%;
+  min-height: min(90lvh, 1000px);
+  background: transparent;   /* colorer au cas par cas dans chaque section */
+  overflow: clip;
+  isolation: isolate;
+  /* on évite content-visibility ici pour ne pas figer les graphs */
+}
+
+.content-wrap {
+  position: relative;
+  z-index: 10;               /* le contenu passe au-dessus du canvas */
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: stretch;
+  align-items: center;
+  padding-top: clamp(24px, 4lvh, 64px);
+  padding-bottom: clamp(24px, 4lvh, 64px);
+}
+
+/* Viewer Spline = plein conteneur */
+.section-guard spline-viewer,
+.spline-contained {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent !important;
+}
+
+/* Le canvas ne déborde jamais et reste transparent */
+.section-guard canvas,
+#hero-fullbleed canvas,
+.spline-contained canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  display: block !important;
+  background: transparent !important;
+}
+
+/* Hauteur contrôlée : utile quand tu ne veux pas 100% de la section */
+.spline-shell {
+  height: clamp(420px, 70vh, 860px);
+  /* Ex: background:#0b0b0c; si la scène Spline est transparente */
+}
+
+/* Variante “cover” : un viewer avec hauteur responsive simple */
+spline-viewer.spline-cover {
+  display: block;
+  width: 100%;
+  height: clamp(520px, 70vh, 820px);
+  background: transparent !important;
+}
+
+spline-viewer.spline-cover canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  display: block !important;
+  background: transparent !important;
+}
+
+/* Typo utilitaire */
+.prose :where(p) { margin: 0 0 1rem 0; }
+
+/* FIX — supprime l’interligne “inline” des médias (anti-petits espaces fantômes) */
+img, canvas, video, svg { display: block; max-width: 100%; }
+/* Les sections avec className="anchor" s’alignent sous un header sticky si besoin */
+section.anchor {
+  scroll-margin-top: 80px; /* ajuste si ton header change de taille */
 }
