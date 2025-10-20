@@ -8,14 +8,13 @@ import {
 type Variant = "default" | "wide";
 
 export default function DataVisualization({ variant = "wide" }: { variant?: Variant }) {
-  // ⬆️ plus large
+  // largeur & hauteurs
   const containerWidth = variant === "wide" ? "max-w-[1400px]" : "max-w-6xl";
-  // ⬆️ cartes et charts plus hauts
   const cardPadding = "p-6 md:p-8";
   const cardHeight = variant === "wide" ? 520 : 360;
   const chartHeight = variant === "wide" ? 460 : 300;
 
-  // Données
+  // données
   const trafficData = [
     { month: "Jan", traditional: 45, llm: 12 },
     { month: "Fév", traditional: 48, llm: 18 },
@@ -36,7 +35,6 @@ export default function DataVisualization({ variant = "wide" }: { variant?: Vari
   const CONV_SYNC = "conv-sync";
 
   return (
-    // ⬆️ section plus haute
     <section
       className="relative -mt-8 md:-mt-12 pt-12 md:pt-16 pb-20 md:pb-28"
       style={{ background: "#E4E4E4" }}
@@ -118,6 +116,7 @@ export default function DataVisualization({ variant = "wide" }: { variant?: Vari
                   data={conversionData}
                   syncId={CONV_SYNC}
                   margin={{ top: 8, right: 16, bottom: 48, left: 8 }}
+                  barCategoryGap="20%"
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                   <XAxis
@@ -142,7 +141,6 @@ export default function DataVisualization({ variant = "wide" }: { variant?: Vari
                     name="Taux de conv. (%)"
                     fill="#444684"
                     radius={[12, 12, 0, 0]}
-                    barCategoryGap="20%"
                   />
                 </BarChart>
               </ResponsiveContainer>
