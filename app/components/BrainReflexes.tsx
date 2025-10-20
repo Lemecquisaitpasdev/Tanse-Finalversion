@@ -1,6 +1,6 @@
 "use client";
 
-import Script from "next/script";
+import "@splinetool/viewer"; // enregistre le web-component <spline-viewer>
 import SectionFrame from "./SectionFrame";
 
 const BRAIN_SCENE_URL =
@@ -36,7 +36,8 @@ export default function BrainReflexes() {
                 pour la première fois dans l’histoire du web, la part de
                 recherches via navigateur a nettement diminué. En{" "}
                 <strong className="text-[#444684]">2025</strong>, ce mouvement s’est
-                accéléré. Les consommateurs <strong className="text-[#444684]">posent des questions à une IA</strong> et obtiennent une réponse unique
+                accéléré. Les consommateurs{" "}
+                <strong className="text-[#444684]">posent des questions à une IA</strong> et obtiennent une réponse unique
                 souvent suffisante pour agir.
               </p>
 
@@ -74,27 +75,19 @@ export default function BrainReflexes() {
 
             {/* Stat cards */}
             <div className="mt-8 grid grid-cols-2 gap-4 max-w-xl">
-              {STATS.map((s, idx) => (
+              {STATS.map((s) => (
                 <div
                   key={s.value}
                   className="relative rounded-2xl bg-white p-4 shadow-md transition-transform transform hover:-translate-y-1 border border-transparent"
-                  style={{
-                    boxShadow: "0 8px 28px rgba(3,7,18,0.06)",
-                  }}
+                  style={{ boxShadow: "0 8px 28px rgba(3,7,18,0.06)" }}
                 >
                   <div className="flex items-center gap-3">
-                    {/* Number (now only colored text, no violet background) */}
-                    <div
-                      className="text-lg font-bold"
-                      style={{ color: "#444684" }} // number in violet
-                    >
+                    <div className="text-lg font-bold" style={{ color: "#444684" }}>
                       {s.value}
                     </div>
-
                     <div className="text-xs text-neutral-600">{s.label}</div>
                   </div>
 
-                  {/* subtle decorative accent — very light and neutral */}
                   <div
                     aria-hidden
                     className="absolute -right-6 -top-6 w-20 h-20 rounded-full pointer-events-none"
@@ -111,15 +104,11 @@ export default function BrainReflexes() {
 
           {/* Animation */}
           <div className="relative flex items-center justify-center">
-            <Script
-              type="module"
-              src="https://unpkg.com/@splinetool/viewer@1.10.80/build/spline-viewer.js"
-              strategy="afterInteractive"
-            />
-            {/* @ts-expect-error web component */}
             <spline-viewer
-              class="block w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
+              className="block w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
               url={BRAIN_SCENE_URL}
+              style={{ background: "transparent", display: "block", width: "100%", height: "100%" }}
+              aria-label="Animation cerveau"
             />
           </div>
         </div>

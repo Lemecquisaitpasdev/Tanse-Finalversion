@@ -8,13 +8,14 @@ import {
 type Variant = "default" | "wide";
 
 export default function DataVisualization({ variant = "wide" }: { variant?: Variant }) {
-  // largeur & hauteurs
+  // ⬆️ plus large
   const containerWidth = variant === "wide" ? "max-w-[1400px]" : "max-w-6xl";
+  // ⬆️ cartes et charts plus hauts
   const cardPadding = "p-6 md:p-8";
   const cardHeight = variant === "wide" ? 520 : 360;
   const chartHeight = variant === "wide" ? 460 : 300;
 
-  // données
+  // Données
   const trafficData = [
     { month: "Jan", traditional: 45, llm: 12 },
     { month: "Fév", traditional: 48, llm: 18 },
@@ -35,6 +36,7 @@ export default function DataVisualization({ variant = "wide" }: { variant?: Vari
   const CONV_SYNC = "conv-sync";
 
   return (
+    // ⬆️ section plus haute
     <section
       className="relative -mt-8 md:-mt-12 pt-12 md:pt-16 pb-20 md:pb-28"
       style={{ background: "#E4E4E4" }}
