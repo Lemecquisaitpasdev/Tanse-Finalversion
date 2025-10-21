@@ -1,7 +1,4 @@
-// app/components/FinalCta.tsx
 "use client";
-
-import "@splinetool/viewer"; // enregistre le web-component <spline-viewer>
 
 export default function FinalCta() {
   return (
@@ -33,7 +30,6 @@ export default function FinalCta() {
         <div className="col-span-12 md:col-span-7">
           <div className="rounded-3xl bg-white shadow-[0_25px_80px_-20px_rgba(0,0,0,0.35)] overflow-hidden h-[min(70vh,760px)] min-h-[560px]">
             <spline-viewer
-              // IMPORTANT : className (et pas "class") en JSX
               className="w-full h-full"
               url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
               style={{ background: "transparent", display: "block", width: "100%", height: "100%" }}

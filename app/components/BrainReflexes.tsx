@@ -1,6 +1,5 @@
 "use client";
 
-import "@splinetool/viewer"; // enregistre le web-component <spline-viewer>
 import SectionFrame from "./SectionFrame";
 
 const BRAIN_SCENE_URL =
@@ -36,8 +35,7 @@ export default function BrainReflexes() {
                 pour la première fois dans l’histoire du web, la part de
                 recherches via navigateur a nettement diminué. En{" "}
                 <strong className="text-[#444684]">2025</strong>, ce mouvement s’est
-                accéléré. Les consommateurs{" "}
-                <strong className="text-[#444684]">posent des questions à une IA</strong> et obtiennent une réponse unique
+                accéléré. Les consommateurs <strong className="text-[#444684]">posent des questions à une IA</strong> et obtiennent une réponse unique
                 souvent suffisante pour agir.
               </p>
 
@@ -104,11 +102,10 @@ export default function BrainReflexes() {
 
           {/* Animation */}
           <div className="relative flex items-center justify-center">
+            {/* web component fourni par le Provider global */}
             <spline-viewer
               className="block w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
               url={BRAIN_SCENE_URL}
-              style={{ background: "transparent", display: "block", width: "100%", height: "100%" }}
-              aria-label="Animation cerveau"
             />
           </div>
         </div>
