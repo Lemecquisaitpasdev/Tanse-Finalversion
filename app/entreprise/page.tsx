@@ -1,6 +1,4 @@
-// app/entreprise/page.tsx
 import Link from "next/link";
-import Script from "next/script";
 import Image from "next/image";
 import type { ReactNode } from "react";
 
@@ -85,7 +83,6 @@ export default function Page() {
               Pourquoi nous venons travailler <br className="hidden md:block" /> tous les jours
             </h1>
 
-            {/* Pourquoi nous venons travailler */}
             <p className="mt-6 text-[15px] leading-relaxed text-neutral-700">
               <span className="font-semibold text-[#444684]">
                 Vous faites votre métier, on rend votre savoir-faire immanquable au moment où l’intention est la plus forte.
@@ -165,15 +162,9 @@ export default function Page() {
 
       {/* Rejoignez TANSE */}
       <section className="relative overflow-hidden min-h-[78dvh] py-10 md:py-14 bg-[#E4E4E4]">
-        <Script
-          type="module"
-          src="https://unpkg.com/@splinetool/viewer@1.10.80/build/spline-viewer.js"
-          strategy="afterInteractive"
-        />
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
           <div className="grid items-center gap-10 md:grid-cols-12">
             <div className="md:col-span-5">
-              {/* Libellé “Partenariats” supprimé */}
               <h2 className="text-[clamp(32px,4.2vw,48px)] font-semibold text-[#444684] leading-tight">
                 Rejoignez TANSE
               </h2>
@@ -199,11 +190,10 @@ export default function Page() {
         </div>
 
         <div className="pointer-events-auto absolute inset-y-0 right-0 w-[75vw] md:w-[60vw]">
-          {/* @ts-expect-error web component */}
           <spline-viewer
             className="block w-full h-full"
             url="https://prod.spline.design/EZYaol9QTCXdiWrh/scene.splinecode"
-          ></spline-viewer>
+          />
         </div>
       </section>
 

@@ -1,6 +1,4 @@
-// app/contact/page.tsx
 import Link from "next/link";
-import Script from "next/script";
 
 export const metadata = {
   title: "TANSE — Nous contacter",
@@ -29,16 +27,10 @@ export default function Page() {
       <section className="relative mx-auto w-full max-w-6xl px-0 md:px-6">
         {/* Spline en haut de section, sans cadre, plein conteneur */}
         <div className="w-full">
-          <Script
-            type="module"
-            src="https://unpkg.com/@splinetool/viewer@1.10.80/build/spline-viewer.js"
-            strategy="afterInteractive"
-          />
-          {/* @ts-expect-error web component */}
           <spline-viewer
-            class="block w-full h-[46vh] md:h-[58vh]"
+            className="block w-full h-[46vh] md:h-[58vh]"
             url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
-          ></spline-viewer>
+          />
         </div>
 
         {/* Formulaire */}
