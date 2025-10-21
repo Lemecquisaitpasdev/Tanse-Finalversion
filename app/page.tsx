@@ -1,3 +1,4 @@
+// app/page.tsx
 "use client";
 
 import dynamic from "next/dynamic";
@@ -14,6 +15,11 @@ const FaqAccordion = dynamic(() => import("./components/FaqAccordion"));
 const FinalCta = dynamic(() => import("./components/FinalCta"), { ssr: false });
 const ScrollToHash = dynamic(() => import("./components/ScrollToHash"), { ssr: false });
 
+// ⬇️ IMPORTANT : .then(m => m.default) pour pointer explicitement sur le default export
+const SiteFooter = dynamic(() => import("./components/SiteFooter").then(m => m.default), {
+  ssr: false,
+});
+
 export default function Page() {
   return (
     <main>
@@ -28,6 +34,9 @@ export default function Page() {
       <section id="pricing" className="anchor"><PricingPlans /></section>
       <section id="faq" className="anchor"><FaqAccordion /></section>
       <section id="final-cta" className="anchor"><FinalCta /></section>
+
+      {/* Footer rendu côté client */}
+      <SiteFooter />
     </main>
   );
 }

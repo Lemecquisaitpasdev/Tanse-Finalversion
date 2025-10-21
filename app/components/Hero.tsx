@@ -21,7 +21,6 @@ export default function Hero() {
         src="https://unpkg.com/@splinetool/viewer@1.10.82/build/spline-viewer.js"
         strategy="afterInteractive"
       />
-      {/* @ts-expect-error: web component */}
       <spline-viewer class="absolute inset-0 block w-full h-full" url={SCENE_URL}></spline-viewer>
     </section>
   );
