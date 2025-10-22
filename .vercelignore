@@ -1,0 +1,11 @@
+# Ignore old Tailwind config files if they exist
+tailwind.config.js
+tailwind.config.ts
+
+# Standard ignores
+node_modules
+.next
+.git
+.DS_Store
+*.log
+.env*.local
