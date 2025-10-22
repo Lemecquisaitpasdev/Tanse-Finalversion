@@ -34,7 +34,7 @@ export default function SiteFooter(): JSX.Element {
             alt="TANSE"
             width={960}
             height={240}
-            priority
+            loading="lazy"
             className="h-[96px] md:h-[160px] lg:h-[192px] w-auto select-none"
           />
           <div className="flex items-center gap-3">

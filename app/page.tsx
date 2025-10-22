@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 
 const Hero = dynamic(() => import("./components/Hero"));
 const BrainReflexes = dynamic(() => import("./components/BrainReflexes"), { ssr: false });
-const DataVisualization = dynamic(() => import("./components/DataVisualization"), { ssr: false });
+const DataVisualization = dynamic(() => import("./components/DataVisualization"));
 const StatsPillars = dynamic(() => import("./components/StatsPillars"));
 const ComparisonTable = dynamic(() => import("./components/ComparisonTable"));
 const Methodology = dynamic(() => import("./components/Methodology"), { ssr: false });
@@ -13,12 +13,10 @@ const TestimonialsMarquee = dynamic(() => import("./components/TestimonialsMarqu
 const PricingPlans = dynamic(() => import("./components/PricingPlans"));
 const FaqAccordion = dynamic(() => import("./components/FaqAccordion"));
 const FinalCta = dynamic(() => import("./components/FinalCta"), { ssr: false });
-const ScrollToHash = dynamic(() => import("./components/ScrollToHash"), { ssr: false });
+const ScrollToHash = dynamic(() => import("./components/ScrollToHash"));
 
 // ⬇️ IMPORTANT : .then(m => m.default) pour pointer explicitement sur le default export
-const SiteFooter = dynamic(() => import("./components/SiteFooter").then(m => m.default), {
-  ssr: false,
-});
+const SiteFooter = dynamic(() => import("./components/SiteFooter").then(m => m.default));
 
 export default function Page() {
   return (

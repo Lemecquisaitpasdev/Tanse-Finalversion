@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Script from "next/script";
 
 const SCENE_URL = "https://prod.spline.design/l8fan1OYXfoYpgtt/scene.splinecode?v=20251019";
 
@@ -16,11 +15,7 @@ export default function Hero() {
         </nav>
       </div>
 
-      <Script
-        type="module"
-        src="https://unpkg.com/@splinetool/viewer@1.10.82/build/spline-viewer.js"
-        strategy="afterInteractive"
-      />
+      {/* Script Spline chargé globalement via SplineViewerProvider dans layout.tsx */}
       <spline-viewer class="absolute inset-0 block w-full h-full" url={SCENE_URL}></spline-viewer>
     </section>
   );
