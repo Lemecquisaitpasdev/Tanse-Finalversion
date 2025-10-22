@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 type Bar = { label: string; value: number; hint?: string };
 
 const DATA: Bar[] = [
@@ -12,15 +14,38 @@ const DATA: Bar[] = [
 ];
 
 export default function StatsPillars() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="chiffres" className="relative bg-[#E4E4E4]">
+    <section ref={sectionRef} id="chiffres" className="relative bg-[#E4E4E4]">
       <div className="mx-auto max-w-[1600px] px-6 md:px-10 lg:px-16 py-24 md:py-28">
         <header className="text-center mb-12 md:mb-14">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold">
             Les chiffres le prouvent.
           </h2>
           <p className="mt-3 text-neutral-600">
-            Vos clients vous cherchent en ligne. Si vous n’êtes pas visible, ils
+            Vos clients vous cherchent en ligne. Si vous n'êtes pas visible, ils
             choisissent le concurrent suivant.
           </p>
         </header>
@@ -32,15 +57,22 @@ export default function StatsPillars() {
                 <div className="w-[72px] md:w-[88px] lg:w-[96px]">
                   <div className="h-[260px] md:h-[300px] lg:h-[340px] bg-neutral-100 rounded-2xl relative overflow-hidden">
                     <div
-                      className="absolute inset-x-0 bottom-0 rounded-t-2xl"
+                      className="absolute inset-x-0 bottom-0 rounded-t-2xl transition-all duration-1000 ease-out"
                       style={{
-                        height: `${b.value}%`,
+                        height: isVisible ? `${b.value}%` : "0%",
                         background:
                           "linear-gradient(180deg,#e7e7ff 0%,#4a4570 100%)",
+                        transitionDelay: `${i * 100}ms`,
                       }}
                       title={`${b.label} : ${b.hint ?? b.value + "%"}`}
                     />
-                    <div className="absolute top-2 left-1/2 -translate-x-1/2 text-[11px] font-medium bg-white/90 px-2 py-0.5 rounded-full shadow-sm">
+                    <div
+                      className="absolute top-2 left-1/2 -translate-x-1/2 text-[11px] font-medium bg-white/90 px-2 py-0.5 rounded-full shadow-sm transition-opacity duration-500"
+                      style={{
+                        opacity: isVisible ? 1 : 0,
+                        transitionDelay: `${i * 100 + 800}ms`,
+                      }}
+                    >
                       {b.hint ?? `${b.value}%`}
                     </div>
                   </div>
@@ -54,7 +86,7 @@ export default function StatsPillars() {
 
           <p className="mt-10 text-center text-sm text-neutral-600">
             Notre job : vous placer dans le Top local, structurer vos infos pour
-            l’IA, et transformer cette visibilité en appels &amp; RDV.
+            l'IA, et transformer cette visibilité en appels &amp; RDV.
           </p>
 
           <div className="mt-6 flex items-center justify-center gap-3">
