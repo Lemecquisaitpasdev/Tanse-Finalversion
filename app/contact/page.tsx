@@ -1,9 +1,24 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "TANSE — Nous contacter",
+export const metadata: Metadata = {
+  title: "Contact - Discutons de votre projet SEO & GEO",
   description:
-    "Écris-nous ou prends un rendez-vous avec l’équipe TANSE. Réponse sous 24h ouvrées.",
+    "Contactez TANSE pour discuter de votre stratégie de référencement local. Concessions, garages, ateliers. Réponse sous 24h ouvrées.",
+  keywords: ["contact TANSE", "devis SEO", "contact référencement local", "contact GEO"],
+  openGraph: {
+    title: "Contact - TANSE",
+    description: "Parlons de vos objectifs locaux. Réponse sous 24h ouvrées.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact - TANSE",
+    description: "Parlons de vos objectifs locaux. Réponse sous 24h.",
+  },
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 export default function Page() {

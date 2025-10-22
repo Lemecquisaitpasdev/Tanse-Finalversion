@@ -1,11 +1,26 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "TANSE — Notre histoire & Notre équipe",
+export const metadata: Metadata = {
+  title: "Notre Histoire & Équipe - À Propos de TANSE",
   description:
-    "Pourquoi TANSE existe, nos jalons par année, et l’équipe qui vous accompagne sur le SEO local, le GEO et la performance web.",
+    "Découvrez TANSE : notre mission, notre histoire depuis 2024, et l'équipe d'experts en SEO local et GEO qui accompagne plus de 70 entreprises.",
+  keywords: ["à propos TANSE", "équipe SEO", "agence référencement local", "histoire TANSE"],
+  openGraph: {
+    title: "Notre Histoire & Équipe - TANSE",
+    description: "70 entreprises accompagnées, +32% de leads en moyenne. Découvrez notre méthode GEO et notre équipe d'experts.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Notre Histoire & Équipe - TANSE",
+    description: "70 entreprises accompagnées, +32% de leads en moyenne.",
+  },
+  alternates: {
+    canonical: "/entreprise",
+  },
 };
 
 type YearItem = { year: string; bullets: ReactNode[]; accent?: string };

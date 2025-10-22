@@ -1,10 +1,25 @@
 // app/forfaits/page.tsx
 import Link from "next/link";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "TANSE — Nos forfaits SEO + GEO",
+export const metadata: Metadata = {
+  title: "Forfaits SEO & GEO - Tarifs Transparents",
   description:
-    "Trois offres claires : SEO+GEO (coût unique 1 490€ puis maintenance 850€/mois), Pack Complet SEO+GEO+Site (2 490€) avec 1 mois de maintenance offert, et Grand groupes sur devis.",
+    "Trois offres claires : SEO+GEO (1 490€ puis 850€/mois), Pack Complet SEO+GEO+Site (2 490€), et solutions multi-sites sur devis. Paiement Stripe sécurisé.",
+  keywords: ["tarifs SEO", "prix GEO", "forfait référencement local", "Google Business Profile prix", "SEO PME"],
+  openGraph: {
+    title: "Nos Forfaits SEO & GEO - TANSE",
+    description: "Découvrez nos forfaits adaptés à votre entreprise : référencement local, optimisation Google Business, et solutions multi-sites.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nos Forfaits SEO & GEO - TANSE",
+    description: "Découvrez nos forfaits adaptés à votre entreprise : référencement local, optimisation Google Business.",
+  },
+  alternates: {
+    canonical: "/forfaits",
+  },
 };
 
 type Card = {

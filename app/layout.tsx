@@ -2,6 +2,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import SplineViewerProvider from "./components/SplineViewerProvider";
+import StructuredData from "./components/StructuredData";
 
 // Note: next/font est commenté temporairement pour le build local (pas d'accès internet)
 // En production sur Vercel, décommenter ces lignes :
@@ -64,6 +65,18 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
+      <head>
+        {/* Preconnect to external domains for performance */}
+        <link rel="preconnect" href="https://prod.spline.design" />
+        <link rel="preconnect" href="https://unpkg.com" />
+        <link rel="dns-prefetch" href="https://prod.spline.design" />
+        <link rel="dns-prefetch" href="https://unpkg.com" />
+
+        {/* Schema.org structured data */}
+        <StructuredData type="Organization" />
+        <StructuredData type="WebSite" />
+        <StructuredData type="Service" />
+      </head>
       <body className="font-sans">
         {/* Enregistre <spline-viewer> une seule fois pour toute l'app */}
         <SplineViewerProvider />
