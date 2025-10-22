@@ -1,11 +1,37 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Methodology() {
   const viewerRef = useRef<any>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
+  // Intersection Observer for lazy loading
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShouldLoad(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: "200px" }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Pause logic - only runs when Spline is loaded
+  useEffect(() => {
+    if (!shouldLoad) return;
+
     let disposed = false;
     const PAUSE_AT = 7;
 
@@ -70,7 +96,7 @@ export default function Methodology() {
       disposed = true;
       try { (viewerRef.current as any)?.__cleanup?.(); } catch {}
     };
-  }, []);
+  }, [shouldLoad]);
 
   return (
     <section id="methodology" className="section-guard bg-[#111] py-24">
@@ -79,15 +105,22 @@ export default function Methodology() {
           Notre méthode
         </h2>
 
-        <div className="mx-auto w-full max-w-[1350px] rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,.35)]">
+        <div
+          ref={containerRef}
+          className="mx-auto w-full max-w-[1350px] rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,.35)]"
+        >
           <div className="aspect-[18/9] lg:aspect-[21/9] w-full">
-            <spline-viewer
-              ref={viewerRef}
-              url="https://prod.spline.design/leX4N7JQU4vKg98x/scene.splinecode"
-              className="block w-full h-full"
-              loading-anim="false"
-              aria-label="Animation méthodologie"
-            />
+            {shouldLoad ? (
+              <spline-viewer
+                ref={viewerRef}
+                url="https://prod.spline.design/leX4N7JQU4vKg98x/scene.splinecode"
+                className="block w-full h-full"
+                loading-anim="false"
+                aria-label="Animation méthodologie"
+              />
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 animate-pulse" />
+            )}
           </div>
         </div>
       </div>

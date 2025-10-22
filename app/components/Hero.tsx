@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import SplineScene from "./SplineScene";
 
 const SCENE_URL = "https://prod.spline.design/l8fan1OYXfoYpgtt/scene.splinecode?v=20251019";
 
@@ -15,8 +16,8 @@ export default function Hero() {
         </nav>
       </div>
 
-      {/* Spline loads in background - non-blocking */}
-      <spline-viewer class="absolute inset-0 block w-full h-full" url={SCENE_URL}></spline-viewer>
+      {/* Hero loads immediately (eager=true) */}
+      <SplineScene url={SCENE_URL} className="absolute inset-0" eager={true} />
     </section>
   );
 }

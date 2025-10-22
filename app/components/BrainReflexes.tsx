@@ -1,6 +1,7 @@
 "use client";
 
 import SectionFrame from "./SectionFrame";
+import SplineScene from "./SplineScene";
 
 const BRAIN_SCENE_URL =
   process.env.NEXT_PUBLIC_BRAIN_URL ||
@@ -100,12 +101,12 @@ export default function BrainReflexes() {
             </div>
           </div>
 
-          {/* Animation */}
+          {/* Animation - Lazy load when visible */}
           <div className="relative flex items-center justify-center">
-            {/* web component fourni par le Provider global */}
-            <spline-viewer
-              className="block w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
+            <SplineScene
               url={BRAIN_SCENE_URL}
+              className="w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
+              eager={false}
             />
           </div>
         </div>

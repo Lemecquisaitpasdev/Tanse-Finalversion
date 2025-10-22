@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
+import SplineScene from "../components/SplineScene";
 
 export const metadata: Metadata = {
   title: "Notre Histoire & Équipe - À Propos de TANSE",
@@ -205,9 +206,10 @@ export default function Page() {
         </div>
 
         <div className="pointer-events-auto absolute inset-y-0 right-0 w-[75vw] md:w-[60vw]">
-          <spline-viewer
-            className="block w-full h-full"
+          <SplineScene
             url="https://prod.spline.design/EZYaol9QTCXdiWrh/scene.splinecode"
+            className="w-full h-full"
+            eager={false}
           />
         </div>
       </section>

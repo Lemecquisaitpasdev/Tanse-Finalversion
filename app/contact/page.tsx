@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import SplineScene from "../components/SplineScene";
 
 export const metadata: Metadata = {
   title: "Contact - Discutons de votre projet SEO & GEO",
@@ -40,11 +41,12 @@ export default function Page() {
 
       {/* 2) Animation Spline (sans cadre) + Formulaire RDV */}
       <section className="relative mx-auto w-full max-w-6xl px-0 md:px-6">
-        {/* Spline en haut de section, sans cadre, plein conteneur */}
+        {/* Spline - Lazy load when visible */}
         <div className="w-full">
-          <spline-viewer
-            className="block w-full h-[46vh] md:h-[58vh]"
+          <SplineScene
             url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
+            className="w-full h-[46vh] md:h-[58vh]"
+            eager={false}
           />
         </div>
 

@@ -1,5 +1,7 @@
 "use client";
 
+import SplineScene from "./SplineScene";
+
 export default function FinalCta() {
   return (
     <section id="final-cta" className="section-guard bg-[#E4E4E4]">
@@ -26,14 +28,13 @@ export default function FinalCta() {
           </a>
         </div>
 
-        {/* Animation à droite */}
+        {/* Animation à droite - Lazy load when visible */}
         <div className="col-span-12 md:col-span-7">
           <div className="rounded-3xl bg-white shadow-[0_25px_80px_-20px_rgba(0,0,0,0.35)] overflow-hidden h-[min(70vh,760px)] min-h-[560px]">
-            <spline-viewer
-              className="w-full h-full"
+            <SplineScene
               url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
-              style={{ background: "transparent", display: "block", width: "100%", height: "100%" }}
-              aria-label="Animation finale"
+              className="w-full h-full"
+              eager={false}
             />
           </div>
         </div>
