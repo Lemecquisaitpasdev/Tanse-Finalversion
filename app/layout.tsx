@@ -66,24 +66,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr">
       <head>
-        {/* Preload Spline script for instant 3D loading */}
-        <link
-          rel="modulepreload"
-          href="https://unpkg.com/@splinetool/viewer@1.10.82/build/spline-viewer.js"
-          crossOrigin="anonymous"
-        />
-
-        {/* Preload critical Spline scene (Hero) */}
-        <link
-          rel="prefetch"
-          href="https://prod.spline.design/l8fan1OYXfoYpgtt/scene.splinecode"
-          as="fetch"
-          crossOrigin="anonymous"
-        />
-
-        {/* Preconnect to external domains for performance */}
-        <link rel="preconnect" href="https://prod.spline.design" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://unpkg.com" crossOrigin="anonymous" />
+        {/* Non-blocking DNS hints for Spline domains */}
+        <link rel="preconnect" href="https://prod.spline.design" />
+        <link rel="preconnect" href="https://unpkg.com" />
         <link rel="dns-prefetch" href="https://prod.spline.design" />
         <link rel="dns-prefetch" href="https://unpkg.com" />
 

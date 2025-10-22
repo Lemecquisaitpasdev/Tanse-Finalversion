@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Script from "next/script";
 
 /**
- * Charge le web-component <spline-viewer> UNE SEULE FOIS pour toute l'app.
- * Optimisé pour un chargement immédiat des animations 3D.
+ * Charge le web-component <spline-viewer> de manière asynchrone.
+ * Ne bloque JAMAIS le rendu de la page.
  */
 export default function SplineViewerProvider() {
   const loadedRef = useRef(false);
@@ -18,17 +17,14 @@ export default function SplineViewerProvider() {
     if (typeof window !== "undefined" && customElements.get("spline-viewer")) {
       return;
     }
+
+    // Charge le script de manière totalement asynchrone
+    const script = document.createElement("script");
+    script.type = "module";
+    script.src = "https://unpkg.com/@splinetool/viewer@1.10.82/build/spline-viewer.js";
+    script.async = true;
+    document.head.appendChild(script);
   }, []);
 
-  return (
-    <>
-      {/* Load Spline script with Next.js Script component for optimization */}
-      <Script
-        id="spline-viewer-script"
-        src="https://unpkg.com/@splinetool/viewer@1.10.82/build/spline-viewer.js"
-        strategy="beforeInteractive"
-        type="module"
-      />
-    </>
-  );
+  return null;
 }
