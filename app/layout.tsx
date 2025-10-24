@@ -10,6 +10,13 @@ export const metadata: Metadata = {
     icon: "/icon.png",
     apple: "/apple-icon.png"
   },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
+  themeColor: "#444684",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
