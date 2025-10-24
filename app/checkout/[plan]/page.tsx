@@ -156,30 +156,37 @@ export default function CheckoutPage({ params }: { params?: { plan?: string } })
         return;
       }
 
-      // Exemple d’appel Stripe Checkout (à implémenter côté serveur)
-      // const res = await fetch("/api/checkout", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ plan: currentPlan, contact, billing, slot, coupon, addOns: selectedAddOns }),
-      // });
-      // const { url, error } = await res.json();
-      // if (error) throw new Error(error);
-      // router.push(url);
+      // Appel API Stripe Checkout
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          plan: currentPlan,
+          contact,
+          billing,
+          slot,
+          coupon,
+          addOns: selectedAddOns
+        }),
+      });
 
-      alert(
-        `Démo — passage à Stripe :\n` +
-          `Plan: ${plan.label}\n` +
-          `Add-ons: ${selectedAddOns.join(", ") || "aucun"}\n` +
-          `Total: ${eur(total)} HT\n` +
-          `Contact: ${contact.firstname} ${contact.lastname} <${contact.email}>\n` +
-          `Créneau: ${slot.date} ${slot.time}\n` +
-          `Coupon: ${coupon || "—"}`
-      );
+      const data = await res.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      if (data.url) {
+        // Rediriger vers Stripe Checkout
+        window.location.href = data.url;
+      } else {
+        throw new Error("URL de paiement introuvable");
+      }
     } catch (err: any) {
-      alert(err?.message || "Erreur de paiement.");
-    } finally {
+      alert(err?.message || "Erreur de paiement. Veuillez réessayer.");
       setSubmitting(false);
     }
+    // Note: pas de finally car on redirige vers Stripe
   }
 
   /* --------------------------------- UI ---------------------------------- */

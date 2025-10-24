@@ -14,6 +14,7 @@ const PricingPlans = dynamic(() => import("./components/PricingPlans"));
 const FaqAccordion = dynamic(() => import("./components/FaqAccordion"));
 const FinalCta = dynamic(() => import("./components/FinalCta"), { ssr: false });
 const ScrollToHash = dynamic(() => import("./components/ScrollToHash"), { ssr: false });
+const ScrollToNextSection = dynamic(() => import("./components/ScrollToNextSection"), { ssr: false });
 
 // ⬇️ IMPORTANT : .then(m => m.default) pour pointer explicitement sur le default export
 const SiteFooter = dynamic(() => import("./components/SiteFooter").then(m => m.default), {
@@ -24,6 +25,8 @@ export default function Page() {
   return (
     <main>
       <ScrollToHash />
+      <ScrollToNextSection />
+
       <section id="hero" className="anchor"><Hero /></section>
       <section id="reflexes" className="anchor"><BrainReflexes /></section>
       <section id="insights" className="anchor"><DataVisualization variant="wide" /></section>
