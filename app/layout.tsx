@@ -15,8 +15,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
+      <head>
+        {/* Preconnect to Spline CDN for faster 3D loading */}
+        <link rel="preconnect" href="https://prod.spline.design" />
+        <link rel="dns-prefetch" href="https://prod.spline.design" />
+      </head>
       <body>
-        {/* Enregistre <spline-viewer> une seule fois pour toute l’app */}
+        {/* Enregistre <spline-viewer> une seule fois pour toute l'app */}
         <SplineViewerProvider />
         {children}
       </body>
