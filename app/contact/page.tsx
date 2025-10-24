@@ -205,8 +205,8 @@ export default function Page() {
                   </button>
                   <span className="ml-3 text-sm text-neutral-600">
                     ou écrivez-nous :{" "}
-                    <a className="underline hover:no-underline" href="mailto:hello@tanse.io">
-                      hello@tanse.io
+                    <a className="underline hover:no-underline" href="mailto:contact@tanse.fr">
+                      contact@tanse.fr
                     </a>
                   </span>
                 </div>

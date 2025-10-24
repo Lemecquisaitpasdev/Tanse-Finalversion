@@ -481,7 +481,7 @@ export default function CheckoutPage({ params }: { params?: { plan?: string } })
             <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-[0_16px_60px_-28px_rgba(0,0,0,0.25)]">
               <h3 className="text-sm font-medium">Besoin d’aide ?</h3>
               <p className="mt-1 text-sm text-neutral-600">
-                Écrivez-nous à <a className="underline" href="mailto:hello@tanse.io">hello@tanse.io</a> – réponse rapide.
+                Écrivez-nous à <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a> – réponse rapide.
               </p>
             </div>
           </aside>

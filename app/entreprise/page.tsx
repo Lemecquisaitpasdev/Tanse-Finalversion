@@ -180,7 +180,7 @@ export default function Page() {
                   Voir nos forfaits
                 </Link>
                 <a
-                  href="mailto:hello@tanse.io"
+                  href="mailto:contact@tanse.fr"
                   className="rounded-full bg-black/5 px-5 py-3 text-sm font-medium hover:bg-black/10"
                 >
                   Nous contacter
@@ -205,7 +205,7 @@ export default function Page() {
           <div className="flex gap-5 text-sm">
             <Link href="/forfaits" className="text-[#444684] hover:underline">Forfaits</Link>
             <Link href="/entreprise" className="text-[#444684] hover:underline">Entreprise</Link>
-            <a href="mailto:hello@tanse.io" className="text-[#444684] hover:underline">Contact</a>
+            <a href="mailto:contact@tanse.fr" className="text-[#444684] hover:underline">Contact</a>
           </div>
         </div>
       </footer>

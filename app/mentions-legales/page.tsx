@@ -21,14 +21,14 @@ export default function Page() {
         <p><b>Éditeur :</b> TANSE — Forme : <i>à compléter</i> — Capital : <i>à compléter</i></p>
         <p><b>SIREN :</b> <i>à compléter</i> — <b>TVA :</b> <i>à compléter</i></p>
         <p><b>Siège social :</b> 12 Rue Exemple, 75002 Paris, France</p>
-        <p><b>Contact :</b> hello@tanse.io — <b>Téléphone :</b> <i>à compléter</i></p>
+        <p><b>Contact :</b> contact@tanse.fr — <b>Téléphone :</b> <i>à compléter</i></p>
         <p><b>Directeur de la publication :</b> <i>à compléter</i></p>
         <p><b>Hébergeur :</b> <i>à compléter (ex. Vercel)</i> — Adresse : <i>à compléter</i> — Téléphone : <i>à compléter</i></p>
       </section>
 
       <hr className="my-8" />
       <p className="text-sm text-neutral-600">
-        TANSE — Siège : 12 Rue Exemple, 75002 Paris — <a className="underline" href="mailto:hello@tanse.io">hello@tanse.io</a>
+        TANSE — Siège : 12 Rue Exemple, 75002 Paris — <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a>
       </p>
 
       <Script id="ld-legal" type="application/ld+json"

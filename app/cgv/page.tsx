@@ -58,7 +58,7 @@ export default function Page() {
       <p>Droit français. Tribunal compétent : celui du siège de TANSE, sous réserve de dispositions impératives.</p>
 
       <hr className="my-8" />
-      <p className="text-sm text-neutral-600">TANSE — <i>forme à compléter</i> — SIREN <i>à compléter</i> — TVA <i>à compléter</i> — Siège : 12 Rue Exemple, 75002 Paris — <a className="underline" href="mailto:hello@tanse.io">hello@tanse.io</a></p>
+      <p className="text-sm text-neutral-600">TANSE — <i>forme à compléter</i> — SIREN <i>à compléter</i> — TVA <i>à compléter</i> — Siège : 12 Rue Exemple, 75002 Paris — <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a></p>
 
       <Script id="ld-cgv" type="application/ld+json"
         dangerouslySetInnerHTML={{

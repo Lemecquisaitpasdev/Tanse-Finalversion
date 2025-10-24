@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Mail, MapPin, ArrowUpRight, Twitter, Linkedin, Github } from "lucide-react";
+import { Mail, MapPin, ArrowUpRight } from "lucide-react";
 
 export default function SiteFooter(): JSX.Element {
   const pathname = usePathname();
@@ -39,7 +39,7 @@ export default function SiteFooter(): JSX.Element {
           />
           <div className="flex items-center gap-3">
             <Link
-              href="mailto:hello@tanse.io"
+              href="mailto:contact@tanse.fr"
               className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/70 px-5 py-2.5 text-sm font-medium shadow-sm backdrop-blur transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#444684]/30"
             >
               <Image src="/brand/tanse-mark.png?v=3" alt="" width={20} height={20} className="h-5 w-5" />
@@ -82,19 +82,8 @@ export default function SiteFooter(): JSX.Element {
             <ul className="space-y-2 text-sm text-slate-800">
               <li><Link href="/faq" className="hover:text-slate-950 transition">FAQ</Link></li>
               <li>
-                <Link href="mailto:hello@tanse.io" className="inline-flex items-center gap-2 hover:text-slate-950 transition">
-                  <Mail className="h-4 w-4 text-slate-600" /> hello@tanse.io
-                </Link>
-              </li>
-              <li className="flex items-center gap-2 pt-1">
-                <Link href="https://twitter.com" aria-label="Twitter" className="rounded-full border border-slate-300 p-2 text-slate-700 transition hover:bg-white/70">
-                  <Twitter className="h-4 w-4" />
-                </Link>
-                <Link href="https://www.linkedin.com" aria-label="LinkedIn" className="rounded-full border border-slate-300 p-2 text-slate-700 transition hover:bg-white/70">
-                  <Linkedin className="h-4 w-4" />
-                </Link>
-                <Link href="https://github.com" aria-label="GitHub" className="rounded-full border border-slate-300 p-2 text-slate-700 transition hover:bg-white/70">
-                  <Github className="h-4 w-4" />
+                <Link href="mailto:contact@tanse.fr" className="inline-flex items-center gap-2 hover:text-slate-950 transition">
+                  <Mail className="h-4 w-4 text-slate-600" /> contact@tanse.fr
                 </Link>
               </li>
             </ul>
@@ -120,7 +109,7 @@ export default function SiteFooter(): JSX.Element {
 
         <div className="mt-12 flex flex-col gap-4 border-t border-slate-300/70 pt-6 text-xs text-slate-700 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} TANSE — Tous droits réservés. | TVA & Immatriculation sur la facture.</p>
-          <p>Contact : <Link href="mailto:hello@tanse.io" className="underline decoration-slate-400 underline-offset-2 hover:text-slate-900">hello@tanse.io</Link></p>
+          <p>Contact : <Link href="mailto:contact@tanse.fr" className="underline decoration-slate-400 underline-offset-2 hover:text-slate-900">contact@tanse.fr</Link></p>
         </div>
       </div>
     </footer>
