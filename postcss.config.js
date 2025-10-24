@@ -1,4 +1,4 @@
-// Tailwind v4 : on utilise uniquement le plugin PostCSS officiel
+// postcss.config.js (Tailwind v4)
 module.exports = {
   plugins: {
     '@tailwindcss/postcss': {},
