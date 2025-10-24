@@ -4,6 +4,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   BarChart, Bar
 } from "recharts";
+import { useEffect, useState } from "react";
 
 type Variant = "default" | "wide";
 
@@ -14,6 +15,15 @@ export default function DataVisualization({ variant = "wide" }: { variant?: Vari
   const cardPadding = "p-6 md:p-8";
   const cardHeight = variant === "wide" ? 520 : 360;
   const chartHeight = variant === "wide" ? 460 : 300;
+
+  // Responsive: détecter mobile pour abréviations
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   // Données
   const trafficData = [
@@ -26,10 +36,10 @@ export default function DataVisualization({ variant = "wide" }: { variant?: Vari
   ];
 
   const conversionData = [
-    { source: "Google Search", rate: 2.8 },
-    { source: "ChatGPT", rate: 15.2 },
-    { source: "Perplexity", rate: 13.8 },
-    { source: "Claude", rate: 16.5 },
+    { source: "Google Search", sourceShort: "Google", rate: 2.8 },
+    { source: "ChatGPT", sourceShort: "ChatGPT", rate: 15.2 },
+    { source: "Perplexity", sourceShort: "Perpl.", rate: 13.8 },
+    { source: "Claude", sourceShort: "Claude", rate: 16.5 },
   ];
 
   const TRAFFIC_SYNC = "traffic-sync";
@@ -112,23 +122,26 @@ export default function DataVisualization({ variant = "wide" }: { variant?: Vari
               Taux de conversion par source (%)
             </div>
             <div className="mb-4 h-px w-full bg-black/5" />
-            <div style={{ width: "100%", height: chartHeight }}>
+            <div style={{ width: "100%", height: chartHeight, overflowX: "hidden" }}>
               <ResponsiveContainer>
                 <BarChart
                   data={conversionData}
                   syncId={CONV_SYNC}
-                  margin={{ top: 8, right: 16, bottom: 48, left: 8 }}
+                  margin={{ top: 8, right: 16, bottom: isMobile ? 56 : 48, left: 8 }}
                   barCategoryGap="20%"
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                   <XAxis
-                    dataKey="source"
+                    dataKey={isMobile ? "sourceShort" : "source"}
                     stroke="#9CA3AF"
-                    tickMargin={14}
+                    tickMargin={isMobile ? 16 : 14}
                     interval={0}
                     padding={{ left: 14, right: 14 }}
+                    tick={{ fontSize: isMobile ? 11 : 12 }}
+                    angle={isMobile ? -10 : 0}
+                    textAnchor={isMobile ? "end" : "middle"}
                   />
-                  <YAxis stroke="#9CA3AF" />
+                  <YAxis stroke="#9CA3AF" tick={{ fontSize: isMobile ? 11 : 12 }} />
                   <Tooltip
                     contentStyle={{
                       backgroundColor: "#0F172A",

@@ -101,12 +101,15 @@ export default function BrainReflexes() {
           </div>
 
           {/* Animation */}
-          <div className="relative flex items-center justify-center">
-            {/* web component fourni par le Provider global */}
-            <spline-viewer
-              className="block w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
-              url={BRAIN_SCENE_URL}
-            />
+          <div className="relative flex items-center justify-center overflow-hidden">
+            {/* Conteneur avec aspect-ratio stable pour éviter layout shift */}
+            <div className="relative w-full aspect-square md:aspect-[4/5] max-w-[520px] mx-auto overflow-hidden rounded-2xl">
+              <spline-viewer
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-contain scale-90 md:scale-100 translate-y-2 md:translate-y-0"
+                url={BRAIN_SCENE_URL}
+              />
+            </div>
           </div>
         </div>
       </div>

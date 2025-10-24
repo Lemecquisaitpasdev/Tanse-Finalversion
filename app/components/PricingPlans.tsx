@@ -92,7 +92,7 @@ export default function PricingPlans() {
               <Link
                 href="/checkout/seo-geo"
                 prefetch
-                className="inline-flex w-full items-center justify-center rounded-full bg-black/5 px-5 py-3 text-sm font-medium text-[#0b0b0c] hover:bg-black/10"
+                className="inline-flex w-full items-center justify-center rounded-full bg-black/5 px-5 py-3 min-h-[44px] text-sm font-medium text-[#0b0b0c] hover:bg-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#444684]/50"
               >
                 Démarrer (coût unique 1 490€)
               </Link>
@@ -147,8 +147,8 @@ export default function PricingPlans() {
               <Link
                 href="/checkout/seo-geo-site"
                 prefetch
-                className="inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-medium text-[#444684]
-                           transition hover:opacity-90 group-hover:shadow-[0_10px_30px_-10px_rgba(255,255,255,0.6)]"
+                className="inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 min-h-[44px] text-sm font-medium text-[#444684]
+                           transition hover:opacity-90 group-hover:shadow-[0_10px_30px_-10px_rgba(255,255,255,0.6)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
               >
                 Démarrer (coût unique 2 490€)
               </Link>
@@ -188,7 +188,7 @@ export default function PricingPlans() {
               <Link
                 href="/contact?plan=grand-groupes"
                 prefetch
-                className="inline-flex w-full items-center justify-center rounded-full bg-black/5 px-5 py-3 text-sm font-medium text-[#0b0b0c] hover:bg-black/10"
+                className="inline-flex w-full items-center justify-center rounded-full bg-black/5 px-5 py-3 min-h-[44px] text-sm font-medium text-[#0b0b0c] hover:bg-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#444684]/50"
               >
                 Parler à un expert
               </Link>
@@ -306,14 +306,14 @@ export default function PricingPlans() {
           <Link
             href="/contact?type=audit"
             prefetch
-            className="inline-flex items-center justify-center rounded-full bg-[#444684] px-6 py-3 text-sm font-medium text-white hover:opacity-90"
+            className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-[#444684] px-6 py-3 min-h-[44px] text-sm font-medium text-white hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#444684]/60"
           >
             Demander un audit gratuit (15 min)
           </Link>
           <Link
             href="/rendezvous"
             prefetch
-            className="inline-flex items-center justify-center rounded-full bg-black/5 px-6 py-3 text-sm font-medium text-[#0b0b0c] hover:bg-black/10"
+            className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-black/5 px-6 py-3 min-h-[44px] text-sm font-medium text-[#0b0b0c] hover:bg-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#444684]/50"
           >
             Réserver un appel de 30 min
           </Link>

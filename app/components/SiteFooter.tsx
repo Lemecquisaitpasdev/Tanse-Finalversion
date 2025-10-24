@@ -37,17 +37,17 @@ export default function SiteFooter(): JSX.Element {
             priority
             className="h-[96px] md:h-[160px] lg:h-[192px] w-auto select-none"
           />
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
             <Link
               href="mailto:hello@tanse.io"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/70 px-5 py-2.5 text-sm font-medium shadow-sm backdrop-blur transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#444684]/30"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/70 px-5 py-2.5 min-h-[44px] text-sm font-medium shadow-sm backdrop-blur transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#444684]/30"
             >
               <Image src="/brand/tanse-mark.png?v=3" alt="" width={20} height={20} className="h-5 w-5" />
               Nous contacter
             </Link>
             <Link
               href="/forfaits"
-              className="inline-flex items-center gap-2 rounded-full bg-[#444684] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#444684]/40"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#444684] px-5 py-2.5 min-h-[44px] text-sm font-semibold text-white shadow-sm transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#444684]/40"
             >
               Forfaits <ArrowUpRight className="h-4 w-4" />
             </Link>
@@ -80,13 +80,14 @@ export default function SiteFooter(): JSX.Element {
           <div>
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-700">Ressources</h3>
             <ul className="space-y-2 text-sm text-slate-800">
-              <li><Link href="/faq" className="hover:text-slate-950 transition">FAQ</Link></li>
+              <li><Link href="/#faq" className="hover:text-slate-950 transition">FAQ</Link></li>
               <li>
                 <Link href="mailto:hello@tanse.io" className="inline-flex items-center gap-2 hover:text-slate-950 transition">
                   <Mail className="h-4 w-4 text-slate-600" /> hello@tanse.io
                 </Link>
               </li>
-              <li className="flex items-center gap-2 pt-1">
+              {/* Icônes réseaux masquées en mobile (pas de placeholders) */}
+              <li className="hidden md:flex items-center gap-2 pt-1">
                 <Link href="https://twitter.com" aria-label="Twitter" className="rounded-full border border-slate-300 p-2 text-slate-700 transition hover:bg-white/70">
                   <Twitter className="h-4 w-4" />
                 </Link>
