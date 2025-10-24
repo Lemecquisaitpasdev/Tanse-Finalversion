@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2025-09-30.clover",
-});
-
 // Prix Stripe (à créer dans le Dashboard Stripe)
 const PRICE_IDS: Record<string, string> = {
   "seo-geo": process.env.STRIPE_PRICE_SEO_GEO || "price_xxx",
@@ -18,6 +14,21 @@ const ADDON_PRICES: Record<string, number> = {
   "booster-avis": 250,
   "formation": 690,
 };
+
+// Fonction helper pour initialiser Stripe
+function getStripe() {
+  const apiKey = process.env.STRIPE_SECRET_KEY;
+
+  if (!apiKey) {
+    throw new Error(
+      "STRIPE_SECRET_KEY n'est pas configurée. Veuillez ajouter cette variable d'environnement sur Vercel."
+    );
+  }
+
+  return new Stripe(apiKey, {
+    apiVersion: "2025-09-30.clover",
+  });
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -39,6 +50,9 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Initialiser Stripe (uniquement quand on en a besoin)
+    const stripe = getStripe();
 
     // Construire les line items
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
