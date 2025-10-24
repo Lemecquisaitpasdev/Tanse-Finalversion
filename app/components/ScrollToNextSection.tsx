@@ -23,16 +23,20 @@ export default function ScrollToNextSection({ targetId, className = "" }: Props)
   }, []);
 
   const scrollToNext = () => {
+    const OFFSET_TOP = 230; // Espace au-dessus du titre pour centrer la section
+
     if (targetId) {
       const target = document.getElementById(targetId);
       if (target) {
         // Cherche le titre (h1 ou h2) dans la section cible
         const heading = target.querySelector('h1, h2');
-        if (heading) {
-          heading.scrollIntoView({ behavior: "smooth", block: "start" });
-          return;
-        }
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        const elementToScroll = heading || target;
+
+        const elementTop = elementToScroll.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: elementTop - OFFSET_TOP,
+          behavior: "smooth",
+        });
         return;
       }
     }
@@ -48,11 +52,13 @@ export default function ScrollToNextSection({ targetId, className = "" }: Props)
       if (sectionTop > currentScroll) {
         // Scroll vers le titre de la section (h1 ou h2)
         const heading = section.querySelector('h1, h2');
-        if (heading) {
-          heading.scrollIntoView({ behavior: "smooth", block: "start" });
-          return;
-        }
-        section.scrollIntoView({ behavior: "smooth", block: "start" });
+        const elementToScroll = heading || section;
+
+        const elementTop = elementToScroll.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: elementTop - OFFSET_TOP,
+          behavior: "smooth",
+        });
         return;
       }
     }
