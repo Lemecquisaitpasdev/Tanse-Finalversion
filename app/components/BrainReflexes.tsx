@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import SectionFrame from "./SectionFrame";
 
 const BRAIN_SCENE_URL =
@@ -14,9 +15,29 @@ const STATS = [
 ];
 
 export default function BrainReflexes() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.15, rootMargin: "50px" }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <SectionFrame id="reflexes" className="bg-[#E4E4E4]">
-      <div className="w-full max-w-[1200px] mx-auto px-6 md:px-10 py-20 md:py-28">
+      <div ref={sectionRef} className="w-full max-w-[1200px] mx-auto px-6 md:px-10 py-20 md:py-28">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 items-start">
           {/* Texte */}
           <div>
@@ -101,11 +122,19 @@ export default function BrainReflexes() {
           </div>
 
           {/* Animation */}
-          <div className="relative flex items-center justify-center">
-            {/* web component fourni par le Provider global */}
+          <div
+            className={`relative flex items-center justify-center transition-all duration-500 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-95'
+            }`}
+            style={{ transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+          >
             <spline-viewer
               className="block w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
               url={BRAIN_SCENE_URL}
+              style={{
+                transition: 'opacity 0.4s ease-out',
+                willChange: 'opacity, transform'
+              }}
             />
           </div>
         </div>

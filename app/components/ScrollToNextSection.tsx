@@ -73,13 +73,14 @@ export default function ScrollToNextSection({ targetId, className = "" }: Props)
   return (
     <button
       onClick={scrollToNext}
-      className={`group fixed bottom-8 right-8 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[#444684] text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl md:h-14 md:w-14 ${
+      className={`group fixed bottom-8 right-8 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[#444684] text-white shadow-lg transition-all duration-200 hover:scale-110 hover:shadow-2xl hover:-translate-y-1 active:scale-95 active:shadow-md md:h-14 md:w-14 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
       } ${className}`}
+      style={{ transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }}
       aria-label="Aller à la section suivante"
     >
       <svg
-        className="h-6 w-6 transition-transform group-hover:translate-y-1"
+        className="h-6 w-6 transition-all duration-200 group-hover:translate-y-1 group-active:translate-y-0"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -88,8 +89,8 @@ export default function ScrollToNextSection({ targetId, className = "" }: Props)
         <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
       </svg>
 
-      {/* Ripple effect on hover */}
-      <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 group-hover:animate-ping" />
+      {/* Ripple effect on hover - Plus rapide et nerveux */}
+      <div className="absolute inset-0 rounded-full bg-white/25 opacity-0 group-hover:opacity-100 transition-opacity duration-150" style={{ animation: 'ping 0.8s cubic-bezier(0, 0, 0.2, 1) infinite' }} />
     </button>
   );
 }
