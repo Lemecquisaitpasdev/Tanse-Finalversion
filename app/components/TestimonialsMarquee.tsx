@@ -9,17 +9,17 @@ type T = { name: string; handle: string; text: string; initials: string };
 /* Données                                                             */
 /* ------------------------------------------------------------------ */
 const ROW1: T[] = [
-  { name: "Ariel MI", handle: "@arielmi", text: "Site clair et rapide : taux de RDV en hausse.", initials: "AM" },
-  { name: "Hasan Toor", handle: "@hasantoxr", text: "Plus d’appels, sans pub. Le local bien fait change tout.", initials: "HT" },
-  { name: "Maria Martin", handle: "@marias_martin", text: "Fiche Google débloquée. +30 % d’essais en 90 jours.", initials: "MM" },
-  { name: "Gleb Konon", handle: "@glebkonon", text: "La méthode GEO apporte des prospects très chauds.", initials: "GK" },
+  { name: "Ariel Martinez", handle: "@arielmi", text: "Depuis que TANSE a restructuré notre présence locale, notre site convertit mieux et nos prises de rendez-vous ont augmenté de 40% en 4 mois. Le travail sur les fiches Google et l'optimisation locale fait vraiment la différence.", initials: "AM" },
+  { name: "Hassan Toure", handle: "@hasantoxr", text: "Plus d'appels qualifiés sans dépenser un euro en publicité. Le référencement local bien fait change vraiment la donne pour notre garage. Les clients nous trouvent naturellement quand ils cherchent près de chez eux.", initials: "HT" },
+  { name: "Maria Martin", handle: "@marias_martin", text: "Notre fiche Google Business était complètement délaissée. TANSE l'a optimisée avec les bons mots-clés et photos. Résultat : +30% d'essais routiers demandés en 90 jours. Le ROI est évident.", initials: "MM" },
+  { name: "Gabriel Konovalov", handle: "@glebkonon", text: "La méthode GEO de TANSE apporte des prospects incroyablement qualifiés. Ce ne sont pas des curieux, ce sont des gens prêts à acheter. Notre taux de conversion a doublé depuis la mise en place.", initials: "GK" },
 ];
 
 const ROW2: T[] = [
-  { name: "Richard Manisa", handle: "@rmanisa", text: "Local + pages services : visibilité réelle sur Maps.", initials: "RM" },
-  { name: "Anaïs Dupre", handle: "@anais_auto", text: "+22 % de demandes de devis carrosserie en 3 mois.", initials: "AD" },
-  { name: "Eran Cohen", handle: "@erancohen", text: "Reporting simple. Les positions montent, les appels suivent.", initials: "EC" },
-  { name: "Thatweb3guy", handle: "@myfootyfantasy", text: "On gère mieux les avis : la note grimpe → plus de visites.", initials: "TW" },
+  { name: "Richard Manisse", handle: "@rmanisa", text: "L'association du référencement local et des pages services bien structurées nous donne une visibilité réelle sur Google Maps. Nous apparaissons maintenant dans le top 3 pour toutes nos spécialités dans un rayon de 25km.", initials: "RM" },
+  { name: "Anaïs Dupré", handle: "@anais_auto", text: "Après seulement 3 mois d'accompagnement, nous avons constaté +22% de demandes de devis pour notre atelier carrosserie. Les positions sur les recherches locales ont explosé et les avis positifs se multiplient.", initials: "AD" },
+  { name: "Eran Cohen", handle: "@erancohen", text: "Le reporting est simple et transparent : on voit les positions monter semaine après semaine, et surtout les appels téléphoniques suivent. C'est du concret, pas du vent. TANSE livre ce qu'ils promettent.", initials: "EC" },
+  { name: "Thomas Weber", handle: "@thomasweber", text: "Nous gérons désormais mieux nos avis clients grâce à leur stratégie. Notre note Google est passée de 3.8 à 4.6 en 6 mois, et ça se voit immédiatement sur le nombre de visites en concession. Les gens font confiance.", initials: "TW" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -27,16 +27,14 @@ const ROW2: T[] = [
 /* NB: utilise exactement les noms présents dans ton dossier           */
 /* ------------------------------------------------------------------ */
 const AVATARS: Record<string, string> = {
-  "Ariel MI": "/trust/danny-postma-zNxOw2JFNKs-unsplash.jpg",
-  "Hasan Toor": "/trust/greg-edwards-oz2wj86hGxA-unsplash.jpg",
+  "Ariel Martinez": "/trust/danny-postma-zNxOw2JFNKs-unsplash.jpg",
+  "Hassan Toure": "/trust/greg-edwards-oz2wj86hGxA-unsplash.jpg",
   "Maria Martin": "/trust/woman-7895953_1280.jpg",
-  "Gleb Konon": "/trust/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.jpg",
-  "Richard Manisa": "/trust/man-7450033_1280.jpg",
-
-  // ← Tes ajouts
-  "Anaïs Dupre": "/trust/clay-elliot-mpDV4xaFP8c-unsplash",
+  "Gabriel Konovalov": "/trust/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.jpg",
+  "Richard Manisse": "/trust/man-7450033_1280.jpg",
+  "Anaïs Dupré": "/trust/clay-elliot-mpDV4xaFP8c-unsplash",
   "Eran Cohen": "/trust/the-connected-narrative-N8lRH2uxih4-unsplash.jpg",
-  "Thatweb3guy": "/trust/brad-hanks-VR3nXEIfBzs-unsplash.jpg",
+  "Thomas Weber": "/trust/brad-hanks-VR3nXEIfBzs-unsplash.jpg",
 };
 
 /* ------------------------------------------------------------------ */

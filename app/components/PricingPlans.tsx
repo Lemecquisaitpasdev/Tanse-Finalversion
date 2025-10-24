@@ -308,7 +308,7 @@ export default function PricingPlans() {
             prefetch
             className="inline-flex items-center justify-center rounded-full bg-[#444684] px-6 py-3 text-sm font-medium text-white hover:opacity-90"
           >
-            Demander un audit gratuit (15 min)
+            Demander un audit gratuit (24-48h)
           </Link>
           <Link
             href="/rendezvous"
