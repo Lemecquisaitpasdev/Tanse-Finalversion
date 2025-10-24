@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 type Bar = { label: string; value: number; hint?: string };
 
 const DATA: Bar[] = [
@@ -12,44 +14,82 @@ const DATA: Bar[] = [
 ];
 
 export default function StatsPillars() {
+  const [visibleBars, setVisibleBars] = useState<number[]>([]);
+  const sectionRef = useRef<HTMLElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated.current) {
+            hasAnimated.current = true;
+            // Animation séquentielle : chaque barre apparaît après la précédente
+            DATA.forEach((_, index) => {
+              setTimeout(() => {
+                setVisibleBars((prev) => [...prev, index]);
+              }, index * 800); // 800ms entre chaque barre
+            });
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="chiffres" className="relative bg-[#E4E4E4]">
+    <section ref={sectionRef} id="chiffres" className="relative bg-[#E4E4E4]">
       <div className="mx-auto max-w-[1600px] px-6 md:px-10 lg:px-16 py-24 md:py-28">
         <header className="text-center mb-12 md:mb-14">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold">
             Les chiffres le prouvent.
           </h2>
           <p className="mt-3 text-neutral-600">
-            Vos clients vous cherchent en ligne. Si vous n’êtes pas visible, ils
+            Vos clients vous cherchent en ligne. Si vous n'êtes pas visible, ils
             choisissent le concurrent suivant.
           </p>
         </header>
 
         <div className="rounded-3xl bg-white shadow-[0_10px_60px_-20px_rgba(0,0,0,.2)] ring-1 ring-black/5 px-6 md:px-10 py-10 md:py-12">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 items-end">
-            {DATA.map((b, i) => (
-              <div key={i} className="flex flex-col items-center">
-                <div className="w-[72px] md:w-[88px] lg:w-[96px]">
-                  <div className="h-[260px] md:h-[300px] lg:h-[340px] bg-neutral-100 rounded-2xl relative overflow-hidden">
-                    <div
-                      className="absolute inset-x-0 bottom-0 rounded-t-2xl"
-                      style={{
-                        height: `${b.value}%`,
-                        background:
-                          "linear-gradient(180deg,#e7e7ff 0%,#4a4570 100%)",
-                      }}
-                      title={`${b.label} : ${b.hint ?? b.value + "%"}`}
-                    />
-                    <div className="absolute top-2 left-1/2 -translate-x-1/2 text-[11px] font-medium bg-white/90 px-2 py-0.5 rounded-full shadow-sm">
-                      {b.hint ?? `${b.value}%`}
+            {DATA.map((b, i) => {
+              const isVisible = visibleBars.includes(i);
+              return (
+                <div key={i} className="flex flex-col items-center">
+                  <div className="w-[72px] md:w-[88px] lg:w-[96px]">
+                    <div className="h-[260px] md:h-[300px] lg:h-[340px] bg-neutral-100 rounded-2xl relative overflow-hidden">
+                      <div
+                        className="absolute inset-x-0 bottom-0 rounded-t-2xl transition-all duration-1000 ease-out"
+                        style={{
+                          height: isVisible ? `${b.value}%` : "0%",
+                          background:
+                            "linear-gradient(180deg,#e7e7ff 0%,#4a4570 100%)",
+                        }}
+                        title={`${b.label} : ${b.hint ?? b.value + "%"}`}
+                      />
+                      <div
+                        className={`absolute top-2 left-1/2 -translate-x-1/2 text-[11px] font-medium bg-white/90 px-2 py-0.5 rounded-full shadow-sm transition-opacity duration-500 ${
+                          isVisible ? "opacity-100" : "opacity-0"
+                        }`}
+                      >
+                        {b.hint ?? `${b.value}%`}
+                      </div>
                     </div>
                   </div>
+                  <p className={`mt-4 text-xs md:text-[13px] text-center text-neutral-600 max-w-[160px] transition-opacity duration-500 delay-300 ${
+                    isVisible ? "opacity-100" : "opacity-0"
+                  }`}>
+                    {b.label}
+                  </p>
                 </div>
-                <p className="mt-4 text-xs md:text-[13px] text-center text-neutral-600 max-w-[160px]">
-                  {b.label}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <p className="mt-10 text-center text-sm text-neutral-600">
@@ -57,16 +97,16 @@ export default function StatsPillars() {
             l’IA, et transformer cette visibilité en appels &amp; RDV.
           </p>
 
-          <div className="mt-6 flex items-center justify-center gap-3">
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
               href="/forfaits"
-              className="inline-flex h-10 items-center rounded-full px-5 text-sm font-medium text-white bg-[#3d3a66]"
+              className="inline-flex h-11 w-full sm:w-auto items-center justify-center rounded-full px-6 text-sm font-semibold text-white bg-[#3d3a66] hover:bg-[#4a4570] transition-colors shadow-md hover:shadow-lg"
             >
               Voir les forfaits
             </a>
             <a
               href="#faq"
-              className="inline-flex h-10 items-center rounded-full px-4 text-sm font-medium bg-neutral-100 hover:bg-neutral-200"
+              className="inline-flex h-11 w-full sm:w-auto items-center justify-center rounded-full px-5 text-sm font-medium bg-neutral-100 hover:bg-neutral-200 transition-colors border border-neutral-200"
             >
               FAQ
             </a>

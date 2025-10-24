@@ -14,9 +14,57 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  /* Optimisation iPhone : scroll fluide */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background: var(--bg);
   color: var(--fg);
+  /* Empêche le zoom sur focus des inputs sur iPhone */
+  touch-action: manipulation;
+}
+
+/* Optimisations iPhone et mobile */
+@media (max-width: 768px) {
+  /* Améliore les zones tactiles */
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Empêche le highlight bleu au tap sur iOS */
+  * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  /* Améliore le rendu des animations sur mobile */
+  * {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+}
+
+/* Optimisations spécifiques iPhone */
+@supports (-webkit-touch-callout: none) {
+  /* Fix du viewport height sur iOS */
+  body {
+    min-height: -webkit-fill-available;
+  }
+
+  /* Améliore le scroll sur iOS */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Améliore les performances du scroll */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
