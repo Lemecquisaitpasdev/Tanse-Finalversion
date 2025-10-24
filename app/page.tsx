@@ -2,8 +2,10 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useIsMobile } from "./hooks/useIsMobile";
 
 const Hero = dynamic(() => import("./components/Hero"));
+const MobileHero = dynamic(() => import("./components/MobileHero"), { ssr: false });
 const BrainReflexes = dynamic(() => import("./components/BrainReflexes"), { ssr: false });
 const DataVisualization = dynamic(() => import("./components/DataVisualization"), { ssr: false });
 const StatsPillars = dynamic(() => import("./components/StatsPillars"));
@@ -20,11 +22,23 @@ const SiteFooter = dynamic(() => import("./components/SiteFooter").then(m => m.d
   ssr: false,
 });
 
+function ResponsiveHero() {
+  const isMobile = useIsMobile();
+
+  // Sur mobile (≤768px), afficher MobileHero avec la nouvelle scène Spline
+  if (isMobile === true) {
+    return <MobileHero />;
+  }
+
+  // Sur desktop (>768px) ou pendant SSR, afficher le Hero classique
+  return <Hero />;
+}
+
 export default function Page() {
   return (
     <main>
       <ScrollToHash />
-      <section id="hero" className="anchor"><Hero /></section>
+      <section id="hero" className="anchor"><ResponsiveHero /></section>
       <section id="reflexes" className="anchor"><BrainReflexes /></section>
       <section id="insights" className="anchor"><DataVisualization variant="wide" /></section>
       <section id="stats" className="anchor"><StatsPillars /></section>
