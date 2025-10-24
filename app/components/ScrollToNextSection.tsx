@@ -26,12 +26,38 @@ export default function ScrollToNextSection({ targetId, className = "" }: Props)
     if (targetId) {
       const target = document.getElementById(targetId);
       if (target) {
+        // Cherche le titre (h1 ou h2) dans la section cible
+        const heading = target.querySelector('h1, h2');
+        if (heading) {
+          heading.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
         target.scrollIntoView({ behavior: "smooth", block: "start" });
         return;
       }
     }
 
-    // Si pas de targetId, scroll d'une hauteur d'écran
+    // Trouver automatiquement la prochaine section visible
+    const currentScroll = window.scrollY + window.innerHeight / 3;
+    const sections = document.querySelectorAll('section[id]');
+
+    for (let i = 0; i < sections.length; i++) {
+      const section = sections[i] as HTMLElement;
+      const sectionTop = section.offsetTop;
+
+      if (sectionTop > currentScroll) {
+        // Scroll vers le titre de la section (h1 ou h2)
+        const heading = section.querySelector('h1, h2');
+        if (heading) {
+          heading.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+    }
+
+    // Si aucune section trouvée, scroll d'une hauteur d'écran
     window.scrollBy({
       top: window.innerHeight * 0.9,
       behavior: "smooth",

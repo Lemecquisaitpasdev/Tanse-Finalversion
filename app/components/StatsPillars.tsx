@@ -60,7 +60,8 @@ export default function StatsPillars() {
                         height: isVisible ? `${b.value}%` : "0%",
                         background:
                           "linear-gradient(180deg,#e7e7ff 0%,#4a4570 100%)",
-                        transition: `height 1.2s cubic-bezier(0.65, 0, 0.35, 1) ${i * 0.15}s`,
+                        // Animation séquentielle : chaque barre commence après la précédente (2.5s * index)
+                        transition: `height 2.5s cubic-bezier(0.45, 0, 0.15, 1) ${i * 2.5}s`,
                       }}
                       title={`${b.label} : ${b.hint ?? b.value + "%"}`}
                     >
@@ -71,16 +72,17 @@ export default function StatsPillars() {
                           background: "inherit",
                           filter: "blur(2px)",
                           opacity: 0.6,
-                          animation: isVisible ? "wave 2s ease-in-out infinite" : "none",
-                          animationDelay: `${i * 0.15}s`,
+                          animation: isVisible ? "wave 3s ease-in-out infinite" : "none",
+                          animationDelay: `${i * 2.5}s`,
                         }}
                       />
                     </div>
                     <div
-                      className="absolute top-2 left-1/2 -translate-x-1/2 text-[11px] font-medium bg-white/90 px-2 py-0.5 rounded-full shadow-sm transition-opacity duration-500"
+                      className="absolute top-2 left-1/2 -translate-x-1/2 text-[11px] font-medium bg-white/90 px-2 py-0.5 rounded-full shadow-sm transition-opacity duration-700"
                       style={{
                         opacity: isVisible ? 1 : 0,
-                        transitionDelay: `${i * 0.15 + 0.6}s`,
+                        // Le badge apparaît vers la fin du remplissage de sa barre
+                        transitionDelay: `${i * 2.5 + 2}s`,
                       }}
                     >
                       {b.hint ?? `${b.value}%`}
@@ -99,16 +101,16 @@ export default function StatsPillars() {
             l'IA, et transformer cette visibilité en appels &amp; RDV.
           </p>
 
-          <div className="mt-6 flex items-center justify-center gap-3">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <a
               href="/forfaits"
-              className="inline-flex h-10 items-center rounded-full px-5 text-sm font-medium text-white bg-[#3d3a66]"
+              className="inline-flex h-10 md:h-11 items-center rounded-full px-5 md:px-6 text-sm font-medium text-white bg-[#444684] transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-[#444684] focus-visible:outline-offset-2 touch-manipulation"
             >
               Voir les forfaits
             </a>
             <a
               href="#faq"
-              className="inline-flex h-10 items-center rounded-full px-4 text-sm font-medium bg-neutral-100 hover:bg-neutral-200"
+              className="inline-flex h-10 md:h-11 items-center rounded-full px-4 md:px-5 text-sm font-medium bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:bg-neutral-300 focus-visible:outline-2 focus-visible:outline-[#444684] focus-visible:outline-offset-2 touch-manipulation"
             >
               FAQ
             </a>

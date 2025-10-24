@@ -18,13 +18,13 @@ export default function SplineViewerProvider() {
       return;
     }
 
-    // Injecte le script ESM de Spline (version figée)
+    // Injecte le script ESM de Spline (version figée) - chargement immédiat pour apparition instantanée
     const script = document.createElement("script");
     script.type = "module";
     script.src =
       "https://unpkg.com/@splinetool/viewer@1.10.82/build/spline-viewer.js";
-    script.async = true;
     script.crossOrigin = "anonymous";
+    // Pas d'async pour chargement immédiat prioritaire
     document.head.appendChild(script);
 
     // On ne retire pas le script au cleanup pour éviter une re-définition

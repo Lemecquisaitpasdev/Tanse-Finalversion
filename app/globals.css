@@ -187,3 +187,212 @@ section.anchor {
   grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
   gap: 1.5rem;
 }
+
+/* ===== Button Utilities (Responsive & Accessible) ===== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  background: #444684;
+  color: white;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  outline-offset: 2px;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(68, 70, 132, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid #444684;
+  outline-offset: 2px;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.05);
+  color: #0b0b0c;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  outline-offset: 2px;
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary:focus-visible {
+  outline: 2px solid #444684;
+  outline-offset: 2px;
+}
+
+/* Mobile touch optimization */
+@media (max-width: 768px) {
+  .btn-primary,
+  .btn-secondary {
+    min-height: 44px; /* iOS recommended touch target size */
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+  }
+
+  /* Prevent double-tap zoom on buttons */
+  .btn-primary,
+  .btn-secondary {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ===== iPhone-specific optimizations ===== */
+
+/* Prevent horizontal scrolling on iPhone */
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* iPhone SE / Small screens (320px - 375px) */
+@media (max-width: 375px) {
+  /* Smaller text for compact screens */
+  h1 {
+    font-size: clamp(2rem, 8vw, 2.5rem) !important;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 7vw, 2.25rem) !important;
+  }
+
+  /* Reduce padding for small screens */
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Ensure cards stack properly */
+  .grid {
+    gap: 1rem !important;
+  }
+}
+
+/* iPhone 12/13/14 Pro Max and similar (430px) */
+@media (min-width: 390px) and (max-width: 430px) {
+  /* Optimize for larger iPhones */
+  body {
+    font-size: 1rem;
+  }
+
+  /* Better spacing for Pro Max screens */
+  .content-wrap {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Fix iOS Safari bottom bar issue with dvh units */
+@supports (height: 100dvh) {
+  .h-screen,
+  .min-h-screen {
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+  }
+}
+
+/* Improve touch targets on iPhone */
+@media (max-width: 768px) {
+  a, button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+
+  /* Prevent iOS text size adjustment */
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Smooth scrolling for iOS */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Remove iOS input shadows */
+  input, textarea, select {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0.5rem;
+  }
+
+  /* Better focus states for iPhone */
+  *:focus-visible {
+    outline: 3px solid #444684;
+    outline-offset: 2px;
+  }
+}
+
+/* Landscape mode on iPhone */
+@media (max-width: 932px) and (orientation: landscape) {
+  /* Reduce vertical padding in landscape */
+  section {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* Make hero less tall in landscape */
+  #hero, #hero-fullbleed {
+    height: 100lvh !important;
+  }
+}
+
+/* Dark mode support for iPhone */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light; /* Force light mode for now */
+  }
+}
+
+/* Notch/Dynamic Island safe areas (iPhone X and newer) */
+@supports (padding: max(0px)) {
+  body {
+    padding-top: max(0px, env(safe-area-inset-top));
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+
+  /* Adjust fixed elements for notch */
+  .fixed {
+    padding-left: max(0.5rem, env(safe-area-inset-left));
+    padding-right: max(0.5rem, env(safe-area-inset-right));
+  }
+}

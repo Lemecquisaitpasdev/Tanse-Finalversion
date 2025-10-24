@@ -20,7 +20,7 @@ export default function FinalCta() {
 
           <a
             href="#pricing"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#444684] text-white font-medium shadow-sm hover:opacity-95 transition"
+            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#444684] text-white font-medium shadow-lg transition-all duration-200 hover:opacity-90 hover:-translate-y-1 hover:shadow-xl active:translate-y-0 active:shadow-md focus-visible:outline-2 focus-visible:outline-[#444684] focus-visible:outline-offset-2 touch-manipulation min-h-[44px] md:min-h-0"
           >
             Choisir un forfait
           </a>
