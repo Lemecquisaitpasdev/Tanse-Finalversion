@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import SplineLazy from "./SplineLazy";
 
+/**
+ * OPTIMISÉ WINDOWS:
+ * - Lazy-load Spline (charge uniquement quand visible)
+ * - Suppression willChange (inutile et force GPU layer)
+ */
 export default function FinalCta() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -11,6 +17,7 @@ export default function FinalCta() {
       ([entry]) => {
         if (entry && entry.isIntersecting) {
           setIsVisible(true);
+          observer.disconnect(); // Économie mémoire
         }
       },
       { threshold: 0.1, rootMargin: "30px" }
@@ -48,7 +55,7 @@ export default function FinalCta() {
           </a>
         </div>
 
-        {/* Animation à droite */}
+        {/* Animation Spline lazy-loaded */}
         <div
           className={`col-span-12 md:col-span-7 transition-all duration-500 ease-out ${
             isVisible ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-6 scale-98'
@@ -56,16 +63,18 @@ export default function FinalCta() {
           style={{ transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }}
         >
           <div className="rounded-3xl bg-white shadow-[0_25px_80px_-20px_rgba(0,0,0,0.35)] overflow-hidden h-[min(70vh,760px)] min-h-[560px]">
-            <spline-viewer
-              className="w-full h-full"
+            <SplineLazy
               url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
+              loading="lazy"
+              threshold={0.15}
+              className="w-full h-full"
               style={{
                 background: "transparent",
                 display: "block",
                 width: "100%",
                 height: "100%",
-                transition: 'opacity 0.4s ease-out',
-                willChange: 'opacity, transform'
+                transition: 'opacity 0.4s ease-out'
+                /* willChange supprimé - inutile */
               }}
               aria-label="Animation finale"
             />

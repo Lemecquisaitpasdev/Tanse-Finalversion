@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import SplineLazy from "./SplineLazy";
 
+/**
+ * OPTIMISÉ WINDOWS:
+ * - Lazy-load Spline (charge uniquement quand visible)
+ * - Garde la logique de pause à 7s pour économiser GPU
+ */
 export default function Methodology() {
   const viewerRef = useRef<any>(null);
 
@@ -81,9 +87,11 @@ export default function Methodology() {
 
         <div className="mx-auto w-full max-w-[1350px] rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,.35)]">
           <div className="aspect-[18/9] lg:aspect-[21/9] w-full">
-            <spline-viewer
+            <SplineLazy
               ref={viewerRef}
               url="https://prod.spline.design/leX4N7JQU4vKg98x/scene.splinecode"
+              loading="lazy"
+              threshold={0.2}
               className="block w-full h-full"
               loading-anim="false"
               aria-label="Animation méthodologie"

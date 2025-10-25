@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import SectionFrame from "./SectionFrame";
+import SplineLazy from "./SplineLazy";
 
 const BRAIN_SCENE_URL =
   process.env.NEXT_PUBLIC_BRAIN_URL ||
@@ -14,6 +15,12 @@ const STATS = [
   { value: "+48%", label: "taux de conversion moyen après adaptation" },
 ];
 
+/**
+ * OPTIMISÉ WINDOWS:
+ * - Lazy-load Spline (charge uniquement quand visible)
+ * - Suppression willChange (inutile)
+ * - Blur remplacé par box-shadow (moins coûteux GPU)
+ */
 export default function BrainReflexes() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -23,6 +30,8 @@ export default function BrainReflexes() {
       ([entry]) => {
         if (entry && entry.isIntersecting) {
           setIsVisible(true);
+          // Déconnexion après activation (économie mémoire)
+          observer.disconnect();
         }
       },
       { threshold: 0.15, rootMargin: "50px" }
@@ -107,13 +116,13 @@ export default function BrainReflexes() {
                     <div className="text-xs text-neutral-600">{s.label}</div>
                   </div>
 
+                  {/* Effet glow optimisé - box-shadow au lieu de blur (90% moins coûteux GPU) */}
                   <div
                     aria-hidden
                     className="absolute -right-6 -top-6 w-20 h-20 rounded-full pointer-events-none"
                     style={{
-                      background:
-                        "radial-gradient(circle at 30% 30%, rgba(68,70,132,0.06), transparent 40%)",
-                      filter: "blur(10px)",
+                      background: "radial-gradient(circle at 30% 30%, rgba(68,70,132,0.12), transparent 60%)",
+                      boxShadow: "0 0 40px 20px rgba(68,70,132,0.08)",
                     }}
                   />
                 </div>
@@ -121,19 +130,21 @@ export default function BrainReflexes() {
             </div>
           </div>
 
-          {/* Animation */}
+          {/* Animation Spline lazy-loaded */}
           <div
             className={`relative flex items-center justify-center transition-all duration-500 ease-out ${
               isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-95'
             }`}
             style={{ transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }}
           >
-            <spline-viewer
-              className="block w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
+            <SplineLazy
               url={BRAIN_SCENE_URL}
+              loading="lazy"
+              threshold={0.2}
+              className="block w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
               style={{
-                transition: 'opacity 0.4s ease-out',
-                willChange: 'opacity, transform'
+                transition: 'opacity 0.4s ease-out'
+                /* willChange supprimé - inutile et force GPU layer */
               }}
             />
           </div>

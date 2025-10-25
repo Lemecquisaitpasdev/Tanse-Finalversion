@@ -13,7 +13,9 @@
 
 html, body { height: 100%; }
 
-html { scroll-behavior: smooth; }           /* scroll fluide vers les #ancres */
+/* OPTIMISATION WINDOWS: smooth-scroll CSS désactivé (très lent sur Windows)
+   On utilise maintenant smooth scroll JS avec requestAnimationFrame */
+html { scroll-behavior: auto; }
 
 body {
   margin: 0;

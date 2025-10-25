@@ -2,19 +2,32 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Script from "next/script";
+import { useDebounce } from "../hooks/useDebounce";
+import SplineLazy from "./SplineLazy";
 
 const SCENE_URL = "https://prod.spline.design/l8fan1OYXfoYpgtt/scene.splinecode?v=20251019";
 
+/**
+ * OPTIMISÉ WINDOWS:
+ * - Lazy-load Spline (charge uniquement quand visible)
+ * - Debounce resize à 150ms au lieu de temps réel
+ * - Suppression willChange (inutile)
+ */
 export default function Hero() {
   const [isMobile, setIsMobile] = useState(false);
 
+  // Debounce resize pour Windows
+  const checkMobile = useDebounce(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, 150);
+
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
+    // Check initial
+    setIsMobile(window.innerWidth < 768);
+
+    window.addEventListener("resize", checkMobile, { passive: true });
     return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  }, [checkMobile]);
 
   return (
     <section id="hero" className="relative w-full h-[100dvh] min-h-[600px] max-h-[900px] overflow-hidden bg-[#E4E4E4]">
@@ -42,25 +55,20 @@ export default function Hero() {
         </nav>
       </div>
 
-      <Script
-        type="module"
-        src="https://unpkg.com/@splinetool/viewer@1.10.82/build/spline-viewer.js"
-        strategy="afterInteractive"
-      />
-
-      {/* Spline Viewer avec conteneur responsive */}
+      {/* Spline Lazy-loaded (charge seulement quand visible) */}
       <div
         className={`absolute inset-0 flex items-center justify-center ${
           isMobile ? 'scale-110 translate-y-4' : 'scale-100'
         }`}
         style={{
-          transition: 'transform 0.3s ease-out',
-          willChange: 'transform'
+          transition: 'transform 0.3s ease-out'
+          /* willChange supprimé - inutile et coûteux sur Windows */
         }}
       >
-        <spline-viewer
-          className="block w-full h-full"
+        <SplineLazy
           url={SCENE_URL}
+          loading="eager"
+          className="block w-full h-full"
           style={{
             width: '100%',
             height: '100%',
