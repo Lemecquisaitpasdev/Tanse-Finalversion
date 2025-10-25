@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import SectionFrame from "./SectionFrame";
 import SplineLazy from "./SplineLazy";
+import { useOptimization } from "./OptimizationProvider";
 
 const BRAIN_SCENE_URL =
   process.env.NEXT_PUBLIC_BRAIN_URL ||
@@ -20,8 +21,10 @@ const STATS = [
  * - Lazy-load Spline (charge uniquement quand visible)
  * - Suppression willChange (inutile)
  * - Blur remplacé par box-shadow (moins coûteux GPU)
+ * - Animations adaptatives selon OS/GPU
  */
 export default function BrainReflexes() {
+  const config = useOptimization();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -132,10 +135,13 @@ export default function BrainReflexes() {
 
           {/* Animation Spline lazy-loaded */}
           <div
-            className={`relative flex items-center justify-center transition-all duration-500 ease-out ${
+            className={`relative flex items-center justify-center transition-all ease-out ${
               isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-95'
             }`}
-            style={{ transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+            style={{
+              transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+              transitionDuration: `${500 * config.animationDuration}ms`
+            }}
           >
             <SplineLazy
               url={BRAIN_SCENE_URL}

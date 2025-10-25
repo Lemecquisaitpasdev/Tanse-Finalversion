@@ -2,11 +2,13 @@
 
 import { useEffect, useRef } from "react";
 import SplineLazy from "./SplineLazy";
+import { useOptimization } from "./OptimizationProvider";
 
 /**
  * OPTIMISÉ WINDOWS:
  * - Lazy-load Spline (charge uniquement quand visible)
  * - Garde la logique de pause à 7s pour économiser GPU
+ * - FPS et qualité adaptatifs selon OS/GPU
  */
 export default function Methodology() {
   const viewerRef = useRef<any>(null);

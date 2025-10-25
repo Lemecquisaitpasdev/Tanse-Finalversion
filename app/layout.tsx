@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from "next";
 import SplineViewerProvider from "./components/SplineViewerProvider";
 import CookieConsent from "./components/CookieConsent";
 import AnalyticsWrapper from "./components/AnalyticsWrapper";
+import { OptimizationProvider } from "./components/OptimizationProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://www.tanse.fr"),
@@ -105,13 +106,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        {/* Enregistre <spline-viewer> une seule fois pour toute l'app */}
-        <SplineViewerProvider />
-        {children}
-        {/* Pop-up cookies RGPD */}
-        <CookieConsent />
-        {/* Analytics avec respect du consentement RGPD */}
-        <AnalyticsWrapper />
+        {/* Optimisations adaptatives Windows/macOS */}
+        <OptimizationProvider>
+          {/* Enregistre <spline-viewer> une seule fois pour toute l'app */}
+          <SplineViewerProvider />
+          {children}
+          {/* Pop-up cookies RGPD */}
+          <CookieConsent />
+          {/* Analytics avec respect du consentement RGPD */}
+          <AnalyticsWrapper />
+        </OptimizationProvider>
       </body>
     </html>
   );

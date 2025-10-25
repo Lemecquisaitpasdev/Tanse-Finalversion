@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useDebounce } from "../hooks/useDebounce";
 import SplineLazy from "./SplineLazy";
+import { useOptimization } from "./OptimizationProvider";
 
 const SCENE_URL = "https://prod.spline.design/l8fan1OYXfoYpgtt/scene.splinecode?v=20251019";
 
@@ -12,8 +13,10 @@ const SCENE_URL = "https://prod.spline.design/l8fan1OYXfoYpgtt/scene.splinecode?
  * - Lazy-load Spline (charge uniquement quand visible)
  * - Debounce resize à 150ms au lieu de temps réel
  * - Suppression willChange (inutile)
+ * - Transitions adaptatives selon OS/GPU
  */
 export default function Hero() {
+  const config = useOptimization();
   const [isMobile, setIsMobile] = useState(false);
 
   // Debounce resize pour Windows
@@ -61,7 +64,7 @@ export default function Hero() {
           isMobile ? 'scale-110 translate-y-4' : 'scale-100'
         }`}
         style={{
-          transition: 'transform 0.3s ease-out'
+          transition: `transform ${300 * config.animationDuration}ms ease-out`
           /* willChange supprimé - inutile et coûteux sur Windows */
         }}
       >

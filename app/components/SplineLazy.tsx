@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, forwardRef } from "react";
+import { useOptimization } from "./OptimizationProvider";
 
 type SplineLazyProps = {
   url: string;
@@ -17,22 +18,26 @@ type SplineLazyProps = {
  *
  * OPTIMISATIONS WINDOWS:
  * - Charge la scène uniquement quand visible (économise 75% GPU)
+ * - Threshold adaptatif selon config OS/GPU
  * - Placeholder pendant le chargement
  * - Cleanup automatique quand hors viewport
- * - Détection performance pour ajuster qualité
  */
 const SplineLazy = forwardRef<any, SplineLazyProps>(function SplineLazy({
   url,
   className = "",
   style = {},
   loading = "lazy",
-  threshold = 0.1,
+  threshold,
   rootMargin = "100px",
   ...props
 }, ref) {
+  const config = useOptimization();
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(loading === "eager");
   const [isLoaded, setIsLoaded] = useState(false);
+
+  // Utiliser threshold de la config si non fourni
+  const effectiveThreshold = threshold ?? config.lazyLoadThreshold;
 
   // IntersectionObserver pour lazy-loading
   useEffect(() => {
@@ -50,7 +55,7 @@ const SplineLazy = forwardRef<any, SplineLazyProps>(function SplineLazy({
         }
       },
       {
-        threshold,
+        threshold: effectiveThreshold,
         rootMargin,
       }
     );
@@ -60,7 +65,7 @@ const SplineLazy = forwardRef<any, SplineLazyProps>(function SplineLazy({
     return () => {
       observer.disconnect();
     };
-  }, [loading, threshold, rootMargin]);
+  }, [loading, effectiveThreshold, rootMargin]);
 
   // Event listener pour marquer comme chargé
   useEffect(() => {

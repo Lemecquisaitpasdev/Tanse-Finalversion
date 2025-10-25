@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
+import { useOptimization } from "./OptimizationProvider";
 
 type Bar = { label: string; value: number; hint?: string };
 
@@ -13,9 +14,19 @@ const DATA: Bar[] = [
   { label: "Clics concentrés page 1 Google", value: 91 },
 ];
 
+/**
+ * OPTIMISÉ WINDOWS:
+ * - Animations wave désactivées sur Windows (enableInfiniteAnimations)
+ * - Blur désactivé sur Windows (enableBlur)
+ * - Durée animations réduite sur Windows low-end (animationDuration)
+ */
 export default function StatsPillars() {
+  const config = useOptimization();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  // Durée animation adaptative (2.5s sur macOS, 1.5s sur Windows low-end)
+  const animDuration = useMemo(() => 2.5 * config.animationDuration, [config.animationDuration]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -62,31 +73,34 @@ export default function StatsPillars() {
                       className="absolute inset-x-0 bottom-0 rounded-t-2xl liquid-fill"
                       style={{
                         height: isVisible ? `${b.value}%` : "0%",
-                        background:
-                          "linear-gradient(180deg,#e7e7ff 0%,#4a4570 100%)",
-                        // Animation séquentielle : chaque barre commence après la précédente (2.5s * index)
-                        transition: `height 2.5s cubic-bezier(0.45, 0, 0.15, 1) ${i * 2.5}s`,
+                        background: config.enableGradients
+                          ? "linear-gradient(180deg,#e7e7ff 0%,#4a4570 100%)"
+                          : "#4a4570",
+                        // Animation séquentielle adaptative
+                        transition: `height ${animDuration}s cubic-bezier(0.45, 0, 0.15, 1) ${i * animDuration}s`,
                       }}
                       title={`${b.label} : ${b.hint ?? b.value + "%"}`}
                     >
-                      {/* Liquid wave effect at the top */}
-                      <div
-                        className="absolute inset-x-0 top-0 h-3"
-                        style={{
-                          background: "inherit",
-                          filter: "blur(2px)",
-                          opacity: 0.6,
-                          animation: isVisible ? "wave 3s ease-in-out infinite" : "none",
-                          animationDelay: `${i * 2.5}s`,
-                        }}
-                      />
+                      {/* Liquid wave effect - désactivé sur Windows pour performance */}
+                      {config.enableInfiniteAnimations && config.enableBlur && (
+                        <div
+                          className="absolute inset-x-0 top-0 h-3"
+                          style={{
+                            background: "inherit",
+                            filter: "blur(2px)",
+                            opacity: 0.6,
+                            animation: isVisible ? "wave 3s ease-in-out infinite" : "none",
+                            animationDelay: `${i * animDuration}s`,
+                          }}
+                        />
+                      )}
                     </div>
                     <div
                       className="absolute top-2 left-1/2 -translate-x-1/2 text-[11px] font-medium bg-white/90 px-2 py-0.5 rounded-full shadow-sm transition-opacity duration-700"
                       style={{
                         opacity: isVisible ? 1 : 0,
                         // Le badge apparaît vers la fin du remplissage de sa barre
-                        transitionDelay: `${i * 2.5 + 2}s`,
+                        transitionDelay: `${i * animDuration + (2 * config.animationDuration)}s`,
                       }}
                     >
                       {b.hint ?? `${b.value}%`}
