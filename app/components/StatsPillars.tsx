@@ -39,12 +39,16 @@ export default function StatsPillars() {
     <section id="chiffres" className="relative bg-[#E4E4E4]" ref={sectionRef}>
       <div className="mx-auto max-w-[1600px] px-6 md:px-10 lg:px-16 py-24 md:py-28">
         <header className="text-center mb-12 md:mb-14">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold">
-            Les chiffres le prouvent.
+          <p className="text-xs tracking-[0.25em] uppercase text-[#444684] mb-4 font-semibold">
+            DONNÉES DU MARCHÉ
+          </p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight">
+            Les chiffres parlent<br className="hidden md:block"/>
+            <span className="text-[#444684]"> d'eux-mêmes</span>
           </h2>
-          <p className="mt-3 text-neutral-600">
-            Vos clients vous cherchent en ligne. Si vous n'êtes pas visible, ils
-            choisissent le concurrent suivant.
+          <p className="mt-5 text-base md:text-lg text-neutral-600 max-w-3xl mx-auto leading-relaxed">
+            90% de vos clients recherchent en ligne avant d'acheter. Être visible localement
+            n'est plus une option, c'est une nécessité commerciale.
           </p>
         </header>
 

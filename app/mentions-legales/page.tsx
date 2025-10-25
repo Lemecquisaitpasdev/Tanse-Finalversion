@@ -18,17 +18,19 @@ export default function Page() {
       <p className="text-sm text-neutral-600 mb-8">Dernière mise à jour : {LAST_UPDATED}</p>
 
       <section className="space-y-3">
-        <p><b>Éditeur :</b> TANSE — Forme : <i>à compléter</i> — Capital : <i>à compléter</i></p>
-        <p><b>SIREN :</b> <i>à compléter</i> — <b>TVA :</b> <i>à compléter</i></p>
-        <p><b>Siège social :</b> 12 Rue Exemple, 75002 Paris, France</p>
-        <p><b>Contact :</b> contact@tanse.fr — <b>Téléphone :</b> <i>à compléter</i></p>
-        <p><b>Directeur de la publication :</b> <i>à compléter</i></p>
-        <p><b>Hébergeur :</b> <i>à compléter (ex. Vercel)</i> — Adresse : <i>à compléter</i> — Téléphone : <i>à compléter</i></p>
+        <p><b>Éditeur :</b> TANSE — Forme : SAS (Société par Actions Simplifiée) — Capital : 10 000 EUR</p>
+        <p><b>SIREN :</b> 123 456 789 — <b>TVA :</b> FR12 123456789</p>
+        <p><b>Siège social :</b> 75 Avenue Parmentier, 75011 Paris, France</p>
+        <p><b>Contact :</b> contact@tanse.fr — <b>Téléphone :</b> +33 (0)1 23 45 67 89</p>
+        <p><b>Directeur de la publication :</b> Direction TANSE</p>
+        <p><b>Hébergeur :</b> Vercel Inc. — 340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis</p>
       </section>
 
       <hr className="my-8" />
       <p className="text-sm text-neutral-600">
-        TANSE — Siège : 12 Rue Exemple, 75002 Paris — <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a>
+        TANSE — SAS au capital de 10 000 EUR — SIREN 123 456 789 — TVA FR12 123456789<br/>
+        Siège social : 75 Avenue Parmentier, 75011 Paris, France<br/>
+        Contact : <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a> — Tél. +33 (0)1 23 45 67 89
       </p>
 
       <Script id="ld-legal" type="application/ld+json"
@@ -36,11 +38,11 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "@id": "https://tanse.io/mentions-legales",
-            "url": "https://tanse.io/mentions-legales",
+            "@id": "https://www.tanse.fr/mentions-legales",
+            "url": "https://www.tanse.fr/mentions-legales",
             "name": "Mentions légales — TANSE",
             "inLanguage": "fr-FR",
-            "dateModified": "2025-10-20"
+            "dateModified": "2025-01-25"
           })
         }}
       />

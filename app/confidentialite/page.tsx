@@ -19,8 +19,9 @@ export default function Page() {
 
       <h2 className="mt-8 text-xl font-semibold">1. Responsable de traitement</h2>
       <p>
-        TANSE, 12 Rue Exemple, 75002 Paris, France —{" "}
-        <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a>
+        TANSE — SAS au capital de 10 000 EUR — SIREN 123 456 789 — TVA FR12 123456789<br/>
+        Siège social : 75 Avenue Parmentier, 75011 Paris, France<br/>
+        Contact : <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a> — Tél. +33 (0)1 23 45 67 89
       </p>
 
       <h2 className="mt-8 text-xl font-semibold">2. Données collectées</h2>
@@ -75,7 +76,9 @@ export default function Page() {
       </p>
 
       <h2 className="mt-8 text-xl font-semibold">8. Contact DPO</h2>
-      <p><b>DPO :</b> <i>à désigner</i> — <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a></p>
+      <p><b>Délégué à la Protection des Données (DPO) :</b> Direction TANSE<br/>
+      Email : <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a><br/>
+      Vous pouvez également nous contacter par courrier à : TANSE, 75 Avenue Parmentier, 75011 Paris, France</p>
 
       <h2 className="mt-8 text-xl font-semibold">9. Retrait du consentement</h2>
       <ConsentPreferencesButton />
@@ -87,11 +90,11 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "@id": "https://tanse.io/confidentialite",
-            "url": "https://tanse.io/confidentialite",
+            "@id": "https://www.tanse.fr/confidentialite",
+            "url": "https://www.tanse.fr/confidentialite",
             "name": "Politique de confidentialité — TANSE",
             "inLanguage": "fr-FR",
-            "dateModified": "2025-10-20"
+            "dateModified": "2025-01-25"
           }),
         }}
       />

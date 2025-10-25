@@ -95,18 +95,33 @@ export default function TestimonialsMarquee() {
           style={{ backgroundImage: "linear-gradient(to left, var(--bg), color-mix(in srgb, var(--bg) 70%, transparent), transparent)" }}
         />
 
-        <div className="mx-auto mt-6 w-full max-w-[2100px] px-12">
-          <div className="mb-10 text-center">
-            <h2 className="text-6xl font-semibold">« Les résultats parlent d’eux-mêmes. »</h2>
-            <p className="mx-auto mt-4 max-w-3xl text-xl text-neutral-700">
-              Ce que nos clients constatent au quotidien.
+        <div className="mx-auto mt-6 w-full max-w-[2100px] px-6 md:px-12">
+          <div className="mb-10 md:mb-12 text-center">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#444684] mb-4 font-semibold">
+              TÉMOIGNAGES CLIENTS
             </p>
-            <a
-              href="/forfaits"
-              className="mt-7 inline-flex h-12 items-center justify-center rounded-full bg-[#444684] px-6 text-[15px] font-medium text-white shadow-sm hover:shadow-lg"
-            >
-              Commencer
-            </a>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight">
+              Nos clients génèrent des résultats<br className="hidden md:block"/>
+              <span className="text-[#444684]"> mesurables et durables</span>
+            </h2>
+            <p className="mx-auto mt-5 max-w-3xl text-base md:text-lg text-neutral-600 leading-relaxed">
+              De la TPE au grand groupe, nos clients constatent une augmentation significative
+              de leur visibilité locale, de leurs appels et de leurs conversions.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href="/forfaits"
+                className="inline-flex w-full sm:w-auto h-12 items-center justify-center rounded-full bg-[#444684] px-7 text-sm md:text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 hover:opacity-95 focus-visible:outline-2 focus-visible:outline-[#444684] focus-visible:outline-offset-2 touch-manipulation min-h-[44px]"
+              >
+                Découvrir nos forfaits
+              </a>
+              <a
+                href="/contact"
+                className="inline-flex w-full sm:w-auto h-12 items-center justify-center rounded-full border border-[#444684]/30 bg-white px-7 text-sm md:text-base font-medium text-[#444684] hover:bg-[#444684]/5 transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-[#444684] focus-visible:outline-offset-2 touch-manipulation min-h-[44px]"
+              >
+                Demander un audit
+              </a>
+            </div>
           </div>
         </div>
 
