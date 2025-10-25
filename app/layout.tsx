@@ -1,7 +1,8 @@
 // app/layout.tsx
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import SplineViewerProvider from "./components/SplineViewerProvider";
+import CookieConsent from "./components/CookieConsent";
 
 export const metadata: Metadata = {
   title: "TANSE — Visibilité locale & GEO",
@@ -10,12 +11,12 @@ export const metadata: Metadata = {
     icon: "/icon.png",
     apple: "/apple-icon.png"
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
   themeColor: "#444684",
 };
 
@@ -38,6 +39,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Enregistre <spline-viewer> une seule fois pour toute l'app */}
         <SplineViewerProvider />
         {children}
+        {/* Pop-up cookies RGPD */}
+        <CookieConsent />
       </body>
     </html>
   );

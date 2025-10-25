@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Mail, MapPin, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, ArrowUpRight, Cookie } from "lucide-react";
 
 export default function SiteFooter(): JSX.Element {
   const pathname = usePathname();
@@ -18,6 +18,11 @@ export default function SiteFooter(): JSX.Element {
     { href: "/ia", label: "Politique IA" },
   ];
   const isActive = (href: string) => normalize(pathname) === normalize(href);
+
+  const manageCookies = () => {
+    localStorage.removeItem("tanse-cookie-consent");
+    window.location.reload();
+  };
 
   return (
     <footer className="relative mt-28 text-slate-900">
@@ -107,9 +112,20 @@ export default function SiteFooter(): JSX.Element {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-slate-300/70 pt-6 text-xs text-slate-700 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} TANSE — Tous droits réservés. | TVA & Immatriculation sur la facture.</p>
-          <p>Contact : <Link href="mailto:contact@tanse.fr" className="underline decoration-slate-400 underline-offset-2 hover:text-slate-900">contact@tanse.fr</Link></p>
+        <div className="mt-12 flex flex-col gap-4 border-t border-slate-300/70 pt-6 text-xs text-slate-700">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p>© {new Date().getFullYear()} TANSE — Tous droits réservés. | TVA & Immatriculation sur la facture.</p>
+            <p>Contact : <Link href="mailto:contact@tanse.fr" className="underline decoration-slate-400 underline-offset-2 hover:text-slate-900">contact@tanse.fr</Link></p>
+          </div>
+          <div className="flex items-center justify-center sm:justify-start">
+            <button
+              onClick={manageCookies}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/70 px-4 py-2 text-xs font-medium text-slate-700 shadow-sm backdrop-blur transition hover:bg-white hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400"
+            >
+              <Cookie className="h-3.5 w-3.5" />
+              Gérer les cookies
+            </button>
+          </div>
         </div>
       </div>
     </footer>
