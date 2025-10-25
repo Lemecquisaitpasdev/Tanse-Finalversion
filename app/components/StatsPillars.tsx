@@ -46,7 +46,7 @@ export default function StatsPillars() {
             Les chiffres parlent<br className="hidden md:block"/>
             <span className="text-[#444684]"> d'eux-mêmes</span>
           </h2>
-          <p className="mt-5 text-base md:text-lg text-neutral-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="mt-5 text-base md:text-lg text-neutral-800 max-w-3xl mx-auto leading-relaxed">
             90% de vos clients recherchent en ligne avant d'acheter. Être visible localement
             n'est plus une option, c'est une nécessité commerciale.
           </p>

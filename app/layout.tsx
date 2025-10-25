@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import SplineViewerProvider from "./components/SplineViewerProvider";
 import CookieConsent from "./components/CookieConsent";
+import AnalyticsWrapper from "./components/AnalyticsWrapper";
 
 export const metadata: Metadata = {
   title: "TANSE — Visibilité locale & GEO",
@@ -41,6 +42,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         {/* Pop-up cookies RGPD */}
         <CookieConsent />
+        {/* Analytics avec respect du consentement RGPD */}
+        <AnalyticsWrapper />
       </body>
     </html>
   );

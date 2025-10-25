@@ -104,7 +104,7 @@ export default function TestimonialsMarquee() {
               Nos clients génèrent des résultats<br className="hidden md:block"/>
               <span className="text-[#444684]"> mesurables et durables</span>
             </h2>
-            <p className="mx-auto mt-5 max-w-3xl text-base md:text-lg text-neutral-600 leading-relaxed">
+            <p className="mx-auto mt-5 max-w-3xl text-base md:text-lg text-neutral-700 leading-relaxed">
               De la TPE au grand groupe, nos clients constatent une augmentation significative
               de leur visibilité locale, de leurs appels et de leurs conversions.
             </p>
