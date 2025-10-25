@@ -6,12 +6,80 @@ import CookieConsent from "./components/CookieConsent";
 import AnalyticsWrapper from "./components/AnalyticsWrapper";
 
 export const metadata: Metadata = {
-  title: "TANSE — Visibilité locale & GEO",
-  description: "Rendre votre offre immanquable au moment d'intention.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://www.tanse.fr"),
+  title: {
+    default: "TANSE — Visibilité locale & SEO pour PME et grands groupes",
+    template: "%s — TANSE"
+  },
+  description: "Optimisation locale SEO + GEO pour être trouvé par vos clients. Fiche Google Business, citations, site web optimisé. Visible, mesurable, rentable.",
+  keywords: [
+    "SEO local",
+    "référencement local",
+    "Google Business Profile",
+    "visibilité locale",
+    "SEO PME",
+    "agence SEO",
+    "optimisation Google",
+    "marketing local"
+  ],
+  authors: [{ name: "TANSE" }],
+  creator: "TANSE",
+  publisher: "TANSE",
+  formatDetection: {
+    telephone: true,
+    email: true,
+  },
   icons: {
     icon: "/icon.png",
     apple: "/apple-icon.png"
   },
+  manifest: "/site.webmanifest",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "/",
+    siteName: "TANSE",
+    title: "TANSE — Visibilité locale & SEO pour PME",
+    description: "Optimisation locale SEO + GEO pour être trouvé par vos clients. Fiche Google Business, citations, site web optimisé.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "TANSE — Visibilité locale & SEO",
+        type: "image/png"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@tanse",
+    creator: "@tanse",
+    title: "TANSE — Visibilité locale & SEO pour PME",
+    description: "Optimisation locale SEO + GEO pour être trouvé par vos clients. Visible, mesurable, rentable.",
+    images: ["/twitter-image.png"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  },
+  alternates: {
+    canonical: "/",
+    languages: {
+      "fr-FR": "/"
+    }
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
+  },
+  category: "technology"
 };
 
 export const viewport: Viewport = {
