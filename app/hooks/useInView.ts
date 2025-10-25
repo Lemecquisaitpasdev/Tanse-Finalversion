@@ -24,12 +24,12 @@ export function useInView(options: Options = {}) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry && entry.isIntersecting) {
           setIsInView(true);
           if (triggerOnce) {
             observer.unobserve(element);
           }
-        } else if (!triggerOnce) {
+        } else if (entry && !triggerOnce) {
           setIsInView(false);
         }
       },

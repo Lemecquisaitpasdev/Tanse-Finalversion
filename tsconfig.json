@@ -8,7 +8,10 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
+    // TypeScript strict mode pour garanties de typage
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
     "noEmit": true,
     "jsx": "preserve",
     "module": "esnext",

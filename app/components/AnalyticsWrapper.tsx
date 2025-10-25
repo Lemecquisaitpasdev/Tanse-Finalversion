@@ -20,10 +20,8 @@ export default function AnalyticsWrapper() {
 
           // Si l'utilisateur a accepté tous les cookies ou les analytics
           if (type === "all" || preferences?.analytics) {
-            // Analytics déjà chargé via le composant, juste tracker l'événement
-            if (typeof window.va !== 'undefined') {
-              window.va('track', 'Page View with Analytics Consent');
-            }
+            // Analytics déjà chargé via le composant - tracking automatique
+            console.log('[Analytics] Consent verified - tracking active');
           }
         } catch (e) {
           console.error("Erreur parsing cookie consent:", e);
@@ -37,11 +35,7 @@ export default function AnalyticsWrapper() {
     // Écouter l'événement de consentement
     const handleCookiesAccepted = () => {
       checkConsent();
-
-      // Tracker l'acceptation des cookies
-      if (typeof window.va !== 'undefined') {
-        window.va('track', 'Cookie Consent Accepted');
-      }
+      console.log('[Analytics] Cookie consent accepted event received');
     };
 
     window.addEventListener('cookiesAccepted', handleCookiesAccepted);
