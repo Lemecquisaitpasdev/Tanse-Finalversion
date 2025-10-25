@@ -6,7 +6,12 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:chromium": "playwright test --project=chromium",
+    "test:e2e:report": "playwright show-report"
   },
   "dependencies": {
     "@splinetool/react-spline": "^4.1.0",
@@ -21,8 +26,9 @@
     "stripe": "^19.1.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.56.1",
     "@tailwindcss/postcss": "^4.0.0",
-    "@types/node": "^20.14.12",
+    "@types/node": "^20.19.23",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "autoprefixer": "^10.4.21",
