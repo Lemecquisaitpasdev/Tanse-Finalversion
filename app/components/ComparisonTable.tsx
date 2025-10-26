@@ -2,6 +2,7 @@
 "use client";
 
 import SectionFrame from "./SectionFrame";
+import { useOptimization } from "./OptimizationProvider";
 
 /** Petit check inline (plus besoin de lucide-react) */
 function CheckIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -28,6 +29,11 @@ const comparisons = [
 ];
 
 export default function ComparisonTable() {
+  const config = useOptimization();
+
+  // Adaptive hover transition - enabled on macOS, disabled on Windows low-end
+  const hoverTransition = config.enableComplexAnimations ? "transition-colors" : "";
+
   return (
     <SectionFrame id="seo-geo-comparison" className="bg-white">
       {/* Container + respiration verticale */}
@@ -71,7 +77,7 @@ export default function ComparisonTable() {
           {comparisons.map((item, i) => (
             <div
               key={i}
-              className="grid grid-cols-3 gap-4 p-6 md:p-8 border-b border-slate-100 last:border-b-0 hover:bg-slate-50 transition-colors"
+              className={`grid grid-cols-3 gap-4 p-6 md:p-8 border-b border-slate-100 last:border-b-0 hover:bg-slate-50 ${hoverTransition}`}
             >
               <div className="font-semibold text-slate-900 text-left">
                 {item.criterion}

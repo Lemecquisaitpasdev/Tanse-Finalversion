@@ -6,6 +6,7 @@ import { useEffect } from "react";
 /**
  * OPTIMISÉ WINDOWS:
  * - Utilise smooth scroll optimisé au lieu de CSS scroll-behavior
+ * - Passive event listener pour performance
  * - Meilleure performance sur Windows
  */
 export default function ScrollToHash() {
@@ -23,7 +24,7 @@ export default function ScrollToHash() {
 
     // au chargement, puis si le hash change
     go();
-    window.addEventListener("hashchange", go);
+    window.addEventListener("hashchange", go, { passive: true });
     return () => window.removeEventListener("hashchange", go);
   }, []);
 
