@@ -14,10 +14,16 @@ const SCENE_URL = "https://prod.spline.design/l8fan1OYXfoYpgtt/scene.splinecode?
  * - Debounce resize à 150ms au lieu de temps réel
  * - Suppression willChange (inutile)
  * - Transitions adaptatives selon OS/GPU
+ * - Navigation links optimisés avec classes uniformes
  */
 export default function Hero() {
   const config = useOptimization();
   const [isMobile, setIsMobile] = useState(false);
+
+  // Optimized navigation link styles
+  const navLinkBase = "pointer-events-auto rounded-full px-3 md:px-4 py-2 text-xs md:text-sm font-medium min-h-[36px] md:min-h-0 flex items-center justify-center transition-all duration-200";
+  const navLinkDefault = "text-[#24243C] hover:bg-white";
+  const navLinkPrimary = "text-white bg-[#444684] hover:opacity-90";
 
   // Debounce resize pour Windows
   const checkMobile = useDebounce(() => {
@@ -39,19 +45,19 @@ export default function Hero() {
         <nav className="flex items-center justify-center gap-1 md:gap-2 rounded-full bg-white/80 md:bg-white/70 backdrop-blur px-2 py-2 shadow-lg ring-1 ring-black/5 mx-auto w-fit">
           <Link
             href="/forfaits"
-            className="pointer-events-auto rounded-full px-3 md:px-4 py-2 text-xs md:text-sm font-medium text-[#24243C] hover:bg-white transition-colors min-h-[36px] md:min-h-0 flex items-center justify-center"
+            className={`${navLinkBase} ${navLinkDefault}`}
           >
             Forfaits
           </Link>
           <Link
             href="/entreprise"
-            className="pointer-events-auto rounded-full px-3 md:px-4 py-2 text-xs md:text-sm font-medium text-[#24243C] hover:bg-white transition-colors min-h-[36px] md:min-h-0 flex items-center justify-center"
+            className={`${navLinkBase} ${navLinkDefault}`}
           >
             Entreprise
           </Link>
           <Link
             href="/contact"
-            className="pointer-events-auto rounded-full px-3 md:px-4 py-2 text-xs md:text-sm font-medium text-white bg-[#444684] hover:opacity-90 transition-opacity min-h-[36px] md:min-h-0 flex items-center justify-center"
+            className={`${navLinkBase} ${navLinkPrimary}`}
           >
             Contact
           </Link>

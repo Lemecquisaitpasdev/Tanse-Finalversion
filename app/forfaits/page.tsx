@@ -1,11 +1,8 @@
 // app/forfaits/page.tsx
-import Link from "next/link";
+"use client";
 
-export const metadata = {
-  title: "TANSE — Nos forfaits SEO + GEO",
-  description:
-    "Trois offres claires : SEO+GEO (coût unique 1 490€ puis maintenance 850€/mois), Pack Complet SEO+GEO+Site (2 490€) avec 1 mois de maintenance offert, et Grand groupes sur devis.",
-};
+import Link from "next/link";
+import { useOptimization } from "../components/OptimizationProvider";
 
 type Card = {
   k: string;
@@ -85,6 +82,13 @@ function HeaderBand() {
 }
 
 export default function ForfaitsPage() {
+  const config = useOptimization();
+
+  // Adaptive hover shadow - complex on macOS, simple on Windows
+  const hoverShadowClass = config.enableShadows
+    ? "hover:shadow-[0_40px_120px_-30px_rgba(68,70,132,0.4)]"
+    : "hover:shadow-xl";
+
   return (
     <main className="bg-[#E4E4E4]">
       <HeaderBand />
@@ -105,7 +109,7 @@ export default function ForfaitsPage() {
                   key={c.k}
                   className={`group relative rounded-3xl border ${
                     isBest ? "border-[#444684] ring-2 ring-[#444684]/20" : "border-neutral-200"
-                  } bg-white p-7 md:p-8 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_40px_120px_-30px_rgba(68,70,132,0.4)]`}
+                  } bg-white p-7 md:p-8 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-2 ${hoverShadowClass}`}
                 >
                   {isBest && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
