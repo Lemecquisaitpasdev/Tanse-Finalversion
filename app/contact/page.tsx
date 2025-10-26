@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
+import SplineLazy from "../components/SplineLazy";
 
 export default function Page() {
   const [formData, setFormData] = useState({
@@ -80,9 +81,11 @@ export default function Page() {
       <section className="relative mx-auto w-full max-w-6xl px-0 md:px-6">
         {/* Spline en haut de section, sans cadre, plein conteneur */}
         <div className="w-full">
-          <spline-viewer
-            className="block w-full h-[46vh] md:h-[58vh]"
+          <SplineLazy
             url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
+            loading="lazy"
+            threshold={0.2}
+            className="block w-full h-[46vh] md:h-[58vh]"
           />
         </div>
 

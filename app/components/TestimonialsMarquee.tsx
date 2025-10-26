@@ -27,14 +27,14 @@ const ROW2: T[] = [
 /* NB: utilise exactement les noms présents dans ton dossier           */
 /* ------------------------------------------------------------------ */
 const AVATARS: Record<string, string> = {
-  "Ariel Martinez": "/trust/danny-postma-zNxOw2JFNKs-unsplash.jpg",
-  "Hassan Toure": "/trust/greg-edwards-oz2wj86hGxA-unsplash.jpg",
-  "Maria Martin": "/trust/woman-7895953_1280.jpg",
-  "Gabriel Konovalov": "/trust/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.jpg",
-  "Richard Manisse": "/trust/man-7450033_1280.jpg",
-  "Anaïs Dupré": "/trust/clay-elliot-mpDV4xaFP8c-unsplash",
-  "Eran Cohen": "/trust/the-connected-narrative-N8lRH2uxih4-unsplash.jpg",
-  "Thomas Weber": "/trust/brad-hanks-VR3nXEIfBzs-unsplash.jpg",
+  "Ariel Martinez": "/trust/danny-postma-zNxOw2JFNKs-unsplash.webp",
+  "Hassan Toure": "/trust/greg-edwards-oz2wj86hGxA-unsplash.webp",
+  "Maria Martin": "/trust/woman-7895953_1280.webp",
+  "Gabriel Konovalov": "/trust/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.webp",
+  "Richard Manisse": "/trust/man-7450033_1280.webp",
+  "Anaïs Dupré": "/trust/clay-elliot-mpDV4xaFP8c-unsplash.webp",
+  "Eran Cohen": "/trust/the-connected-narrative-N8lRH2uxih4-unsplash.webp",
+  "Thomas Weber": "/trust/brad-hanks-VR3nXEIfBzs-unsplash.webp",
 };
 
 /* ------------------------------------------------------------------ */

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import FadeIn from "../components/FadeIn";
+import SplineLazy from "../components/SplineLazy";
 
 export const metadata = {
   title: "TANSE — Notre histoire & Notre équipe",
@@ -101,8 +102,8 @@ export default function Page() {
           <div className="md:col-span-6">
             <div className="relative w-full h-[clamp(280px,80vh,680px)]">
               <Image
-                src="/entreprise/stronger-together.jpg"
-                alt="Stronger together — l’équipe TANSE au travail"
+                src="/entreprise/stronger-together.webp"
+                alt="Stronger together — l'équipe TANSE au travail"
                 fill
                 priority
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -191,9 +192,11 @@ export default function Page() {
         </div>
 
         <div className="pointer-events-auto absolute inset-y-0 right-0 w-[75vw] md:w-[60vw]">
-          <spline-viewer
-            className="block w-full h-full"
+          <SplineLazy
             url="https://prod.spline.design/EZYaol9QTCXdiWrh/scene.splinecode"
+            loading="lazy"
+            threshold={0.2}
+            className="block w-full h-full"
           />
         </div>
       </section>
