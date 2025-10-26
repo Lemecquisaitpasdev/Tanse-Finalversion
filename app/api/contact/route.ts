@@ -3,6 +3,7 @@ import { writeFile, mkdir } from "fs/promises";
 import { existsSync } from "fs";
 import path from "path";
 import { contactSchema, formatZodErrors } from "@/lib/validations";
+import { logger } from "@/lib/logger";
 
 type ContactSubmission = {
   nom: string;
@@ -68,12 +69,22 @@ export async function POST(req: NextRequest) {
     // TODO: Intégrer avec un CRM (HubSpot, Salesforce, etc.)
     // await sendToCRM(submission);
 
+    logger.info(
+      {
+        email: submission.email,
+        sujet: submission.sujet,
+        entreprise: submission.entreprise,
+        ip: submission.ip,
+      },
+      "Contact form submitted successfully"
+    );
+
     return NextResponse.json({
       success: true,
       message: "Votre message a été envoyé avec succès. Nous vous recontacterons sous 24h.",
     });
   } catch (error: any) {
-    console.error("Contact form error:", error);
+    logger.error({ err: error }, "Contact form submission failed");
     return NextResponse.json(
       { error: "Une erreur s'est produite. Veuillez réessayer." },
       { status: 500 }
@@ -119,7 +130,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({ submissions });
   } catch (error) {
-    console.error("Error fetching submissions:", error);
+    logger.error({ err: error }, "Failed to fetch contact submissions");
     return NextResponse.json(
       { error: "Erreur de récupération des données" },
       { status: 500 }

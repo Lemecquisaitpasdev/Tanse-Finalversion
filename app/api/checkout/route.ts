@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { checkoutSchema, formatZodErrors } from "@/lib/validations";
+import { logger } from "@/lib/logger";
 
 // Prix Stripe (à créer dans le Dashboard Stripe)
 const PRICE_IDS: Record<string, string> = {
@@ -142,9 +143,19 @@ export async function POST(req: NextRequest) {
       allow_promotion_codes: !!coupon,
     });
 
+    logger.info(
+      {
+        sessionId: session.id,
+        plan: plan,
+        email: contact.email,
+        amount: lineItems.length,
+      },
+      "Stripe checkout session created"
+    );
+
     return NextResponse.json({ url: session.url });
   } catch (error: any) {
-    console.error("Stripe error:", error);
+    logger.error({ err: error, message: error?.message }, "Stripe checkout failed");
     return NextResponse.json(
       { error: error?.message || "Erreur de paiement" },
       { status: 500 }

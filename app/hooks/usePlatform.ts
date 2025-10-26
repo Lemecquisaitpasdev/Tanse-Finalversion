@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
+import { logger } from '@/lib/logger';
 
 export type OS = 'windows' | 'macos' | 'linux' | 'ios' | 'android' | 'unknown';
 export type GPUTier = 'high' | 'medium' | 'low';
@@ -106,17 +107,18 @@ export function usePlatform(): PlatformInfo {
       memory,
     });
 
-    // Log pour debug (retirer en prod)
-    if (process.env.NODE_ENV === 'development') {
-      console.log('🖥️ Platform Detection:', {
+    // Log platform detection (debug level - only in development)
+    logger.debug(
+      {
         os,
         gpuTier,
         isLowEnd,
         cores,
         memory: `${memory}GB`,
         prefersReducedMotion,
-      });
-    }
+      },
+      'Platform detected'
+    );
   }, []);
 
   return platform;

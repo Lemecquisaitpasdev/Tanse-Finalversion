@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { logger } from "@/lib/logger";
 
 /**
  * Wrapper pour Vercel Analytics qui respecte le consentement cookies RGPD
@@ -21,10 +22,10 @@ export default function AnalyticsWrapper() {
           // Si l'utilisateur a accepté tous les cookies ou les analytics
           if (type === "all" || preferences?.analytics) {
             // Analytics déjà chargé via le composant - tracking automatique
-            console.log('[Analytics] Consent verified - tracking active');
+            logger.debug({ type, hasAnalytics: preferences?.analytics }, 'Analytics consent verified - tracking active');
           }
         } catch (e) {
-          console.error("Erreur parsing cookie consent:", e);
+          logger.warn({ err: e }, 'Failed to parse cookie consent data');
         }
       }
     };
@@ -35,7 +36,7 @@ export default function AnalyticsWrapper() {
     // Écouter l'événement de consentement
     const handleCookiesAccepted = () => {
       checkConsent();
-      console.log('[Analytics] Cookie consent accepted event received');
+      logger.info('Cookie consent accepted event received');
     };
 
     window.addEventListener('cookiesAccepted', handleCookiesAccepted);
