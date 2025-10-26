@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { checkoutSchema, formatZodErrors } from "@/lib/validations";
 
 // Prix Stripe (à créer dans le Dashboard Stripe)
 const PRICE_IDS: Record<string, string> = {
   "seo-geo": process.env.STRIPE_PRICE_SEO_GEO || "price_xxx",
   "seo-geo-site": process.env.STRIPE_PRICE_SEO_GEO_SITE || "price_yyy",
+  "pack-complet": process.env.STRIPE_PRICE_PACK_COMPLET || "price_zzz",
 };
 
 // Add-ons prix
@@ -33,23 +35,22 @@ function getStripe() {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { plan, contact, billing, slot, coupon, addOns = [] } = body;
 
-    // Validation basique
-    if (!contact?.email || !contact?.firstname || !contact?.lastname) {
+    // Validation avec Zod
+    const validation = checkoutSchema.safeParse(body);
+
+    if (!validation.success) {
       return NextResponse.json(
-        { error: "Informations de contact manquantes" },
+        {
+          error: "Données invalides",
+          details: formatZodErrors(validation.error.issues),
+        },
         { status: 400 }
       );
     }
 
-    // Ne pas traiter les plans "sur devis"
-    if (plan === "grand-groupes") {
-      return NextResponse.json(
-        { error: "Ce plan nécessite un devis personnalisé" },
-        { status: 400 }
-      );
-    }
+    // Données validées et type-safe
+    const { plan, contact, billing, slot, coupon, addOns } = validation.data;
 
     // Initialiser Stripe (uniquement quand on en a besoin)
     const stripe = getStripe();
@@ -68,14 +69,21 @@ export async function POST(req: NextRequest) {
       // Fallback: créer un prix dynamique si pas de Price ID configuré
       const planPrices: Record<string, number> = {
         "seo-geo": 1490,
+        "pack-complet": 2490,
         "seo-geo-site": 2490,
+      };
+
+      const planNames: Record<string, string> = {
+        "seo-geo": "SEO + GEO",
+        "pack-complet": "Pack Complet (SEO + GEO + Site web / Refonte)",
+        "seo-geo-site": "SEO + GEO + Site web / Refonte",
       };
 
       lineItems.push({
         price_data: {
           currency: "eur",
           product_data: {
-            name: plan === "seo-geo" ? "SEO + GEO — PME (1 site)" : "SEO + GEO + Site web / Refonte",
+            name: planNames[plan] || plan,
             description: `Pack ${plan}`,
           },
           unit_amount: (planPrices[plan] || 1490) * 100, // en centimes

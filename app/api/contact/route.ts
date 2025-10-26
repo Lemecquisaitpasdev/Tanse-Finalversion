@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
 import { existsSync } from "fs";
 import path from "path";
+import { contactSchema, formatZodErrors } from "@/lib/validations";
 
 type ContactSubmission = {
   nom: string;
@@ -17,24 +18,22 @@ type ContactSubmission = {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { nom, email, telephone, entreprise, sujet, message } = body;
 
-    // Validation basique
-    if (!nom || !email || !sujet) {
+    // Validation avec Zod
+    const validation = contactSchema.safeParse(body);
+
+    if (!validation.success) {
       return NextResponse.json(
-        { error: "Nom, email et sujet sont requis" },
+        {
+          error: "Données invalides",
+          details: formatZodErrors(validation.error.issues),
+        },
         { status: 400 }
       );
     }
 
-    // Validation email simple
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: "Email invalide" },
-        { status: 400 }
-      );
-    }
+    // Données validées et type-safe
+    const { nom, email, telephone, entreprise, sujet, message } = validation.data;
 
     const submission: ContactSubmission = {
       nom,
