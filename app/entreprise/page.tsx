@@ -107,7 +107,7 @@ export default function Page() {
                 fill
                 priority
                 sizes="(min-width: 1024px) 50vw, 100vw"
-                className="rounded-3xl object-cover"
+                className="rounded-3xl object-contain"
               />
             </div>
           </div>
@@ -194,8 +194,7 @@ export default function Page() {
         <div className="pointer-events-auto absolute inset-y-0 right-0 w-[75vw] md:w-[60vw]">
           <SplineLazy
             url="https://prod.spline.design/EZYaol9QTCXdiWrh/scene.splinecode"
-            loading="lazy"
-            threshold={0.2}
+            loading="eager"
             className="block w-full h-full"
           />
         </div>
