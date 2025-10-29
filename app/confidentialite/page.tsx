@@ -19,9 +19,8 @@ export default function Page() {
 
       <h2 className="mt-8 text-xl font-semibold">1. Responsable de traitement</h2>
       <p>
-        TANSE — SAS au capital de 10 000 EUR — SIREN 123 456 789 — TVA FR12 123456789<br/>
-        Siège social : 75 Avenue Parmentier, 75011 Paris, France<br/>
-        Contact : <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a> — Tél. +33 (0)1 23 45 67 89
+        TANSE, SAS au capital de 10 000 EUR — SIREN 21090087 — 22 avenue Robert Schuman, 75007 Paris, France —{" "}
+        <a className="underline" href="mailto:hello@tanse.io">hello@tanse.io</a>
       </p>
 
       <h2 className="mt-8 text-xl font-semibold">2. Données collectées</h2>
@@ -71,14 +70,12 @@ export default function Page() {
       <h2 className="mt-8 text-xl font-semibold">7. Vos droits</h2>
       <p>
         Accès, rectification, effacement, opposition, limitation, portabilité.
-        Demandes à <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a>.
+        Demandes à <a className="underline" href="mailto:hello@tanse.io">hello@tanse.io</a>.
         Réclamation possible auprès de la CNIL.
       </p>
 
       <h2 className="mt-8 text-xl font-semibold">8. Contact DPO</h2>
-      <p><b>Délégué à la Protection des Données (DPO) :</b> Direction TANSE<br/>
-      Email : <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a><br/>
-      Vous pouvez également nous contacter par courrier à : TANSE, 75 Avenue Parmentier, 75011 Paris, France</p>
+      <p><b>DPO :</b> <i>à désigner</i> — <a className="underline" href="mailto:hello@tanse.io">hello@tanse.io</a></p>
 
       <h2 className="mt-8 text-xl font-semibold">9. Retrait du consentement</h2>
       <ConsentPreferencesButton />

@@ -18,19 +18,17 @@ export default function Page() {
       <p className="text-sm text-neutral-600 mb-8">Dernière mise à jour : {LAST_UPDATED}</p>
 
       <section className="space-y-3">
-        <p><b>Éditeur :</b> TANSE — Forme : SAS (Société par Actions Simplifiée) — Capital : 10 000 EUR</p>
-        <p><b>SIREN :</b> 123 456 789 — <b>TVA :</b> FR12 123456789</p>
-        <p><b>Siège social :</b> 75 Avenue Parmentier, 75011 Paris, France</p>
-        <p><b>Contact :</b> contact@tanse.fr — <b>Téléphone :</b> +33 (0)1 23 45 67 89</p>
-        <p><b>Directeur de la publication :</b> Direction TANSE</p>
-        <p><b>Hébergeur :</b> Vercel Inc. — 340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis</p>
+        <p><b>Éditeur :</b> TANSE — Forme : SAS au capital de 10 000 EUR</p>
+        <p><b>SIREN :</b> 21090087 — <b>TVA :</b> FR12 764678834</p>
+        <p><b>Siège social :</b> 22 avenue Robert Schuman, 75007 Paris, France</p>
+        <p><b>Contact :</b> hello@tanse.io</p>
+        <p><b>Directeur de la publication :</b> <i>à compléter</i></p>
+        <p><b>Hébergeur :</b> Vercel Inc. — 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis</p>
       </section>
 
       <hr className="my-8" />
       <p className="text-sm text-neutral-600">
-        TANSE — SAS au capital de 10 000 EUR — SIREN 123 456 789 — TVA FR12 123456789<br/>
-        Siège social : 75 Avenue Parmentier, 75011 Paris, France<br/>
-        Contact : <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a> — Tél. +33 (0)1 23 45 67 89
+        TANSE — SAS au capital de 10 000 EUR — SIREN 21090087 — Siège : 22 avenue Robert Schuman, 75007 Paris — <a className="underline" href="mailto:hello@tanse.io">hello@tanse.io</a>
       </p>
 
       <Script id="ld-legal" type="application/ld+json"

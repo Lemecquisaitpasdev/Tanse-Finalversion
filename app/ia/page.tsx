@@ -35,7 +35,7 @@ export default function Page() {
       <p>Notre fichier <code>/robots.txt</code> autorise l’exploration par GPTBot et Google-Extended. En cas d’évolution, cette page sera mise à jour.</p>
 
       <h2 className="mt-6 text-xl font-semibold">5. Contact</h2>
-      <p>Pour toute demande ou retrait : <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a>.</p>
+      <p>Pour toute demande ou retrait : <a className="underline" href="mailto:hello@tanse.io">hello@tanse.io</a>.</p>
     </main>
   );
 }

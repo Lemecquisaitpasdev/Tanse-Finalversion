@@ -132,7 +132,7 @@ function SuccessContent() {
               Retour à l'accueil
             </Link>
             <a
-              href="mailto:contact@tanse.fr"
+              href="mailto:hello@tanse.io"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-6 py-3 font-medium text-neutral-900 hover:bg-neutral-50"
             >
               Nous contacter
@@ -151,8 +151,8 @@ function SuccessContent() {
         <div className="mt-6 rounded-2xl border border-black/10 bg-white/60 p-6 text-center backdrop-blur">
           <p className="text-sm text-neutral-600">
             Besoin d'aide ? Écrivez-nous à{" "}
-            <a href="mailto:contact@tanse.fr" className="font-medium text-[#444684] underline">
-              contact@tanse.fr
+            <a href="mailto:hello@tanse.io" className="font-medium text-[#444684] underline">
+              hello@tanse.io
             </a>
           </p>
         </div>
