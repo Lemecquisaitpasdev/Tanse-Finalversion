@@ -27,7 +27,7 @@ export default function EndSection() {
 
           <div className="flex items-center gap-3">
             <Link
-              href="mailto:hello@tanse.io"
+              href="mailto:contact@tanse.fr"
               className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium shadow-sm ring-1 ring-black/10 hover:bg-white/80"
             >
               <Image
@@ -77,8 +77,8 @@ export default function EndSection() {
             <ul className="space-y-2 text-sm text-neutral-700">
               <li><Link href="/faq" className="hover:underline">FAQ</Link></li>
               <li>
-                <Link href="mailto:hello@tanse.io" className="inline-flex items-center gap-2 hover:underline">
-                  <Mail className="h-4 w-4 opacity-60" /> hello@tanse.io
+                <Link href="mailto:contact@tanse.fr" className="inline-flex items-center gap-2 hover:underline">
+                  <Mail className="h-4 w-4 opacity-60" /> contact@tanse.fr
                 </Link>
               </li>
             </ul>

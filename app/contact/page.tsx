@@ -327,9 +327,9 @@ export default function Page() {
                       ou directement par email :{" "}
                       <a
                         className="font-semibold text-neutral-800 underline hover:text-neutral-600 transition-colors"
-                        href="mailto:hello@tanse.io"
+                        href="mailto:contact@tanse.fr"
                       >
-                        hello@tanse.io
+                        contact@tanse.fr
                       </a>
                     </span>
                   </div>
