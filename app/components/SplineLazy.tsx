@@ -41,7 +41,10 @@ const SplineLazy = forwardRef<any, SplineLazyProps>(function SplineLazy({
 
   // IntersectionObserver pour lazy-loading
   useEffect(() => {
-    if (loading === "eager") return;
+    if (loading === "eager") {
+      setIsLoaded(true); // Eager = charger immédiatement
+      return;
+    }
 
     const container = containerRef.current;
     if (!container) return;
@@ -67,21 +70,18 @@ const SplineLazy = forwardRef<any, SplineLazyProps>(function SplineLazy({
     };
   }, [loading, effectiveThreshold, rootMargin]);
 
-  // Event listener pour marquer comme chargé
+  // Marquer comme chargé après un court délai quand la scène devient visible
   useEffect(() => {
-    if (!isInView || !ref) return;
+    if (!isInView) return;
 
-    const viewer = typeof ref === 'function' ? null : ref.current;
-    if (!viewer) return;
+    // Spline se charge généralement en 500-1000ms
+    // On marque comme chargé après 800ms pour éviter le flicker
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 800);
 
-    const handleLoad = () => setIsLoaded(true);
-
-    viewer.addEventListener("load", handleLoad);
-
-    return () => {
-      viewer.removeEventListener("load", handleLoad);
-    };
-  }, [isInView, ref]);
+    return () => clearTimeout(timer);
+  }, [isInView]);
 
   return (
     <div
@@ -92,16 +92,16 @@ const SplineLazy = forwardRef<any, SplineLazyProps>(function SplineLazy({
         backgroundColor: style.backgroundColor || "transparent",
       }}
     >
-      {/* Placeholder pendant le chargement */}
+      {/* Placeholder pendant le chargement - fade out progressif */}
       {!isLoaded && (
         <div
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute inset-0 flex items-center justify-center transition-opacity duration-500"
           style={{
             background: "linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%)",
-            animation: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            opacity: isInView ? 0.5 : 1,
           }}
         >
-          <div className="text-neutral-400 text-sm">Chargement...</div>
+          <div className="text-neutral-400 text-sm animate-pulse">Chargement...</div>
         </div>
       )}
 

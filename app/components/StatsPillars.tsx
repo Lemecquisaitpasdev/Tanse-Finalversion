@@ -25,8 +25,8 @@ export default function StatsPillars() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  // Durée animation adaptative (2.5s sur macOS, 1.5s sur Windows low-end)
-  const animDuration = useMemo(() => 2.5 * config.animationDuration, [config.animationDuration]);
+  // Durée animation adaptative x2 plus rapide (1.25s sur macOS, 0.75s sur Windows low-end)
+  const animDuration = useMemo(() => 1.25 * config.animationDuration, [config.animationDuration]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

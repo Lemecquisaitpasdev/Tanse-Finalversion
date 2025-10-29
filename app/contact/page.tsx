@@ -124,7 +124,7 @@ export default function Page() {
             url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
             loading="lazy"
             threshold={0.2}
-            className="block w-full h-[40vh] md:h-[55vh] bg-gradient-to-br from-neutral-100 to-neutral-50"
+            className="block w-full h-[46vh] md:h-[58vh] bg-gradient-to-br from-neutral-100 to-neutral-50"
           />
         </div>
       </section>
