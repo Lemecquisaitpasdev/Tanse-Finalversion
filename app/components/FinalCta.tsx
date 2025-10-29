@@ -71,8 +71,7 @@ export default function FinalCta() {
           <div className="rounded-3xl bg-white shadow-[0_25px_80px_-20px_rgba(0,0,0,0.35)] overflow-hidden h-[min(70vh,760px)] min-h-[560px]">
             <SplineLazy
               url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
-              loading="lazy"
-              threshold={0.15}
+              loading="eager"
               className="w-full h-full"
               style={{
                 background: "transparent",

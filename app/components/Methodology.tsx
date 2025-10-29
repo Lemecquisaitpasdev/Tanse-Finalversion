@@ -92,8 +92,7 @@ export default function Methodology() {
             <SplineLazy
               ref={viewerRef}
               url="https://prod.spline.design/leX4N7JQU4vKg98x/scene.splinecode"
-              loading="lazy"
-              threshold={0.2}
+              loading="eager"
               className="block w-full h-full"
               loading-anim="false"
               aria-label="Animation méthodologie"
