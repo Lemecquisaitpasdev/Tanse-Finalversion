@@ -1,42 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useDebounce } from "../hooks/useDebounce";
 import SplineLazy from "./SplineLazy";
-import { useOptimization } from "./OptimizationProvider";
 
 const SCENE_URL = "https://prod.spline.design/l8fan1OYXfoYpgtt/scene.splinecode?v=20251019";
 
 /**
- * OPTIMISÉ WINDOWS:
- * - Lazy-load Spline (charge uniquement quand visible)
- * - Debounce resize à 150ms au lieu de temps réel
- * - Suppression willChange (inutile)
- * - Transitions adaptatives selon OS/GPU
- * - Navigation links optimisés avec classes uniformes
+ * Hero section optimisé pour chargement instantané
+ * - CSS pour responsive (pas de JS)
+ * - Navigation simplifiée
+ * - Spline lazy-loaded
  */
 export default function Hero() {
-  const config = useOptimization();
-  const [isMobile, setIsMobile] = useState(false);
-
   // Optimized navigation link styles
   const navLinkBase = "pointer-events-auto rounded-full px-3 md:px-4 py-2 text-xs md:text-sm font-medium min-h-[36px] md:min-h-0 flex items-center justify-center transition-all duration-200";
   const navLinkDefault = "text-[#24243C] hover:bg-white";
   const navLinkPrimary = "text-white bg-[#444684] hover:opacity-90";
-
-  // Debounce resize pour Windows
-  const checkMobile = useDebounce(() => {
-    setIsMobile(window.innerWidth < 768);
-  }, 150);
-
-  useEffect(() => {
-    // Check initial
-    setIsMobile(window.innerWidth < 768);
-
-    window.addEventListener("resize", checkMobile, { passive: true });
-    return () => window.removeEventListener("resize", checkMobile);
-  }, [checkMobile]);
 
   return (
     <section id="hero" className="relative w-full h-[100dvh] min-h-[600px] max-h-[900px] overflow-hidden bg-[#E4E4E4]">
@@ -64,16 +43,8 @@ export default function Hero() {
         </nav>
       </div>
 
-      {/* Spline Lazy-loaded (charge seulement quand visible) */}
-      <div
-        className={`absolute inset-0 flex items-center justify-center ${
-          isMobile ? 'scale-110 translate-y-4' : 'scale-100'
-        }`}
-        style={{
-          transition: `transform ${300 * config.animationDuration}ms ease-out`
-          /* willChange supprimé - inutile et coûteux sur Windows */
-        }}
-      >
+      {/* Spline - Responsive via CSS */}
+      <div className="absolute inset-0 flex items-center justify-center scale-110 translate-y-4 md:scale-100 md:translate-y-0 transition-transform duration-300 ease-out">
         <SplineLazy
           url={SCENE_URL}
           className="block w-full h-full"

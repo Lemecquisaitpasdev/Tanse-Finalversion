@@ -107,7 +107,7 @@ export default function Page() {
                 fill
                 priority
                 sizes="(min-width: 1024px) 50vw, 100vw"
-                className="rounded-lg object-cover"
+                className="rounded-lg object-contain"
               />
             </div>
           </div>
