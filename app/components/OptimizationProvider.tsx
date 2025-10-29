@@ -17,9 +17,26 @@ const OptimizationContext = createContext<OptimizationConfig | null>(null);
  * <OptimizationProvider>
  *   <App />
  * </OptimizationProvider>
+ *
+ * ⚠️ OPTIMISATIONS WINDOWS DÉSACTIVÉES TEMPORAIREMENT POUR TEST
+ * Pour réactiver : décommenter la ligne ci-dessous et commenter le fallback
  */
 export function OptimizationProvider({ children }: { children: ReactNode }) {
-  const config = useOptimizationConfig();
+  // ❌ DÉSACTIVÉ TEMPORAIREMENT - Décommenter pour réactiver
+  // const config = useOptimizationConfig();
+
+  // ✅ CONFIG PAR DÉFAUT (pas d'optimisations Windows)
+  const config = {
+    enableComplexAnimations: true,
+    enableInfiniteAnimations: true,
+    animationDuration: 1,
+    enableBlur: true,
+    enableShadows: true,
+    enableGradients: true,
+    enableContentVisibility: false,
+    lazyLoadThreshold: 0.1,
+    throttleDelay: 16,
+  };
 
   return (
     <OptimizationContext.Provider value={config}>
