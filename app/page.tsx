@@ -35,8 +35,8 @@ export default function Page() {
       <section id="methodology" className="anchor"><Methodology /></section>
       <section id="trust" className="anchor"><TestimonialsMarquee /></section>
       <section id="pricing" className="anchor"><PricingPlans /></section>
-      <section id="faq" className="anchor"><FaqAccordion /></section>
       <section id="final-cta" className="anchor"><FinalCta /></section>
+      <section id="faq" className="anchor"><FaqAccordion /></section>
 
       {/* Footer rendu côté client */}
       <SiteFooter />
