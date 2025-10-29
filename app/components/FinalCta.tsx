@@ -71,16 +71,7 @@ export default function FinalCta() {
           <div className="rounded-3xl bg-white shadow-[0_25px_80px_-20px_rgba(0,0,0,0.35)] overflow-hidden h-[min(75vh,900px)] min-h-[650px]">
             <SplineLazy
               url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
-              loading="eager"
               className="w-full h-full"
-              style={{
-                background: "transparent",
-                display: "block",
-                width: "100%",
-                height: "100%",
-                transition: 'opacity 0.4s ease-out'
-                /* willChange supprimé - inutile */
-              }}
               aria-label="Animation finale"
             />
           </div>

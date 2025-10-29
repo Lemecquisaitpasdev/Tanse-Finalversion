@@ -122,7 +122,6 @@ export default function Page() {
         <div className="w-full overflow-hidden rounded-none md:rounded-3xl shadow-2xl border-y md:border border-white/60">
           <SplineLazy
             url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
-            loading="eager"
             className="block w-full h-[46vh] md:h-[58vh] bg-gradient-to-br from-neutral-100 to-neutral-50"
           />
         </div>

@@ -76,13 +76,7 @@ export default function Hero() {
       >
         <SplineLazy
           url={SCENE_URL}
-          loading="eager"
           className="block w-full h-full"
-          style={{
-            width: '100%',
-            height: '100%',
-            display: 'block'
-          }}
         />
       </div>
     </section>

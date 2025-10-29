@@ -145,12 +145,7 @@ export default function BrainReflexes() {
           >
             <SplineLazy
               url={BRAIN_SCENE_URL}
-              loading="eager"
               className="block w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
-              style={{
-                transition: 'opacity 0.4s ease-out'
-                /* willChange supprimé - inutile et force GPU layer */
-              }}
             />
           </div>
         </div>

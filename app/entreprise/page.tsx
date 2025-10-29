@@ -194,7 +194,6 @@ export default function Page() {
         <div className="pointer-events-auto absolute inset-y-0 right-0 w-[75vw] md:w-[60vw]">
           <SplineLazy
             url="https://prod.spline.design/EZYaol9QTCXdiWrh/scene.splinecode"
-            loading="eager"
             className="block w-full h-full"
           />
         </div>
