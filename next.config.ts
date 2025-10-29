@@ -58,11 +58,11 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://prod.spline.design https://js.stripe.com https://va.vercel-scripts.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://prod.spline.design https://js.stripe.com https://va.vercel-scripts.com https://vercel.live https://www.gstatic.com",
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https: blob:",
               "font-src 'self' data:",
-              "connect-src 'self' https://prod.spline.design https://api.stripe.com https://vitals.vercel-insights.com",
+              "connect-src 'self' https://prod.spline.design https://api.stripe.com https://vitals.vercel-insights.com https://unpkg.com https://www.gstatic.com",
               "frame-src https://checkout.stripe.com https://js.stripe.com",
               "object-src 'none'",
               "base-uri 'self'",
