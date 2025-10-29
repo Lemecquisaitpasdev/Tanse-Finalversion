@@ -19,7 +19,7 @@ export default function Page() {
 
       <h2 className="mt-8 text-xl font-semibold">1. Responsable de traitement</h2>
       <p>
-        TANSE, 12 Rue Exemple, 75002 Paris, France —{" "}
+        TANSE, SAS au capital de 10 000 EUR — SIREN 21090087 — 22 avenue Robert Schuman, 75007 Paris, France —{" "}
         <a className="underline" href="mailto:hello@tanse.io">hello@tanse.io</a>
       </p>
 
