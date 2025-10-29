@@ -66,6 +66,7 @@ export default function EndSection() {
             <h3 className="mb-3 text-sm font-semibold text-neutral-800">Produits</h3>
             <ul className="space-y-2 text-sm text-neutral-700">
               <li><Link href="/forfaits" className="hover:underline">Forfaits</Link></li>
+              <li><Link href="/geo" className="hover:underline">GEO - Optimisation IA</Link></li>
               <li><Link href="/#stats" className="hover:underline">Résultats & chiffres</Link></li>
               <li><Link href="/#insights" className="hover:underline">Insights trafic & conversions</Link></li>
             </ul>

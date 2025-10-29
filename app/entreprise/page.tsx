@@ -206,6 +206,7 @@ export default function Page() {
           <div className="flex gap-5 text-sm">
             <Link href="/forfaits" className="text-[#444684] hover:underline">Forfaits</Link>
             <Link href="/entreprise" className="text-[#444684] hover:underline">Entreprise</Link>
+            <Link href="/geo" className="text-[#444684] hover:underline">GEO</Link>
             <a href="mailto:contact@tanse.fr" className="text-[#444684] hover:underline">Contact</a>
           </div>
         </div>
