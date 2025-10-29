@@ -10,22 +10,27 @@ const OptimizationContext = createContext<OptimizationConfig | null>(null);
 /**
  * Provider de configuration d'optimisation
  *
- * Détecte l'OS et GPU, puis fournit la config optimale
- * à tous les composants enfants via Context
+ * Fournit une configuration uniforme à tous les composants,
+ * garantissant une expérience identique sur tous les OS.
  *
  * USAGE:
  * <OptimizationProvider>
  *   <App />
  * </OptimizationProvider>
  *
- * ⚠️ OPTIMISATIONS WINDOWS DÉSACTIVÉES TEMPORAIREMENT POUR TEST
- * Pour réactiver : décommenter la ligne ci-dessous et commenter le fallback
+ * 🎯 CONFIGURATION ACTUELLE : Windows = macOS = Linux
+ * Tous les utilisateurs reçoivent la même expérience optimale,
+ * sans dégradation sur Windows.
+ *
+ * Note : Le hook useOptimizationConfig() existe mais n'est pas utilisé.
+ * Pour activer les optimisations adaptatives Windows, décommenter ligne 28.
  */
 export function OptimizationProvider({ children }: { children: ReactNode }) {
-  // ❌ DÉSACTIVÉ TEMPORAIREMENT - Décommenter pour réactiver
+  // 🎯 CONFIG UNIFORME : Même expérience pour Windows, macOS et Linux
+  // Décommenter la ligne suivante pour activer les optimisations adaptatives Windows :
   // const config = useOptimizationConfig();
 
-  // ✅ CONFIG PAR DÉFAUT (pas d'optimisations Windows)
+  // ✅ Configuration identique pour tous les OS
   const config = {
     enableComplexAnimations: true,
     enableInfiniteAnimations: true,
