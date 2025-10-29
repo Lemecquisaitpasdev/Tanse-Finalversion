@@ -81,14 +81,14 @@ const TESTIMONIALS: Testimonial[] = [
 /* ------------------------------------------------------------------ */
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <div className="embla__slide flex-[0_0_100%] min-w-0 md:flex-[0_0_calc(33.333%-1rem)] px-2">
-      <div className="h-full rounded-3xl border border-[#444684]/20 bg-white p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-[#444684]/40 flex flex-col">
+    <div className="embla__slide flex-[0_0_100%] min-w-0 md:flex-[0_0_calc(33.333%-1rem)] px-2 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="group h-full rounded-3xl border border-[#444684]/20 bg-white p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out hover:border-[#444684]/40 hover:scale-105 hover:-translate-y-1 flex flex-col">
         {/* Rating Stars */}
         <div className="flex items-center gap-1 mb-4">
           {Array.from({ length: 5 }).map((_, i) => (
             <Star
               key={i}
-              className={`h-5 w-5 ${
+              className={`h-5 w-5 transition-transform duration-300 ease-in-out group-hover:scale-110 ${
                 i < testimonial.rating
                   ? "fill-[#444684] text-[#444684]"
                   : "fill-neutral-200 text-neutral-200"
@@ -98,24 +98,24 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         </div>
 
         {/* Testimonial Text */}
-        <p className="text-base md:text-[17px] leading-relaxed text-neutral-800 mb-6 flex-grow">
+        <p className="text-base md:text-[17px] leading-relaxed text-neutral-800 mb-6 flex-grow transition-colors duration-300 ease-in-out group-hover:text-neutral-900">
           {testimonial.text}
         </p>
 
         {/* Author Info */}
-        <div className="border-t border-neutral-200 pt-4">
+        <div className="border-t border-neutral-200 pt-4 transition-colors duration-300 ease-in-out group-hover:border-[#444684]/30">
           <div className="flex items-start justify-between">
             <div>
-              <div className="font-semibold text-neutral-900 text-base">
+              <div className="font-semibold text-neutral-900 text-base transition-colors duration-300 ease-in-out group-hover:text-[#444684]">
                 {testimonial.name}
               </div>
               {testimonial.location && (
-                <div className="text-sm text-neutral-600 mt-1">
+                <div className="text-sm text-neutral-600 mt-1 transition-colors duration-300 ease-in-out group-hover:text-neutral-700">
                   {testimonial.location}
                 </div>
               )}
             </div>
-            <div className="text-sm text-neutral-500 whitespace-nowrap ml-4">
+            <div className="text-sm text-neutral-500 whitespace-nowrap ml-4 transition-colors duration-300 ease-in-out group-hover:text-neutral-600">
               {testimonial.date}
             </div>
           </div>
@@ -221,20 +221,20 @@ export default function TestimonialsMarquee() {
           </div>
 
           {/* Navigation Buttons */}
-          <div className="mt-8 flex items-center justify-center gap-3">
+          <div className="mt-8 flex items-center justify-center gap-3 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
             <button
               onClick={scrollPrev}
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-[#444684]/30 bg-white text-[#444684] shadow-md hover:bg-[#444684] hover:text-white transition-all duration-200 hover:shadow-lg hover:scale-110 focus-visible:outline-2 focus-visible:outline-[#444684] focus-visible:outline-offset-2"
+              className="group flex h-12 w-12 items-center justify-center rounded-full border border-[#444684]/30 bg-white text-[#444684] shadow-md hover:bg-[#444684] hover:text-white transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-110 focus-visible:outline-2 focus-visible:outline-[#444684] focus-visible:outline-offset-2"
               aria-label="Avis précédent"
             >
-              <ChevronLeft className="h-6 w-6" />
+              <ChevronLeft className="h-6 w-6 transition-transform duration-300 ease-in-out group-hover:-translate-x-0.5" />
             </button>
             <button
               onClick={scrollNext}
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-[#444684]/30 bg-white text-[#444684] shadow-md hover:bg-[#444684] hover:text-white transition-all duration-200 hover:shadow-lg hover:scale-110 focus-visible:outline-2 focus-visible:outline-[#444684] focus-visible:outline-offset-2"
+              className="group flex h-12 w-12 items-center justify-center rounded-full border border-[#444684]/30 bg-white text-[#444684] shadow-md hover:bg-[#444684] hover:text-white transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-110 focus-visible:outline-2 focus-visible:outline-[#444684] focus-visible:outline-offset-2"
               aria-label="Avis suivant"
             >
-              <ChevronRight className="h-6 w-6" />
+              <ChevronRight className="h-6 w-6 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
             </button>
           </div>
         </div>

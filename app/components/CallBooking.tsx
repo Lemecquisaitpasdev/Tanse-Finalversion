@@ -152,13 +152,9 @@ export default function CallBooking() {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 border border-white/60 shadow-2xl">
-      {/* Decorative gradient orbs */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-300/30 to-pink-300/30 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-indigo-300/30 to-blue-300/30 rounded-full blur-3xl -z-10" />
-
+    <div className="relative overflow-visible">
       {/* Header */}
-      <div className="relative z-10 p-8 md:p-10 border-b border-white/50 bg-white/40 backdrop-blur-sm">
+      <div className="relative z-10 p-8 md:p-10 mb-6 rounded-3xl bg-white/40 backdrop-blur-sm border border-white/60 shadow-lg">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg">
             <Calendar className="h-6 w-6 text-white" />
@@ -179,7 +175,7 @@ export default function CallBooking() {
         </div>
       </div>
 
-      <div className="p-8 md:p-10">
+      <div className="p-8 md:p-10 rounded-3xl bg-white/40 backdrop-blur-sm border border-white/60 shadow-lg">
         {/* Step 1: Date Selection */}
         {step === "date" && (
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
