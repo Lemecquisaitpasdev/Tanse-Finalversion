@@ -28,7 +28,7 @@ export default function TableOfContents() {
       toc.push({
         id,
         text: heading.textContent || "",
-        level: parseInt(heading.tagName[1])
+        level: parseInt(heading.tagName.charAt(1) || "2")
       });
     });
 
