@@ -78,6 +78,7 @@ export default function SiteFooter(): JSX.Element {
             <ul className="space-y-2 text-sm text-slate-800">
               <li><Link href="/forfaits" className="hover:text-slate-950 transition">Forfaits</Link></li>
               <li><Link href="/geo" className="hover:text-slate-950 transition">GEO - Optimisation IA</Link></li>
+              <li><Link href="/blog" className="hover:text-slate-950 transition">Blog SEO & GEO</Link></li>
               <li><Link href="/#stats" className="hover:text-slate-950 transition">Résultats & chiffres</Link></li>
               <li><Link href="/#insights" className="hover:text-slate-950 transition">Insights trafic & conversions</Link></li>
             </ul>

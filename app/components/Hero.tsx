@@ -41,6 +41,12 @@ export default function Hero() {
             GEO
           </Link>
           <Link
+            href="/blog"
+            className={`${navLinkBase} ${navLinkDefault}`}
+          >
+            Blog
+          </Link>
+          <Link
             href="/contact"
             className={`${navLinkBase} ${navLinkPrimary}`}
           >
