@@ -18,7 +18,7 @@ export default function BlogPage() {
 
   return (
     <main className="bg-[#E4E4E4] min-h-screen">
-      {/* Navigation en haut au milieu - comme Hero */}
+      {/* Navigation en haut au milieu - comme Hero - SANS le bouton Blog (page active) */}
       <div className="pointer-events-none absolute left-1/2 top-4 md:top-6 z-20 -translate-x-1/2 w-full max-w-[calc(100%-2rem)] md:max-w-none">
         <nav className="flex items-center justify-center gap-1 md:gap-2 rounded-full bg-white/80 md:bg-white/70 backdrop-blur px-2 py-2 shadow-lg ring-1 ring-black/5 mx-auto w-fit">
           <Link
@@ -39,12 +39,7 @@ export default function BlogPage() {
           >
             GEO
           </Link>
-          <Link
-            href="/blog"
-            className={`${navLinkBase} ${navLinkDefault}`}
-          >
-            Blog
-          </Link>
+          {/* Blog button hidden - we're on the blog page */}
           <Link
             href="/contact"
             className={`${navLinkBase} ${navLinkPrimary}`}
@@ -79,7 +74,7 @@ export default function BlogPage() {
         <p className="text-center text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto mb-12 leading-relaxed">
           Restez informés des dernières <span className="font-semibold text-[#444684]">innovations</span>{" "}
           <span className="font-semibold text-[#444684]">SEO</span> et{" "}
-          <span className="font-semibold text-[#444684]">GEO</span> pour anticiper la <span className="font-semibold text-[#444684]">recherche</span> de demain
+          <span className="font-semibold text-[#444684]">GEO</span> pour anticiper la <span className="font-semibold text-[#444684]">recherche</span> de demain.
         </p>
 
         {/* Animation Spline 3D - SANS hint de rotation */}
@@ -183,7 +178,12 @@ export default function BlogPage() {
       />
 
       {/* Styles personnalisés */}
-      <style jsx>{`
+      <style jsx global>{`
+        /* Force gray background on blog page */
+        body {
+          background-color: #e4e4e4 !important;
+        }
+
         @media (max-width: 768px) {
           .spline-container {
             max-width: 400px;
