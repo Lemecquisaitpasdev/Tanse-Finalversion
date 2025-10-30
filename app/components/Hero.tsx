@@ -55,8 +55,8 @@ export default function Hero() {
         </nav>
       </div>
 
-      {/* Spline - Responsive via CSS */}
-      <div className="absolute inset-0 flex items-center justify-center scale-110 translate-y-4 md:scale-100 md:translate-y-0 transition-transform duration-300 ease-out">
+      {/* Spline - Responsive via CSS - Increased scale to prevent edge clipping */}
+      <div className="absolute inset-0 flex items-center justify-center scale-125 translate-y-4 md:scale-115 md:translate-y-0 transition-transform duration-300 ease-out">
         <SplineLazy
           url={SCENE_URL}
           className="block w-full h-full"
