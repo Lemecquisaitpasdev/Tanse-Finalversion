@@ -2,132 +2,159 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { ChevronRight } from "lucide-react";
-import ArticleCard from "../components/blog/ArticleCard";
-import CategoryBadge from "../components/blog/CategoryBadge";
-import { getPinnedArticles, getRegularArticles, getAllCategories, type ArticleCategory } from "./data/articles";
+import Image from "next/image";
+import { ArrowLeft, ArrowRight, RotateCw } from "lucide-react";
+import SplineLazy from "../components/SplineLazy";
 import SiteFooter from "../components/SiteFooter";
 
 export default function BlogPage() {
-  const [selectedCategory, setSelectedCategory] = useState<ArticleCategory | "all">("all");
-  const pinnedArticles = getPinnedArticles();
-  const regularArticles = getRegularArticles();
-
-  const filteredArticles = selectedCategory === "all"
-    ? regularArticles
-    : regularArticles.filter(article => article.category.includes(selectedCategory));
-
   return (
-    <main className="bg-[#E4E4E4]">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#444684] via-[#3d3a66] to-[#524e7d] text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent_50%)]"></div>
+    <main className="bg-[#E4E4E4] min-h-screen">
+      {/* Header avec flèche retour + logo */}
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-neutral-200/50 shadow-sm">
+        <div className="mx-auto w-full max-w-7xl px-6 py-4 flex items-center justify-between">
+          {/* Flèche retour */}
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-neutral-700 hover:text-[#444684] transition-colors group"
+          >
+            <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
+            <span className="text-sm font-medium">Retour</span>
+          </Link>
 
-        <div className="relative mx-auto w-full max-w-7xl px-6 py-20 md:py-28">
-          {/* Breadcrumb */}
-          <nav className="mb-6 flex items-center gap-2 text-sm text-white/80">
-            <Link href="/" className="hover:text-white transition-colors">
-              Accueil
-            </Link>
-            <ChevronRight className="h-4 w-4" />
-            <span className="text-white font-medium">Blog</span>
-          </nav>
+          {/* Logo TANSE */}
+          <Link href="/">
+            <Image
+              src="/brand/tanse-logo.png?v=3"
+              alt="TANSE"
+              width={160}
+              height={40}
+              priority
+              className="h-8 w-auto"
+            />
+          </Link>
+        </div>
+      </header>
 
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur px-4 py-1.5 text-sm font-medium mb-6">
-              <span className="inline-block h-2 w-2 rounded-full bg-green-400 animate-pulse"></span>
-              Expertise SEO Local & GEO
-            </div>
+      {/* Section Hero */}
+      <section className="mx-auto w-full max-w-6xl px-6 py-16 md:py-20">
+        {/* Titre */}
+        <h1 className="text-center text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6">
+          NOTRE BLOG
+        </h1>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-              Blog SEO Local & GEO
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg md:text-xl text-white/90 leading-relaxed">
-              Guides pratiques, actualités et stratégies de visibilité dans les moteurs IA.<br className="hidden md:block" />
-              Expertise TANSE pour PME françaises.
-            </p>
+        {/* Légende */}
+        <p className="text-center text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto mb-12 leading-relaxed">
+          Restez informés des dernières innovations SEO et GEO pour anticiper le monde de demain
+        </p>
+
+        {/* Animation Spline 3D */}
+        <div className="spline-container relative w-full max-w-[600px] h-[400px] md:h-[600px] mx-auto mb-12">
+          <SplineLazy
+            url="https://prod.spline.design/8xMH0fv1JGcJornD/scene.splinecode"
+            className="block w-full h-full rounded-3xl"
+          />
+
+          {/* Hint de rotation */}
+          <div className="rotation-hint absolute bottom-5 right-5 flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-md rounded-full shadow-lg">
+            <RotateCw className="h-5 w-5 text-[#444684] animate-spin-slow" />
+            <span className="text-sm font-medium text-neutral-700">Glissez pour tourner</span>
           </div>
         </div>
-      </section>
 
-      {/* Main Content */}
-      <section className="-mt-16 pb-16 md:pb-24">
-        <div className="mx-auto w-full max-w-7xl px-6">
-          {/* Category Filters */}
-          <div className="mb-8 flex flex-wrap gap-3 justify-center">
-            <span
-              className={`inline-flex items-center rounded-full border px-4 py-2 text-sm font-medium cursor-pointer transition-all ${
-                selectedCategory === "all"
-                  ? "bg-[#444684] text-white border-[#444684] ring-2 ring-[#444684] ring-offset-2"
-                  : "bg-white text-neutral-700 border-neutral-200 hover:opacity-80"
-              }`}
-              onClick={() => setSelectedCategory("all")}
-            >
-              Tous
-            </span>
-            {getAllCategories().map((cat) => (
-              <CategoryBadge
-                key={cat}
-                category={cat}
-                active={selectedCategory === cat}
-                onClick={() => setSelectedCategory(cat)}
-              />
-            ))}
-          </div>
+        {/* Carte Article Featured */}
+        <Link
+          href="/blog/openai-atlas-geo-conversions-2025"
+          className="article-card block max-w-4xl mx-auto bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300"
+        >
+          {/* Image Hero */}
+          <div className="article-image relative w-full h-[250px] md:h-[400px] overflow-hidden bg-gradient-to-br from-[#444684] to-[#6366f1]">
+            {/* Badge "Article épinglé" */}
+            <div className="article-badge absolute top-5 left-5 flex items-center gap-2 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full shadow-md">
+              <span className="text-xl">📌</span>
+              <span className="text-sm font-semibold text-neutral-800">Article épinglé</span>
+            </div>
 
-          {/* Pinned Articles */}
-          {pinnedArticles.length > 0 && (
-            <div className="mb-8">
-              <div className="grid gap-6 md:grid-cols-2">
-                {pinnedArticles.map((article) => (
-                  <ArticleCard key={article.slug} article={article} featured={true} />
-                ))}
+            {/* Placeholder gradient avec icône */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center text-white p-8">
+                <div className="text-8xl mb-4">🌐</div>
+                <div className="text-3xl font-bold opacity-90">OpenAI Atlas</div>
               </div>
             </div>
-          )}
+          </div>
 
-          {/* Regular Articles Grid */}
-          {filteredArticles.length > 0 ? (
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {filteredArticles.map((article) => (
-                <ArticleCard key={article.slug} article={article} />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-16">
-              <p className="text-neutral-600">Aucun article dans cette catégorie pour le moment.</p>
-            </div>
-          )}
-
-          {/* CTA Section */}
-          <div className="mt-16 rounded-3xl border border-neutral-200 bg-white p-8 md:p-12 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] text-center">
-            <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-4">
-              Besoin d'aide pour votre visibilité locale ?
+          {/* Contenu */}
+          <div className="article-content p-6 md:p-8">
+            {/* Titre */}
+            <h2 className="article-title text-2xl md:text-3xl font-bold text-neutral-900 mb-4 leading-tight">
+              OpenAI Atlas arrive : l'enjeu majeur du GEO pour les conversions en 2025
             </h2>
-            <p className="text-neutral-600 mb-6 max-w-2xl mx-auto">
-              TANSE accompagne les PME françaises dans leur optimisation SEO Local et GEO.
-              Découvrez nos forfaits adaptés à votre contexte.
+
+            {/* Extrait */}
+            <p className="article-excerpt text-base md:text-lg text-neutral-600 mb-6 leading-relaxed">
+              OpenAI lance Atlas, son moteur de recherche local intégrant l'IA conversationnelle.
+              Pour les PME, l'enjeu n'est plus seulement le SEO classique, mais le GEO :
+              être la réponse recommandée par les IA.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/forfaits"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#444684] px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 min-h-[48px]"
-              >
-                Voir nos forfaits
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-900 shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-50 min-h-[48px]"
-              >
-                Nous contacter
-              </Link>
+
+            {/* Meta */}
+            <div className="article-meta flex flex-wrap items-center gap-2 text-sm text-neutral-500 mb-6">
+              <span className="font-medium">30 octobre 2025</span>
+              <span className="meta-separator">•</span>
+              <span>GEO, IA & Moteurs</span>
+              <span className="meta-separator">•</span>
+              <span>8 min de lecture</span>
+            </div>
+
+            {/* CTA */}
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#444684] text-white rounded-lg font-semibold hover:bg-[#3d3a66] transition-all group">
+              <span>Lire l'article</span>
+              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </div>
           </div>
-        </div>
+        </Link>
       </section>
 
+      {/* Footer */}
       <SiteFooter />
+
+      {/* Styles personnalisés pour l'animation */}
+      <style jsx>{`
+        @keyframes spin-slow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        .animate-spin-slow {
+          animation: spin-slow 3s linear infinite;
+        }
+
+        @media (max-width: 768px) {
+          .spline-container {
+            max-width: 400px;
+          }
+
+          .rotation-hint {
+            bottom: 10px;
+            right: 10px;
+            padding: 6px 12px;
+          }
+
+          .rotation-hint span {
+            font-size: 0.75rem;
+          }
+
+          .rotation-hint svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      `}</style>
     </main>
   );
 }
