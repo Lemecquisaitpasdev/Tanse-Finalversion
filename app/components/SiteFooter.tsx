@@ -88,6 +88,7 @@ export default function SiteFooter(): JSX.Element {
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-700">Ressources</h3>
             <ul className="space-y-2 text-sm text-slate-800">
               <li><Link href="/faq" className="hover:text-slate-950 transition">FAQ</Link></li>
+              <li><Link href="/blog#newsletter" className="hover:text-slate-950 transition">Newsletter</Link></li>
               <li>
                 <Link href="mailto:contact@tanse.fr" className="inline-flex items-center gap-2 hover:text-slate-950 transition">
                   <Mail className="h-4 w-4 text-slate-600" /> contact@tanse.fr
