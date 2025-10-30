@@ -4,7 +4,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, RotateCw } from "lucide-react";
-import SplineLazy from "../components/SplineLazy";
 import SiteFooter from "../components/SiteFooter";
 
 export default function BlogPage() {
@@ -49,14 +48,16 @@ export default function BlogPage() {
         </p>
 
         {/* Animation Spline 3D */}
-        <div className="spline-container relative w-full max-w-[600px] h-[400px] md:h-[600px] mx-auto mb-12">
-          <SplineLazy
-            url="https://prod.spline.design/8xMH0fv1JGcJornD/scene.splinecode"
-            className="block w-full h-full rounded-3xl"
+        <div className="spline-container relative w-full max-w-[600px] h-[400px] md:h-[600px] mx-auto mb-12 overflow-hidden rounded-3xl">
+          <spline-viewer
+            url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
+            className="w-full h-full"
+            loading-anim="true"
+            events-target="local"
           />
 
           {/* Hint de rotation */}
-          <div className="rotation-hint absolute bottom-5 right-5 flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-md rounded-full shadow-lg">
+          <div className="rotation-hint absolute bottom-5 right-5 flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-md rounded-full shadow-lg pointer-events-none">
             <RotateCw className="h-5 w-5 text-[#444684] animate-spin-slow" />
             <span className="text-sm font-medium text-neutral-700">Glissez pour tourner</span>
           </div>
