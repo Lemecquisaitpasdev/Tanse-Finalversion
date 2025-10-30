@@ -4,15 +4,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Calendar, Clock, ChevronRight } from "lucide-react";
 import { notFound } from "next/navigation";
-import dynamic from "next/dynamic";
 import { getArticleBySlug, articles } from "../data/articles";
 import CategoryBadge from "@/app/components/blog/CategoryBadge";
 import TableOfContents from "@/app/components/blog/TableOfContents";
 import ArticleContent from "@/app/components/blog/ArticleContent";
-
-const SiteFooter = dynamic(() => import("@/app/components/SiteFooter").then(m => m.default), {
-  ssr: false,
-});
+import SiteFooter from "@/app/components/SiteFooter";
 
 // Generate static params for all articles
 export async function generateStaticParams() {

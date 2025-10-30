@@ -6,12 +6,8 @@ import { useState } from "react";
 import { ChevronRight } from "lucide-react";
 import ArticleCard from "../components/blog/ArticleCard";
 import CategoryBadge from "../components/blog/CategoryBadge";
-import { articles, getPinnedArticles, getRegularArticles, getAllCategories, type ArticleCategory } from "./data/articles";
-import dynamic from "next/dynamic";
-
-const SiteFooter = dynamic(() => import("../components/SiteFooter").then(m => m.default), {
-  ssr: false,
-});
+import { getPinnedArticles, getRegularArticles, getAllCategories, type ArticleCategory } from "./data/articles";
+import SiteFooter from "../components/SiteFooter";
 
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<ArticleCategory | "all">("all");
