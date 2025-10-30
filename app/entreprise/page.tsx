@@ -98,16 +98,14 @@ export default function Page() {
             </p>
           </div>
 
-          {/* Visuel (large) */}
+          {/* Visuel (large) - Animation Spline 3D */}
           <div className="md:col-span-6">
-            <div className="relative w-full h-[clamp(280px,80vh,680px)]">
-              <Image
-                src="/entreprise/stronger-together.webp"
-                alt="Stronger together — l'équipe TANSE au travail"
-                fill
-                priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="rounded-lg object-contain"
+            <div className="relative w-full h-[clamp(280px,80vh,680px)] rounded-lg overflow-hidden">
+              <spline-viewer
+                url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
+                className="w-full h-full"
+                loading-anim="true"
+                events-target="local"
               />
             </div>
           </div>
