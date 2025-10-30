@@ -26,10 +26,10 @@ export default function BlogPage() {
             <Image
               src="/brand/tanse-logo.png?v=3"
               alt="TANSE"
-              width={160}
-              height={40}
+              width={320}
+              height={80}
               priority
-              className="h-8 w-auto"
+              className="h-16 w-auto md:h-16"
             />
           </Link>
         </div>
@@ -44,11 +44,13 @@ export default function BlogPage() {
 
         {/* Légende */}
         <p className="text-center text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto mb-12 leading-relaxed">
-          Restez informés des dernières innovations SEO et GEO pour anticiper le monde de demain
+          Restez informés des dernières <span className="font-semibold text-[#444684]">innovations</span>{" "}
+          <span className="font-semibold text-[#444684]">SEO</span> et{" "}
+          <span className="font-semibold text-[#444684]">GEO</span> pour anticiper le monde de demain
         </p>
 
         {/* Animation Spline 3D */}
-        <div className="spline-container relative w-full max-w-[600px] h-[400px] md:h-[600px] mx-auto mb-12 overflow-hidden rounded-3xl">
+        <div className="spline-container relative w-full max-w-[600px] h-[400px] md:h-[600px] mx-auto mb-[150px] overflow-hidden rounded-3xl">
           <spline-viewer
             url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
             className="w-full h-full"
@@ -80,7 +82,9 @@ export default function BlogPage() {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center text-white p-8">
                 <div className="text-8xl mb-4">🌐</div>
-                <div className="text-3xl font-bold opacity-90">OpenAI Atlas</div>
+                <div className="text-3xl font-bold opacity-90">
+                  <span className="text-white">OpenAI Atlas</span>
+                </div>
               </div>
             </div>
           </div>
@@ -89,21 +93,33 @@ export default function BlogPage() {
           <div className="article-content p-6 md:p-8">
             {/* Titre */}
             <h2 className="article-title text-2xl md:text-3xl font-bold text-neutral-900 mb-4 leading-tight">
-              OpenAI Atlas arrive : l'enjeu majeur du GEO pour les conversions en 2025
+              <span className="font-bold text-[#444684]">OpenAI Atlas</span> arrive : l'enjeu majeur du{" "}
+              <span className="font-bold text-[#444684]">GEO</span> pour les{" "}
+              <span className="font-bold text-[#444684]">conversions</span> en 2025
             </h2>
 
             {/* Extrait */}
             <p className="article-excerpt text-base md:text-lg text-neutral-600 mb-6 leading-relaxed">
-              OpenAI lance Atlas, son moteur de recherche local intégrant l'IA conversationnelle.
-              Pour les PME, l'enjeu n'est plus seulement le SEO classique, mais le GEO :
-              être la réponse recommandée par les IA.
+              <span className="font-semibold text-[#444684]">OpenAI</span> lance{" "}
+              <span className="font-semibold text-[#444684]">Atlas</span>, son{" "}
+              <span className="font-semibold text-[#444684]">moteur</span> de recherche local intégrant l'
+              <span className="font-semibold text-[#444684]">IA</span> conversationnelle.
+              Pour les PME, l'enjeu n'est plus seulement le{" "}
+              <span className="font-semibold text-[#444684]">SEO</span> classique, mais le{" "}
+              <span className="font-semibold text-[#444684]">GEO</span> :
+              être la réponse recommandée par les{" "}
+              <span className="font-semibold text-[#444684]">IA</span>.
             </p>
 
             {/* Meta */}
             <div className="article-meta flex flex-wrap items-center gap-2 text-sm text-neutral-500 mb-6">
               <span className="font-medium">30 octobre 2025</span>
               <span className="meta-separator">•</span>
-              <span>GEO, IA & Moteurs</span>
+              <span>
+                <span className="font-semibold text-[#444684]">GEO</span>,{" "}
+                <span className="font-semibold text-[#444684]">IA</span> &{" "}
+                <span className="font-semibold text-[#444684]">Moteurs</span>
+              </span>
               <span className="meta-separator">•</span>
               <span>8 min de lecture</span>
             </div>
@@ -138,6 +154,7 @@ export default function BlogPage() {
         @media (max-width: 768px) {
           .spline-container {
             max-width: 400px;
+            margin-bottom: 100px;
           }
 
           .rotation-hint {
@@ -153,6 +170,10 @@ export default function BlogPage() {
           .rotation-hint svg {
             width: 16px;
             height: 16px;
+          }
+
+          header img {
+            height: 2.5rem !important;
           }
         }
       `}</style>
