@@ -1,6 +1,6 @@
 // app/components/blog/CategoryBadge.tsx
 
-import type { ArticleCategory } from "@/app/blog/data/articles";
+import type { ArticleCategory } from "@/app/blog-seo-geo/data/articles";
 
 interface CategoryBadgeProps {
   category: ArticleCategory;

@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { Calendar, Clock } from "lucide-react";
-import type { Article } from "@/app/blog/data/articles";
+import type { Article } from "@/app/blog-seo-geo/data/articles";
 import CategoryBadge from "./CategoryBadge";
 
 interface ArticleCardProps {
@@ -17,7 +17,7 @@ export default function ArticleCard({ article, featured = false }: ArticleCardPr
     : "group relative rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.2)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_30px_80px_-30px_rgba(68,70,132,0.3)]";
 
   return (
-    <Link href={`/blog/${article.slug}`} className={cardClass}>
+    <Link href={`/blog-seo-geo/${article.slug}`} className={cardClass}>
       {article.isPinned && (
         <div className="absolute -top-3 left-6 z-10">
           <div className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#444684] to-[#524e7d] px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-white shadow-lg">

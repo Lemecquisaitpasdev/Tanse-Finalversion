@@ -26,8 +26,8 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Vérifier si l'URL nécessite une redirection 301
-  if (pathname in REDIRECTS_301) {
-    const destination = REDIRECTS_301[pathname];
+  const destination = REDIRECTS_301[pathname];
+  if (destination) {
     const url = request.nextUrl.clone();
     url.pathname = destination;
 
