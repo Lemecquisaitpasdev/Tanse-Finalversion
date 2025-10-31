@@ -1,13 +1,13 @@
 import { MetadataRoute } from 'next'
-import { articles } from './blog/data/articles'
+import { articles } from './blog-seo-geo/data/articles'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.tanse.fr'
   const currentDate = new Date().toISOString()
 
-  // Blog article URLs
+  // Blog article URLs (nouvelles URLs SEO)
   const blogArticles = articles.map((article) => ({
-    url: `${baseUrl}/blog/${article.slug}`,
+    url: `${baseUrl}/blog-seo-geo/${article.slug}`,
     lastModified: article.date,
     changeFrequency: 'monthly' as const,
     priority: article.isPinned ? 0.9 : 0.7,
@@ -21,20 +21,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${baseUrl}/forfaits`,
+      url: `${baseUrl}/forfaits-geo-seo`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/blog`,
+      url: `${baseUrl}/blog-seo-geo`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     ...blogArticles,
     {
-      url: `${baseUrl}/entreprise`,
+      url: `${baseUrl}/agence-geo-paris-lyon`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -46,7 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/contact`,
+      url: `${baseUrl}/contact-audit-gratuit`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.8,
