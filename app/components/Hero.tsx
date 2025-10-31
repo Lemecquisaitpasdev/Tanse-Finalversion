@@ -42,9 +42,12 @@ export default function Hero() {
     // Also block window.open calls to Twitter/X
     const originalOpen = window.open;
     window.open = function(url, ...args) {
-      if (url && (url.includes('twitter.com') || url.includes('x.com'))) {
-        console.log('Blocked external link:', url);
-        return null;
+      if (url) {
+        const urlString = typeof url === 'string' ? url : url.toString();
+        if (urlString.includes('twitter.com') || urlString.includes('x.com')) {
+          console.log('Blocked external link:', urlString);
+          return null;
+        }
       }
       return originalOpen.call(window, url, ...args);
     };
