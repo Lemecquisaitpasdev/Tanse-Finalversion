@@ -195,13 +195,13 @@ export default function TestimonialsMarquee() {
             {/* CTA Buttons */}
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
-                href="/forfaits"
+                href="/forfaits-geo-seo"
                 className="inline-flex w-full sm:w-auto h-12 items-center justify-center rounded-full bg-[#444684] px-7 text-sm md:text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 hover:opacity-95 focus-visible:outline-2 focus-visible:outline-[#444684] focus-visible:outline-offset-2 touch-manipulation min-h-[44px]"
               >
                 Découvrir nos forfaits
               </a>
               <a
-                href="/contact"
+                href="/contact-audit-gratuit"
                 className="inline-flex w-full sm:w-auto h-12 items-center justify-center rounded-full border border-[#444684]/30 bg-white px-7 text-sm md:text-base font-medium text-[#444684] hover:bg-[#444684]/5 transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-[#444684] focus-visible:outline-offset-2 touch-manipulation min-h-[44px]"
               >
                 Demander un audit

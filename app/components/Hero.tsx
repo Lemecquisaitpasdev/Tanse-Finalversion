@@ -24,13 +24,13 @@ export default function Hero() {
       <div className="pointer-events-none absolute left-1/2 top-4 md:top-6 z-20 -translate-x-1/2 w-full max-w-[calc(100%-2rem)] md:max-w-none">
         <nav className="flex items-center justify-center gap-1 md:gap-2 rounded-full bg-white/80 md:bg-white/70 backdrop-blur px-2 py-2 shadow-lg ring-1 ring-black/5 mx-auto w-fit">
           <Link
-            href="/forfaits"
+            href="/forfaits-geo-seo"
             className={`${navLinkBase} ${navLinkDefault}`}
           >
             Forfaits
           </Link>
           <Link
-            href="/entreprise"
+            href="/agence-geo-paris-lyon"
             className={`${navLinkBase} ${navLinkDefault}`}
           >
             Entreprise
@@ -42,13 +42,13 @@ export default function Hero() {
             GEO
           </Link>
           <Link
-            href="/blog"
+            href="/blog-seo-geo"
             className={`${navLinkBase} ${navLinkDefault}`}
           >
             Blog
           </Link>
           <Link
-            href="/contact"
+            href="/contact-audit-gratuit"
             className={`${navLinkBase} ${navLinkPrimary}`}
           >
             Contact

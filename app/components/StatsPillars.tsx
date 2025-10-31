@@ -121,7 +121,7 @@ export default function StatsPillars() {
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <a
-              href="/forfaits"
+              href="/forfaits-geo-seo"
               className="inline-flex h-10 md:h-11 items-center rounded-full px-5 md:px-6 text-sm font-medium text-white bg-[#444684] transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-[#444684] focus-visible:outline-offset-2 touch-manipulation"
             >
               Voir les forfaits

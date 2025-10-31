@@ -51,7 +51,7 @@ export default function SiteFooter(): JSX.Element {
               Nous contacter
             </Link>
             <Link
-              href="/forfaits"
+              href="/forfaits-geo-seo"
               className="inline-flex items-center gap-2 rounded-full bg-[#444684] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#444684]/40"
             >
               Forfaits <ArrowUpRight className="h-4 w-4" />
@@ -63,9 +63,9 @@ export default function SiteFooter(): JSX.Element {
           <div>
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-700">Entreprise</h3>
             <ul className="space-y-2 text-sm text-slate-800">
-              <li><Link href="/entreprise" className="hover:text-slate-950 transition">À propos</Link></li>
-              <li><Link href="/entreprise#method" className="hover:text-slate-950 transition">Notre méthode</Link></li>
-              <li><Link href="/entreprise#equipe" className="hover:text-slate-950 transition">Équipe</Link></li>
+              <li><Link href="/agence-geo-paris-lyon" className="hover:text-slate-950 transition">À propos</Link></li>
+              <li><Link href="/agence-geo-paris-lyon#method" className="hover:text-slate-950 transition">Notre méthode</Link></li>
+              <li><Link href="/agence-geo-paris-lyon#equipe" className="hover:text-slate-950 transition">Équipe</Link></li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-slate-600" />
                 <span>Paris & Lyon</span>
@@ -76,9 +76,9 @@ export default function SiteFooter(): JSX.Element {
           <div>
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-700">Produits</h3>
             <ul className="space-y-2 text-sm text-slate-800">
-              <li><Link href="/forfaits" className="hover:text-slate-950 transition">Forfaits</Link></li>
+              <li><Link href="/forfaits-geo-seo" className="hover:text-slate-950 transition">Forfaits</Link></li>
               <li><Link href="/geo" className="hover:text-slate-950 transition">GEO - Optimisation IA</Link></li>
-              <li><Link href="/blog" className="hover:text-slate-950 transition">Blog SEO & GEO</Link></li>
+              <li><Link href="/blog-seo-geo" className="hover:text-slate-950 transition">Blog SEO & GEO</Link></li>
               <li><Link href="/#stats" className="hover:text-slate-950 transition">Résultats & chiffres</Link></li>
               <li><Link href="/#insights" className="hover:text-slate-950 transition">Insights trafic & conversions</Link></li>
             </ul>
@@ -88,7 +88,7 @@ export default function SiteFooter(): JSX.Element {
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-700">Ressources</h3>
             <ul className="space-y-2 text-sm text-slate-800">
               <li><Link href="/faq" className="hover:text-slate-950 transition">FAQ</Link></li>
-              <li><Link href="/blog#newsletter" className="hover:text-slate-950 transition">Newsletter</Link></li>
+              <li><Link href="/blog-seo-geo#newsletter" className="hover:text-slate-950 transition">Newsletter</Link></li>
               <li>
                 <Link href="mailto:contact@tanse.fr" className="inline-flex items-center gap-2 hover:text-slate-950 transition">
                   <Mail className="h-4 w-4 text-slate-600" /> contact@tanse.fr

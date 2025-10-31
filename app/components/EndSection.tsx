@@ -40,7 +40,7 @@ export default function EndSection() {
               Nous contacter
             </Link>
             <Link
-              href="/forfaits"
+              href="/forfaits-geo-seo"
               className="inline-flex items-center gap-2 rounded-full bg-[#FFE79A] px-4 py-2 text-sm font-semibold text-black shadow-sm ring-1 ring-black/10 hover:bg-[#ffe27f]"
             >
               Forfaits <ArrowUpRight className="h-4 w-4" />
@@ -53,9 +53,9 @@ export default function EndSection() {
           <div>
             <h3 className="mb-3 text-sm font-semibold text-neutral-800">Entreprise</h3>
             <ul className="space-y-2 text-sm text-neutral-700">
-              <li><Link href="/entreprise" className="hover:underline">À propos</Link></li>
-              <li><Link href="/entreprise#method" className="hover:underline">Notre méthode</Link></li>
-              <li><Link href="/entreprise#equipe" className="hover:underline">Équipe</Link></li>
+              <li><Link href="/agence-geo-paris-lyon" className="hover:underline">À propos</Link></li>
+              <li><Link href="/agence-geo-paris-lyon#method" className="hover:underline">Notre méthode</Link></li>
+              <li><Link href="/agence-geo-paris-lyon#equipe" className="hover:underline">Équipe</Link></li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 opacity-60" /> Paris & Lyon
               </li>
@@ -65,7 +65,7 @@ export default function EndSection() {
           <div>
             <h3 className="mb-3 text-sm font-semibold text-neutral-800">Produits</h3>
             <ul className="space-y-2 text-sm text-neutral-700">
-              <li><Link href="/forfaits" className="hover:underline">Forfaits</Link></li>
+              <li><Link href="/forfaits-geo-seo" className="hover:underline">Forfaits</Link></li>
               <li><Link href="/geo" className="hover:underline">GEO - Optimisation IA</Link></li>
               <li><Link href="/#stats" className="hover:underline">Résultats & chiffres</Link></li>
               <li><Link href="/#insights" className="hover:underline">Insights trafic & conversions</Link></li>
