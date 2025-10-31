@@ -98,7 +98,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               Accueil
             </Link>
             <ChevronRight className="h-4 w-4" />
-            <Link href="/blog" className="hover:text-white transition-colors">
+            <Link href="/blog-seo-geo" className="hover:text-white transition-colors">
               Blog
             </Link>
             <ChevronRight className="h-4 w-4" />
@@ -160,13 +160,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
-                    href="/forfaits"
+                    href="/forfaits-geo-seo"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-[#444684] px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 min-h-[48px]"
                   >
                     Voir nos forfaits
                   </Link>
                   <Link
-                    href="/contact"
+                    href="/contact-audit-gratuit"
                     className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-900 shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-50 min-h-[48px]"
                   >
                     Nous contacter
@@ -177,7 +177,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               {/* Back to blog */}
               <div className="mt-8 text-center">
                 <Link
-                  href="/blog"
+                  href="/blog-seo-geo"
                   className="inline-flex items-center gap-2 text-sm text-neutral-600 hover:text-[#444684] transition-colors"
                 >
                   ← Retour au blog

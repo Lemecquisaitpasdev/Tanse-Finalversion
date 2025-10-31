@@ -69,14 +69,14 @@ export default function GeoPage() {
 
           <div className="flex flex-wrap gap-4">
             <Link
-              href="/forfaits"
+              href="/forfaits-geo-seo"
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-700 hover:via-purple-700 hover:to-pink-700 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40 transition-all duration-300"
             >
               Découvrir nos forfaits GEO
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
-              href="/contact"
+              href="/contact-audit-gratuit"
               className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm border-2 border-indigo-200 hover:border-indigo-300 px-8 py-4 text-base font-medium text-neutral-800 hover:bg-white transition-all duration-300"
             >
               Demander un audit GEO
@@ -386,14 +386,14 @@ export default function GeoPage() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="/forfaits"
+                href="/forfaits-geo-seo"
                 className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-base font-semibold text-indigo-600 hover:bg-indigo-50 shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 Voir nos forfaits
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                href="/contact"
+                href="/contact-audit-gratuit"
                 className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white/50 hover:bg-white/20 px-8 py-4 text-base font-medium text-white transition-all duration-300"
               >
                 Demander un audit GEO

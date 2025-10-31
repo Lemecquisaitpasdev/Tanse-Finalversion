@@ -173,7 +173,7 @@ export default function Page() {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
-                  href="/forfaits"
+                  href="/forfaits-geo-seo"
                   className="rounded-full bg-[#444684] px-5 py-3 text-sm font-medium text-white shadow-md hover:opacity-90"
                 >
                   Voir nos forfaits
@@ -202,8 +202,8 @@ export default function Page() {
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
           <span className="text-sm text-neutral-600">© {new Date().getFullYear()} TANSE</span>
           <div className="flex gap-5 text-sm">
-            <Link href="/forfaits" className="text-[#444684] hover:underline">Forfaits</Link>
-            <Link href="/entreprise" className="text-[#444684] hover:underline">Entreprise</Link>
+            <Link href="/forfaits-geo-seo" className="text-[#444684] hover:underline">Forfaits</Link>
+            <Link href="/agence-geo-paris-lyon" className="text-[#444684] hover:underline">Entreprise</Link>
             <Link href="/geo" className="text-[#444684] hover:underline">GEO</Link>
             <a href="mailto:contact@tanse.fr" className="text-[#444684] hover:underline">Contact</a>
           </div>
