@@ -101,8 +101,8 @@ export default function ForfaitsPage() {
               const isBest = Boolean(c.best);
               const href =
                 c.k === "grand-groupes"
-                  ? "/contact?plan=grand-groupes"
-                  : `/api/checkout?plan=${c.k}`;
+                  ? "/contact-audit-gratuit?plan=grand-groupes"
+                  : `/checkout/${c.k}`;
 
               return (
                 <div
