@@ -259,7 +259,7 @@ Chez TANSE, nous sommes les **pionniers du GEO en France**. Nous accompagnons le
 
 ### Nos forfaits adaptés
 
-Découvrez nos [forfaits SEO + GEO](/forfaits) pensés pour les PME françaises.
+Découvrez nos [forfaits SEO + GEO](/forfaits-geo-seo) pensés pour les PME françaises.
 
 ---
 
@@ -277,7 +277,7 @@ Celles qui attendent ? Elles regarderont leurs concurrents capter 80% du trafic 
 
 **Besoin d'aide pour optimiser votre visibilité sur Atlas et les moteurs IA ?**
 
-[Demander un audit GEO gratuit](/contact) — Réponse sous 24h — Service national
+[Demander un audit GEO gratuit](/contact-audit-gratuit) — Réponse sous 24h — Service national
 
 ---
 

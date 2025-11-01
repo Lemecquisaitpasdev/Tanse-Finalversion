@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${article.title} | Blog TANSE`,
     description: article.description,
     alternates: {
-      canonical: `/blog/${article.slug}`,
+      canonical: `/blog-seo-geo/${article.slug}`,
     },
     openGraph: {
       type: "article",
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: article.description,
       publishedTime: article.date,
       authors: [article.author],
-      url: `/blog/${article.slug}`,
+      url: `/blog-seo-geo/${article.slug}`,
     },
   };
 }
@@ -75,7 +75,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://www.tanse.fr/blog/${article.slug}`
+      "@id": `https://www.tanse.fr/blog-seo-geo/${article.slug}`
     }
   };
 
