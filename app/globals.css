@@ -398,3 +398,19 @@ html {
     padding-right: max(0.5rem, env(safe-area-inset-right));
   }
 }
+
+/* ===== Blog Article Styling ===== */
+
+/* Highlight keywords in blog articles (SEO, GEO, IA, etc.) */
+.highlight-keyword {
+  color: #444684;
+  font-weight: 600;
+  text-decoration: none;
+  background: linear-gradient(to bottom, transparent 0%, transparent 80%, rgba(68, 70, 132, 0.1) 80%, rgba(68, 70, 132, 0.1) 100%);
+  padding: 0 2px;
+  transition: background 0.2s ease;
+}
+
+.highlight-keyword:hover {
+  background: rgba(68, 70, 132, 0.15);
+}
