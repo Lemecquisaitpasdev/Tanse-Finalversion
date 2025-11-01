@@ -1,3 +1,6 @@
+// app/agence-geo-paris-lyon/page.tsx
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
