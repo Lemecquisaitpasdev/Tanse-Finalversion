@@ -1,4 +1,4 @@
-// app/blog/page.tsx
+// app/blog-seo-geo/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -7,9 +7,17 @@ import Image from "next/image";
 import { ArrowRight, Mail } from "lucide-react";
 import SiteFooter from "../components/SiteFooter";
 import NewsletterPopup from "../components/NewsletterPopup";
+import { articles } from "./data/articles";
 
 export default function BlogPage() {
   const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
+
+  // Trier : articles épinglés en premier, puis par date décroissante
+  const sortedArticles = [...articles].sort((a, b) => {
+    if (a.isPinned && !b.isPinned) return -1;
+    if (!a.isPinned && b.isPinned) return 1;
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
 
   // Navigation styles from Hero
   const navLinkBase = "pointer-events-auto rounded-full px-3 md:px-4 py-2 text-xs md:text-sm font-medium min-h-[36px] md:min-h-0 flex items-center justify-center transition-all duration-200";
@@ -78,7 +86,7 @@ export default function BlogPage() {
         </p>
 
         {/* Animation Spline 3D - SANS hint de rotation */}
-        <div className="spline-container relative w-full max-w-[600px] h-[400px] md:h-[600px] mx-auto mb-[150px] overflow-hidden rounded-3xl">
+        <div className="spline-container relative w-full max-w-[600px] h-[400px] md:h-[600px] mx-auto mb-16 overflow-hidden rounded-3xl">
           <spline-viewer
             url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
             className="w-full h-full"
@@ -87,84 +95,96 @@ export default function BlogPage() {
           />
         </div>
 
-        {/* Carte Article Featured */}
-        <div className="article-card-wrapper max-w-4xl mx-auto relative">
-          <Link
-            href="/blog/openai-atlas-geo-conversions-2025"
-            className="article-card block bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300"
-          >
-            {/* Image Hero */}
-            <div className="article-image relative w-full h-[250px] md:h-[400px] overflow-hidden bg-gradient-to-br from-[#444684] to-[#6366f1]">
-              {/* Badge "Article épinglé" */}
-              <div className="article-badge absolute top-5 left-5 flex items-center gap-2 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full shadow-md">
-                <span className="text-xl">📌</span>
-                <span className="text-sm font-semibold text-neutral-800">Article épinglé</span>
-              </div>
-
-              {/* Placeholder gradient avec icône */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center text-white p-8">
-                  <div className="text-8xl mb-4">🌐</div>
-                  <div className="text-3xl font-bold opacity-90">
-                    <span className="text-white">OpenAI Atlas</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Contenu */}
-            <div className="article-content p-6 md:p-8">
-              {/* Titre */}
-              <h2 className="article-title text-2xl md:text-3xl font-bold text-neutral-900 mb-4 leading-tight">
-                <span className="font-bold text-[#444684]">OpenAI Atlas</span> arrive : l'enjeu majeur du{" "}
-                <span className="font-bold text-[#444684]">GEO</span> pour les{" "}
-                <span className="font-bold text-[#444684]">conversions</span> en 2025
-              </h2>
-
-              {/* Extrait */}
-              <p className="article-excerpt text-base md:text-lg text-neutral-600 mb-6 leading-relaxed">
-                <span className="font-semibold text-[#444684]">OpenAI</span> lance{" "}
-                <span className="font-semibold text-[#444684]">Atlas</span>, son{" "}
-                <span className="font-semibold text-[#444684]">moteur</span> de recherche local intégrant l'
-                <span className="font-semibold text-[#444684]">IA</span> conversationnelle.
-                Pour les PME, l'enjeu n'est plus seulement le{" "}
-                <span className="font-semibold text-[#444684]">SEO</span> classique, mais le{" "}
-                <span className="font-semibold text-[#444684]">GEO</span> :
-                être la réponse recommandée par les{" "}
-                <span className="font-semibold text-[#444684]">IA</span>.
-              </p>
-
-              {/* Meta */}
-              <div className="article-meta flex flex-wrap items-center gap-2 text-sm text-neutral-500 mb-6">
-                <span className="font-medium">30 octobre 2025</span>
-                <span className="meta-separator">•</span>
-                <span>
-                  <span className="font-semibold text-[#444684]">GEO</span>,{" "}
-                  <span className="font-semibold text-[#444684]">IA</span> &{" "}
-                  <span className="font-semibold text-[#444684]">Moteurs</span>
-                </span>
-                <span className="meta-separator">•</span>
-                <span>8 min de lecture</span>
-              </div>
-
-              {/* CTA */}
-              <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#444684] text-white rounded-lg font-semibold hover:bg-[#3d3a66] transition-all group">
-                <span>Lire l'article</span>
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </div>
-          </Link>
-
-          {/* Bouton Newsletter en bas à droite de la carte */}
+        {/* Bouton Newsletter en haut avant les articles */}
+        <div className="flex justify-center mb-12">
           <button
             onClick={() => setIsNewsletterOpen(true)}
-            className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-[#444684] text-white px-4 md:px-6 py-3 md:py-4 rounded-full shadow-lg hover:bg-[#3d3a66] hover:shadow-xl transition-all duration-300 flex items-center gap-2 group z-10"
+            className="bg-[#444684] text-white px-6 md:px-8 py-3 md:py-4 rounded-full shadow-lg hover:bg-[#3d3a66] hover:shadow-xl transition-all duration-300 flex items-center gap-3 group"
           >
             <Mail className="h-5 w-5 group-hover:scale-110 transition-transform" />
-            <span className="text-sm md:text-base font-semibold whitespace-nowrap">
+            <span className="text-sm md:text-base font-semibold">
               S'inscrire à notre newsletter
             </span>
           </button>
+        </div>
+
+        {/* Grid des articles - Dynamique */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {sortedArticles.map((article) => (
+            <div key={article.slug} className="article-card-wrapper relative">
+              <Link
+                href={`/blog-seo-geo/${article.slug}`}
+                className="article-card block bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300"
+              >
+                {/* Image Hero */}
+                <div className="article-image relative w-full h-[250px] md:h-[300px] overflow-hidden bg-gradient-to-br from-[#444684] to-[#6366f1]">
+                  {/* Badge "Article épinglé" si applicable */}
+                  {article.isPinned && (
+                    <div className="article-badge absolute top-5 left-5 flex items-center gap-2 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full shadow-md z-10">
+                      <span className="text-xl">📌</span>
+                      <span className="text-sm font-semibold text-neutral-800">Article épinglé</span>
+                    </div>
+                  )}
+
+                  {/* Placeholder gradient avec icône */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center text-white p-6">
+                      <div className="text-6xl mb-3">
+                        {article.slug.includes('atlas') ? '🌐' : '🚗'}
+                      </div>
+                      <div className="text-xl md:text-2xl font-bold opacity-90 line-clamp-2 px-4">
+                        {article.title.split(':')[0]}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Contenu */}
+                <div className="article-content p-6">
+                  {/* Titre */}
+                  <h2 className="article-title text-xl md:text-2xl font-bold text-neutral-900 mb-3 leading-tight line-clamp-3">
+                    {article.title}
+                  </h2>
+
+                  {/* Extrait */}
+                  <p className="article-excerpt text-sm md:text-base text-neutral-600 mb-4 leading-relaxed line-clamp-3">
+                    {article.description}
+                  </p>
+
+                  {/* Meta */}
+                  <div className="article-meta flex flex-wrap items-center gap-2 text-xs md:text-sm text-neutral-500 mb-4">
+                    <span className="font-medium">
+                      {new Date(article.date).toLocaleDateString('fr-FR', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                      })}
+                    </span>
+                    <span className="meta-separator">•</span>
+                    <span>{article.readingTime} de lecture</span>
+                  </div>
+
+                  {/* Catégories */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {article.category.map((cat) => (
+                      <span
+                        key={cat}
+                        className="px-3 py-1 bg-[#444684]/10 text-[#444684] text-xs font-semibold rounded-full"
+                      >
+                        {cat}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* CTA */}
+                  <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#444684] text-white rounded-lg text-sm font-semibold hover:bg-[#3d3a66] transition-all group">
+                    <span>Lire l'article</span>
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -187,16 +207,7 @@ export default function BlogPage() {
         @media (max-width: 768px) {
           .spline-container {
             max-width: 400px;
-            margin-bottom: 100px;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .article-card-wrapper button {
-            position: static;
-            margin-top: 1.5rem;
-            width: 100%;
-            justify-content: center;
+            margin-bottom: 60px;
           }
         }
       `}</style>
