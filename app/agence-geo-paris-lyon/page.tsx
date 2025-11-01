@@ -7,12 +7,6 @@ import type { ReactNode } from "react";
 import FadeIn from "../components/FadeIn";
 import SplineLazy from "../components/SplineLazy";
 
-export const metadata = {
-  title: "TANSE — Notre histoire & Notre équipe",
-  description:
-    "Pourquoi TANSE existe, nos jalons par année, et l'équipe qui vous accompagne sur le SEO local, le GEO et la performance web.",
-};
-
 type YearItem = { year: string; bullets: ReactNode[]; accent?: string };
 
 const TIMELINE: YearItem[] = [
