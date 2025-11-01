@@ -75,7 +75,7 @@ export default function EndSection() {
           <div>
             <h3 className="mb-3 text-sm font-semibold text-neutral-800">Ressources</h3>
             <ul className="space-y-2 text-sm text-neutral-700">
-              <li><Link href="/faq" className="hover:underline">FAQ</Link></li>
+              <li><Link href="/#faq" className="hover:underline">FAQ</Link></li>
               <li>
                 <Link href="mailto:contact@tanse.fr" className="inline-flex items-center gap-2 hover:underline">
                   <Mail className="h-4 w-4 opacity-60" /> contact@tanse.fr

@@ -14,6 +14,10 @@ const REDIRECTS_301: Record<string, string> = {
   '/actualites': '/blog-seo-geo',
   '/news': '/blog-seo-geo',
 
+  // FAQ redirige vers section homepage
+  '/faq': '/#faq',
+  '/faq/': '/#faq',
+
   // Support des URLs avec/sans trailing slash
   '/forfaits/': '/forfaits-geo-seo',
   '/entreprise/': '/agence-geo-paris-lyon',
