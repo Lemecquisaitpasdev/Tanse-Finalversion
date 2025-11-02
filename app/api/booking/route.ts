@@ -1,6 +1,7 @@
 // app/api/booking/route.ts
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { sendBookingNotification } from '@/lib/email';
 
 export async function POST(request: Request) {
   try {
@@ -51,6 +52,18 @@ export async function POST(request: Request) {
         source: 'booking',
         status: 'qualified',
       },
+    });
+
+    // Envoyer l'email de notification
+    await sendBookingNotification({
+      email: booking.email,
+      name: booking.name,
+      company: booking.company,
+      phone: booking.phone,
+      service: booking.service,
+      preferredDate: booking.preferredDate,
+      preferredTime: booking.preferredTime,
+      message: booking.message,
     });
 
     return NextResponse.json(

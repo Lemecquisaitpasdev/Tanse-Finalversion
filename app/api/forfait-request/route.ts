@@ -1,6 +1,7 @@
 // app/api/forfait-request/route.ts
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { sendForfaitRequestNotification } from '@/lib/email';
 
 export async function POST(request: Request) {
   try {
@@ -44,8 +45,17 @@ export async function POST(request: Request) {
       },
     });
 
-    // TODO: Envoyer un email de notification (Resend, SendGrid, etc.)
-    // TODO: Envoyer un email de confirmation au client
+    // Envoyer l'email de notification
+    await sendForfaitRequestNotification({
+      email: forfaitRequest.email,
+      name: forfaitRequest.name,
+      company: forfaitRequest.company,
+      phone: forfaitRequest.phone,
+      forfaitName: forfaitRequest.forfaitName,
+      forfaitType: forfaitRequest.forfaitType,
+      budget: forfaitRequest.budget,
+      message: forfaitRequest.message,
+    });
 
     return NextResponse.json(
       {

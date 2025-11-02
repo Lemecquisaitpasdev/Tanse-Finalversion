@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { contactSchema, formatZodErrors } from "@/lib/validations";
 import { logger } from "@/lib/logger";
 import { prisma } from "@/lib/prisma";
+import { sendLeadNotification } from "@/lib/email";
 
 export async function POST(req: NextRequest) {
   try {
@@ -37,8 +38,15 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    // TODO: Envoyer un email de notification
-    // await sendEmailNotification(lead);
+    // Envoyer l'email de notification
+    await sendLeadNotification({
+      email: lead.email,
+      name: lead.name,
+      company: lead.company,
+      phone: lead.phone,
+      message: lead.message,
+      source: lead.source,
+    });
 
     logger.info(
       {
