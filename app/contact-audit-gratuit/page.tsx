@@ -76,42 +76,42 @@ export default function Page() {
     <main className="bg-[#E4E4E4] text-[#0b0b0c]">
       {/* Hero Section - Modern & Dynamic */}
       <section className="relative mx-auto w-full max-w-7xl px-6 py-16 md:py-24 overflow-hidden">
-        {/* Animated background gradients */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-indigo-200/40 to-purple-200/40 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-br from-pink-200/40 to-rose-200/40 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }} />
+        {/* Animated background gradients - matching site theme */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-[#444684]/20 to-purple-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-300/20 to-[#444684]/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }} />
 
         <div className="relative z-10">
           <div className="flex items-center gap-2 mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="p-1.5 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg">
+            <div className="p-1.5 rounded-lg bg-gradient-to-br from-[#444684] to-[#524e7d] shadow-lg">
               <Sparkles className="h-4 w-4 text-white" />
             </div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] bg-gradient-to-r from-[#444684] to-[#524e7d] bg-clip-text text-transparent">
               Contactez-nous
             </p>
           </div>
 
           <h1 className="text-[clamp(36px,5vw,64px)] font-bold leading-[1.1] bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-700 bg-clip-text text-transparent animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
-            Discutons de vos objectifs locaux
+            Discutons de vos objectifs GEO
           </h1>
 
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-neutral-600 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-            Que vous soyez concession, garage, atelier ou réseau, notre équipe d'experts SEO local
-            est là pour vous accompagner. Réponse garantie sous 24h ouvrées.
+            Pionniers du GEO en France, notre équipe d'experts vous accompagne dans votre transition vers l'optimisation pour moteurs IA.
+            <strong className="text-neutral-800"> Réponse garantie sous 24h.</strong>
           </p>
 
           {/* Quick stats */}
-          <div className="mt-10 flex flex-wrap gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm border border-white/80 shadow-sm">
-              <Clock className="h-4 w-4 text-indigo-600" />
-              <span className="text-sm font-medium text-neutral-700">Réponse sous 24h</span>
+          <div className="mt-10 flex flex-wrap gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-sm border border-white shadow-sm hover:shadow-md transition-shadow">
+              <Clock className="h-4 w-4 text-[#444684]" />
+              <span className="text-sm font-medium text-neutral-800">Réponse sous 24h</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm border border-white/80 shadow-sm">
-              <MapPin className="h-4 w-4 text-indigo-600" />
-              <span className="text-sm font-medium text-neutral-700">France & Pays francophones</span>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-sm border border-white shadow-sm hover:shadow-md transition-shadow">
+              <MapPin className="h-4 w-4 text-[#444684]" />
+              <span className="text-sm font-medium text-neutral-800">France & Pays francophones</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm border border-white/80 shadow-sm">
-              <Shield className="h-4 w-4 text-indigo-600" />
-              <span className="text-sm font-medium text-neutral-700">Conforme RGPD</span>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-sm border border-white shadow-sm hover:shadow-md transition-shadow">
+              <Shield className="h-4 w-4 text-[#444684]" />
+              <span className="text-sm font-medium text-neutral-800">Conforme RGPD</span>
             </div>
           </div>
         </div>
@@ -119,10 +119,11 @@ export default function Page() {
 
       {/* Spline 3D Scene */}
       <section className="relative mx-auto w-full max-w-7xl px-0 md:px-6 mb-12">
-        <div className="w-full overflow-hidden rounded-none md:rounded-3xl shadow-2xl border-y md:border border-white/60">
+        <div className="w-full overflow-hidden rounded-none md:rounded-3xl shadow-2xl border-y md:border border-white/60 bg-[#E4E4E4]">
           <SplineLazy
             url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
-            className="block w-full h-[46vh] md:h-[58vh] bg-gradient-to-br from-neutral-100 to-neutral-50"
+            className="block w-full h-[46vh] md:h-[58vh]"
+            style={{ background: 'transparent' }}
           />
         </div>
       </section>
@@ -174,18 +175,18 @@ export default function Page() {
                 </div>
               </div>
             ) : (
-              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 border border-white/60 shadow-2xl">
-                {/* Decorative gradient orbs */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-slate-200/30 to-neutral-200/30 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-neutral-200/30 to-stone-200/30 rounded-full blur-3xl" />
+              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-neutral-50 to-white border border-white/80 shadow-2xl">
+                {/* Decorative gradient orbs - using brand colors */}
+                <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-[#444684]/10 to-purple-200/10 rounded-full blur-3xl" />
+                <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-200/10 to-[#444684]/10 rounded-full blur-3xl" />
 
                 {/* Header */}
-                <div className="relative z-10 p-8 md:p-10 border-b border-white/50 bg-white/40 backdrop-blur-sm">
+                <div className="relative z-10 p-8 md:p-10 border-b border-neutral-100 bg-white/60 backdrop-blur-sm">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 rounded-xl bg-gradient-to-br from-neutral-700 to-neutral-900 shadow-lg">
+                    <div className="p-2 rounded-xl bg-gradient-to-br from-[#444684] to-[#524e7d] shadow-lg">
                       <MessageSquare className="h-6 w-6 text-white" />
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-700 bg-clip-text text-transparent">
+                    <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#444684] to-[#524e7d] bg-clip-text text-transparent">
                       Formulaire de contact
                     </h2>
                   </div>
@@ -217,7 +218,7 @@ export default function Page() {
                         value={formData.nom}
                         onChange={handleChange}
                         required
-                        className="w-full rounded-xl bg-white/80 backdrop-blur-sm border-2 border-white/80 px-4 py-3 outline-none focus:border-neutral-400 focus:bg-white focus:shadow-lg focus:shadow-neutral-200/50 transition-all duration-300 placeholder:text-neutral-400"
+                        className="w-full rounded-xl bg-white border-2 border-neutral-200 px-4 py-3 outline-none focus:border-[#444684] focus:ring-2 focus:ring-[#444684]/20 transition-all duration-300 placeholder:text-neutral-400"
                         placeholder="Alex Martin"
                       />
                     </div>
@@ -233,7 +234,7 @@ export default function Page() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full rounded-xl bg-white/80 backdrop-blur-sm border-2 border-white/80 px-4 py-3 outline-none focus:border-neutral-400 focus:bg-white focus:shadow-lg focus:shadow-neutral-200/50 transition-all duration-300 placeholder:text-neutral-400"
+                        className="w-full rounded-xl bg-white border-2 border-neutral-200 px-4 py-3 outline-none focus:border-[#444684] focus:ring-2 focus:ring-[#444684]/20 transition-all duration-300 placeholder:text-neutral-400"
                         placeholder="alex@entreprise.fr"
                       />
                     </div>
@@ -248,7 +249,7 @@ export default function Page() {
                         name="telephone"
                         value={formData.telephone}
                         onChange={handleChange}
-                        className="w-full rounded-xl bg-white/80 backdrop-blur-sm border-2 border-white/80 px-4 py-3 outline-none focus:border-neutral-400 focus:bg-white focus:shadow-lg focus:shadow-neutral-200/50 transition-all duration-300 placeholder:text-neutral-400"
+                        className="w-full rounded-xl bg-white border-2 border-neutral-200 px-4 py-3 outline-none focus:border-[#444684] focus:ring-2 focus:ring-[#444684]/20 transition-all duration-300 placeholder:text-neutral-400"
                         placeholder="+33 6 12 34 56 78"
                       />
                     </div>
@@ -262,7 +263,7 @@ export default function Page() {
                         name="entreprise"
                         value={formData.entreprise}
                         onChange={handleChange}
-                        className="w-full rounded-xl bg-white/80 backdrop-blur-sm border-2 border-white/80 px-4 py-3 outline-none focus:border-neutral-400 focus:bg-white focus:shadow-lg focus:shadow-neutral-200/50 transition-all duration-300 placeholder:text-neutral-400"
+                        className="w-full rounded-xl bg-white border-2 border-neutral-200 px-4 py-3 outline-none focus:border-[#444684] focus:ring-2 focus:ring-[#444684]/20 transition-all duration-300 placeholder:text-neutral-400"
                         placeholder="TANSE Auto"
                       />
                     </div>
@@ -305,7 +306,7 @@ export default function Page() {
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="group relative inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-neutral-800 via-neutral-900 to-neutral-800 hover:from-neutral-700 hover:via-neutral-800 hover:to-neutral-700 px-8 py-4 text-base font-bold text-white shadow-lg shadow-neutral-900/30 hover:shadow-xl hover:shadow-neutral-900/40 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-300 overflow-hidden"
+                      className="group relative inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#444684] to-[#524e7d] hover:from-[#3d3f75] hover:to-[#4a4770] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#444684]/30 hover:shadow-xl hover:shadow-[#444684]/40 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-300 overflow-hidden"
                     >
                       {/* Shimmer effect */}
                       <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
@@ -343,10 +344,10 @@ export default function Page() {
       {/* Info Cards - Reassurance */}
       <section className="mx-auto w-full max-w-7xl px-6 pb-24">
         <div className="grid gap-6 md:grid-cols-3">
-          <div className="group relative overflow-hidden rounded-3xl bg-white/60 backdrop-blur-sm p-8 border border-white/80 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="group relative overflow-hidden rounded-3xl bg-white/70 backdrop-blur-sm p-8 border border-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#444684]/20 to-purple-200/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="relative z-10">
-              <div className="inline-flex p-3 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg mb-4">
+              <div className="inline-flex p-3 rounded-2xl bg-gradient-to-br from-[#444684] to-[#524e7d] shadow-lg mb-4">
                 <Clock className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-neutral-900 mb-2">Délai de réponse</h3>
@@ -357,23 +358,23 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="group relative overflow-hidden rounded-3xl bg-white/60 backdrop-blur-sm p-8 border border-white/80 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="group relative overflow-hidden rounded-3xl bg-white/70 backdrop-blur-sm p-8 border border-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-200/20 to-[#444684]/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="relative z-10">
-              <div className="inline-flex p-3 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 shadow-lg mb-4">
+              <div className="inline-flex p-3 rounded-2xl bg-gradient-to-br from-[#444684] to-[#524e7d] shadow-lg mb-4">
                 <MapPin className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-neutral-900 mb-2">Zone d'intervention</h3>
               <p className="text-neutral-600 leading-relaxed">
-                France & pays francophones. Spécialistes des concessions, garages, ateliers et réseaux automobiles.
+                France & pays francophones. Pionniers du GEO, nous accompagnons les PME dans leur transition vers l'optimisation IA.
               </p>
             </div>
           </div>
 
-          <div className="group relative overflow-hidden rounded-3xl bg-white/60 backdrop-blur-sm p-8 border border-white/80 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="group relative overflow-hidden rounded-3xl bg-white/70 backdrop-blur-sm p-8 border border-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-200/20 to-[#444684]/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="relative z-10">
-              <div className="inline-flex p-3 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 shadow-lg mb-4">
+              <div className="inline-flex p-3 rounded-2xl bg-gradient-to-br from-[#444684] to-[#524e7d] shadow-lg mb-4">
                 <Shield className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-neutral-900 mb-2">Protection RGPD</h3>

@@ -25,35 +25,59 @@ export async function POST(req: NextRequest) {
     // Données validées et type-safe
     const { nom, email, telephone, entreprise, sujet, message } = validation.data;
 
-    // Créer un lead dans Prisma
-    const lead = await prisma.lead.create({
-      data: {
+    let leadId: string | null = null;
+    let dbError = false;
+
+    // Essayer de créer un lead dans Prisma (optionnel)
+    try {
+      const lead = await prisma.lead.create({
+        data: {
+          email,
+          name: nom,
+          company: entreprise || null,
+          phone: telephone || null,
+          message: `Sujet: ${sujet}. ${message || ''}`,
+          source: 'contact',
+          status: 'new',
+        },
+      });
+      leadId = lead.id;
+      logger.info({ leadId, email, name: nom }, "Lead saved to database");
+    } catch (dbErr: any) {
+      dbError = true;
+      logger.warn({ err: dbErr }, "Failed to save lead to database, continuing with email");
+    }
+
+    // Envoyer l'email de notification (critique)
+    try {
+      await sendLeadNotification({
         email,
         name: nom,
         company: entreprise || null,
         phone: telephone || null,
         message: `Sujet: ${sujet}. ${message || ''}`,
         source: 'contact',
-        status: 'new',
-      },
-    });
+      });
+      logger.info({ email, name: nom }, "Notification email sent successfully");
+    } catch (emailErr: any) {
+      logger.error({ err: emailErr }, "Failed to send notification email");
 
-    // Envoyer l'email de notification
-    await sendLeadNotification({
-      email: lead.email,
-      name: lead.name,
-      company: lead.company,
-      phone: lead.phone,
-      message: lead.message,
-      source: lead.source,
-    });
+      // Si l'email échoue aussi, on retourne une erreur
+      if (!leadId) {
+        return NextResponse.json(
+          { error: "Impossible d'envoyer votre message. Veuillez réessayer ou nous contacter directement à contact@tanse.fr" },
+          { status: 500 }
+        );
+      }
+    }
 
+    // Succès si au moins la DB ou l'email a fonctionné
     logger.info(
       {
-        email: lead.email,
-        name: lead.name,
-        company: lead.company,
-        id: lead.id,
+        email,
+        name: nom,
+        leadId: leadId || 'not_saved',
+        dbSaved: !dbError,
       },
       "Contact form submitted successfully"
     );
@@ -65,24 +89,9 @@ export async function POST(req: NextRequest) {
   } catch (error: any) {
     logger.error({ err: error }, "Contact form submission failed");
 
-    // Détection d'erreur Prisma (base de données)
-    if (error.code === 'P1001' || error.message?.includes('Can\'t reach database')) {
-      return NextResponse.json(
-        { error: "Erreur de connexion à la base de données. Veuillez vérifier que DATABASE_URL est configuré." },
-        { status: 500 }
-      );
-    }
-
-    if (error.code === 'P2002') {
-      return NextResponse.json(
-        { error: "Cet email existe déjà dans notre système." },
-        { status: 400 }
-      );
-    }
-
     // Erreur générique
     return NextResponse.json(
-      { error: "Une erreur s'est produite. Veuillez réessayer." },
+      { error: "Une erreur s'est produite. Veuillez réessayer ou nous contacter directement à contact@tanse.fr" },
       { status: 500 }
     );
   }
