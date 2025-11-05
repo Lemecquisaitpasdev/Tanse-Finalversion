@@ -12,7 +12,8 @@ const categoryColors: Record<ArticleCategory, string> = {
   "SEO Local": "bg-blue-100 text-blue-700 border-blue-200",
   "GEO": "bg-purple-100 text-purple-700 border-purple-200",
   "IA & Moteurs": "bg-indigo-100 text-indigo-700 border-indigo-200",
-  "Études de cas": "bg-green-100 text-green-700 border-green-200"
+  "Études de cas": "bg-green-100 text-green-700 border-green-200",
+  "Marketing Digital": "bg-orange-100 text-orange-700 border-orange-200"
 };
 
 export default function CategoryBadge({ category, active = false, onClick }: CategoryBadgeProps) {
