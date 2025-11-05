@@ -64,6 +64,23 @@ export async function POST(req: NextRequest) {
     });
   } catch (error: any) {
     logger.error({ err: error }, "Contact form submission failed");
+
+    // Détection d'erreur Prisma (base de données)
+    if (error.code === 'P1001' || error.message?.includes('Can\'t reach database')) {
+      return NextResponse.json(
+        { error: "Erreur de connexion à la base de données. Veuillez vérifier que DATABASE_URL est configuré." },
+        { status: 500 }
+      );
+    }
+
+    if (error.code === 'P2002') {
+      return NextResponse.json(
+        { error: "Cet email existe déjà dans notre système." },
+        { status: 400 }
+      );
+    }
+
+    // Erreur générique
     return NextResponse.json(
       { error: "Une erreur s'est produite. Veuillez réessayer." },
       { status: 500 }
