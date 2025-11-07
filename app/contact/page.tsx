@@ -1,12 +1,61 @@
-import Link from "next/link";
+"use client";
 
-export const metadata = {
-  title: "TANSE — Nous contacter",
-  description:
-    "Écris-nous ou prends un rendez-vous avec l’équipe TANSE. Réponse sous 24h ouvrées.",
-};
+import { useState, FormEvent } from "react";
 
 export default function Page() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    subject: "rdv",
+    message: "",
+  });
+  const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setStatus(null);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Une erreur est survenue");
+      }
+
+      setStatus({
+        type: "success",
+        message: data.message || "Votre demande a été envoyée avec succès !",
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        subject: "rdv",
+        message: "",
+      });
+    } catch (err: any) {
+      setStatus({
+        type: "error",
+        message: err.message || "Une erreur est survenue. Veuillez réessayer.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <main className="bg-[#E4E4E4] text-[#0b0b0c]">
       {/* 1) Hero simple */}
@@ -36,17 +85,27 @@ export default function Page() {
         {/* Formulaire */}
         <div className="mx-auto w-full max-w-4xl px-6 pb-16">
           <form
-            // Fallback mailto (simple, sans backend). Remplace l’e-mail si besoin :
-            action="mailto:hello@tanse.io"
-            method="POST"
-            encType="text/plain"
+            onSubmit={handleSubmit}
             className="rounded-3xl bg-white p-6 shadow-md ring-1 ring-black/5"
           >
+            {status && (
+              <div
+                className={`mb-4 rounded-xl p-4 ${
+                  status.type === "success"
+                    ? "bg-green-50 text-green-800 ring-1 ring-green-200"
+                    : "bg-red-50 text-red-800 ring-1 ring-red-200"
+                }`}
+              >
+                {status.message}
+              </div>
+            )}
+
             <div className="grid gap-4 md:grid-cols-2">
               <div>
                 <label className="mb-1 block text-sm font-medium">Prénom & Nom</label>
                 <input
-                  name="nom"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
                   className="w-full rounded-xl border border-black/10 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#444684]"
                   placeholder="Alex Martin"
@@ -56,7 +115,8 @@ export default function Page() {
                 <label className="mb-1 block text-sm font-medium">E-mail</label>
                 <input
                   type="email"
-                  name="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
                   className="w-full rounded-xl border border-black/10 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#444684]"
                   placeholder="vous@entreprise.fr"
@@ -65,7 +125,8 @@ export default function Page() {
               <div>
                 <label className="mb-1 block text-sm font-medium">Téléphone (optionnel)</label>
                 <input
-                  name="telephone"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full rounded-xl border border-black/10 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#444684]"
                   placeholder="+33 6 12 34 56 78"
                 />
@@ -73,7 +134,8 @@ export default function Page() {
               <div>
                 <label className="mb-1 block text-sm font-medium">Entreprise</label>
                 <input
-                  name="entreprise"
+                  value={formData.company}
+                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                   className="w-full rounded-xl border border-black/10 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#444684]"
                   placeholder="TANSE Auto"
                 />
@@ -81,9 +143,9 @@ export default function Page() {
               <div className="md:col-span-2">
                 <label className="mb-1 block text-sm font-medium">Sujet</label>
                 <select
-                  name="sujet"
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   className="w-full rounded-xl border border-black/10 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#444684]"
-                  defaultValue="rdv"
                 >
                   <option value="rdv">Prendre un rendez-vous</option>
                   <option value="devis">Demander un devis</option>
@@ -93,7 +155,8 @@ export default function Page() {
               <div className="md:col-span-2">
                 <label className="mb-1 block text-sm font-medium">Message</label>
                 <textarea
-                  name="message"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={5}
                   className="w-full rounded-xl border border-black/10 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#444684]"
                   placeholder="Contexte, objectifs, villes concernées…"
@@ -102,9 +165,10 @@ export default function Page() {
               <div className="md:col-span-2">
                 <button
                   type="submit"
-                  className="inline-flex items-center rounded-full bg-[#444684] px-5 py-3 text-sm font-medium text-white shadow-md hover:opacity-90"
+                  disabled={submitting}
+                  className="inline-flex items-center rounded-full bg-[#444684] px-5 py-3 text-sm font-medium text-white shadow-md hover:opacity-90 disabled:opacity-60"
                 >
-                  Envoyer ma demande / Prendre RDV
+                  {submitting ? "Envoi en cours..." : "Envoyer ma demande / Prendre RDV"}
                 </button>
                 <span className="ml-3 text-sm text-neutral-600">
                   ou écrivez-nous :{" "}

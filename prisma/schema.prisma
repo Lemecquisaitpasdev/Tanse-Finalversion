@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Contact form submissions
+model Contact {
+  id         String   @id @default(cuid())
+  name       String
+  email      String
+  phone      String?
+  company    String?
+  subject    String
+  message    String?
+  createdAt  DateTime @default(now())
+
+  @@map("contacts")
+}
+
+// Checkout/Order submissions
+model Order {
+  id              String   @id @default(cuid())
+  plan            String
+
+  // Contact info
+  firstname       String
+  lastname        String
+  email           String
+  phone           String?
+
+  // Billing info
+  company         String?
+  siren           String?
+  address         String
+  city            String
+  zip             String
+  country         String   @default("France")
+
+  // Payment & scheduling
+  slotDate        String?
+  slotTime        String?
+  coupon          String?
+  addOns          String[] // Array of add-on IDs
+
+  // Pricing
+  planPrice       Float
+  addOnsTotal     Float    @default(0)
+  discount        Float    @default(0)
+  total           Float
+
+  // Status
+  status          String   @default("pending") // pending, paid, cancelled
+  stripeSessionId String?  @unique
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("orders")
+}
+
+// Email log for debugging
+model EmailLog {
+  id        String   @id @default(cuid())
+  to        String
+  subject   String
+  type      String   // contact, order_confirmation, etc.
+  status    String   // sent, failed
+  error     String?
+  createdAt DateTime @default(now())
+
+  @@map("email_logs")
+}

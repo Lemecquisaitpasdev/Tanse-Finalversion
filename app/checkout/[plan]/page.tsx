@@ -156,27 +156,52 @@ export default function CheckoutPage({ params }: { params?: { plan?: string } })
         return;
       }
 
-      // Exemple d’appel Stripe Checkout (à implémenter côté serveur)
-      // const res = await fetch("/api/checkout", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ plan: currentPlan, contact, billing, slot, coupon, addOns: selectedAddOns }),
-      // });
-      // const { url, error } = await res.json();
-      // if (error) throw new Error(error);
-      // router.push(url);
+      // Appel API Checkout
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          plan: currentPlan,
+          firstname: contact.firstname,
+          lastname: contact.lastname,
+          email: contact.email,
+          phone: contact.phone,
+          company: billing.company,
+          siren: billing.siren,
+          address: billing.address,
+          city: billing.city,
+          zip: billing.zip,
+          country: billing.country,
+          slotDate: slot.date,
+          slotTime: slot.time,
+          coupon,
+          addOns: selectedAddOns,
+          planPrice: plan.price,
+          addOnsTotal,
+          discount,
+          total,
+        }),
+      });
 
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Une erreur est survenue");
+      }
+
+      // Pour l'instant, afficher un message de succès
+      // TODO: Rediriger vers Stripe Checkout quand implémenté
       alert(
-        `Démo — passage à Stripe :\n` +
-          `Plan: ${plan.label}\n` +
-          `Add-ons: ${selectedAddOns.join(", ") || "aucun"}\n` +
-          `Total: ${eur(total)} HT\n` +
-          `Contact: ${contact.firstname} ${contact.lastname} <${contact.email}>\n` +
-          `Créneau: ${slot.date} ${slot.time}\n` +
-          `Coupon: ${coupon || "—"}`
+        `✅ Commande enregistrée avec succès !\n\n` +
+          `Un email de confirmation a été envoyé à ${contact.email}\n\n` +
+          `Notre équipe vous contactera sous 24-48h pour finaliser le paiement et lancer le projet.\n\n` +
+          `Référence: ${data.orderId}`
       );
+
+      // Reset form ou rediriger
+      router.push("/");
     } catch (err: any) {
-      alert(err?.message || "Erreur de paiement.");
+      alert(`❌ ${err?.message || "Erreur de commande. Veuillez réessayer."}`);
     } finally {
       setSubmitting(false);
     }
