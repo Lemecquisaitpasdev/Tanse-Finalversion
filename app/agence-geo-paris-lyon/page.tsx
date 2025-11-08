@@ -150,7 +150,7 @@ export default function Page() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {TEAM.map((m) => (
             <div key={m.name} className="rounded-3xl bg-white p-6 shadow-md ring-1 ring-black/5">
-              {m.image ? (
+              {m.image && (
                 <div className="relative mb-4 h-20 w-20 overflow-hidden rounded-full ring-2 ring-[#444684]/20">
                   <Image
                     src={m.image}
@@ -160,8 +160,6 @@ export default function Page() {
                     sizes="80px"
                   />
                 </div>
-              ) : (
-                <div className="mb-4 h-20 w-20 rounded-full bg-[#444684]/15" />
               )}
               <div className="text-base font-semibold">{m.name}</div>
               <div className="text-sm text-neutral-600">{m.role}</div>
