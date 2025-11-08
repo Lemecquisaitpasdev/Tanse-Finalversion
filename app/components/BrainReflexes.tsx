@@ -147,7 +147,7 @@ export default function BrainReflexes() {
             }}
           >
             <div className="w-full max-w-[320px] h-[280px] md:max-w-full md:h-[520px] lg:h-[640px] mx-auto rounded-3xl overflow-hidden shadow-lg md:rounded-none md:shadow-none md:overflow-visible flex items-center justify-center">
-              <div className="w-[150%] h-[150%] scale-[0.7] origin-center md:w-full md:h-full md:scale-100">
+              <div className="w-[150%] h-[150%] scale-[0.55] origin-center md:w-full md:h-full md:scale-100">
                 <SplineLazy
                   url={BRAIN_SCENE_URL}
                   className="block w-full h-full"

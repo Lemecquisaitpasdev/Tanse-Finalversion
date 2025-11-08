@@ -111,7 +111,7 @@ export default function Page() {
           {/* Visuel (large) - Animation Spline 3D - Clavier */}
           <div className="md:col-span-6">
             <div className="relative w-full max-w-[360px] h-[320px] md:max-w-full md:h-[clamp(280px,80vh,680px)] mx-auto md:mx-0 rounded-3xl overflow-hidden shadow-lg md:rounded-lg md:shadow-none flex items-center justify-center">
-              <div className="w-[150%] h-[150%] scale-[0.7] origin-center md:w-full md:h-full md:scale-100">
+              <div className="w-[150%] h-[150%] scale-[0.55] origin-center md:w-full md:h-full md:scale-100">
                 <spline-viewer
                   url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
                   className="w-full h-full"

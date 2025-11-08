@@ -58,7 +58,7 @@ export default function FinalCta() {
 
           {/* Animation personnages - AVANT le CTA */}
           <div className="w-full max-w-[360px] h-[300px] mx-auto rounded-3xl overflow-hidden shadow-lg flex items-center justify-center">
-            <div className="w-[150%] h-[150%] scale-[0.7] origin-center">
+            <div className="w-[150%] h-[150%] scale-[0.55] origin-center">
               <SplineLazy
                 url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
                 className="w-full h-full"
