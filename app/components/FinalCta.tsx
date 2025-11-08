@@ -58,9 +58,9 @@ export default function FinalCta() {
           </a>
         </div>
 
-        {/* Animation Spline lazy-loaded */}
+        {/* Animation Spline - DESKTOP (version originale intacte) */}
         <div
-          className={`col-span-12 md:col-span-7 transition-all ease-out ${
+          className={`hidden md:block col-span-12 md:col-span-7 transition-all ease-out ${
             isVisible ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-6 scale-98'
           }`}
           style={{
@@ -73,6 +73,30 @@ export default function FinalCta() {
               url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
               className="w-full h-full"
               aria-label="Animation finale"
+            />
+          </div>
+        </div>
+
+        {/* Animation Spline - MOBILE (version optimisée avec setZoom) */}
+        <div
+          className={`md:hidden col-span-12 transition-all ease-out ${
+            isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-98'
+          }`}
+          style={{
+            transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+            transitionDuration: `${500 * config.animationDuration}ms`
+          }}
+        >
+          <div className="w-full max-w-[360px] h-[300px] mx-auto rounded-3xl">
+            <SplineLazy
+              url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
+              className="w-full h-full"
+              aria-label="Animation finale"
+              onLoad={(spline: any) => {
+                if (spline && spline.setZoom) {
+                  spline.setZoom(0.6);
+                }
+              }}
             />
           </div>
         </div>

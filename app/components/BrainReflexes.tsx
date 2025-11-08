@@ -133,9 +133,9 @@ export default function BrainReflexes() {
             </div>
           </div>
 
-          {/* Animation Spline lazy-loaded */}
+          {/* Animation Spline - DESKTOP (version originale intacte) */}
           <div
-            className={`relative flex items-center justify-center transition-all ease-out ${
+            className={`hidden md:flex relative items-center justify-center transition-all ease-out ${
               isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-95'
             }`}
             style={{
@@ -147,6 +147,29 @@ export default function BrainReflexes() {
               url={BRAIN_SCENE_URL}
               className="block w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
             />
+          </div>
+
+          {/* Animation Spline - MOBILE (version optimisée avec setZoom) */}
+          <div
+            className={`md:hidden relative flex items-center justify-center transition-all ease-out ${
+              isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-95'
+            }`}
+            style={{
+              transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+              transitionDuration: `${500 * config.animationDuration}ms`
+            }}
+          >
+            <div className="w-full max-w-[320px] h-[280px] mx-auto">
+              <SplineLazy
+                url={BRAIN_SCENE_URL}
+                className="block w-full h-full rounded-2xl"
+                onLoad={(spline: any) => {
+                  if (spline && spline.setZoom) {
+                    spline.setZoom(0.6);
+                  }
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>

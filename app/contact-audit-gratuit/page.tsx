@@ -117,8 +117,8 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Spline 3D Scene */}
-      <section className="relative mx-auto w-full max-w-7xl px-0 md:px-6 mb-12">
+      {/* Spline 3D Scene Calendrier - DESKTOP (version originale intacte) */}
+      <section className="hidden md:block relative mx-auto w-full max-w-7xl px-0 md:px-6 mb-12">
         <div className="w-full overflow-hidden bg-[#E4E4E4]">
           <SplineLazy
             url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
@@ -127,6 +127,29 @@ export default function Page() {
             onLoad={(spline: any) => {
               // Bloque complètement la caméra - pas de zoom, rotation ou déplacement
               if (spline) {
+                spline.setOrbitEnabled && spline.setOrbitEnabled(false);
+                spline.setZoomEnabled && spline.setZoomEnabled(false);
+                spline.setPanEnabled && spline.setPanEnabled(false);
+              }
+            }}
+          />
+        </div>
+      </section>
+
+      {/* Spline 3D Scene Calendrier - MOBILE (version optimisée avec setZoom) */}
+      <section className="md:hidden relative mx-auto w-full max-w-7xl px-6 mb-12">
+        <div className="w-full max-w-[360px] h-[340px] mx-auto overflow-hidden bg-[#E4E4E4] rounded-3xl">
+          <SplineLazy
+            url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
+            className="block w-full h-full"
+            style={{ background: 'transparent' }}
+            onLoad={(spline: any) => {
+              if (spline) {
+                // Dézoomer pour voir les 2 calendriers sur mobile
+                if (spline.setZoom) {
+                  spline.setZoom(0.6);
+                }
+                // Bloque complètement la caméra - pas de zoom, rotation ou déplacement
                 spline.setOrbitEnabled && spline.setOrbitEnabled(false);
                 spline.setZoomEnabled && spline.setZoomEnabled(false);
                 spline.setPanEnabled && spline.setPanEnabled(false);

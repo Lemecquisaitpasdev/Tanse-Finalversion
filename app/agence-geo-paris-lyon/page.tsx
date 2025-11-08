@@ -106,14 +106,29 @@ export default function Page() {
             </p>
           </div>
 
-          {/* Visuel (large) - Animation Spline 3D */}
-          <div className="md:col-span-6">
+          {/* Visuel (large) - Animation Spline 3D Clavier - DESKTOP (version originale intacte) */}
+          <div className="hidden md:block md:col-span-6">
             <div className="relative w-full h-[clamp(280px,80vh,680px)] rounded-lg overflow-hidden">
               <spline-viewer
                 url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
                 className="w-full h-full"
                 loading-anim="true"
                 events-target="local"
+              />
+            </div>
+          </div>
+
+          {/* Visuel - Animation Spline 3D Clavier - MOBILE (version optimisée avec setZoom) */}
+          <div className="md:hidden md:col-span-6">
+            <div className="w-full max-w-[360px] h-[320px] mx-auto rounded-lg overflow-hidden">
+              <SplineLazy
+                url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
+                className="block w-full h-full"
+                onLoad={(spline: any) => {
+                  if (spline && spline.setZoom) {
+                    spline.setZoom(0.6);
+                  }
+                }}
               />
             </div>
           </div>

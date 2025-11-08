@@ -7,6 +7,7 @@ import Image from "next/image";
 import { ArrowRight, Mail } from "lucide-react";
 import SiteFooter from "../components/SiteFooter";
 import NewsletterPopup from "../components/NewsletterPopup";
+import SplineLazy from "../components/SplineLazy";
 import { articles } from "./data/articles";
 
 export default function BlogPage() {
@@ -85,13 +86,26 @@ export default function BlogPage() {
           <span className="font-semibold text-[#444684]">GEO</span> pour anticiper la <span className="font-semibold text-[#444684]">recherche</span> de demain.
         </p>
 
-        {/* Animation Spline 3D - SANS hint de rotation */}
-        <div className="spline-container relative w-full max-w-[600px] h-[400px] md:h-[600px] mx-auto mb-16 overflow-hidden rounded-3xl">
+        {/* Animation Spline 3D Globe - DESKTOP (version originale intacte) */}
+        <div className="hidden md:block spline-container relative w-full max-w-[600px] h-[400px] md:h-[600px] mx-auto mb-16 overflow-hidden rounded-3xl">
           <spline-viewer
             url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
             className="w-full h-full"
             loading-anim="true"
             events-target="local"
+          />
+        </div>
+
+        {/* Animation Spline 3D Globe - MOBILE (version optimisée avec setZoom) */}
+        <div className="md:hidden w-full max-w-[340px] h-[320px] mx-auto mb-16 rounded-3xl overflow-hidden">
+          <SplineLazy
+            url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
+            className="block w-full h-full"
+            onLoad={(spline: any) => {
+              if (spline && spline.setZoom) {
+                spline.setZoom(0.6);
+              }
+            }}
           />
         </div>
 
