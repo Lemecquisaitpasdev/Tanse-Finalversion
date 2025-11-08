@@ -110,7 +110,7 @@ export default function Page() {
 
           {/* Visuel (large) - Animation Spline 3D - Clavier */}
           <div className="md:col-span-6">
-            <div className="w-full max-w-[320px] h-[280px] md:max-w-full md:h-[clamp(280px,80vh,680px)] mx-auto md:mx-0 rounded-3xl">
+            <div className="w-full max-w-[320px] h-[280px] md:max-w-full md:h-[520px] lg:h-[640px] mx-auto md:mx-0 rounded-3xl overflow-hidden md:rounded-none md:overflow-visible">
               <SplineLazy
                 url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
                 className="block w-full h-full"
