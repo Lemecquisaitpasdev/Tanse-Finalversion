@@ -1,7 +1,7 @@
 // app/api/booking/route.ts
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { sendBookingNotification } from '@/lib/email';
+import { sendBookingNotification, sendBookingConfirmation } from '@/lib/email';
 
 export async function POST(request: Request) {
   try {
@@ -54,17 +54,35 @@ export async function POST(request: Request) {
       },
     });
 
-    // Envoyer l'email de notification
-    await sendBookingNotification({
-      email: booking.email,
-      name: booking.name,
-      company: booking.company,
-      phone: booking.phone,
-      service: booking.service,
-      preferredDate: booking.preferredDate,
-      preferredTime: booking.preferredTime,
-      message: booking.message,
-    });
+    // Envoyer les emails (notification + confirmation)
+    try {
+      // 1. Email de notification à l'équipe TANSE
+      await sendBookingNotification({
+        email: booking.email,
+        name: booking.name,
+        company: booking.company,
+        phone: booking.phone,
+        service: booking.service,
+        preferredDate: booking.preferredDate,
+        preferredTime: booking.preferredTime,
+        message: booking.message,
+      });
+    } catch (error) {
+      console.error('Erreur envoi email notification booking:', error);
+    }
+
+    try {
+      // 2. Email de confirmation à l'utilisateur
+      await sendBookingConfirmation({
+        email: booking.email,
+        name: booking.name,
+        service: booking.service,
+        preferredDate: booking.preferredDate,
+        preferredTime: booking.preferredTime,
+      });
+    } catch (error) {
+      console.error('Erreur envoi email confirmation booking:', error);
+    }
 
     return NextResponse.json(
       {

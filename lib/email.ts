@@ -1,5 +1,11 @@
 // lib/email.ts
 import { Resend } from 'resend';
+import {
+  generateLeadConfirmationEmail,
+  generateBookingConfirmationEmail,
+  generateForfaitConfirmationEmail,
+  generateNewsletterWelcomeEmail
+} from './email-templates';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -326,6 +332,128 @@ export async function sendForfaitRequestNotification(request: {
     console.log('✅ Email de notification forfait envoyé');
   } catch (error) {
     console.error('❌ Erreur envoi email forfait:', error);
+  }
+}
+
+// ============================================
+// EMAILS DE CONFIRMATION AUX UTILISATEURS
+// ============================================
+
+const FROM_EMAIL_USER = 'TANSE <hello@tanse.fr>'; // Email pour les confirmations utilisateurs
+
+// 5. Email de confirmation - Contact (Lead)
+export async function sendLeadConfirmation(lead: {
+  email: string;
+  name?: string | null;
+  sujet?: string | null;
+}) {
+  if (!lead.name || !lead.email) {
+    console.warn('⚠️ Impossible d\'envoyer l\'email de confirmation : nom ou email manquant');
+    return;
+  }
+
+  const htmlContent = generateLeadConfirmationEmail({
+    name: lead.name,
+    email: lead.email,
+    sujet: lead.sujet || undefined,
+  });
+
+  try {
+    await resend.emails.send({
+      from: FROM_EMAIL_USER,
+      to: lead.email,
+      subject: 'Nous avons bien reçu votre message - TANSE',
+      html: htmlContent,
+    });
+    console.log(`✅ Email de confirmation Lead envoyé à ${lead.email}`);
+  } catch (error) {
+    console.error('❌ Erreur envoi email confirmation lead:', error);
+    throw error;
+  }
+}
+
+// 6. Email de confirmation - Rendez-vous (Booking)
+export async function sendBookingConfirmation(booking: {
+  email: string;
+  name: string;
+  service: string;
+  preferredDate?: Date | null;
+  preferredTime?: string | null;
+}) {
+  const formattedDate = booking.preferredDate
+    ? new Date(booking.preferredDate).toISOString().split('T')[0]
+    : undefined;
+
+  const htmlContent = generateBookingConfirmationEmail({
+    name: booking.name,
+    email: booking.email,
+    service: booking.service,
+    preferredDate: formattedDate,
+    preferredTime: booking.preferredTime || undefined,
+  });
+
+  try {
+    await resend.emails.send({
+      from: FROM_EMAIL_USER,
+      to: booking.email,
+      subject: 'Votre demande de rendez-vous est confirmée - TANSE',
+      html: htmlContent,
+    });
+    console.log(`✅ Email de confirmation Booking envoyé à ${booking.email}`);
+  } catch (error) {
+    console.error('❌ Erreur envoi email confirmation booking:', error);
+    throw error;
+  }
+}
+
+// 7. Email de confirmation - Demande de forfait
+export async function sendForfaitConfirmation(request: {
+  email: string;
+  name: string;
+  forfaitName: string;
+  company?: string | null;
+}) {
+  const htmlContent = generateForfaitConfirmationEmail({
+    name: request.name,
+    forfaitName: request.forfaitName,
+    company: request.company || undefined,
+  });
+
+  try {
+    await resend.emails.send({
+      from: FROM_EMAIL_USER,
+      to: request.email,
+      subject: `Demande de forfait "${request.forfaitName}" reçue - TANSE`,
+      html: htmlContent,
+    });
+    console.log(`✅ Email de confirmation Forfait envoyé à ${request.email}`);
+  } catch (error) {
+    console.error('❌ Erreur envoi email confirmation forfait:', error);
+    throw error;
+  }
+}
+
+// 8. Email de bienvenue - Newsletter
+export async function sendNewsletterWelcome(subscriber: {
+  email: string;
+  name?: string | null;
+}) {
+  const htmlContent = generateNewsletterWelcomeEmail({
+    name: subscriber.name || undefined,
+    email: subscriber.email,
+  });
+
+  try {
+    await resend.emails.send({
+      from: FROM_EMAIL_USER,
+      to: subscriber.email,
+      subject: 'Bienvenue dans la communauté TANSE ! 🚀',
+      html: htmlContent,
+    });
+    console.log(`✅ Email de bienvenue Newsletter envoyé à ${subscriber.email}`);
+  } catch (error) {
+    console.error('❌ Erreur envoi email bienvenue newsletter:', error);
+    throw error;
   }
 }
 

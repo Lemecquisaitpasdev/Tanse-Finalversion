@@ -1,7 +1,7 @@
 // app/api/forfait-request/route.ts
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { sendForfaitRequestNotification } from '@/lib/email';
+import { sendForfaitRequestNotification, sendForfaitConfirmation } from '@/lib/email';
 
 export async function POST(request: Request) {
   try {
@@ -45,17 +45,34 @@ export async function POST(request: Request) {
       },
     });
 
-    // Envoyer l'email de notification
-    await sendForfaitRequestNotification({
-      email: forfaitRequest.email,
-      name: forfaitRequest.name,
-      company: forfaitRequest.company,
-      phone: forfaitRequest.phone,
-      forfaitName: forfaitRequest.forfaitName,
-      forfaitType: forfaitRequest.forfaitType,
-      budget: forfaitRequest.budget,
-      message: forfaitRequest.message,
-    });
+    // Envoyer les emails (notification + confirmation)
+    try {
+      // 1. Email de notification à l'équipe TANSE
+      await sendForfaitRequestNotification({
+        email: forfaitRequest.email,
+        name: forfaitRequest.name,
+        company: forfaitRequest.company,
+        phone: forfaitRequest.phone,
+        forfaitName: forfaitRequest.forfaitName,
+        forfaitType: forfaitRequest.forfaitType,
+        budget: forfaitRequest.budget,
+        message: forfaitRequest.message,
+      });
+    } catch (error) {
+      console.error('Erreur envoi email notification forfait:', error);
+    }
+
+    try {
+      // 2. Email de confirmation à l'utilisateur
+      await sendForfaitConfirmation({
+        email: forfaitRequest.email,
+        name: forfaitRequest.name,
+        forfaitName: forfaitRequest.forfaitName,
+        company: forfaitRequest.company,
+      });
+    } catch (error) {
+      console.error('Erreur envoi email confirmation forfait:', error);
+    }
 
     return NextResponse.json(
       {

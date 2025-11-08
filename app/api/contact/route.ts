@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { contactSchema, formatZodErrors } from "@/lib/validations";
 import { logger } from "@/lib/logger";
 import { prisma } from "@/lib/prisma";
-import { sendLeadNotification } from "@/lib/email";
+import { sendLeadNotification, sendLeadConfirmation } from "@/lib/email";
 
 export async function POST(req: NextRequest) {
   try {
@@ -48,8 +48,11 @@ export async function POST(req: NextRequest) {
       logger.warn({ err: dbErr }, "Failed to save lead to database, continuing with email");
     }
 
-    // Envoyer l'email de notification (critique)
+    // Envoyer les emails (en parallèle)
+    let emailsSent = { notification: false, confirmation: false };
+
     try {
+      // 1. Email de notification à l'équipe TANSE
       await sendLeadNotification({
         email,
         name: nom,
@@ -58,17 +61,31 @@ export async function POST(req: NextRequest) {
         message: `Sujet: ${sujet}. ${message || ''}`,
         source: 'contact',
       });
+      emailsSent.notification = true;
       logger.info({ email, name: nom }, "Notification email sent successfully");
     } catch (emailErr: any) {
       logger.error({ err: emailErr }, "Failed to send notification email");
+    }
 
-      // Si l'email échoue aussi, on retourne une erreur
-      if (!leadId) {
-        return NextResponse.json(
-          { error: "Impossible d'envoyer votre message. Veuillez réessayer ou nous contacter directement à contact@tanse.fr" },
-          { status: 500 }
-        );
-      }
+    try {
+      // 2. Email de confirmation à l'utilisateur
+      await sendLeadConfirmation({
+        email,
+        name: nom,
+        sujet: sujet || null,
+      });
+      emailsSent.confirmation = true;
+      logger.info({ email, name: nom }, "Confirmation email sent successfully");
+    } catch (emailErr: any) {
+      logger.error({ err: emailErr }, "Failed to send confirmation email");
+    }
+
+    // Si aucun email n'a fonctionné ET la DB a échoué, erreur
+    if (!emailsSent.notification && !emailsSent.confirmation && !leadId) {
+      return NextResponse.json(
+        { error: "Impossible d'envoyer votre message. Veuillez réessayer ou nous contacter directement à contact@tanse.fr" },
+        { status: 500 }
+      );
     }
 
     // Succès si au moins la DB ou l'email a fonctionné

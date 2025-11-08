@@ -1,7 +1,7 @@
 // app/api/newsletter/route.ts
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { sendNewsletterNotification } from '@/lib/email';
+import { sendNewsletterNotification, sendNewsletterWelcome } from '@/lib/email';
 
 export async function POST(request: Request) {
   try {
@@ -51,12 +51,27 @@ export async function POST(request: Request) {
       },
     });
 
-    // Envoyer l'email de notification
-    await sendNewsletterNotification({
-      email: subscriber.email,
-      name: subscriber.name,
-      source: subscriber.source,
-    });
+    // Envoyer les emails (notification + bienvenue)
+    try {
+      // 1. Email de notification à l'équipe TANSE
+      await sendNewsletterNotification({
+        email: subscriber.email,
+        name: subscriber.name,
+        source: subscriber.source,
+      });
+    } catch (error) {
+      console.error('Erreur envoi email notification newsletter:', error);
+    }
+
+    try {
+      // 2. Email de bienvenue à l'utilisateur
+      await sendNewsletterWelcome({
+        email: subscriber.email,
+        name: subscriber.name,
+      });
+    } catch (error) {
+      console.error('Erreur envoi email bienvenue newsletter:', error);
+    }
 
     return NextResponse.json(
       {
