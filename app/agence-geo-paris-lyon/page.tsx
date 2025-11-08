@@ -46,7 +46,7 @@ const TEAM: Member[] = [
     name: "M. Rayane",
     role: "Lead GEO (Answer Engines)",
     bio: "Structure l'information pour les moteurs de réponse (IA). Schémas, graphes de connaissances, gouvernance des sources.",
-    image: "/entreprise/output 2.PNG",
+    image: "/entreprise/rayane.png",
   },
   {
     name: "M. Valentin",
