@@ -34,17 +34,19 @@ const TIMELINE: YearItem[] = [
   },
 ];
 
-type Member = { name: string; role: string; bio: string };
+type Member = { name: string; role: string; bio: string; image?: string };
 const TEAM: Member[] = [
   {
     name: "D. Raphael",
     role: "Head of Local SEO",
     bio: "Optimisation locale multi-secteurs (retail, services, B2B). Focus entités et visibilité de proximité.",
+    image: "/team/raphpro.png",
   },
   {
     name: "M. Rayane",
     role: "Lead GEO (Answer Engines)",
-    bio: "Structure l’information pour les moteurs de réponse (IA). Schémas, graphes de connaissances, gouvernance des sources.",
+    bio: "Structure l'information pour les moteurs de réponse (IA). Schémas, graphes de connaissances, gouvernance des sources.",
+    image: "/team/rayane.png",
   },
   {
     name: "M. Valentin",
@@ -148,7 +150,19 @@ export default function Page() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {TEAM.map((m) => (
             <div key={m.name} className="rounded-3xl bg-white p-6 shadow-md ring-1 ring-black/5">
-              <div className="mb-4 h-14 w-14 rounded-full bg-[#444684]/15" />
+              {m.image ? (
+                <div className="relative mb-4 h-20 w-20 overflow-hidden rounded-full ring-2 ring-[#444684]/20">
+                  <Image
+                    src={m.image}
+                    alt={`Photo de ${m.name}`}
+                    fill
+                    className="object-cover object-center"
+                    sizes="80px"
+                  />
+                </div>
+              ) : (
+                <div className="mb-4 h-20 w-20 rounded-full bg-[#444684]/15" />
+              )}
               <div className="text-base font-semibold">{m.name}</div>
               <div className="text-sm text-neutral-600">{m.role}</div>
               <p className="mt-3 text-sm text-neutral-700">{m.bio}</p>
