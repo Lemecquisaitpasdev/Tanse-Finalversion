@@ -85,14 +85,16 @@ export default function BlogPage() {
           <span className="font-semibold text-[#444684]">GEO</span> pour anticiper la <span className="font-semibold text-[#444684]">recherche</span> de demain.
         </p>
 
-        {/* Animation Spline 3D - SANS hint de rotation */}
-        <div className="spline-container relative w-full max-w-[600px] h-[400px] md:h-[600px] mx-auto mb-16 overflow-hidden rounded-3xl">
-          <spline-viewer
-            url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
-            className="w-full h-full"
-            loading-anim="true"
-            events-target="local"
-          />
+        {/* Animation Spline 3D - Globe terrestre */}
+        <div className="spline-container relative w-full max-w-[320px] h-[220px] md:max-w-[600px] md:h-[600px] mx-auto mb-16 overflow-hidden rounded-3xl shadow-lg">
+          <div className="w-full h-full scale-[0.9] md:scale-100 origin-center">
+            <spline-viewer
+              url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
+              className="w-full h-full"
+              loading-anim="true"
+              events-target="local"
+            />
+          </div>
         </div>
 
         {/* Bouton Newsletter en haut avant les articles */}

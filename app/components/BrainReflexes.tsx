@@ -146,10 +146,14 @@ export default function BrainReflexes() {
               transitionDuration: `${500 * config.animationDuration}ms`
             }}
           >
-            <SplineLazy
-              url={BRAIN_SCENE_URL}
-              className="block w-full h-[250px] md:h-[520px] lg:h-[640px]"
-            />
+            <div className="w-full max-w-[300px] h-[180px] md:max-w-full md:h-[520px] lg:h-[640px] mx-auto rounded-3xl overflow-hidden shadow-lg md:rounded-none md:shadow-none md:overflow-visible">
+              <div className="w-full h-full scale-[0.85] md:scale-100 origin-center">
+                <SplineLazy
+                  url={BRAIN_SCENE_URL}
+                  className="block w-full h-full"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
