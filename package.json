@@ -17,7 +17,8 @@
     "db:studio": "prisma studio",
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "test:contact": "tsx scripts/test-api-contact.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.18.0",
