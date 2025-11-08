@@ -119,7 +119,7 @@ export default function Page() {
 
       {/* Spline 3D Scene */}
       <section className="relative mx-auto w-full max-w-7xl px-0 md:px-6 mb-12">
-        <div className="w-full overflow-hidden rounded-none md:rounded-3xl shadow-2xl border-y md:border border-white/60 bg-[#E4E4E4]">
+        <div className="w-full overflow-hidden bg-[#E4E4E4]">
           <SplineLazy
             url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
             className="block w-full h-[46vh] md:h-[58vh]"

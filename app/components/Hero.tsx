@@ -1,15 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import SplineLazy from "./SplineLazy";
+import Spline from "@splinetool/react-spline";
 
 const SCENE_URL = "https://prod.spline.design/l8fan1OYXfoYpgtt/scene.splinecode?v=20251019";
 
 /**
- * Hero section optimisé pour chargement instantané
+ * Hero section optimisé pour chargement IMMÉDIAT
  * - CSS pour responsive (pas de JS)
  * - Navigation simplifiée
- * - Spline lazy-loaded
+ * - Spline chargé immédiatement (preload dans head)
  * - Camera fixed (no scale/translate movement)
  */
 export default function Hero() {
@@ -56,11 +56,12 @@ export default function Hero() {
         </nav>
       </div>
 
-      {/* Spline - Fixed camera (no movement) */}
+      {/* Spline - Fixed camera (no movement) - Chargement immédiat */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <SplineLazy
-          url={SCENE_URL}
+        <Spline
+          scene={SCENE_URL}
           className="block w-full h-full"
+          style={{ width: "100%", height: "100%" }}
         />
       </div>
     </section>
