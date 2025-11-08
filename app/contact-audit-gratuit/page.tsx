@@ -74,55 +74,54 @@ export default function Page() {
 
   return (
     <main className="bg-[#E4E4E4] text-[#0b0b0c]">
-      {/* Hero Section - Modern & Dynamic */}
-      <section className="relative mx-auto w-full max-w-7xl px-6 py-16 md:py-24 overflow-hidden">
-        {/* Animated background gradients - matching site theme */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-[#444684]/20 to-purple-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-300/20 to-[#444684]/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }} />
+      {/* Hero Section - Responsive */}
+      <section className="relative mx-auto w-full max-w-7xl px-5 md:px-6 py-16 md:py-24 overflow-hidden">
+        {/* Animated background gradients - Desktop only */}
+        <div className="hidden md:block absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-[#444684]/20 to-purple-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
+        <div className="hidden md:block absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-300/20 to-[#444684]/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }} />
 
-        <div className="relative z-10">
-          <div className="flex items-center gap-2 mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="p-1.5 rounded-lg bg-gradient-to-br from-[#444684] to-[#524e7d] shadow-lg">
-              <Sparkles className="h-4 w-4 text-white" />
-            </div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] bg-gradient-to-r from-[#444684] to-[#524e7d] bg-clip-text text-transparent">
+        <div className="relative z-10 text-center md:text-left">
+          {/* Badge top - centré sur mobile */}
+          <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-[#eef2ff]">
+            <Sparkles className="h-4 w-4 text-[#6366f1]" />
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#6366f1]">
               Contactez-nous
             </p>
           </div>
 
-          <h1 className="text-[clamp(36px,5vw,64px)] font-bold leading-[1.1] bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-700 bg-clip-text text-transparent animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+          <h1 className="text-[32px] md:text-[clamp(36px,5vw,64px)] font-bold leading-tight md:leading-[1.1] text-neutral-900 mb-6">
             Discutons de vos objectifs GEO
           </h1>
 
-          <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-neutral-600 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+          <p className="mt-4 max-w-2xl mx-auto md:mx-0 text-base md:text-[17px] leading-relaxed text-neutral-600">
             Pionniers du GEO en France, notre équipe d'experts vous accompagne dans votre transition vers l'optimisation pour moteurs IA.
             <strong className="text-neutral-800"> Réponse garantie sous 24h.</strong>
           </p>
 
-          {/* Quick stats */}
-          <div className="mt-10 flex flex-wrap gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-sm border border-white shadow-sm hover:shadow-md transition-shadow">
-              <Clock className="h-4 w-4 text-[#444684]" />
+          {/* Quick stats - Stack vertical sur mobile, horizontal sur desktop */}
+          <div className="mt-8 flex flex-col md:flex-row gap-3 md:gap-4 max-w-md mx-auto md:mx-0">
+            <div className="flex items-center justify-center md:justify-start gap-2 px-5 py-3 md:py-2 rounded-full bg-[#f8fafc] border border-transparent">
+              <Clock className="h-4 w-4 text-[#6366f1]" />
               <span className="text-sm font-medium text-neutral-800">Réponse sous 24h</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-sm border border-white shadow-sm hover:shadow-md transition-shadow">
-              <MapPin className="h-4 w-4 text-[#444684]" />
+            <div className="flex items-center justify-center md:justify-start gap-2 px-5 py-3 md:py-2 rounded-full bg-[#f8fafc] border border-transparent">
+              <MapPin className="h-4 w-4 text-[#6366f1]" />
               <span className="text-sm font-medium text-neutral-800">France & Pays francophones</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-sm border border-white shadow-sm hover:shadow-md transition-shadow">
-              <Shield className="h-4 w-4 text-[#444684]" />
+            <div className="flex items-center justify-center md:justify-start gap-2 px-5 py-3 md:py-2 rounded-full bg-[#f8fafc] border border-transparent">
+              <Shield className="h-4 w-4 text-[#6366f1]" />
               <span className="text-sm font-medium text-neutral-800">Conforme RGPD</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Spline 3D Scene */}
+      {/* Spline 3D Scene - Animation calendrier */}
       <section className="relative mx-auto w-full max-w-7xl px-0 md:px-6 mb-12">
         <div className="w-full overflow-hidden bg-[#E4E4E4]">
           <SplineLazy
             url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
-            className="block w-full h-[46vh] md:h-[58vh]"
+            className="block w-full h-[200px] md:h-[58vh]"
             style={{ background: 'transparent' }}
             onLoad={(spline: any) => {
               // Bloque complètement la caméra - pas de zoom, rotation ou déplacement

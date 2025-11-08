@@ -2,17 +2,18 @@
 
 import Link from "next/link";
 import Spline from "@splinetool/react-spline";
+import { useIsMobile } from "../hooks/useMediaQuery";
 
 const SCENE_URL = "https://prod.spline.design/l8fan1OYXfoYpgtt/scene.splinecode?v=20251019";
 
 /**
- * Hero section optimisé pour chargement IMMÉDIAT
- * - CSS pour responsive (pas de JS)
- * - Navigation simplifiée
- * - Spline chargé immédiatement (preload dans head)
- * - Camera fixed (no scale/translate movement)
+ * Hero section responsive
+ * - Mobile (<768px): Image statique avec dégradé
+ * - Desktop: Spline 3D chargé immédiatement
+ * - Navigation adaptative
  */
 export default function Hero() {
+  const isMobile = useIsMobile();
   // Optimized navigation link styles
   const navLinkBase = "pointer-events-auto rounded-full px-3 md:px-4 py-2 text-xs md:text-sm font-medium min-h-[36px] md:min-h-0 flex items-center justify-center transition-all duration-200";
   const navLinkDefault = "text-[#24243C] hover:bg-white";
@@ -56,13 +57,49 @@ export default function Hero() {
         </nav>
       </div>
 
-      {/* Spline - Fixed camera (no movement) - Chargement immédiat */}
+      {/* Contenu central - Spline (desktop) ou Image statique (mobile) */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <Spline
-          scene={SCENE_URL}
-          className="block w-full h-full"
-          style={{ width: "100%", height: "100%" }}
-        />
+        {isMobile ? (
+          /* Mobile: Image statique avec dégradé */
+          <div className="w-full h-full flex items-center justify-center px-5 py-16" style={{
+            background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #93c5fd 100%)'
+          }}>
+            <div className="text-center text-white space-y-6 max-w-md">
+              {/* Logo tanse */}
+              <div className="text-2xl font-bold tracking-wider uppercase">
+                tanse
+              </div>
+
+              {/* Subtitle */}
+              <p className="text-xs tracking-[0.25em] uppercase">
+                Nous aidons les entreprises à ne plus être invisibles.
+              </p>
+
+              {/* Séparateur */}
+              <div className="w-24 mx-auto border-t border-white/30"></div>
+
+              {/* Titre principal */}
+              <h1 className="text-[32px] font-bold leading-tight uppercase">
+                Création et optimisation du GEO.
+              </h1>
+
+              {/* Séparateur */}
+              <div className="w-24 mx-auto border-t border-white/30"></div>
+
+              {/* Texte final */}
+              <p className="text-sm leading-relaxed">
+                Le marché a changé. Vos clients ne cherchent plus... Ils demandent.
+              </p>
+            </div>
+          </div>
+        ) : (
+          /* Desktop: Spline 3D */
+          <Spline
+            scene={SCENE_URL}
+            className="block w-full h-full"
+            style={{ width: "100%", height: "100%" }}
+          />
+        )}
       </div>
     </section>
   );
