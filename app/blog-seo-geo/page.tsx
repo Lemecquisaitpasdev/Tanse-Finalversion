@@ -86,15 +86,13 @@ export default function BlogPage() {
         </p>
 
         {/* Animation Spline 3D - Globe terrestre */}
-        <div className="spline-container relative w-full max-w-[320px] h-[220px] md:max-w-[600px] md:h-[600px] mx-auto mb-16 overflow-hidden rounded-3xl shadow-lg">
-          <div className="w-full h-full scale-[0.9] md:scale-100 origin-center">
-            <spline-viewer
-              url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
-              className="w-full h-full"
-              loading-anim="true"
-              events-target="local"
-            />
-          </div>
+        <div className="spline-container relative w-full max-w-[340px] h-[300px] md:max-w-[600px] md:h-[600px] mx-auto mb-16 overflow-hidden rounded-3xl shadow-lg">
+          <spline-viewer
+            url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
+            className="w-full h-full"
+            loading-anim="true"
+            events-target="local"
+          />
         </div>
 
         {/* Bouton Newsletter en haut avant les articles */}

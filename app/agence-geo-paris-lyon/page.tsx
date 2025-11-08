@@ -110,15 +110,13 @@ export default function Page() {
 
           {/* Visuel (large) - Animation Spline 3D - Clavier */}
           <div className="md:col-span-6">
-            <div className="relative w-full max-w-[340px] h-[220px] md:max-w-full md:h-[clamp(280px,80vh,680px)] mx-auto md:mx-0 rounded-3xl overflow-hidden shadow-lg md:rounded-lg md:shadow-none">
-              <div className="w-full h-full scale-[0.75] md:scale-100 origin-center">
-                <spline-viewer
-                  url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
-                  className="w-full h-full"
-                  loading-anim="true"
-                  events-target="local"
-                />
-              </div>
+            <div className="relative w-full max-w-[360px] h-[300px] md:max-w-full md:h-[clamp(280px,80vh,680px)] mx-auto md:mx-0 rounded-3xl overflow-hidden shadow-lg md:rounded-lg md:shadow-none">
+              <spline-viewer
+                url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
+                className="w-full h-full"
+                loading-anim="true"
+                events-target="local"
+              />
             </div>
           </div>
         </div>

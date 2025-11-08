@@ -118,22 +118,20 @@ export default function Page() {
 
       {/* Spline 3D Scene - Animation calendrier */}
       <section className="relative mx-auto w-full max-w-7xl px-0 md:px-6 mb-12">
-        <div className="w-full max-w-[340px] h-[240px] md:max-w-full md:h-[58vh] mx-auto rounded-3xl overflow-hidden shadow-lg md:rounded-none md:shadow-none bg-[#E4E4E4]">
-          <div className="w-full h-full scale-[0.8] md:scale-100 origin-center">
-            <SplineLazy
-              url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
-              className="block w-full h-full"
-              style={{ background: 'transparent' }}
-              onLoad={(spline: any) => {
-                // Bloque complètement la caméra - pas de zoom, rotation ou déplacement
-                if (spline) {
-                  spline.setOrbitEnabled && spline.setOrbitEnabled(false);
-                  spline.setZoomEnabled && spline.setZoomEnabled(false);
-                  spline.setPanEnabled && spline.setPanEnabled(false);
-                }
-              }}
-            />
-          </div>
+        <div className="w-full max-w-[360px] h-[320px] md:max-w-full md:h-[58vh] mx-auto rounded-3xl overflow-hidden shadow-lg md:rounded-none md:shadow-none bg-[#E4E4E4]">
+          <SplineLazy
+            url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
+            className="block w-full h-full"
+            style={{ background: 'transparent' }}
+            onLoad={(spline: any) => {
+              // Bloque complètement la caméra - pas de zoom, rotation ou déplacement
+              if (spline) {
+                spline.setOrbitEnabled && spline.setOrbitEnabled(false);
+                spline.setZoomEnabled && spline.setZoomEnabled(false);
+                spline.setPanEnabled && spline.setPanEnabled(false);
+              }
+            }}
+          />
         </div>
       </section>
 
