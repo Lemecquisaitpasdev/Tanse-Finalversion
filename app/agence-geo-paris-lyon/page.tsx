@@ -34,19 +34,28 @@ const TIMELINE: YearItem[] = [
   },
 ];
 
-type Member = { name: string; role: string; bio: string; image?: string };
+type Member = {
+  name: string;
+  role: string;
+  bio: string;
+  image?: string;
+  imageStyle?: string; // Style personnalisé pour chaque photo
+};
+
 const TEAM: Member[] = [
   {
     name: "D. Raphael",
     role: "Head of Local SEO",
     bio: "Optimisation locale multi-secteurs (retail, services, B2B). Focus entités et visibilité de proximité.",
     image: "/team/raphpro.png",
+    imageStyle: "object-[50%_30%]", // Centré plus haut de 20%
   },
   {
     name: "M. Rayane",
     role: "Lead GEO (Answer Engines)",
     bio: "Structure l'information pour les moteurs de réponse (IA). Schémas, graphes de connaissances, gouvernance des sources.",
     image: "/team/rayane.png",
+    imageStyle: "object-[50%_25%] scale-115", // Centré plus haut de 25% + zoom 15%
   },
   {
     name: "M. Valentin",
@@ -156,7 +165,7 @@ export default function Page() {
                     src={m.image}
                     alt={`Photo de ${m.name}`}
                     fill
-                    className="object-cover object-center"
+                    className={`object-cover ${m.imageStyle || "object-center"}`}
                     sizes="80px"
                   />
                 </div>
