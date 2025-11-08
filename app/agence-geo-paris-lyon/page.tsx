@@ -72,8 +72,8 @@ const TEAM: Member[] = [
 export default function Page() {
   return (
     <main className="bg-[#E4E4E4] text-[#0b0b0c] border-t border-transparent overflow-x-hidden">
-      {/* Intro - Responsive */}
-      <section className="mx-auto w-full max-w-6xl px-5 md:px-6 pt-0 pb-16 md:pb-20">
+      {/* Intro */}
+      <section className="mx-auto w-full max-w-6xl px-6 pt-0 pb-16 md:pb-20">
         {/* Bouton retour page principale */}
         <div className="mb-6 pt-6">
           <Link
@@ -84,42 +84,36 @@ export default function Page() {
           </Link>
         </div>
 
-        {/* Mobile: Stack vertical (texte → animation) */}
-        {/* Desktop: Grid (texte left | animation right) */}
-        <div className="space-y-8 md:space-y-0 md:grid md:items-center md:gap-10 md:grid-cols-12">
-          <div className="md:col-span-6 text-center md:text-left">
+        <div className="grid items-center gap-10 md:grid-cols-12">
+          <div className="md:col-span-6">
             <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-[#444684]">
-              Notre raison d'être
+              Notre raison d’être
             </p>
-            <h1 className="text-[32px] md:text-4xl lg:text-5xl font-semibold leading-tight">
-              Pourquoi nous venons travailler tous les jours
+            <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
+              Pourquoi nous venons travailler <br className="hidden md:block" /> tous les jours
             </h1>
 
-            <p className="mt-6 text-base md:text-[15px] leading-relaxed text-neutral-700">
-              <span className="font-semibold text-[#6366f1]">
-                Vous faites votre métier, on rend votre savoir-faire immanquable au moment où l'intention est la plus forte.
+            <p className="mt-6 text-[15px] leading-relaxed text-neutral-700">
+              <span className="font-semibold text-[#444684]">
+                Vous faites votre métier, on rend votre savoir-faire immanquable au moment où l’intention est la plus forte.
               </span>
             </p>
-            <p className="mt-4 text-base md:text-[15px] leading-relaxed text-neutral-700">
-              Notre promesse est simple&nbsp;: <span className="font-semibold text-[#6366f1]">enlever la friction</span>. Les détours, les délais, les portes closes qui
+            <p className="mt-4 text-[15px] leading-relaxed text-neutral-700">
+              Notre promesse est simple&nbsp;: <span className="font-semibold text-[#444684]">enlever la friction</span>. Les détours, les délais, les portes closes qui
               transforment une intention claire en opportunité manquée. Nous créons{" "}
-              <span className="font-semibold text-[#6366f1]">un chemin direct</span> entre les besoins des gens et ce que vous faites le mieux,{" "}
-              <span className="font-semibold text-[#6366f1]">du local au national</span>, du service à l'industrie.
+              <span className="font-semibold text-[#444684]">un chemin direct</span> entre les besoins des gens et ce que vous faites le mieux,{" "}
+              <span className="font-semibold text-[#444684]">du local au national</span>, du service à l’industrie.
             </p>
           </div>
 
-          {/* Visuel (large) - Animation Spline 3D - Clavier */}
+          {/* Visuel (large) - Animation Spline 3D */}
           <div className="md:col-span-6">
-            <div className="w-full max-w-[360px] lg:max-w-full h-[320px] lg:h-[clamp(280px,80vh,680px)] mx-auto lg:mx-0 rounded-lg overflow-hidden">
-              <SplineLazy
+            <div className="relative w-full h-[clamp(280px,80vh,680px)] rounded-lg overflow-hidden">
+              <spline-viewer
                 url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
-                className="block w-full h-full"
-                onLoad={(spline: any) => {
-                  // Dézoomer la caméra pour voir plus de contenu sur mobile
-                  if (spline && spline.setZoom) {
-                    spline.setZoom(0.6);
-                  }
-                }}
+                className="w-full h-full"
+                loading-anim="true"
+                events-target="local"
               />
             </div>
           </div>

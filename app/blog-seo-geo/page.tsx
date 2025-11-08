@@ -7,7 +7,6 @@ import Image from "next/image";
 import { ArrowRight, Mail } from "lucide-react";
 import SiteFooter from "../components/SiteFooter";
 import NewsletterPopup from "../components/NewsletterPopup";
-import SplineLazy from "../components/SplineLazy";
 import { articles } from "./data/articles";
 
 export default function BlogPage() {
@@ -58,7 +57,7 @@ export default function BlogPage() {
         </nav>
       </div>
 
-      {/* Logo TANSE en haut à droite */}
+      {/* Logo TANSE - hidden on mobile */}
       <div className="hidden md:block absolute top-4 md:top-6 right-4 md:right-8 z-20">
         <Link href="/">
           <Image
@@ -86,17 +85,13 @@ export default function BlogPage() {
           <span className="font-semibold text-[#444684]">GEO</span> pour anticiper la <span className="font-semibold text-[#444684]">recherche</span> de demain.
         </p>
 
-        {/* Animation Spline 3D - Globe terrestre */}
-        <div className="w-full max-w-[340px] lg:max-w-[600px] h-[320px] lg:h-[600px] mx-auto mb-16 overflow-hidden rounded-3xl">
-          <SplineLazy
+        {/* Animation Spline 3D - SANS hint de rotation */}
+        <div className="spline-container relative w-full max-w-[600px] h-[400px] md:h-[600px] mx-auto mb-16 overflow-hidden rounded-3xl">
+          <spline-viewer
             url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
-            className="block w-full h-full"
-            onLoad={(spline: any) => {
-              // Dézoomer la caméra pour voir plus de contenu sur mobile
-              if (spline && spline.setZoom) {
-                spline.setZoom(0.6);
-              }
-            }}
+            className="w-full h-full"
+            loading-anim="true"
+            events-target="local"
           />
         </div>
 

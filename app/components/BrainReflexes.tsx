@@ -49,13 +49,10 @@ export default function BrainReflexes() {
 
   return (
     <SectionFrame id="reflexes" className="bg-[#E4E4E4]">
-      <div ref={sectionRef} className="w-full max-w-[1200px] mx-auto px-5 md:px-10 py-16 md:py-28">
-        {/* Mobile: Stack vertical (texte → animation → stats) */}
-        {/* Desktop: Grid (texte left | animation right) avec stats inline */}
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-start">
+      <div ref={sectionRef} className="w-full max-w-[1200px] mx-auto px-6 md:px-10 py-20 md:py-28">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 items-start">
           {/* Texte */}
-          <div className="order-1">
+          <div>
             <p className="text-xs tracking-[0.25em] text-neutral-500 mb-4">
               CHANGEMENT DE COMPORTEMENT
             </p>
@@ -107,8 +104,8 @@ export default function BrainReflexes() {
               </p>
             </div>
 
-            {/* Stat cards - Desktop only (on mobile shown after animation) */}
-            <div className="mt-8 hidden md:grid grid-cols-2 gap-4 max-w-xl">
+            {/* Stat cards */}
+            <div className="mt-8 grid grid-cols-2 gap-4 max-w-xl">
               {STATS.map((s) => (
                 <div
                   key={s.value}
@@ -138,7 +135,7 @@ export default function BrainReflexes() {
 
           {/* Animation Spline lazy-loaded */}
           <div
-            className={`relative flex items-center justify-center transition-all ease-out order-2 md:order-2 ${
+            className={`relative flex items-center justify-center transition-all ease-out ${
               isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-95'
             }`}
             style={{
@@ -146,38 +143,11 @@ export default function BrainReflexes() {
               transitionDuration: `${500 * config.animationDuration}ms`
             }}
           >
-            <div className="w-full max-w-[320px] lg:max-w-full h-[280px] lg:h-[640px] mx-auto rounded-2xl">
-              <SplineLazy
-                url={BRAIN_SCENE_URL}
-                className="block w-full h-full"
-                onLoad={(spline: any) => {
-                  // Dézoomer la caméra pour voir plus de contenu sur mobile
-                  if (spline && spline.setZoom) {
-                    spline.setZoom(0.6);
-                  }
-                }}
-              />
-            </div>
+            <SplineLazy
+              url={BRAIN_SCENE_URL}
+              className="block w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
+            />
           </div>
-        </div>
-
-        {/* Stat cards - Mobile only (shown after animation) */}
-        <div className="mt-8 grid grid-cols-2 gap-4 md:hidden">
-          {STATS.map((s) => (
-            <div
-              key={s.value}
-              className="relative rounded-xl bg-[#f8fafc] p-5 border border-transparent"
-            >
-              <div className="text-center space-y-2">
-                <div className="text-[32px] font-bold text-[#6366f1]">
-                  {s.value}
-                </div>
-                <div className="text-xs text-[#64748b] leading-tight">
-                  {s.label}
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </SectionFrame>
