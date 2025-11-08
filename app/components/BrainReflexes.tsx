@@ -150,6 +150,12 @@ export default function BrainReflexes() {
               <SplineLazy
                 url={BRAIN_SCENE_URL}
                 className="block w-full h-full"
+                onLoad={(spline: any) => {
+                  // Dézoomer la caméra pour voir plus de contenu
+                  if (spline && spline.setZoom) {
+                    spline.setZoom(0.6);
+                  }
+                }}
               />
             </div>
           </div>

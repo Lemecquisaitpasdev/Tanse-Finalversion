@@ -62,6 +62,12 @@ export default function FinalCta() {
               url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
               className="w-full h-full"
               aria-label="Animation personnages"
+              onLoad={(spline: any) => {
+                // Dézoomer la caméra pour voir plus de contenu
+                if (spline && spline.setZoom) {
+                  spline.setZoom(0.6);
+                }
+              }}
             />
           </div>
 

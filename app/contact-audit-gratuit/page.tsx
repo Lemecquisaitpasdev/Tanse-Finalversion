@@ -124,8 +124,12 @@ export default function Page() {
             className="block w-full h-full"
             style={{ background: 'transparent' }}
             onLoad={(spline: any) => {
-              // Bloque complètement la caméra - pas de zoom, rotation ou déplacement
               if (spline) {
+                // Dézoomer la caméra pour voir plus de contenu (les 2 calendriers)
+                if (spline.setZoom) {
+                  spline.setZoom(0.6);
+                }
+                // Bloque complètement la caméra - pas de zoom, rotation ou déplacement
                 spline.setOrbitEnabled && spline.setOrbitEnabled(false);
                 spline.setZoomEnabled && spline.setZoomEnabled(false);
                 spline.setPanEnabled && spline.setPanEnabled(false);
