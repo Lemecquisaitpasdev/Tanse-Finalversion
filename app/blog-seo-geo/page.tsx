@@ -86,7 +86,7 @@ export default function BlogPage() {
         </p>
 
         {/* Animation Spline 3D - Globe terrestre */}
-        <div className="spline-container relative w-full max-w-[340px] h-[320px] md:max-w-[600px] md:h-[600px] mx-auto mb-16 overflow-hidden rounded-3xl shadow-lg flex items-center justify-center">
+        <div className="spline-container relative w-full max-w-[340px] h-[320px] md:max-w-[600px] md:h-[600px] mx-auto mb-16 rounded-3xl shadow-lg flex items-center justify-center">
           <div className="w-[150%] h-[150%] scale-[0.55] origin-center md:w-full md:h-full md:scale-100">
             <spline-viewer
               url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
