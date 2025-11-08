@@ -40,13 +40,13 @@ const TEAM: Member[] = [
     name: "D. Raphael",
     role: "Head of Local SEO",
     bio: "Optimisation locale multi-secteurs (retail, services, B2B). Focus entités et visibilité de proximité.",
-    image: "/team/raphpro.png",
+    image: "/entreprise/raphpro.png",
   },
   {
     name: "M. Rayane",
     role: "Lead GEO (Answer Engines)",
     bio: "Structure l'information pour les moteurs de réponse (IA). Schémas, graphes de connaissances, gouvernance des sources.",
-    image: "/team/rayane.png",
+    image: "/entreprise/output 2.PNG",
   },
   {
     name: "M. Valentin",
