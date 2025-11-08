@@ -1,12 +1,11 @@
+// app/agence-geo-paris-lyon/page.tsx
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
-
-export const metadata = {
-  title: "TANSE — Notre histoire & Notre équipe",
-  description:
-    "Pourquoi TANSE existe, nos jalons par année, et l’équipe qui vous accompagne sur le SEO local, le GEO et la performance web.",
-};
+import FadeIn from "../components/FadeIn";
+import SplineLazy from "../components/SplineLazy";
 
 type YearItem = { year: string; bullets: ReactNode[]; accent?: string };
 
@@ -96,16 +95,14 @@ export default function Page() {
             </p>
           </div>
 
-          {/* Visuel (large) */}
+          {/* Visuel (large) - Animation Spline 3D */}
           <div className="md:col-span-6">
-            <div className="relative w-full h-[clamp(280px,80vh,680px)]">
-              <Image
-                src="/entreprise/stronger-together.jpg"
-                alt="Stronger together — l’équipe TANSE au travail"
-                fill
-                priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="rounded-3xl object-cover"
+            <div className="relative w-full h-[clamp(280px,80vh,680px)] rounded-lg overflow-hidden">
+              <spline-viewer
+                url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
+                className="w-full h-full"
+                loading-anim="true"
+                events-target="local"
               />
             </div>
           </div>
@@ -173,13 +170,13 @@ export default function Page() {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
-                  href="/forfaits"
+                  href="/forfaits-geo-seo"
                   className="rounded-full bg-[#444684] px-5 py-3 text-sm font-medium text-white shadow-md hover:opacity-90"
                 >
                   Voir nos forfaits
                 </Link>
                 <a
-                  href="mailto:hello@tanse.io"
+                  href="mailto:contact@tanse.fr"
                   className="rounded-full bg-black/5 px-5 py-3 text-sm font-medium hover:bg-black/10"
                 >
                   Nous contacter
@@ -190,9 +187,9 @@ export default function Page() {
         </div>
 
         <div className="pointer-events-auto absolute inset-y-0 right-0 w-[75vw] md:w-[60vw]">
-          <spline-viewer
-            className="block w-full h-full"
+          <SplineLazy
             url="https://prod.spline.design/EZYaol9QTCXdiWrh/scene.splinecode"
+            className="block w-full h-full"
           />
         </div>
       </section>
@@ -202,9 +199,10 @@ export default function Page() {
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
           <span className="text-sm text-neutral-600">© {new Date().getFullYear()} TANSE</span>
           <div className="flex gap-5 text-sm">
-            <Link href="/forfaits" className="text-[#444684] hover:underline">Forfaits</Link>
-            <Link href="/entreprise" className="text-[#444684] hover:underline">Entreprise</Link>
-            <a href="mailto:hello@tanse.io" className="text-[#444684] hover:underline">Contact</a>
+            <Link href="/forfaits-geo-seo" className="text-[#444684] hover:underline">Forfaits</Link>
+            <Link href="/agence-geo-paris-lyon" className="text-[#444684] hover:underline">Entreprise</Link>
+            <Link href="/geo" className="text-[#444684] hover:underline">GEO</Link>
+            <a href="mailto:contact@tanse.fr" className="text-[#444684] hover:underline">Contact</a>
           </div>
         </div>
       </footer>

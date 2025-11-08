@@ -1,11 +1,8 @@
 // app/forfaits/page.tsx
-import Link from "next/link";
+"use client";
 
-export const metadata = {
-  title: "TANSE — Nos forfaits SEO + GEO",
-  description:
-    "Trois offres claires : SEO+GEO (coût unique 1 490€ puis maintenance 850€/mois), Pack Complet SEO+GEO+Site (2 490€) avec 1 mois de maintenance offert, et Grand groupes sur devis.",
-};
+import Link from "next/link";
+import { useOptimization } from "../components/OptimizationProvider";
 
 type Card = {
   k: string;
@@ -62,11 +59,22 @@ const cards: readonly Card[] = [
 
 function HeaderBand() {
   return (
-    <section className="bg-[#444684] text-white">
-      <div className="mx-auto w-full max-w-7xl px-5 py-16 md:py-20 text-center">
-        <h1 className="text-4xl md:text-5xl font-semibold">Nos forfaits</h1>
-        <p className="mx-auto mt-3 max-w-3xl text-white/90">
-          Des packs simples, adaptés à votre contexte. Paiement sécurisé via Stripe. Démarrage sous 5 jours ouvrés.
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#444684] via-[#3d3a66] to-[#524e7d] text-white">
+      {/* Gradient overlay effect */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent_50%)]"></div>
+
+      <div className="relative mx-auto w-full max-w-7xl px-6 py-20 md:py-28 text-center">
+        <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur px-4 py-1.5 text-sm font-medium mb-6">
+          <span className="inline-block h-2 w-2 rounded-full bg-green-400 animate-pulse"></span>
+          Paiement 100% sécurisé via Stripe
+        </div>
+
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+          Nos forfaits
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-lg md:text-xl text-white/90 leading-relaxed">
+          Des packs simples, adaptés à votre contexte.<br className="hidden md:block" />
+          Démarrage sous 5 jours ouvrés.
         </p>
       </div>
     </section>
@@ -74,31 +82,41 @@ function HeaderBand() {
 }
 
 export default function ForfaitsPage() {
+  const config = useOptimization();
+
+  // Adaptive hover shadow - complex on macOS, simple on Windows
+  const hoverShadowClass = config.enableShadows
+    ? "hover:shadow-[0_40px_120px_-30px_rgba(68,70,132,0.4)]"
+    : "hover:shadow-xl";
+
   return (
     <main className="bg-[#E4E4E4]">
       <HeaderBand />
 
       {/* Cartes */}
-      <section className="-mt-10 pb-6">
-        <div className="mx-auto w-full max-w-7xl px-5">
-          <div className="grid gap-6 md:grid-cols-3">
+      <section className="-mt-16 pb-12 md:pb-16">
+        <div className="mx-auto w-full max-w-7xl px-6">
+          <div className="grid gap-6 lg:gap-8 md:grid-cols-3">
             {cards.map((c) => {
               const isBest = Boolean(c.best);
               const href =
                 c.k === "grand-groupes"
-                  ? "/contact?plan=grand-groupes"
-                  : `/api/checkout?plan=${c.k}`;
+                  ? "/contact-audit-gratuit?plan=grand-groupes"
+                  : `/checkout/${c.k}`;
 
               return (
                 <div
                   key={c.k}
-                  className={`rounded-3xl border ${
-                    isBest ? "border-[#444684]" : "border-neutral-200"
-                  } bg-white p-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)]`}
+                  className={`group relative rounded-3xl border ${
+                    isBest ? "border-[#444684] ring-2 ring-[#444684]/20" : "border-neutral-200"
+                  } bg-white p-7 md:p-8 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-2 ${hoverShadowClass}`}
                 >
                   {isBest && (
-                    <div className="mb-3 inline-flex rounded-full bg-[#444684]/10 px-3 py-1 text-[11px] uppercase tracking-wide text-[#444684]">
-                      Meilleur choix
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+                      <div className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#444684] to-[#524e7d] px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-white shadow-lg">
+                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-yellow-300"></span>
+                        Meilleur choix
+                      </div>
                     </div>
                   )}
 
@@ -114,10 +132,10 @@ export default function ForfaitsPage() {
 
                   <a
                     href={href}
-                    className={`mt-6 block w-full rounded-full px-5 py-2.5 text-center text-sm font-medium shadow-sm ${
+                    className={`mt-8 block w-full rounded-full px-6 py-3.5 text-center text-sm font-semibold shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 min-h-[48px] flex items-center justify-center ${
                       isBest
-                        ? "bg-[#444684] text-white hover:opacity-95"
-                        : "border border-neutral-300 bg-white text-neutral-900 hover:bg-neutral-50"
+                        ? "bg-[#444684] text-white hover:opacity-90 hover:shadow-xl focus-visible:outline-[#444684]"
+                        : "border-2 border-neutral-300 bg-white text-neutral-900 hover:bg-neutral-50 hover:border-neutral-400 focus-visible:outline-[#444684]"
                     }`}
                   >
                     {c.cta}
@@ -130,8 +148,8 @@ export default function ForfaitsPage() {
       </section>
 
       {/* Réassurance */}
-      <section className="pb-4">
-        <div className="mx-auto w-full max-w-7xl px-5 grid gap-6 md:grid-cols-3">
+      <section className="pb-12 md:pb-16">
+        <div className="mx-auto w-full max-w-7xl px-6 grid gap-6 md:grid-cols-3">
           <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.25)]">
             <div className="font-semibold text-neutral-900">Résultats attendus</div>
             <p className="mt-2 text-sm text-neutral-700">

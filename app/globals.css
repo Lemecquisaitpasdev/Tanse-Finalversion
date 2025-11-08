@@ -1,22 +1,416 @@
+/* Tailwind v4 */
 @import "tailwindcss";
 
+/* ===== Base ===== */
 :root {
   --bg: #ffffff;
   --fg: #0b0b0c;
 }
 
-* {
-  box-sizing: border-box;
-}
+*,
+*::before,
+*::after { box-sizing: border-box; }
 
-html,
+html, body { height: 100%; }
+
+/* OPTIMISATION WINDOWS: smooth-scroll CSS désactivé (très lent sur Windows)
+   On utilise maintenant smooth scroll JS avec requestAnimationFrame */
+html { scroll-behavior: auto; }
+
 body {
-  height: 100%;
   margin: 0;
-  padding: 0;
-}
-
-body {
   background: var(--bg);
   color: var(--fg);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* FIX — Empêche le 1er enfant de “pousser” en dehors du body */
+main { border-top: 1px solid transparent; }
+
+/* (bonus) si une page n’utilise pas <main>, on protège quand même le 1er bloc */
+body > :first-child { border-top: 1px solid transparent; }
+
+/* Décale l’ancre sous la topbar sticky (adapte la valeur si besoin) */
+.anchor { scroll-margin-top: clamp(72px, 10vh, 120px); }
+
+/* ===== Hero plein écran ===== */
+#hero-fullbleed {
+  position: relative;
+  width: 100vw;
+  height: 100lvh;            /* évite le bug mobile 100vh */
+  overflow: hidden;          /* pas de scroll parasite */
+  background: #E4E4E4;
+  display: block;
+}
+
+/* ===== Sections Spline (communes) ===== */
+.section-guard {
+  position: relative;
+  width: 100%;
+  min-height: min(90lvh, 1000px);
+  background: transparent;   /* colorer au cas par cas dans chaque section */
+  overflow: clip;
+  isolation: isolate;
+  /* on évite content-visibility ici pour ne pas figer les graphs */
+}
+
+.content-wrap {
+  position: relative;
+  z-index: 10;               /* le contenu passe au-dessus du canvas */
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: stretch;
+  align-items: center;
+  padding-top: clamp(24px, 4lvh, 64px);
+  padding-bottom: clamp(24px, 4lvh, 64px);
+}
+
+/* Viewer Spline = plein conteneur */
+.section-guard spline-viewer,
+.spline-contained {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent !important;
+}
+
+/* Le canvas ne déborde jamais et reste transparent */
+.section-guard canvas,
+#hero-fullbleed canvas,
+.spline-contained canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  display: block !important;
+  background: transparent !important;
+}
+
+/* Hauteur contrôlée : utile quand tu ne veux pas 100% de la section */
+.spline-shell {
+  height: clamp(420px, 70vh, 860px);
+  /* Ex: background:#0b0b0c; si la scène Spline est transparente */
+}
+
+/* Variante “cover” : un viewer avec hauteur responsive simple */
+spline-viewer.spline-cover {
+  display: block;
+  width: 100%;
+  height: clamp(520px, 70vh, 820px);
+  background: transparent !important;
+}
+
+spline-viewer.spline-cover canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  display: block !important;
+  background: transparent !important;
+}
+
+/* Typo utilitaire */
+.prose :where(p) { margin: 0 0 1rem 0; }
+
+/* FIX — supprime l'interligne "inline" des médias (anti-petits espaces fantômes) */
+img, canvas, video, svg { display: block; max-width: 100%; }
+
+/* Les sections avec className="anchor" s'alignent sous un header sticky si besoin */
+section.anchor {
+  scroll-margin-top: 80px; /* ajuste si ton header change de taille */
+}
+
+/* ===== Mobile Responsive Utilities ===== */
+
+/* Touch-friendly tap targets (minimum 44x44px) */
+@media (max-width: 768px) {
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Better text readability on mobile */
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Prevent horizontal scroll */
+  body, html {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Stack cards vertically on mobile */
+  .stack-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* Safe area for notched devices (iPhone X+) */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+}
+
+/* Optimize images for mobile */
+@media (max-width: 768px) {
+  img {
+    height: auto;
+  }
+}
+
+/* Grid responsive utilities */
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: 1.5rem;
+}
+
+.grid-auto-fill {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: 1.5rem;
+}
+
+/* ===== Button Utilities (Responsive & Accessible) ===== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  background: #444684;
+  color: white;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  outline-offset: 2px;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(68, 70, 132, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid #444684;
+  outline-offset: 2px;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.05);
+  color: #0b0b0c;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  outline-offset: 2px;
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary:focus-visible {
+  outline: 2px solid #444684;
+  outline-offset: 2px;
+}
+
+/* Mobile touch optimization */
+@media (max-width: 768px) {
+  .btn-primary,
+  .btn-secondary {
+    min-height: 44px; /* iOS recommended touch target size */
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+  }
+
+  /* Prevent double-tap zoom on buttons */
+  .btn-primary,
+  .btn-secondary {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ===== iPhone-specific optimizations ===== */
+
+/* Prevent horizontal scrolling on iPhone */
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* iPhone SE / Small screens (320px - 375px) */
+@media (max-width: 375px) {
+  /* Smaller text for compact screens */
+  h1 {
+    font-size: clamp(2rem, 8vw, 2.5rem) !important;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 7vw, 2.25rem) !important;
+  }
+
+  /* Reduce padding for small screens */
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Ensure cards stack properly */
+  .grid {
+    gap: 1rem !important;
+  }
+}
+
+/* iPhone 12/13/14 Pro Max and similar (430px) */
+@media (min-width: 390px) and (max-width: 430px) {
+  /* Optimize for larger iPhones */
+  body {
+    font-size: 1rem;
+  }
+
+  /* Better spacing for Pro Max screens */
+  .content-wrap {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Fix iOS Safari bottom bar issue with dvh units */
+@supports (height: 100dvh) {
+  .h-screen,
+  .min-h-screen {
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+  }
+}
+
+/* Improve touch targets on iPhone */
+@media (max-width: 768px) {
+  a, button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+
+  /* Prevent iOS text size adjustment */
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Smooth scrolling for iOS */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Remove iOS input shadows */
+  input, textarea, select {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0.5rem;
+  }
+
+  /* Better focus states for iPhone */
+  *:focus-visible {
+    outline: 3px solid #444684;
+    outline-offset: 2px;
+  }
+}
+
+/* Landscape mode on iPhone */
+@media (max-width: 932px) and (orientation: landscape) {
+  /* Reduce vertical padding in landscape */
+  section {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* Make hero less tall in landscape */
+  #hero, #hero-fullbleed {
+    height: 100lvh !important;
+  }
+}
+
+/* Dark mode support for iPhone */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light; /* Force light mode for now */
+  }
+}
+
+/* Notch/Dynamic Island safe areas (iPhone X and newer) */
+@supports (padding: max(0px)) {
+  body {
+    padding-top: max(0px, env(safe-area-inset-top));
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+
+  /* Adjust fixed elements for notch */
+  .fixed {
+    padding-left: max(0.5rem, env(safe-area-inset-left));
+    padding-right: max(0.5rem, env(safe-area-inset-right));
+  }
+}
+
+/* ===== Blog Article Styling ===== */
+
+/* Highlight keywords in blog articles (SEO, GEO, IA, etc.) */
+.highlight-keyword {
+  color: #444684;
+  font-weight: 600;
+  text-decoration: none;
+  background: linear-gradient(to bottom, transparent 0%, transparent 80%, rgba(68, 70, 132, 0.1) 80%, rgba(68, 70, 132, 0.1) 100%);
+  padding: 0 2px;
+  transition: background 0.2s ease;
+}
+
+.highlight-keyword:hover {
+  background: rgba(68, 70, 132, 0.15);
 }

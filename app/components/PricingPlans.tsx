@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import SectionFrame from "./SectionFrame";
+import { useOptimization } from "./OptimizationProvider";
 import {
   Plus,
   Minus,
@@ -14,6 +15,16 @@ import {
 } from "lucide-react";
 
 export default function PricingPlans() {
+  const config = useOptimization();
+
+  // Adaptive hover shadows - complex on macOS, simple on Windows
+  const hoverShadowClass = config.enableShadows
+    ? "hover:shadow-[0_40px_120px_-40px_rgba(68,70,132,0.45)]"
+    : "hover:shadow-xl";
+
+  const hoverShadowFeaturedClass = config.enableShadows
+    ? "hover:shadow-[0_60px_160px_-40px_rgba(68,70,132,0.70)]"
+    : "hover:shadow-2xl";
   return (
     <SectionFrame id="forfaits" className="bg-[#E4E4E4]">
       <div className="w-full max-w-[1200px] mx-auto px-6 md:px-10 py-20 md:py-28">
@@ -32,10 +43,10 @@ export default function PricingPlans() {
           {/* Offre 1 — SEO + GEO */}
           <article
             tabIndex={0}
-            className="group relative rounded-3xl bg-white p-7 md:p-8 ring-1 ring-[#444684]/12 shadow-[0_20px_60px_-28px_rgba(0,0,0,0.25)]
+            className={`group relative rounded-3xl bg-white p-7 md:p-8 ring-1 ring-[#444684]/12 shadow-[0_20px_60px_-28px_rgba(0,0,0,0.25)]
                        transition-all duration-300 ease-out hover:-translate-y-1 hover:ring-[#444684]/30
-                       hover:shadow-[0_40px_120px_-40px_rgba(68,70,132,0.45)] focus-visible:-translate-y-1
-                       focus-visible:ring-2 focus-visible:ring-[#444684]/50"
+                       ${hoverShadowClass} focus-visible:-translate-y-1
+                       focus-visible:ring-2 focus-visible:ring-[#444684]/50`}
           >
             <header className="mb-6">
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#444684]/10 text-[#444684]">⚡</div>
@@ -102,10 +113,10 @@ export default function PricingPlans() {
           {/* Offre 2 — SEO + GEO + Site web / Refonte */}
           <article
             tabIndex={0}
-            className="group relative rounded-3xl p-7 md:p-8 ring-1 ring-[#444684]/20 bg-[#444684] text-white
+            className={`group relative rounded-3xl p-7 md:p-8 ring-1 ring-[#444684]/20 bg-[#444684] text-white
                        shadow-[0_40px_120px_-40px_rgba(68,70,132,0.55)] transition-all duration-300 ease-out
-                       hover:-translate-y-1 hover:shadow-[0_60px_160px_-40px_rgba(68,70,132,0.70)]
-                       focus-visible:-translate-y-1 focus-visible:ring-2 focus-visible:ring-white/60"
+                       hover:-translate-y-1 ${hoverShadowFeaturedClass}
+                       focus-visible:-translate-y-1 focus-visible:ring-2 focus-visible:ring-white/60`}
           >
             <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-white/15 backdrop-blur px-3 py-1 text-xs font-medium">
               1er mois de maintenance OFFERT
@@ -158,10 +169,10 @@ export default function PricingPlans() {
           {/* Offre 3 — Grand groupes */}
           <article
             tabIndex={0}
-            className="group relative rounded-3xl bg-white p-7 md:p-8 ring-1 ring-[#444684]/12 shadow-[0_20px_60px_-28px_rgba(0,0,0,0.25)]
+            className={`group relative rounded-3xl bg-white p-7 md:p-8 ring-1 ring-[#444684]/12 shadow-[0_20px_60px_-28px_rgba(0,0,0,0.25)]
                        transition-all duration-300 ease-out hover:-translate-y-1 hover:ring-[#444684]/30
-                       hover:shadow-[0_40px_120px_-40px_rgba(68,70,132,0.45)] focus-visible:-translate-y-1
-                       focus-visible:ring-2 focus-visible:ring-[#444684]/50"
+                       ${hoverShadowClass} focus-visible:-translate-y-1
+                       focus-visible:ring-2 focus-visible:ring-[#444684]/50`}
           >
             <header className="mb-6">
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#444684]/10 text-[#444684]">👑</div>
@@ -306,14 +317,14 @@ export default function PricingPlans() {
           <Link
             href="/contact?type=audit"
             prefetch
-            className="inline-flex items-center justify-center rounded-full bg-[#444684] px-6 py-3 text-sm font-medium text-white hover:opacity-90"
+            className="inline-flex items-center justify-center rounded-full bg-[#444684] px-6 py-3 text-sm font-medium text-white transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-[#444684] focus-visible:outline-offset-2"
           >
-            Demander un audit gratuit (15 min)
+            Demander un audit gratuit (24-48h)
           </Link>
           <Link
-            href="/rendezvous"
+            href="/contact?type=call"
             prefetch
-            className="inline-flex items-center justify-center rounded-full bg-black/5 px-6 py-3 text-sm font-medium text-[#0b0b0c] hover:bg-black/10"
+            className="inline-flex items-center justify-center rounded-full bg-black/5 px-6 py-3 text-sm font-medium text-[#0b0b0c] hover:bg-black/10 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-[#444684] focus-visible:outline-offset-2"
           >
             Réserver un appel de 30 min
           </Link>

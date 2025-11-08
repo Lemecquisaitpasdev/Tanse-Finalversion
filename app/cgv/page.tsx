@@ -58,18 +58,18 @@ export default function Page() {
       <p>Droit français. Tribunal compétent : celui du siège de TANSE, sous réserve de dispositions impératives.</p>
 
       <hr className="my-8" />
-      <p className="text-sm text-neutral-600">TANSE — <i>forme à compléter</i> — SIREN <i>à compléter</i> — TVA <i>à compléter</i> — Siège : 12 Rue Exemple, 75002 Paris — <a className="underline" href="mailto:hello@tanse.io">hello@tanse.io</a></p>
+      <p className="text-sm text-neutral-600">TANSE — SAS au capital de 10 000 EUR — SIREN 21090087 — TVA FR12 764678834 — Siège : 22 avenue Robert Schuman, 75007 Paris — <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a></p>
 
       <Script id="ld-cgv" type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "@id": "https://tanse.io/cgv",
-            "url": "https://tanse.io/cgv",
+            "@id": "https://www.tanse.fr/cgv",
+            "url": "https://www.tanse.fr/cgv",
             "name": "Conditions Générales de Vente — TANSE",
             "inLanguage": "fr-FR",
-            "dateModified": "2025-10-20"
+            "dateModified": "2025-01-25"
           })
         }}
       />

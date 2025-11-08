@@ -18,17 +18,17 @@ export default function Page() {
       <p className="text-sm text-neutral-600 mb-8">Dernière mise à jour : {LAST_UPDATED}</p>
 
       <section className="space-y-3">
-        <p><b>Éditeur :</b> TANSE — Forme : <i>à compléter</i> — Capital : <i>à compléter</i></p>
-        <p><b>SIREN :</b> <i>à compléter</i> — <b>TVA :</b> <i>à compléter</i></p>
-        <p><b>Siège social :</b> 12 Rue Exemple, 75002 Paris, France</p>
-        <p><b>Contact :</b> hello@tanse.io — <b>Téléphone :</b> <i>à compléter</i></p>
+        <p><b>Éditeur :</b> TANSE — Forme : SAS au capital de 10 000 EUR</p>
+        <p><b>SIREN :</b> 21090087 — <b>TVA :</b> FR12 764678834</p>
+        <p><b>Siège social :</b> 22 avenue Robert Schuman, 75007 Paris, France</p>
+        <p><b>Contact :</b> contact@tanse.fr</p>
         <p><b>Directeur de la publication :</b> <i>à compléter</i></p>
-        <p><b>Hébergeur :</b> <i>à compléter (ex. Vercel)</i> — Adresse : <i>à compléter</i> — Téléphone : <i>à compléter</i></p>
+        <p><b>Hébergeur :</b> Vercel Inc. — 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis</p>
       </section>
 
       <hr className="my-8" />
       <p className="text-sm text-neutral-600">
-        TANSE — Siège : 12 Rue Exemple, 75002 Paris — <a className="underline" href="mailto:hello@tanse.io">hello@tanse.io</a>
+        TANSE — SAS au capital de 10 000 EUR — SIREN 21090087 — Siège : 22 avenue Robert Schuman, 75007 Paris — <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a>
       </p>
 
       <Script id="ld-legal" type="application/ld+json"
@@ -36,11 +36,11 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "@id": "https://tanse.io/mentions-legales",
-            "url": "https://tanse.io/mentions-legales",
+            "@id": "https://www.tanse.fr/mentions-legales",
+            "url": "https://www.tanse.fr/mentions-legales",
             "name": "Mentions légales — TANSE",
             "inLanguage": "fr-FR",
-            "dateModified": "2025-10-20"
+            "dateModified": "2025-01-25"
           })
         }}
       />

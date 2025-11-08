@@ -1,0 +1,83 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Modèle pour les leads/contacts généraux
+model Lead {
+  id          String   @id @default(cuid())
+  email       String
+  name        String?
+  company     String?
+  phone       String?
+  message     String?
+  source      String?  // "forfaits", "contact", "newsletter", "blog"
+  status      String   @default("new") // "new", "contacted", "qualified", "converted", "lost"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([email])
+  @@index([createdAt])
+  @@index([status])
+}
+
+// Modèle pour les prises de rendez-vous
+model Booking {
+  id              String   @id @default(cuid())
+  email           String
+  name            String
+  company         String?
+  phone           String
+  service         String   // "audit", "seo-local", "geo", "pack-complet"
+  preferredDate   DateTime?
+  preferredTime   String?  // "matin", "après-midi"
+  message         String?
+  status          String   @default("pending") // "pending", "confirmed", "completed", "cancelled"
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([email])
+  @@index([createdAt])
+  @@index([status])
+}
+
+// Modèle pour les demandes de forfaits spécifiques
+model ForfaitRequest {
+  id              String   @id @default(cuid())
+  email           String
+  name            String
+  company         String?
+  phone           String?
+  forfaitType     String   // "seo-geo", "pack-complet", "custom"
+  forfaitName     String   // "Pack SEO + GEO", "Pack Complet", etc.
+  budget          String?
+  message         String?
+  status          String   @default("new")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([email])
+  @@index([forfaitType])
+  @@index([createdAt])
+}
+
+// Modèle pour les inscriptions newsletter
+model Newsletter {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  name        String?
+  subscribed  Boolean  @default(true)
+  source      String?  // Page d'où vient l'inscription
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([email])
+  @@index([subscribed])
+}

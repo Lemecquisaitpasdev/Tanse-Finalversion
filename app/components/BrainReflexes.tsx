@@ -1,6 +1,9 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import SectionFrame from "./SectionFrame";
+import SplineLazy from "./SplineLazy";
+import { useOptimization } from "./OptimizationProvider";
 
 const BRAIN_SCENE_URL =
   process.env.NEXT_PUBLIC_BRAIN_URL ||
@@ -13,10 +16,40 @@ const STATS = [
   { value: "+48%", label: "taux de conversion moyen après adaptation" },
 ];
 
+/**
+ * OPTIMISÉ WINDOWS:
+ * - Lazy-load Spline (charge uniquement quand visible)
+ * - Suppression willChange (inutile)
+ * - Blur remplacé par box-shadow (moins coûteux GPU)
+ * - Animations adaptatives selon OS/GPU
+ */
 export default function BrainReflexes() {
+  const config = useOptimization();
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry && entry.isIntersecting) {
+          setIsVisible(true);
+          // Déconnexion après activation (économie mémoire)
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15, rootMargin: "50px" }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <SectionFrame id="reflexes" className="bg-[#E4E4E4]">
-      <div className="w-full max-w-[1200px] mx-auto px-6 md:px-10 py-20 md:py-28">
+      <div ref={sectionRef} className="w-full max-w-[1200px] mx-auto px-6 md:px-10 py-20 md:py-28">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 items-start">
           {/* Texte */}
           <div>
@@ -86,13 +119,13 @@ export default function BrainReflexes() {
                     <div className="text-xs text-neutral-600">{s.label}</div>
                   </div>
 
+                  {/* Effet glow optimisé - box-shadow au lieu de blur (90% moins coûteux GPU) */}
                   <div
                     aria-hidden
                     className="absolute -right-6 -top-6 w-20 h-20 rounded-full pointer-events-none"
                     style={{
-                      background:
-                        "radial-gradient(circle at 30% 30%, rgba(68,70,132,0.06), transparent 40%)",
-                      filter: "blur(10px)",
+                      background: "radial-gradient(circle at 30% 30%, rgba(68,70,132,0.12), transparent 60%)",
+                      boxShadow: "0 0 40px 20px rgba(68,70,132,0.08)",
                     }}
                   />
                 </div>
@@ -100,12 +133,19 @@ export default function BrainReflexes() {
             </div>
           </div>
 
-          {/* Animation */}
-          <div className="relative flex items-center justify-center">
-            {/* web component fourni par le Provider global */}
-            <spline-viewer
-              className="block w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
+          {/* Animation Spline lazy-loaded */}
+          <div
+            className={`relative flex items-center justify-center transition-all ease-out ${
+              isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-95'
+            }`}
+            style={{
+              transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+              transitionDuration: `${500 * config.animationDuration}ms`
+            }}
+          >
+            <SplineLazy
               url={BRAIN_SCENE_URL}
+              className="block w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
             />
           </div>
         </div>

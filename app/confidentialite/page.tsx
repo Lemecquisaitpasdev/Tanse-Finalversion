@@ -19,8 +19,8 @@ export default function Page() {
 
       <h2 className="mt-8 text-xl font-semibold">1. Responsable de traitement</h2>
       <p>
-        TANSE, 12 Rue Exemple, 75002 Paris, France —{" "}
-        <a className="underline" href="mailto:hello@tanse.io">hello@tanse.io</a>
+        TANSE, SAS au capital de 10 000 EUR — SIREN 21090087 — 22 avenue Robert Schuman, 75007 Paris, France —{" "}
+        <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a>
       </p>
 
       <h2 className="mt-8 text-xl font-semibold">2. Données collectées</h2>
@@ -70,12 +70,12 @@ export default function Page() {
       <h2 className="mt-8 text-xl font-semibold">7. Vos droits</h2>
       <p>
         Accès, rectification, effacement, opposition, limitation, portabilité.
-        Demandes à <a className="underline" href="mailto:hello@tanse.io">hello@tanse.io</a>.
+        Demandes à <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a>.
         Réclamation possible auprès de la CNIL.
       </p>
 
       <h2 className="mt-8 text-xl font-semibold">8. Contact DPO</h2>
-      <p><b>DPO :</b> <i>à désigner</i> — <a className="underline" href="mailto:hello@tanse.io">hello@tanse.io</a></p>
+      <p><b>DPO :</b> <i>à désigner</i> — <a className="underline" href="mailto:contact@tanse.fr">contact@tanse.fr</a></p>
 
       <h2 className="mt-8 text-xl font-semibold">9. Retrait du consentement</h2>
       <ConsentPreferencesButton />
@@ -87,11 +87,11 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "@id": "https://tanse.io/confidentialite",
-            "url": "https://tanse.io/confidentialite",
+            "@id": "https://www.tanse.fr/confidentialite",
+            "url": "https://www.tanse.fr/confidentialite",
             "name": "Politique de confidentialité — TANSE",
             "inLanguage": "fr-FR",
-            "dateModified": "2025-10-20"
+            "dateModified": "2025-01-25"
           }),
         }}
       />

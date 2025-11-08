@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Mail, MapPin, ArrowUpRight, Twitter, Linkedin, Github } from "lucide-react";
+import { Mail, MapPin, ArrowUpRight, Cookie } from "lucide-react";
 
 export default function SiteFooter(): JSX.Element {
   const pathname = usePathname();
@@ -18,6 +18,11 @@ export default function SiteFooter(): JSX.Element {
     { href: "/ia", label: "Politique IA" },
   ];
   const isActive = (href: string) => normalize(pathname) === normalize(href);
+
+  const manageCookies = () => {
+    localStorage.removeItem("tanse-cookie-consent");
+    window.location.reload();
+  };
 
   return (
     <footer className="relative mt-28 text-slate-900">
@@ -39,14 +44,14 @@ export default function SiteFooter(): JSX.Element {
           />
           <div className="flex items-center gap-3">
             <Link
-              href="mailto:hello@tanse.io"
+              href="mailto:contact@tanse.fr"
               className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/70 px-5 py-2.5 text-sm font-medium shadow-sm backdrop-blur transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#444684]/30"
             >
               <Image src="/brand/tanse-mark.png?v=3" alt="" width={20} height={20} className="h-5 w-5" />
               Nous contacter
             </Link>
             <Link
-              href="/forfaits"
+              href="/forfaits-geo-seo"
               className="inline-flex items-center gap-2 rounded-full bg-[#444684] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#444684]/40"
             >
               Forfaits <ArrowUpRight className="h-4 w-4" />
@@ -58,9 +63,9 @@ export default function SiteFooter(): JSX.Element {
           <div>
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-700">Entreprise</h3>
             <ul className="space-y-2 text-sm text-slate-800">
-              <li><Link href="/entreprise" className="hover:text-slate-950 transition">À propos</Link></li>
-              <li><Link href="/entreprise#method" className="hover:text-slate-950 transition">Notre méthode</Link></li>
-              <li><Link href="/entreprise#equipe" className="hover:text-slate-950 transition">Équipe</Link></li>
+              <li><Link href="/agence-geo-paris-lyon" className="hover:text-slate-950 transition">À propos</Link></li>
+              <li><Link href="/agence-geo-paris-lyon#method" className="hover:text-slate-950 transition">Notre méthode</Link></li>
+              <li><Link href="/agence-geo-paris-lyon#equipe" className="hover:text-slate-950 transition">Équipe</Link></li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-slate-600" />
                 <span>Paris & Lyon</span>
@@ -71,7 +76,9 @@ export default function SiteFooter(): JSX.Element {
           <div>
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-700">Produits</h3>
             <ul className="space-y-2 text-sm text-slate-800">
-              <li><Link href="/forfaits" className="hover:text-slate-950 transition">Forfaits</Link></li>
+              <li><Link href="/forfaits-geo-seo" className="hover:text-slate-950 transition">Forfaits</Link></li>
+              <li><Link href="/geo" className="hover:text-slate-950 transition">GEO - Optimisation IA</Link></li>
+              <li><Link href="/blog-seo-geo" className="hover:text-slate-950 transition">Blog SEO & GEO</Link></li>
               <li><Link href="/#stats" className="hover:text-slate-950 transition">Résultats & chiffres</Link></li>
               <li><Link href="/#insights" className="hover:text-slate-950 transition">Insights trafic & conversions</Link></li>
             </ul>
@@ -80,21 +87,11 @@ export default function SiteFooter(): JSX.Element {
           <div>
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-700">Ressources</h3>
             <ul className="space-y-2 text-sm text-slate-800">
-              <li><Link href="/faq" className="hover:text-slate-950 transition">FAQ</Link></li>
+              <li><Link href="/#faq" className="hover:text-slate-950 transition">FAQ</Link></li>
+              <li><Link href="/blog-seo-geo#newsletter" className="hover:text-slate-950 transition">Newsletter</Link></li>
               <li>
-                <Link href="mailto:hello@tanse.io" className="inline-flex items-center gap-2 hover:text-slate-950 transition">
-                  <Mail className="h-4 w-4 text-slate-600" /> hello@tanse.io
-                </Link>
-              </li>
-              <li className="flex items-center gap-2 pt-1">
-                <Link href="https://twitter.com" aria-label="Twitter" className="rounded-full border border-slate-300 p-2 text-slate-700 transition hover:bg-white/70">
-                  <Twitter className="h-4 w-4" />
-                </Link>
-                <Link href="https://www.linkedin.com" aria-label="LinkedIn" className="rounded-full border border-slate-300 p-2 text-slate-700 transition hover:bg-white/70">
-                  <Linkedin className="h-4 w-4" />
-                </Link>
-                <Link href="https://github.com" aria-label="GitHub" className="rounded-full border border-slate-300 p-2 text-slate-700 transition hover:bg-white/70">
-                  <Github className="h-4 w-4" />
+                <Link href="mailto:contact@tanse.fr" className="inline-flex items-center gap-2 hover:text-slate-950 transition">
+                  <Mail className="h-4 w-4 text-slate-600" /> contact@tanse.fr
                 </Link>
               </li>
             </ul>
@@ -118,9 +115,20 @@ export default function SiteFooter(): JSX.Element {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-slate-300/70 pt-6 text-xs text-slate-700 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} TANSE — Tous droits réservés. | TVA & Immatriculation sur la facture.</p>
-          <p>Contact : <Link href="mailto:hello@tanse.io" className="underline decoration-slate-400 underline-offset-2 hover:text-slate-900">hello@tanse.io</Link></p>
+        <div className="mt-12 flex flex-col gap-4 border-t border-slate-300/70 pt-6 text-xs text-slate-700">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p>© {new Date().getFullYear()} TANSE — Tous droits réservés. | TVA & Immatriculation sur la facture.</p>
+            <p>Contact : <Link href="mailto:contact@tanse.fr" className="underline decoration-slate-400 underline-offset-2 hover:text-slate-900">contact@tanse.fr</Link></p>
+          </div>
+          <div className="flex items-center justify-center sm:justify-start">
+            <button
+              onClick={manageCookies}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/70 px-4 py-2 text-xs font-medium text-slate-700 shadow-sm backdrop-blur transition hover:bg-white hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400"
+            >
+              <Cookie className="h-3.5 w-3.5" />
+              Gérer les cookies
+            </button>
+          </div>
         </div>
       </div>
     </footer>

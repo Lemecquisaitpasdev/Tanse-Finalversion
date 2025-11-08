@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, MapPin, ArrowUpRight, Twitter, Linkedin, Github } from "lucide-react";
+import { Mail, MapPin, ArrowUpRight } from "lucide-react";
 
 export default function EndSection() {
   return (
@@ -27,7 +27,7 @@ export default function EndSection() {
 
           <div className="flex items-center gap-3">
             <Link
-              href="mailto:hello@tanse.io"
+              href="mailto:contact@tanse.fr"
               className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium shadow-sm ring-1 ring-black/10 hover:bg-white/80"
             >
               <Image
@@ -40,7 +40,7 @@ export default function EndSection() {
               Nous contacter
             </Link>
             <Link
-              href="/forfaits"
+              href="/forfaits-geo-seo"
               className="inline-flex items-center gap-2 rounded-full bg-[#FFE79A] px-4 py-2 text-sm font-semibold text-black shadow-sm ring-1 ring-black/10 hover:bg-[#ffe27f]"
             >
               Forfaits <ArrowUpRight className="h-4 w-4" />
@@ -53,9 +53,9 @@ export default function EndSection() {
           <div>
             <h3 className="mb-3 text-sm font-semibold text-neutral-800">Entreprise</h3>
             <ul className="space-y-2 text-sm text-neutral-700">
-              <li><Link href="/entreprise" className="hover:underline">À propos</Link></li>
-              <li><Link href="/entreprise#method" className="hover:underline">Notre méthode</Link></li>
-              <li><Link href="/entreprise#equipe" className="hover:underline">Équipe</Link></li>
+              <li><Link href="/agence-geo-paris-lyon" className="hover:underline">À propos</Link></li>
+              <li><Link href="/agence-geo-paris-lyon#method" className="hover:underline">Notre méthode</Link></li>
+              <li><Link href="/agence-geo-paris-lyon#equipe" className="hover:underline">Équipe</Link></li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 opacity-60" /> Paris & Lyon
               </li>
@@ -65,7 +65,8 @@ export default function EndSection() {
           <div>
             <h3 className="mb-3 text-sm font-semibold text-neutral-800">Produits</h3>
             <ul className="space-y-2 text-sm text-neutral-700">
-              <li><Link href="/forfaits" className="hover:underline">Forfaits</Link></li>
+              <li><Link href="/forfaits-geo-seo" className="hover:underline">Forfaits</Link></li>
+              <li><Link href="/geo" className="hover:underline">GEO - Optimisation IA</Link></li>
               <li><Link href="/#stats" className="hover:underline">Résultats & chiffres</Link></li>
               <li><Link href="/#insights" className="hover:underline">Insights trafic & conversions</Link></li>
             </ul>
@@ -74,21 +75,10 @@ export default function EndSection() {
           <div>
             <h3 className="mb-3 text-sm font-semibold text-neutral-800">Ressources</h3>
             <ul className="space-y-2 text-sm text-neutral-700">
-              <li><Link href="/faq" className="hover:underline">FAQ</Link></li>
+              <li><Link href="/#faq" className="hover:underline">FAQ</Link></li>
               <li>
-                <Link href="mailto:hello@tanse.io" className="inline-flex items-center gap-2 hover:underline">
-                  <Mail className="h-4 w-4 opacity-60" /> hello@tanse.io
-                </Link>
-              </li>
-              <li className="flex items-center gap-3 pt-1">
-                <Link href="https://twitter.com" className="hover:opacity-80" aria-label="Twitter">
-                  <Twitter className="h-5 w-5" />
-                </Link>
-                <Link href="https://www.linkedin.com" className="hover:opacity-80" aria-label="LinkedIn">
-                  <Linkedin className="h-5 w-5" />
-                </Link>
-                <Link href="https://github.com" className="hover:opacity-80" aria-label="GitHub">
-                  <Github className="h-5 w-5" />
+                <Link href="mailto:contact@tanse.fr" className="inline-flex items-center gap-2 hover:underline">
+                  <Mail className="h-4 w-4 opacity-60" /> contact@tanse.fr
                 </Link>
               </li>
             </ul>
@@ -97,11 +87,12 @@ export default function EndSection() {
           <div>
             <h3 className="mb-3 text-sm font-semibold text-neutral-800">Légal</h3>
             <ul className="space-y-2 text-sm text-neutral-700">
-              <li><Link href="/legal/cgv" className="hover:underline">CGV</Link></li>
-              <li><Link href="/legal/cgu" className="hover:underline">CGU</Link></li>
-              <li><Link href="/legal/confidentialite" className="hover:underline">Politique de confidentialité</Link></li>
-              <li><Link href="/legal/cookies" className="hover:underline">Politique cookies</Link></li>
-              <li><Link href="/legal/mentions-legales" className="hover:underline">Mentions légales</Link></li>
+              <li><Link href="/cgv" className="hover:underline">CGV</Link></li>
+              <li><Link href="/conditions" className="hover:underline">CGU</Link></li>
+              <li><Link href="/confidentialite" className="hover:underline">Politique de confidentialité</Link></li>
+              <li><Link href="/cookies" className="hover:underline">Politique cookies</Link></li>
+              <li><Link href="/mentions-legales" className="hover:underline">Mentions légales</Link></li>
+              <li><Link href="/ia" className="hover:underline">Politique IA</Link></li>
             </ul>
           </div>
         </div>
