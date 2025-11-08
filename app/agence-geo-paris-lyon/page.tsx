@@ -48,14 +48,14 @@ const TEAM: Member[] = [
     role: "Head of Local SEO",
     bio: "Optimisation locale multi-secteurs (retail, services, B2B). Focus entités et visibilité de proximité.",
     image: "/team/raphpro.png",
-    imageStyle: "object-[50%_30%]", // Centré plus haut de 20%
+    imageStyle: "object-[50%_20%]", // Centré plus haut de 30%
   },
   {
     name: "M. Rayane",
     role: "Lead GEO (Answer Engines)",
     bio: "Structure l'information pour les moteurs de réponse (IA). Schémas, graphes de connaissances, gouvernance des sources.",
     image: "/team/rayane.png",
-    imageStyle: "object-[50%_25%] scale-115", // Centré plus haut de 25% + zoom 15%
+    imageStyle: "object-top scale-[1.30]", // Centré tout en haut + zoom 30%
   },
   {
     name: "M. Valentin",
