@@ -41,7 +41,7 @@ async function main() {
 
     console.log(`📋 Nombre total de leads: ${allLeads.length}`);
     console.log('📋 Derniers leads:');
-    allLeads.forEach((lead, index) => {
+    allLeads.forEach((lead: typeof allLeads[0], index: number) => {
       console.log(`  ${index + 1}. ${lead.name} (${lead.email}) - ${lead.source} - ${lead.createdAt}`);
     });
 
