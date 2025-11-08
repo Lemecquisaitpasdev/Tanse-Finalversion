@@ -1,32 +1,17 @@
 // app/blog-seo-geo/page.tsx
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Mail } from "lucide-react";
 import SiteFooter from "../components/SiteFooter";
 import NewsletterPopup from "../components/NewsletterPopup";
+import SplineLazy from "../components/SplineLazy";
 import { articles } from "./data/articles";
 
 export default function BlogPage() {
   const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
-  const globeViewerRef = useRef<any>(null);
-
-  useEffect(() => {
-    // Contrôle du zoom de la caméra Spline pour le globe
-    const viewer = globeViewerRef.current;
-    if (viewer) {
-      const handleLoad = () => {
-        const spline = (viewer as any).spline;
-        if (spline && spline.setZoom) {
-          spline.setZoom(0.6);
-        }
-      };
-      viewer.addEventListener('load', handleLoad);
-      return () => viewer.removeEventListener('load', handleLoad);
-    }
-  }, []);
 
   // Trier : articles épinglés en premier, puis par date décroissante
   const sortedArticles = [...articles].sort((a, b) => {
@@ -102,13 +87,16 @@ export default function BlogPage() {
         </p>
 
         {/* Animation Spline 3D - Globe terrestre */}
-        <div className="spline-container relative w-full max-w-[340px] h-[320px] md:max-w-[600px] md:h-[600px] mx-auto mb-16 rounded-3xl shadow-lg">
-          <spline-viewer
-            ref={globeViewerRef}
+        <div className="w-full max-w-[320px] h-[280px] md:max-w-[600px] md:h-[600px] mx-auto mb-16 rounded-3xl shadow-lg md:rounded-none md:shadow-none">
+          <SplineLazy
             url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
-            className="w-full h-full"
-            loading-anim="true"
-            events-target="local"
+            className="block w-full h-full"
+            onLoad={(spline: any) => {
+              // Dézoomer la caméra pour voir plus de contenu
+              if (spline && spline.setZoom) {
+                spline.setZoom(0.6);
+              }
+            }}
           />
         </div>
 

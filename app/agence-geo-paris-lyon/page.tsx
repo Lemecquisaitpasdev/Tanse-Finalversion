@@ -3,7 +3,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
 import type { ReactNode } from "react";
 import FadeIn from "../components/FadeIn";
 import SplineLazy from "../components/SplineLazy";
@@ -71,23 +70,6 @@ const TEAM: Member[] = [
 ];
 
 export default function Page() {
-  const clavierViewerRef = useRef<any>(null);
-
-  useEffect(() => {
-    // Contrôle du zoom de la caméra Spline pour le clavier
-    const viewer = clavierViewerRef.current;
-    if (viewer) {
-      const handleLoad = () => {
-        const spline = (viewer as any).spline;
-        if (spline && spline.setZoom) {
-          spline.setZoom(0.6);
-        }
-      };
-      viewer.addEventListener('load', handleLoad);
-      return () => viewer.removeEventListener('load', handleLoad);
-    }
-  }, []);
-
   return (
     <main className="bg-[#E4E4E4] text-[#0b0b0c] border-t border-transparent overflow-x-hidden">
       {/* Intro - Responsive */}
@@ -128,13 +110,16 @@ export default function Page() {
 
           {/* Visuel (large) - Animation Spline 3D - Clavier */}
           <div className="md:col-span-6">
-            <div className="relative w-full max-w-[360px] h-[320px] md:max-w-full md:h-[clamp(280px,80vh,680px)] mx-auto md:mx-0 rounded-3xl shadow-lg md:rounded-lg md:shadow-none">
-              <spline-viewer
-                ref={clavierViewerRef}
+            <div className="w-full max-w-[320px] h-[280px] md:max-w-full md:h-[clamp(280px,80vh,680px)] mx-auto md:mx-0 rounded-3xl shadow-lg md:rounded-none md:shadow-none">
+              <SplineLazy
                 url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
-                className="w-full h-full"
-                loading-anim="true"
-                events-target="local"
+                className="block w-full h-full"
+                onLoad={(spline: any) => {
+                  // Dézoomer la caméra pour voir plus de contenu
+                  if (spline && spline.setZoom) {
+                    spline.setZoom(0.6);
+                  }
+                }}
               />
             </div>
           </div>

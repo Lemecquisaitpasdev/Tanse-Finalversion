@@ -57,11 +57,10 @@ export default function FinalCta() {
           </div>
 
           {/* Animation personnages - AVANT le CTA */}
-          <div className="w-full max-w-[360px] h-[300px] mx-auto rounded-3xl shadow-lg">
+          <div className="w-full max-w-[320px] h-[280px] mx-auto rounded-3xl shadow-lg md:rounded-none md:shadow-none">
             <SplineLazy
               url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
-              className="w-full h-full"
-              aria-label="Animation personnages"
+              className="block w-full h-full"
               onLoad={(spline: any) => {
                 // Dézoomer la caméra pour voir plus de contenu
                 if (spline && spline.setZoom) {

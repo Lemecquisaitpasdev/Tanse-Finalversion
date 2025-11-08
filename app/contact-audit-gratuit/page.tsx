@@ -118,7 +118,7 @@ export default function Page() {
 
       {/* Spline 3D Scene - Animation calendrier */}
       <section className="relative mx-auto w-full max-w-7xl px-0 md:px-6 mb-12">
-        <div className="w-full max-w-[360px] h-[340px] md:max-w-full md:h-[58vh] mx-auto rounded-3xl shadow-lg md:rounded-none md:shadow-none bg-[#E4E4E4]">
+        <div className="w-full max-w-[320px] h-[280px] md:max-w-full md:h-[58vh] mx-auto rounded-3xl shadow-lg md:rounded-none md:shadow-none bg-[#E4E4E4]">
           <SplineLazy
             url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
             className="block w-full h-full"
