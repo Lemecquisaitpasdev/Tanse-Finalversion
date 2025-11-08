@@ -124,6 +124,14 @@ export default function Page() {
             url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
             className="block w-full h-[46vh] md:h-[58vh]"
             style={{ background: 'transparent' }}
+            onLoad={(spline: any) => {
+              // Bloque complètement la caméra - pas de zoom, rotation ou déplacement
+              if (spline) {
+                spline.setOrbitEnabled && spline.setOrbitEnabled(false);
+                spline.setZoomEnabled && spline.setZoomEnabled(false);
+                spline.setPanEnabled && spline.setPanEnabled(false);
+              }
+            }}
           />
         </div>
       </section>
