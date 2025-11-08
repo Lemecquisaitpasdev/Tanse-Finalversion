@@ -146,12 +146,12 @@ export default function BrainReflexes() {
               transitionDuration: `${500 * config.animationDuration}ms`
             }}
           >
-            <div className="w-full max-w-[320px] h-[280px] md:max-w-full md:h-[520px] lg:h-[640px] mx-auto rounded-3xl md:rounded-none">
+            <div className="w-full max-w-[320px] lg:max-w-full h-[280px] lg:h-[640px] mx-auto rounded-2xl">
               <SplineLazy
                 url={BRAIN_SCENE_URL}
                 className="block w-full h-full"
                 onLoad={(spline: any) => {
-                  // Dézoomer la caméra pour voir plus de contenu
+                  // Dézoomer la caméra pour voir plus de contenu sur mobile
                   if (spline && spline.setZoom) {
                     spline.setZoom(0.6);
                   }

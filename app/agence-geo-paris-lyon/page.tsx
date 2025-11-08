@@ -110,12 +110,12 @@ export default function Page() {
 
           {/* Visuel (large) - Animation Spline 3D - Clavier */}
           <div className="md:col-span-6">
-            <div className="w-full max-w-[320px] h-[280px] md:max-w-full md:h-[520px] lg:h-[640px] mx-auto md:mx-0 rounded-3xl md:rounded-lg">
+            <div className="w-full max-w-[360px] lg:max-w-full h-[320px] lg:h-[clamp(280px,80vh,680px)] mx-auto lg:mx-0 rounded-lg overflow-hidden">
               <SplineLazy
                 url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
                 className="block w-full h-full"
                 onLoad={(spline: any) => {
-                  // Dézoomer la caméra pour voir plus de contenu
+                  // Dézoomer la caméra pour voir plus de contenu sur mobile
                   if (spline && spline.setZoom) {
                     spline.setZoom(0.6);
                   }

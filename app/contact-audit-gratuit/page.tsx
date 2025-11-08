@@ -118,14 +118,14 @@ export default function Page() {
 
       {/* Spline 3D Scene - Animation calendrier */}
       <section className="relative mx-auto w-full max-w-7xl px-0 md:px-6 mb-12">
-        <div className="w-full max-w-[320px] h-[280px] md:max-w-full md:h-[58vh] mx-auto rounded-3xl md:rounded-none bg-[#E4E4E4]">
+        <div className="w-full max-w-[360px] lg:max-w-full h-[340px] lg:h-[58vh] mx-auto overflow-hidden bg-[#E4E4E4]">
           <SplineLazy
             url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
             className="block w-full h-full"
             style={{ background: 'transparent' }}
             onLoad={(spline: any) => {
               if (spline) {
-                // Dézoomer la caméra pour voir plus de contenu (les 2 calendriers)
+                // Dézoomer la caméra pour voir plus de contenu sur mobile (les 2 calendriers)
                 if (spline.setZoom) {
                   spline.setZoom(0.6);
                 }

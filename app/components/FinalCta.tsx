@@ -57,7 +57,7 @@ export default function FinalCta() {
           </div>
 
           {/* Animation personnages - AVANT le CTA */}
-          <div className="w-full max-w-[320px] h-[280px] mx-auto rounded-3xl">
+          <div className="w-full max-w-[360px] h-[300px] mx-auto rounded-3xl">
             <SplineLazy
               url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
               className="block w-full h-full"
@@ -113,17 +113,11 @@ export default function FinalCta() {
               transitionDuration: `${500 * config.animationDuration}ms`
             }}
           >
-            <div className="rounded-3xl h-[min(75vh,900px)] min-h-[650px]">
+            <div className="rounded-3xl bg-white shadow-[0_25px_80px_-20px_rgba(0,0,0,0.35)] overflow-hidden h-[min(75vh,900px)] min-h-[650px]">
               <SplineLazy
                 url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
                 className="w-full h-full"
                 aria-label="Animation finale"
-                onLoad={(spline: any) => {
-                  // Dézoomer la caméra pour voir plus de contenu
-                  if (spline && spline.setZoom) {
-                    spline.setZoom(0.6);
-                  }
-                }}
               />
             </div>
           </div>

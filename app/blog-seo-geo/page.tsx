@@ -87,12 +87,12 @@ export default function BlogPage() {
         </p>
 
         {/* Animation Spline 3D - Globe terrestre */}
-        <div className="w-full max-w-[320px] h-[280px] md:max-w-[600px] md:h-[600px] mx-auto mb-16 rounded-3xl md:rounded-none">
+        <div className="w-full max-w-[340px] lg:max-w-[600px] h-[320px] lg:h-[600px] mx-auto mb-16 overflow-hidden rounded-3xl">
           <SplineLazy
             url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
             className="block w-full h-full"
             onLoad={(spline: any) => {
-              // Dézoomer la caméra pour voir plus de contenu
+              // Dézoomer la caméra pour voir plus de contenu sur mobile
               if (spline && spline.setZoom) {
                 spline.setZoom(0.6);
               }
