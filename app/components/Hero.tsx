@@ -62,7 +62,7 @@ export default function Hero() {
         {isMobile ? (
           /* Mobile: Image statique avec dégradé */
           <div className="w-full h-full flex items-center justify-center px-5 py-16" style={{
-            background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #93c5fd 100%)'
+            background: 'linear-gradient(135deg, #444684 0%, #6366f1 50%, #E4E4E4 100%)'
           }}>
             <div className="text-center text-white space-y-6 max-w-md">
               {/* Logo tanse */}

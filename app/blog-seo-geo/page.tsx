@@ -59,7 +59,7 @@ export default function BlogPage() {
       </div>
 
       {/* Logo TANSE en haut à droite */}
-      <div className="absolute top-4 md:top-6 right-4 md:right-8 z-20">
+      <div className="hidden md:block absolute top-4 md:top-6 right-4 md:right-8 z-20">
         <Link href="/">
           <Image
             src="/brand/tanse-logo.png?v=3"
