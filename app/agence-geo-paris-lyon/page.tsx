@@ -111,7 +111,7 @@ export default function Page() {
 
           {/* Animation Clavier - DESKTOP */}
           <div className="hidden md:block md:col-span-6">
-            <div className="relative w-full h-[clamp(280px,80vh,680px)] rounded-lg overflow-hidden shadow-lg">
+            <div className="relative w-full h-[clamp(220px,60vh,500px)]">
               {mode === "performance" ? (
                 /* Mode Performance - Image statique */
                 <Image
@@ -119,7 +119,7 @@ export default function Page() {
                   alt="Clavier d'ordinateur"
                   width={1360}
                   height={1360}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                   priority
                 />
               ) : (
@@ -136,7 +136,7 @@ export default function Page() {
 
           {/* Animation Clavier - MOBILE */}
           <div className="md:hidden md:col-span-6">
-            <div className="w-full max-w-[360px] h-[320px] mx-auto rounded-lg overflow-hidden shadow-lg">
+            <div className="w-full max-w-[280px] h-[240px] mx-auto">
               {mode === "performance" ? (
                 /* Mode Performance - Image statique */
                 <Image
@@ -144,7 +144,7 @@ export default function Page() {
                   alt="Clavier d'ordinateur"
                   width={720}
                   height={640}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                   priority
                 />
               ) : (
