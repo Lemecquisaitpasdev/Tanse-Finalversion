@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useRef, useMemo } from "react";
 import { useOptimization } from "./OptimizationProvider";
 
 type Bar = { label: string; value: number; hint?: string };
@@ -15,36 +15,11 @@ const DATA: Bar[] = [
 ];
 
 /**
- * OPTIMISÉ WINDOWS:
- * - Animations wave désactivées sur Windows (enableInfiniteAnimations)
- * - Blur désactivé sur Windows (enableBlur)
- * - Durée animations réduite sur Windows low-end (animationDuration)
+ * Graphique sans animations - affichage complet immédiat
  */
 export default function StatsPillars() {
   const config = useOptimization();
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  // Durée animation adaptative x2 plus rapide (1.25s sur macOS, 0.75s sur Windows low-end)
-  const animDuration = useMemo(() => 1.25 * config.animationDuration, [config.animationDuration]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry && entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section id="chiffres" className="relative bg-[#E4E4E4]" ref={sectionRef}>
@@ -72,36 +47,15 @@ export default function StatsPillars() {
                     <div
                       className="absolute inset-x-0 bottom-0 rounded-t-2xl liquid-fill"
                       style={{
-                        height: isVisible ? `${b.value}%` : "0%",
+                        height: `${b.value}%`,
                         background: config.enableGradients
                           ? "linear-gradient(180deg,#e7e7ff 0%,#4a4570 100%)"
                           : "#4a4570",
-                        // Animation séquentielle adaptative
-                        transition: `height ${animDuration}s cubic-bezier(0.45, 0, 0.15, 1) ${i * animDuration}s`,
                       }}
                       title={`${b.label} : ${b.hint ?? b.value + "%"}`}
-                    >
-                      {/* Liquid wave effect - désactivé sur Windows pour performance */}
-                      {config.enableInfiniteAnimations && config.enableBlur && (
-                        <div
-                          className="absolute inset-x-0 top-0 h-3"
-                          style={{
-                            background: "inherit",
-                            filter: "blur(2px)",
-                            opacity: 0.6,
-                            animation: isVisible ? "wave 3s ease-in-out infinite" : "none",
-                            animationDelay: `${i * animDuration}s`,
-                          }}
-                        />
-                      )}
-                    </div>
+                    />
                     <div
-                      className="absolute top-2 left-1/2 -translate-x-1/2 text-[11px] font-medium bg-white/90 px-2 py-0.5 rounded-full shadow-sm transition-opacity duration-700"
-                      style={{
-                        opacity: isVisible ? 1 : 0,
-                        // Le badge apparaît vers la fin du remplissage de sa barre
-                        transitionDelay: `${i * animDuration + (2 * config.animationDuration)}s`,
-                      }}
+                      className="absolute top-2 left-1/2 -translate-x-1/2 text-[11px] font-medium bg-white/90 px-2 py-0.5 rounded-full shadow-sm"
                     >
                       {b.hint ?? `${b.value}%`}
                     </div>
@@ -135,17 +89,6 @@ export default function StatsPillars() {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes wave {
-          0%, 100% {
-            transform: translateY(0) scaleY(1);
-          }
-          50% {
-            transform: translateY(-2px) scaleY(1.1);
-          }
-        }
-      `}</style>
     </section>
   );
 }
