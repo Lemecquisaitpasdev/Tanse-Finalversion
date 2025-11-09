@@ -6,6 +6,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import FadeIn from "../components/FadeIn";
 import SplineLazy from "../components/SplineLazy";
+import { usePerformance } from "../contexts/PerformanceContext";
 
 type YearItem = { year: string; bullets: ReactNode[]; accent?: string };
 
@@ -70,6 +71,8 @@ const TEAM: Member[] = [
 ];
 
 export default function Page() {
+  const { mode } = usePerformance();
+
   return (
     <main className="bg-[#E4E4E4] text-[#0b0b0c] border-t border-transparent overflow-x-hidden">
       {/* Intro */}
@@ -106,30 +109,56 @@ export default function Page() {
             </p>
           </div>
 
-          {/* Visuel (large) - Animation Spline 3D Clavier - DESKTOP (version originale intacte) */}
+          {/* Animation Clavier - DESKTOP */}
           <div className="hidden md:block md:col-span-6">
-            <div className="relative w-full h-[clamp(280px,80vh,680px)] rounded-lg overflow-hidden">
-              <spline-viewer
-                url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
-                className="w-full h-full"
-                loading-anim="true"
-                events-target="local"
-              />
+            <div className="relative w-full h-[clamp(280px,80vh,680px)] rounded-lg overflow-hidden shadow-lg">
+              {mode === "performance" ? (
+                /* Mode Performance - Image statique */
+                <Image
+                  src="/screenclavier.png"
+                  alt="Clavier d'ordinateur"
+                  width={1360}
+                  height={1360}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              ) : (
+                /* Mode Qualité - Spline 3D interactif */
+                <spline-viewer
+                  url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
+                  className="w-full h-full"
+                  loading-anim="true"
+                  events-target="local"
+                />
+              )}
             </div>
           </div>
 
-          {/* Visuel - Animation Spline 3D Clavier - MOBILE (version optimisée avec setZoom) */}
+          {/* Animation Clavier - MOBILE */}
           <div className="md:hidden md:col-span-6">
-            <div className="w-full max-w-[360px] h-[320px] mx-auto rounded-lg overflow-hidden">
-              <SplineLazy
-                url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
-                className="block w-full h-full"
-                onLoad={(spline: any) => {
-                  if (spline && spline.setZoom) {
-                    spline.setZoom(0.6);
-                  }
-                }}
-              />
+            <div className="w-full max-w-[360px] h-[320px] mx-auto rounded-lg overflow-hidden shadow-lg">
+              {mode === "performance" ? (
+                /* Mode Performance - Image statique */
+                <Image
+                  src="/screenclavier.png"
+                  alt="Clavier d'ordinateur"
+                  width={720}
+                  height={640}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              ) : (
+                /* Mode Qualité - Spline 3D avec setZoom */
+                <SplineLazy
+                  url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
+                  className="block w-full h-full"
+                  onLoad={(spline: any) => {
+                    if (spline && spline.setZoom) {
+                      spline.setZoom(0.6);
+                    }
+                  }}
+                />
+              )}
             </div>
           </div>
         </div>

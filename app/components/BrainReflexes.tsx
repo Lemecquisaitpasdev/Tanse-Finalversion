@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import SectionFrame from "./SectionFrame";
 import SplineLazy from "./SplineLazy";
 import { useOptimization } from "./OptimizationProvider";
+import { usePerformance } from "../contexts/PerformanceContext";
 
 const BRAIN_SCENE_URL =
   process.env.NEXT_PUBLIC_BRAIN_URL ||
@@ -25,6 +27,7 @@ const STATS = [
  */
 export default function BrainReflexes() {
   const config = useOptimization();
+  const { mode } = usePerformance();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -133,7 +136,7 @@ export default function BrainReflexes() {
             </div>
           </div>
 
-          {/* Animation Spline - DESKTOP (version originale intacte) */}
+          {/* Animation Cerveau - DESKTOP */}
           <div
             className={`hidden md:flex relative items-center justify-center transition-all ease-out ${
               isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-95'
@@ -143,13 +146,28 @@ export default function BrainReflexes() {
               transitionDuration: `${500 * config.animationDuration}ms`
             }}
           >
-            <SplineLazy
-              url={BRAIN_SCENE_URL}
-              className="block w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
-            />
+            {mode === "performance" ? (
+              /* Mode Performance - Image statique */
+              <div className="w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl overflow-hidden shadow-lg">
+                <Image
+                  src="/screencerveau.png"
+                  alt="Cerveau et réflexes changent"
+                  width={1280}
+                  height={1280}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </div>
+            ) : (
+              /* Mode Qualité - Spline 3D interactif */
+              <SplineLazy
+                url={BRAIN_SCENE_URL}
+                className="block w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl"
+              />
+            )}
           </div>
 
-          {/* Animation Spline - MOBILE (version optimisée avec setZoom) */}
+          {/* Animation Cerveau - MOBILE */}
           <div
             className={`md:hidden relative flex items-center justify-center transition-all ease-out ${
               isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-95'
@@ -159,17 +177,32 @@ export default function BrainReflexes() {
               transitionDuration: `${500 * config.animationDuration}ms`
             }}
           >
-            <div className="w-full max-w-[320px] h-[280px] mx-auto">
-              <SplineLazy
-                url={BRAIN_SCENE_URL}
-                className="block w-full h-full rounded-2xl"
-                onLoad={(spline: any) => {
-                  if (spline && spline.setZoom) {
-                    spline.setZoom(0.6);
-                  }
-                }}
-              />
-            </div>
+            {mode === "performance" ? (
+              /* Mode Performance - Image statique */
+              <div className="w-full max-w-[320px] h-[280px] mx-auto rounded-2xl overflow-hidden shadow-lg">
+                <Image
+                  src="/screencerveau.png"
+                  alt="Cerveau et réflexes changent"
+                  width={640}
+                  height={560}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </div>
+            ) : (
+              /* Mode Qualité - Spline 3D avec setZoom */
+              <div className="w-full max-w-[320px] h-[280px] mx-auto">
+                <SplineLazy
+                  url={BRAIN_SCENE_URL}
+                  className="block w-full h-full rounded-2xl"
+                  onLoad={(spline: any) => {
+                    if (spline && spline.setZoom) {
+                      spline.setZoom(0.6);
+                    }
+                  }}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

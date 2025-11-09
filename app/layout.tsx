@@ -3,7 +3,9 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import CookieConsent from "./components/CookieConsent";
 import AnalyticsWrapper from "./components/AnalyticsWrapper";
+import PerformanceModal from "./components/PerformanceModal";
 import { OptimizationProvider } from "./components/OptimizationProvider";
+import { PerformanceProvider } from "./contexts/PerformanceContext";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://www.tanse.fr"),
@@ -107,14 +109,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.90/build/spline-viewer.js" async />
       </head>
       <body>
-        {/* Optimisations adaptatives Windows/macOS */}
-        <OptimizationProvider>
-          {children}
-          {/* Pop-up cookies RGPD */}
-          <CookieConsent />
-          {/* Analytics avec respect du consentement RGPD */}
-          <AnalyticsWrapper />
-        </OptimizationProvider>
+        {/* Performance Provider - Gestion mode Qualité/Performance */}
+        <PerformanceProvider>
+          {/* Optimisations adaptatives Windows/macOS */}
+          <OptimizationProvider>
+            {children}
+            {/* Modal de sélection performance - Première visite */}
+            <PerformanceModal />
+            {/* Pop-up cookies RGPD */}
+            <CookieConsent />
+            {/* Analytics avec respect du consentement RGPD */}
+            <AnalyticsWrapper />
+          </OptimizationProvider>
+        </PerformanceProvider>
       </body>
     </html>
   );

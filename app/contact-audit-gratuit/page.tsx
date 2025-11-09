@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import Image from "next/image";
 import {
   CheckCircle2,
   Loader2,
@@ -14,8 +15,10 @@ import {
 } from "lucide-react";
 import SplineLazy from "../components/SplineLazy";
 import CallBooking from "../components/CallBooking";
+import { usePerformance } from "../contexts/PerformanceContext";
 
 export default function Page() {
+  const { mode } = usePerformance();
   const [formData, setFormData] = useState({
     nom: "",
     email: "",
@@ -117,45 +120,70 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Spline 3D Scene Calendrier - DESKTOP (version originale intacte) */}
+      {/* Animation Calendrier - DESKTOP */}
       <section className="hidden md:block relative mx-auto w-full max-w-7xl px-0 md:px-6 mb-12">
-        <div className="w-full overflow-hidden bg-[#E4E4E4]">
-          <SplineLazy
-            url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
-            className="block w-full h-[46vh] md:h-[58vh]"
-            style={{ background: 'transparent' }}
-            onLoad={(spline: any) => {
-              // Bloque complètement la caméra - pas de zoom, rotation ou déplacement
-              if (spline) {
-                spline.setOrbitEnabled && spline.setOrbitEnabled(false);
-                spline.setZoomEnabled && spline.setZoomEnabled(false);
-                spline.setPanEnabled && spline.setPanEnabled(false);
-              }
-            }}
-          />
+        <div className="w-full overflow-hidden bg-[#E4E4E4] rounded-3xl shadow-lg">
+          {mode === "performance" ? (
+            /* Mode Performance - Image statique */
+            <div className="w-full h-[58vh]">
+              <Image
+                src="/screencalendrier.png"
+                alt="Calendrier de réservation"
+                width={1920}
+                height={1080}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+          ) : (
+            /* Mode Qualité - Spline 3D interactif */
+            <SplineLazy
+              url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
+              className="block w-full h-[46vh] md:h-[58vh]"
+              style={{ background: 'transparent' }}
+              onLoad={(spline: any) => {
+                if (spline) {
+                  spline.setOrbitEnabled && spline.setOrbitEnabled(false);
+                  spline.setZoomEnabled && spline.setZoomEnabled(false);
+                  spline.setPanEnabled && spline.setPanEnabled(false);
+                }
+              }}
+            />
+          )}
         </div>
       </section>
 
-      {/* Spline 3D Scene Calendrier - MOBILE (version optimisée avec setZoom) */}
+      {/* Animation Calendrier - MOBILE */}
       <section className="md:hidden relative mx-auto w-full max-w-7xl px-6 mb-12">
-        <div className="w-full max-w-[360px] h-[340px] mx-auto overflow-hidden bg-[#E4E4E4] rounded-3xl">
-          <SplineLazy
-            url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
-            className="block w-full h-full"
-            style={{ background: 'transparent' }}
-            onLoad={(spline: any) => {
-              if (spline) {
-                // Dézoomer pour voir les 2 calendriers sur mobile
-                if (spline.setZoom) {
-                  spline.setZoom(0.6);
+        <div className="w-full max-w-[360px] h-[340px] mx-auto overflow-hidden bg-[#E4E4E4] rounded-3xl shadow-lg">
+          {mode === "performance" ? (
+            /* Mode Performance - Image statique */
+            <Image
+              src="/screencalendrier.png"
+              alt="Calendrier de réservation"
+              width={720}
+              height={680}
+              className="w-full h-full object-cover"
+              priority
+            />
+          ) : (
+            /* Mode Qualité - Spline 3D avec setZoom */
+            <SplineLazy
+              url="https://prod.spline.design/ffoyz4KXe2hyPcuJ/scene.splinecode"
+              className="block w-full h-full"
+              style={{ background: 'transparent' }}
+              onLoad={(spline: any) => {
+                if (spline) {
+                  if (spline.setZoom) {
+                    spline.setZoom(0.6);
+                  }
+                  spline.setOrbitEnabled && spline.setOrbitEnabled(false);
+                  spline.setZoomEnabled && spline.setZoomEnabled(false);
+                  spline.setPanEnabled && spline.setPanEnabled(false);
                 }
-                // Bloque complètement la caméra - pas de zoom, rotation ou déplacement
-                spline.setOrbitEnabled && spline.setOrbitEnabled(false);
-                spline.setZoomEnabled && spline.setZoomEnabled(false);
-                spline.setPanEnabled && spline.setPanEnabled(false);
-              }
-            }}
-          />
+              }}
+            />
+          )}
         </div>
       </section>
 

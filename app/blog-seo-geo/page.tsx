@@ -8,10 +8,12 @@ import { ArrowRight, Mail } from "lucide-react";
 import SiteFooter from "../components/SiteFooter";
 import NewsletterPopup from "../components/NewsletterPopup";
 import SplineLazy from "../components/SplineLazy";
+import { usePerformance } from "../contexts/PerformanceContext";
 import { articles } from "./data/articles";
 
 export default function BlogPage() {
   const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
+  const { mode } = usePerformance();
 
   // Trier : articles épinglés en premier, puis par date décroissante
   const sortedArticles = [...articles].sort((a, b) => {
@@ -86,27 +88,53 @@ export default function BlogPage() {
           <span className="font-semibold text-[#444684]">GEO</span> pour anticiper la <span className="font-semibold text-[#444684]">recherche</span> de demain.
         </p>
 
-        {/* Animation Spline 3D Globe - DESKTOP (version originale intacte) */}
-        <div className="hidden md:block spline-container relative w-full max-w-[600px] h-[400px] md:h-[600px] mx-auto mb-16 overflow-hidden rounded-3xl">
-          <spline-viewer
-            url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
-            className="w-full h-full"
-            loading-anim="true"
-            events-target="local"
-          />
+        {/* Animation Globe - DESKTOP */}
+        <div className="hidden md:block w-full max-w-[600px] h-[400px] md:h-[600px] mx-auto mb-16 overflow-hidden rounded-3xl shadow-lg">
+          {mode === "performance" ? (
+            /* Mode Performance - Image statique */
+            <Image
+              src="/screenglobe.png"
+              alt="Globe terrestre interactif"
+              width={1200}
+              height={1200}
+              className="w-full h-full object-cover"
+              priority
+            />
+          ) : (
+            /* Mode Qualité - Spline 3D interactif */
+            <spline-viewer
+              url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
+              className="w-full h-full"
+              loading-anim="true"
+              events-target="local"
+            />
+          )}
         </div>
 
-        {/* Animation Spline 3D Globe - MOBILE (version optimisée avec setZoom) */}
-        <div className="md:hidden w-full max-w-[340px] h-[320px] mx-auto mb-16 rounded-3xl overflow-hidden">
-          <SplineLazy
-            url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
-            className="block w-full h-full"
-            onLoad={(spline: any) => {
-              if (spline && spline.setZoom) {
-                spline.setZoom(0.6);
-              }
-            }}
-          />
+        {/* Animation Globe - MOBILE */}
+        <div className="md:hidden w-full max-w-[340px] h-[320px] mx-auto mb-16 rounded-3xl overflow-hidden shadow-lg">
+          {mode === "performance" ? (
+            /* Mode Performance - Image statique */
+            <Image
+              src="/screenglobe.png"
+              alt="Globe terrestre interactif"
+              width={680}
+              height={640}
+              className="w-full h-full object-cover"
+              priority
+            />
+          ) : (
+            /* Mode Qualité - Spline 3D avec setZoom */
+            <SplineLazy
+              url="https://prod.spline.design/QWBeZ50WLnIYJBxl/scene.splinecode"
+              className="block w-full h-full"
+              onLoad={(spline: any) => {
+                if (spline && spline.setZoom) {
+                  spline.setZoom(0.6);
+                }
+              }}
+            />
+          )}
         </div>
 
         {/* Bouton Newsletter en haut avant les articles */}

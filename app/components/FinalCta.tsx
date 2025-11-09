@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import SplineLazy from "./SplineLazy";
 import { useOptimization } from "./OptimizationProvider";
+import { usePerformance } from "../contexts/PerformanceContext";
 
 /**
  * OPTIMISÉ WINDOWS:
@@ -12,6 +14,7 @@ import { useOptimization } from "./OptimizationProvider";
  */
 export default function FinalCta() {
   const config = useOptimization();
+  const { mode } = usePerformance();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -58,7 +61,7 @@ export default function FinalCta() {
           </a>
         </div>
 
-        {/* Animation Spline - DESKTOP (version originale intacte) */}
+        {/* Animation - DESKTOP */}
         <div
           className={`hidden md:block col-span-12 md:col-span-7 transition-all ease-out ${
             isVisible ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-6 scale-98'
@@ -68,16 +71,31 @@ export default function FinalCta() {
             transitionDuration: `${500 * config.animationDuration}ms`
           }}
         >
-          <div className="rounded-3xl bg-white shadow-[0_25px_80px_-20px_rgba(0,0,0,0.35)] overflow-hidden h-[min(75vh,900px)] min-h-[650px]">
-            <SplineLazy
-              url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
-              className="w-full h-full"
-              aria-label="Animation finale"
-            />
-          </div>
+          {mode === "performance" ? (
+            /* Mode Performance - Image statique */
+            <div className="rounded-3xl shadow-[0_25px_80px_-20px_rgba(0,0,0,0.35)] overflow-hidden h-[min(75vh,900px)] min-h-[650px]">
+              <Image
+                src="/screenlesclientsnattendentquevous.png"
+                alt="Vos clients n'attendent que vous"
+                width={1920}
+                height={1080}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+          ) : (
+            /* Mode Qualité - Spline 3D interactif */
+            <div className="rounded-3xl bg-white shadow-[0_25px_80px_-20px_rgba(0,0,0,0.35)] overflow-hidden h-[min(75vh,900px)] min-h-[650px]">
+              <SplineLazy
+                url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
+                className="w-full h-full"
+                aria-label="Animation finale"
+              />
+            </div>
+          )}
         </div>
 
-        {/* Animation Spline - MOBILE (version optimisée avec setZoom) */}
+        {/* Animation - MOBILE */}
         <div
           className={`md:hidden col-span-12 transition-all ease-out ${
             isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-98'
@@ -87,18 +105,33 @@ export default function FinalCta() {
             transitionDuration: `${500 * config.animationDuration}ms`
           }}
         >
-          <div className="w-full max-w-[360px] h-[300px] mx-auto rounded-3xl">
-            <SplineLazy
-              url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
-              className="w-full h-full"
-              aria-label="Animation finale"
-              onLoad={(spline: any) => {
-                if (spline && spline.setZoom) {
-                  spline.setZoom(0.6);
-                }
-              }}
-            />
-          </div>
+          {mode === "performance" ? (
+            /* Mode Performance - Image statique */
+            <div className="w-full max-w-[360px] h-[300px] mx-auto rounded-3xl overflow-hidden shadow-lg">
+              <Image
+                src="/screenlesclientsnattendentquevous.png"
+                alt="Vos clients n'attendent que vous"
+                width={720}
+                height={600}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+          ) : (
+            /* Mode Qualité - Spline 3D avec setZoom */
+            <div className="w-full max-w-[360px] h-[300px] mx-auto rounded-3xl">
+              <SplineLazy
+                url="https://prod.spline.design/TNjZkjNxUjK9GBGW/scene.splinecode"
+                className="w-full h-full"
+                aria-label="Animation finale"
+                onLoad={(spline: any) => {
+                  if (spline && spline.setZoom) {
+                    spline.setZoom(0.6);
+                  }
+                }}
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>
