@@ -46,7 +46,7 @@ export default function Methodology() {
           <div className="aspect-[18/9] lg:aspect-[21/9] w-full">
             {hasPlayed && mode === "performance" && (
               <Image
-                src="/screenmethode.png"
+                src="/screenmethodologie2.png"
                 alt="Notre méthode"
                 width={2700}
                 height={1200}

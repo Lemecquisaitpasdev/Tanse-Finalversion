@@ -115,7 +115,7 @@ export default function Page() {
               {mode === "performance" ? (
                 /* Mode Performance - Image statique */
                 <Image
-                  src="/screenclavier.png"
+                  src="/screenclavier2.png"
                   alt="Clavier d'ordinateur"
                   width={1360}
                   height={1360}
@@ -140,7 +140,7 @@ export default function Page() {
               {mode === "performance" ? (
                 /* Mode Performance - Image statique */
                 <Image
-                  src="/screenclavier.png"
+                  src="/screenclavier2.png"
                   alt="Clavier d'ordinateur"
                   width={720}
                   height={640}

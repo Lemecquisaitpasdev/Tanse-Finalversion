@@ -150,7 +150,7 @@ export default function BrainReflexes() {
               /* Mode Performance - Image statique */
               <div className="w-full h-[360px] md:h-[520px] lg:h-[640px] rounded-2xl overflow-hidden shadow-lg">
                 <Image
-                  src="/screencerveau.png"
+                  src="/screencerveau2.png"
                   alt="Cerveau et réflexes changent"
                   width={1280}
                   height={1280}
@@ -181,7 +181,7 @@ export default function BrainReflexes() {
               /* Mode Performance - Image statique */
               <div className="w-full max-w-[320px] h-[280px] mx-auto rounded-2xl overflow-hidden shadow-lg">
                 <Image
-                  src="/screencerveau.png"
+                  src="/screencerveau2.png"
                   alt="Cerveau et réflexes changent"
                   width={640}
                   height={560}
