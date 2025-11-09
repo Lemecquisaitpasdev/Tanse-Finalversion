@@ -252,10 +252,23 @@ export default function Page() {
         </div>
 
         <div className="pointer-events-auto absolute inset-y-0 right-0 w-[75vw] md:w-[60vw]">
-          <SplineLazy
-            url="https://prod.spline.design/EZYaol9QTCXdiWrh/scene.splinecode"
-            className="block w-full h-full"
-          />
+          {mode === "performance" ? (
+            <div className="w-full h-full rounded-3xl overflow-hidden shadow-lg">
+              <Image
+                src="/screenrejoignertanse.png"
+                alt="Rejoignez TANSE"
+                width={1920}
+                height={1080}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+          ) : (
+            <SplineLazy
+              url="https://prod.spline.design/EZYaol9QTCXdiWrh/scene.splinecode"
+              className="block w-full h-full"
+            />
+          )}
         </div>
       </section>
 
