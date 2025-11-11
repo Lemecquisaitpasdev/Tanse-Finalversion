@@ -3,10 +3,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Mail, MapPin, ArrowUpRight, Cookie } from "lucide-react";
+import { Mail, MapPin, ArrowUpRight, Cookie, Settings } from "lucide-react";
+import { useState } from "react";
+import { usePerformance } from "../contexts/PerformanceContext";
 
 export default function SiteFooter(): JSX.Element {
   const pathname = usePathname();
+  const { mode, setMode } = usePerformance();
+  const [showPerformanceModal, setShowPerformanceModal] = useState(false);
   const normalize = (p?: string | null) => (p && p.endsWith("/") && p !== "/" ? p.slice(0, -1) : p) || "";
 
   const legalLinks = [
@@ -24,8 +28,87 @@ export default function SiteFooter(): JSX.Element {
     window.location.reload();
   };
 
+  const handleModeChange = (newMode: "quality" | "performance") => {
+    setMode(newMode);
+    setShowPerformanceModal(false);
+    window.location.reload(); // Recharger pour appliquer le changement
+  };
+
   return (
-    <footer className="relative mt-28 text-slate-900">
+    <>
+      {/* Modal de changement de mode Performance/Qualité */}
+      {showPerformanceModal && (
+        <>
+          <div
+            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
+            onClick={() => setShowPerformanceModal(false)}
+          />
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div className="relative w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
+              <h2 className="mb-6 text-center text-2xl font-semibold text-slate-900">
+                Modifier le mode de navigation
+              </h2>
+              <p className="mb-6 text-center text-sm text-slate-600">
+                Choisissez le mode qui correspond le mieux à votre appareil
+              </p>
+              <div className="space-y-3">
+                <button
+                  onClick={() => handleModeChange("quality")}
+                  className={`w-full rounded-xl border-2 p-4 text-left transition ${
+                    mode === "quality"
+                      ? "border-[#444684] bg-[#444684]/5"
+                      : "border-slate-200 hover:border-slate-300"
+                  }`}
+                >
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="font-semibold text-slate-900">Mode Qualité</h3>
+                      <p className="mt-1 text-sm text-slate-600">
+                        Animations 3D interactives (appareils modernes)
+                      </p>
+                    </div>
+                    {mode === "quality" && (
+                      <div className="ml-3 flex h-6 w-6 items-center justify-center rounded-full bg-[#444684] text-white">
+                        ✓
+                      </div>
+                    )}
+                  </div>
+                </button>
+                <button
+                  onClick={() => handleModeChange("performance")}
+                  className={`w-full rounded-xl border-2 p-4 text-left transition ${
+                    mode === "performance"
+                      ? "border-[#444684] bg-[#444684]/5"
+                      : "border-slate-200 hover:border-slate-300"
+                  }`}
+                >
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="font-semibold text-slate-900">Mode Performance</h3>
+                      <p className="mt-1 text-sm text-slate-600">
+                        Images statiques optimisées (appareils plus anciens)
+                      </p>
+                    </div>
+                    {mode === "performance" && (
+                      <div className="ml-3 flex h-6 w-6 items-center justify-center rounded-full bg-[#444684] text-white">
+                        ✓
+                      </div>
+                    )}
+                  </div>
+                </button>
+              </div>
+              <button
+                onClick={() => setShowPerformanceModal(false)}
+                className="mt-6 w-full rounded-full border border-slate-300 px-6 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+              >
+                Annuler
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+
+      <footer className="relative mt-28 text-slate-900">
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#F2F3F5] via-[#E4E4E4] to-[#F7F8FA]" />
         <div className="absolute -top-16 -left-24 h-72 w-72 rounded-full bg-[#444684]/10 blur-3xl" />
@@ -120,7 +203,7 @@ export default function SiteFooter(): JSX.Element {
             <p>© {new Date().getFullYear()} TANSE — Tous droits réservés. | TVA & Immatriculation sur la facture.</p>
             <p>Contact : <Link href="mailto:contact@tanse.fr" className="underline decoration-slate-400 underline-offset-2 hover:text-slate-900">contact@tanse.fr</Link></p>
           </div>
-          <div className="flex items-center justify-center sm:justify-start">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">
             <button
               onClick={manageCookies}
               className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/70 px-4 py-2 text-xs font-medium text-slate-700 shadow-sm backdrop-blur transition hover:bg-white hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400"
@@ -128,9 +211,17 @@ export default function SiteFooter(): JSX.Element {
               <Cookie className="h-3.5 w-3.5" />
               Gérer les cookies
             </button>
+            <button
+              onClick={() => setShowPerformanceModal(true)}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/70 px-4 py-2 text-xs font-medium text-slate-700 shadow-sm backdrop-blur transition hover:bg-white hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400"
+            >
+              <Settings className="h-3.5 w-3.5" />
+              Mode navigation ({mode === "quality" ? "Qualité" : "Performance"})
+            </button>
           </div>
         </div>
       </div>
     </footer>
+    </>
   );
 }

@@ -5,9 +5,19 @@ import Image from "next/image";
 import SplineLazy from "./SplineLazy";
 import { usePerformance } from "../contexts/PerformanceContext";
 
+const STEPS = [
+  { title: "AUDIT SÉMANTIQUE", subtitle: "ANALYSE LLM" },
+  { title: "FIABILITÉ &", subtitle: "CONFORMITÉ" },
+  { title: "MONITORING", subtitle: "CONTINU" },
+  { title: "MAPPING", subtitle: "INTENTIONNEL" },
+  { title: "OPTIMISATION", subtitle: "GEO" },
+  { title: "SCALABILITÉ &", subtitle: "DÉPLOIEMENT" },
+];
+
 /**
  * Section "Notre méthode" avec animation Spline
  * Animation déclenchée une seule fois au scroll
+ * Version mobile : affiche les 6 étapes en grille 2x2
  */
 export default function Methodology() {
   const { mode } = usePerformance();
@@ -42,7 +52,8 @@ export default function Methodology() {
           Notre méthode
         </h2>
 
-        <div className="mx-auto w-full max-w-[1350px] rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,.35)]">
+        {/* Version Desktop - Animation/Image */}
+        <div className="hidden md:block mx-auto w-full max-w-[1350px] rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,.35)]">
           <div className="aspect-[18/9] lg:aspect-[21/9] w-full">
             {hasPlayed && mode === "performance" && (
               <Image
@@ -69,6 +80,25 @@ export default function Methodology() {
               </div>
             )}
           </div>
+        </div>
+
+        {/* Version Mobile - Grille des 6 étapes */}
+        <div className="md:hidden grid grid-cols-2 gap-4 max-w-md mx-auto">
+          {STEPS.map((step, index) => (
+            <div
+              key={index}
+              className="bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-2xl p-5 border border-neutral-700/50 shadow-lg"
+            >
+              <div className="text-center">
+                <div className="text-xs tracking-[0.15em] text-[#444684] font-semibold mb-2">
+                  {step.title}
+                </div>
+                <div className="text-xs tracking-[0.15em] text-neutral-400">
+                  {step.subtitle}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
