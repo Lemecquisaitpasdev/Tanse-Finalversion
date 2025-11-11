@@ -6,12 +6,54 @@ import SplineLazy from "./SplineLazy";
 import { usePerformance } from "../contexts/PerformanceContext";
 
 const STEPS = [
-  { title: "AUDIT SÉMANTIQUE", subtitle: "ANALYSE LLM" },
-  { title: "FIABILITÉ &", subtitle: "CONFORMITÉ" },
-  { title: "MONITORING", subtitle: "CONTINU" },
-  { title: "MAPPING", subtitle: "INTENTIONNEL" },
-  { title: "OPTIMISATION", subtitle: "GEO" },
-  { title: "SCALABILITÉ &", subtitle: "DÉPLOIEMENT" },
+  {
+    title: "AUDIT SÉMANTIQUE",
+    subtitle: "ANALYSE LLM",
+    gradient: "from-orange-400/20 via-yellow-400/20 to-orange-500/20",
+    borderColor: "border-orange-400/30",
+    numberBg: "bg-gradient-to-br from-orange-400 to-yellow-500",
+    shadowColor: "shadow-orange-500/20"
+  },
+  {
+    title: "FIABILITÉ &",
+    subtitle: "CONFORMITÉ",
+    gradient: "from-pink-400/20 via-purple-300/20 to-pink-300/20",
+    borderColor: "border-pink-300/30",
+    numberBg: "bg-gradient-to-br from-pink-400 to-purple-400",
+    shadowColor: "shadow-pink-400/20"
+  },
+  {
+    title: "MONITORING",
+    subtitle: "CONTINU",
+    gradient: "from-cyan-400/20 via-blue-400/20 to-cyan-500/20",
+    borderColor: "border-cyan-400/30",
+    numberBg: "bg-gradient-to-br from-cyan-400 to-blue-500",
+    shadowColor: "shadow-cyan-400/20"
+  },
+  {
+    title: "MAPPING",
+    subtitle: "INTENTIONNEL",
+    gradient: "from-green-400/20 via-emerald-400/20 to-green-500/20",
+    borderColor: "border-green-400/30",
+    numberBg: "bg-gradient-to-br from-green-400 to-emerald-500",
+    shadowColor: "shadow-green-400/20"
+  },
+  {
+    title: "OPTIMISATION",
+    subtitle: "GEO",
+    gradient: "from-purple-400/20 via-violet-400/20 to-purple-500/20",
+    borderColor: "border-purple-400/30",
+    numberBg: "bg-gradient-to-br from-purple-400 to-violet-500",
+    shadowColor: "shadow-purple-400/20"
+  },
+  {
+    title: "SCALABILITÉ &",
+    subtitle: "DÉPLOIEMENT",
+    gradient: "from-pink-300/20 via-pink-400/20 to-rose-400/20",
+    borderColor: "border-pink-300/30",
+    numberBg: "bg-gradient-to-br from-pink-300 to-rose-400",
+    shadowColor: "shadow-pink-300/20"
+  },
 ];
 
 /**
@@ -87,16 +129,30 @@ export default function Methodology() {
           {STEPS.map((step, index) => (
             <div
               key={index}
-              className="bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-2xl p-5 border border-neutral-700/50 shadow-lg"
+              className={`relative bg-gradient-to-br ${step.gradient} backdrop-blur-sm rounded-2xl p-4 border ${step.borderColor} shadow-2xl ${step.shadowColor} transition-all duration-300 hover:scale-105 hover:shadow-3xl overflow-hidden`}
+              style={{
+                boxShadow: '0 20px 50px -12px rgba(0, 0, 0, 0.5), 0 10px 20px -10px rgba(0, 0, 0, 0.3)'
+              }}
             >
-              <div className="text-center">
-                <div className="text-xs tracking-[0.15em] text-[#444684] font-semibold mb-2">
+              {/* Fond sombre avec effet de profondeur */}
+              <div className="absolute inset-0 bg-gradient-to-br from-neutral-900/80 to-neutral-950/90 -z-10" />
+
+              {/* Numéro de l'étape */}
+              <div className={`inline-flex items-center justify-center w-7 h-7 ${step.numberBg} rounded-lg text-white text-xs font-bold mb-3 shadow-lg`}>
+                {index + 1}
+              </div>
+
+              <div className="text-left">
+                <div className="text-[11px] tracking-[0.12em] text-white font-bold mb-1.5 leading-tight">
                   {step.title}
                 </div>
-                <div className="text-xs tracking-[0.15em] text-neutral-400">
+                <div className="text-[10px] tracking-[0.12em] text-neutral-300 leading-tight">
                   {step.subtitle}
                 </div>
               </div>
+
+              {/* Effet de brillance en haut */}
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
             </div>
           ))}
         </div>
