@@ -10,6 +10,7 @@ const StatsPillars = dynamic(() => import("./components/StatsPillars"));
 const ComparisonTable = dynamic(() => import("./components/ComparisonTable"));
 const Methodology = dynamic(() => import("./components/Methodology"), { ssr: false });
 const TestimonialsMarquee = dynamic(() => import("./components/TestimonialsMarquee"));
+const TrustpilotWidget = dynamic(() => import("./components/TrustpilotWidget"));
 const PricingPlans = dynamic(() => import("./components/PricingPlans"));
 const FaqAccordion = dynamic(() => import("./components/FaqAccordion"));
 const FinalCta = dynamic(() => import("./components/FinalCta"), { ssr: false });
@@ -31,6 +32,7 @@ export default function Page() {
       <section id="seo-vs-geo" className="anchor"><ComparisonTable /></section>
       <section id="methodology" className="anchor"><Methodology /></section>
       <section id="trust" className="anchor"><TestimonialsMarquee /></section>
+      <section id="trustpilot" className="anchor"><TrustpilotWidget /></section>
       <section id="pricing" className="anchor"><PricingPlans /></section>
       <section id="faq" className="anchor"><FaqAccordion /></section>
       <section id="final-cta" className="anchor"><FinalCta /></section>
