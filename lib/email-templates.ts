@@ -376,3 +376,72 @@ export function generateNewsletterWelcomeEmail({ name, email }: NewsletterWelcom
 
   return emailBaseTemplate({ logoUrl, content });
 }
+
+// ============================================
+// 5. EMAIL DE CONFIRMATION - OFFRE 5 PLACES
+// ============================================
+
+interface OffreCinqPlacesConfirmationProps {
+  nomEntreprise: string;
+  email: string;
+  secteurActivite: string;
+}
+
+export function generateOffreCinqPlacesConfirmation({ nomEntreprise, email, secteurActivite }: OffreCinqPlacesConfirmationProps): string {
+  const logoUrl = 'https://tanse.fr/brand/tanse-logo.png';
+
+  const content = `
+    <h1 style="margin: 0 0 20px 0; font-size: 28px; font-weight: 600; color: ${TANSE_COLORS.black}; line-height: 1.3;">
+      Candidature reçue ! 🎉
+    </h1>
+
+    <p style="margin: 0 0 20px 0; font-size: 16px; color: ${TANSE_COLORS.black}; line-height: 1.6;">
+      Bonjour <strong>${nomEntreprise}</strong>,
+    </p>
+
+    <p style="margin: 0 0 20px 0; font-size: 16px; color: ${TANSE_COLORS.black}; line-height: 1.6;">
+      Merci d'avoir postulé pour notre <strong>offre limitée à 5 entreprises</strong> pour bénéficier d'un setup SEO + GEO gratuit (valeur 2 990€) !
+    </p>
+
+    <div style="background-color: ${TANSE_COLORS.primary}; padding: 25px; border-radius: 6px; margin: 30px 0;">
+      <h2 style="margin: 0 0 15px 0; font-size: 20px; font-weight: 600; color: ${TANSE_COLORS.white};">
+        Ce qui va se passer maintenant :
+      </h2>
+      <p style="margin: 0; font-size: 15px; color: ${TANSE_COLORS.white}; line-height: 1.8;">
+        ⏱️ Réponse sous 48 heures maximum<br>
+        📊 Analyse approfondie de votre candidature<br>
+        ✅ Si vous êtes sélectionné(e), nous vous contacterons<br>
+        🚀 Démarrage du setup sous 5 jours ouvrés
+      </p>
+    </div>
+
+    <p style="margin: 0 0 20px 0; font-size: 16px; color: ${TANSE_COLORS.black}; line-height: 1.6;">
+      <strong>Rappel de votre candidature :</strong><br>
+      Entreprise : ${nomEntreprise}<br>
+      Secteur : ${secteurActivite}<br>
+      Email : ${email}
+    </p>
+
+    <div style="background-color: ${TANSE_COLORS.gray}; padding: 20px; border-radius: 6px; margin: 30px 0;">
+      <p style="margin: 0 0 10px 0; font-size: 15px; color: ${TANSE_COLORS.black}; font-weight: 600;">
+        💡 En attendant :
+      </p>
+      <p style="margin: 0; font-size: 15px; color: ${TANSE_COLORS.black};">
+        <a href="https://tanse.fr" style="color: ${TANSE_COLORS.primary}; text-decoration: none; font-weight: 500;">→ Découvrez TANSE</a><br>
+        <a href="https://tanse.fr/geo" style="color: ${TANSE_COLORS.primary}; text-decoration: none; font-weight: 500;">→ Qu'est-ce que le GEO ?</a><br>
+        <a href="https://tanse.fr/forfaits" style="color: ${TANSE_COLORS.primary}; text-decoration: none; font-weight: 500;">→ Nos forfaits</a>
+      </p>
+    </div>
+
+    <p style="margin: 0 0 30px 0; font-size: 16px; color: ${TANSE_COLORS.black}; line-height: 1.6;">
+      À très bientôt,<br>
+      <strong style="color: ${TANSE_COLORS.primary};">L'équipe TANSE</strong>
+    </p>
+
+    <p style="margin: 0; font-size: 13px; color: ${TANSE_COLORS.grayDark}; line-height: 1.5;">
+      <em>Des questions ? Répondez directement à cet email ou contactez-nous à contact@tanse.fr</em>
+    </p>
+  `;
+
+  return emailBaseTemplate({ logoUrl, content });
+}

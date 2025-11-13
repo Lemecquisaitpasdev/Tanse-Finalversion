@@ -160,6 +160,11 @@ export default function SiteFooter(): JSX.Element {
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-700">Produits</h3>
             <ul className="space-y-2 text-sm text-slate-800">
               <li><Link href="/forfaits-geo-seo" className="hover:text-slate-950 transition">Forfaits</Link></li>
+              <li>
+                <Link href="/offre-5-places" className="inline-flex items-center gap-1 hover:text-slate-950 transition font-medium text-[#FF5757]">
+                  🎁 Offre 5 places
+                </Link>
+              </li>
               <li><Link href="/geo" className="hover:text-slate-950 transition">GEO - Optimisation IA</Link></li>
               <li><Link href="/blog-seo-geo" className="hover:text-slate-950 transition">Blog SEO & GEO</Link></li>
               <li><Link href="/#stats" className="hover:text-slate-950 transition">Résultats & chiffres</Link></li>

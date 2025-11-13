@@ -4,7 +4,8 @@ import {
   generateLeadConfirmationEmail,
   generateBookingConfirmationEmail,
   generateForfaitConfirmationEmail,
-  generateNewsletterWelcomeEmail
+  generateNewsletterWelcomeEmail,
+  generateOffreCinqPlacesConfirmation
 } from './email-templates';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -453,6 +454,108 @@ export async function sendNewsletterWelcome(subscriber: {
     console.log(`✅ Email de bienvenue Newsletter envoyé à ${subscriber.email}`);
   } catch (error) {
     console.error('❌ Erreur envoi email bienvenue newsletter:', error);
+    throw error;
+  }
+}
+
+// 9. Notification pour candidature "Offre 5 places"
+export async function sendOffreCinqPlacesNotification(candidature: {
+  email: string;
+  nomEntreprise: string;
+  secteurActivite: string;
+  urlSite: string;
+  motivation: string;
+  telephone?: string | null;
+}) {
+  const content = `
+    <div style="margin-bottom: 24px;">
+      <h2 style="color: #1f2937; font-size: 20px; margin: 0 0 8px 0;">
+        🎯 Nouvelle candidature "Offre 5 places"
+      </h2>
+      <p style="color: #6b7280; margin: 0; font-size: 14px;">
+        Une entreprise postule pour l'offre limitée (setup SEO + GEO gratuit)
+      </p>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 12px; padding: 20px; margin-bottom: 24px; text-align: center;">
+      <p style="color: rgba(255,255,255,0.9); margin: 0 0 8px 0; font-size: 14px;">Entreprise candidate</p>
+      <h3 style="color: #ffffff; margin: 0; font-size: 22px; font-weight: 600;">
+        ${candidature.nomEntreprise}
+      </h3>
+      <p style="color: rgba(255,255,255,0.95); margin: 8px 0 0 0; font-size: 16px;">
+        ${candidature.secteurActivite}
+      </p>
+    </div>
+
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 24px;">
+      ${formatField('Entreprise', candidature.nomEntreprise)}
+      ${formatField('Secteur', candidature.secteurActivite)}
+      ${formatField('Site web', `<a href="${candidature.urlSite}" style="color: #444684;">${candidature.urlSite}</a>`)}
+      ${formatField('Email', candidature.email)}
+      ${formatField('Téléphone', candidature.telephone)}
+      <tr>
+        <td style="padding: 12px 0;">
+          <strong style="color: #374151; font-size: 14px;">Motivation:</strong>
+          <p style="margin: 8px 0 0 0; color: #1f2937; font-size: 15px; background-color: #fef3c7; padding: 16px; border-radius: 8px; border-left: 3px solid #f59e0b;">
+            ${candidature.motivation.replace(/\n/g, '<br>')}
+          </p>
+        </td>
+      </tr>
+    </table>
+
+    <div style="background-color: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 16px; margin-top: 24px;">
+      <p style="margin: 0; color: #92400e; font-size: 14px;">
+        ⚡ <strong>Offre limitée !</strong> Répondez rapidement pour ne pas manquer cette opportunité de cas d'étude.
+      </p>
+    </div>
+
+    <div style="margin-top: 32px; padding-top: 24px; border-top: 2px solid #e5e7eb;">
+      <a href="mailto:${candidature.email}" style="display: inline-block; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; margin-right: 12px;">
+        ✉️ Répondre maintenant
+      </a>
+      ${candidature.telephone ? `
+        <a href="tel:${candidature.telephone}" style="display: inline-block; background-color: #f3f4f6; color: #1f2937; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px;">
+          📞 Appeler ${candidature.nomEntreprise}
+        </a>
+      ` : ''}
+    </div>
+  `;
+
+  try {
+    await resend.emails.send({
+      from: FROM_EMAIL,
+      to: NOTIFICATION_EMAIL,
+      subject: `[OFFRE 5 PLACES] ${candidature.nomEntreprise} - ${candidature.secteurActivite}`,
+      html: getEmailTemplate(content),
+    });
+    console.log('✅ Email de notification Offre 5 places envoyé');
+  } catch (error) {
+    console.error('❌ Erreur envoi email notification offre 5 places:', error);
+  }
+}
+
+// 10. Email de confirmation - Candidature "Offre 5 places"
+export async function sendOffreCinqPlacesConfirmation(candidature: {
+  email: string;
+  nomEntreprise: string;
+  secteurActivite: string;
+}) {
+  const htmlContent = generateOffreCinqPlacesConfirmation({
+    nomEntreprise: candidature.nomEntreprise,
+    email: candidature.email,
+    secteurActivite: candidature.secteurActivite,
+  });
+
+  try {
+    await resend.emails.send({
+      from: FROM_EMAIL_USER,
+      to: candidature.email,
+      subject: 'Candidature reçue - Offre limitée 5 places - TANSE',
+      html: htmlContent,
+    });
+    console.log(`✅ Email de confirmation Offre 5 places envoyé à ${candidature.email}`);
+  } catch (error) {
+    console.error('❌ Erreur envoi email confirmation offre 5 places:', error);
     throw error;
   }
 }

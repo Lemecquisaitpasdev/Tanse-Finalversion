@@ -81,3 +81,35 @@ model Newsletter {
   @@index([email])
   @@index([subscribed])
 }
+
+// Modèle pour les candidatures "Offre 5 places"
+model OffreCinqPlaces {
+  id                String   @id @default(cuid())
+  nomEntreprise     String
+  secteurActivite   String
+  urlSite           String
+  motivation        String
+  email             String
+  telephone         String?
+  status            String   @default("pending") // "pending", "accepted", "rejected"
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// Modèle pour gérer les campagnes avec compteur de places
+model Campaign {
+  id              String   @id @default(cuid())
+  name            String   @unique
+  placesTotal     Int
+  placesRemaining Int
+  active          Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([name])
+  @@index([active])
+}
