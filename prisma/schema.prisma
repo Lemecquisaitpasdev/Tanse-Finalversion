@@ -113,3 +113,25 @@ model Campaign {
   @@index([name])
   @@index([active])
 }
+
+// Modèle pour les demandes d'audit gratuit
+model AuditGratuit {
+  id              String   @id @default(cuid())
+  nom             String
+  prenom          String
+  email           String
+  telephone       String
+  entreprise      String
+  siteWeb         String
+  concurrent1     String
+  concurrent2     String
+  concurrent3     String
+  commentConnu    String
+  status          String   @default("pending") // "pending", "in_progress", "completed", "cancelled"
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+}

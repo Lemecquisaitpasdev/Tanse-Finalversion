@@ -445,3 +445,82 @@ export function generateOffreCinqPlacesConfirmation({ nomEntreprise, email, sect
 
   return emailBaseTemplate({ logoUrl, content });
 }
+
+// ============================================
+// 6. EMAIL DE CONFIRMATION - AUDIT GRATUIT
+// ============================================
+
+interface AuditGratuitConfirmationProps {
+  prenom: string;
+  nom: string;
+  email: string;
+  entreprise: string;
+}
+
+export function generateAuditGratuitConfirmation({ prenom, nom, email, entreprise }: AuditGratuitConfirmationProps): string {
+  const logoUrl = 'https://tanse.fr/brand/tanse-logo.png'; // À remplacer par l'URL publique
+
+  const content = `
+    <h1 style="margin: 0 0 20px 0; font-size: 28px; font-weight: 600; color: ${TANSE_COLORS.black}; line-height: 1.3;">
+      Votre audit SEO + GEO arrive bientôt ! 🎁
+    </h1>
+
+    <p style="margin: 0 0 20px 0; font-size: 16px; color: ${TANSE_COLORS.black}; line-height: 1.6;">
+      Bonjour <strong>${prenom}</strong>,
+    </p>
+
+    <p style="margin: 0 0 20px 0; font-size: 16px; color: ${TANSE_COLORS.black}; line-height: 1.6;">
+      Merci d'avoir demandé votre <strong>audit SEO + GEO gratuit</strong> ! Nous sommes ravis de pouvoir analyser votre présence digitale et celle de vos concurrents.
+    </p>
+
+    <div style="background-color: ${TANSE_COLORS.primary}; padding: 25px; border-radius: 6px; margin: 30px 0;">
+      <h2 style="margin: 0 0 15px 0; font-size: 20px; font-weight: 600; color: ${TANSE_COLORS.white};">
+        Ce qui va se passer maintenant :
+      </h2>
+      <p style="margin: 0; font-size: 15px; color: ${TANSE_COLORS.white}; line-height: 1.8;">
+        🔍 Nos experts analysent votre site et celui de vos concurrents<br>
+        🤖 Tests en direct sur ChatGPT, Perplexity, Claude, Gemini<br>
+        📊 Benchmark complet de votre visibilité SEO + GEO<br>
+        📄 Rapport PDF de 15-20 pages avec recommandations<br>
+        ⏰ <strong>Livraison sous 48h ouvrées maximum</strong>
+      </p>
+    </div>
+
+    <p style="margin: 0 0 20px 0; font-size: 16px; color: ${TANSE_COLORS.black}; line-height: 1.6;">
+      <strong>Rappel de votre demande :</strong><br>
+      Entreprise : ${entreprise}<br>
+      Email : ${email}
+    </p>
+
+    <div style="background-color: #fef3c7; padding: 20px; border-radius: 6px; margin: 30px 0; border-left: 4px solid #f59e0b;">
+      <p style="margin: 0 0 10px 0; font-size: 15px; color: #92400e; font-weight: 600;">
+        📧 Pensez à vérifier vos spams !
+      </p>
+      <p style="margin: 0; font-size: 15px; color: #92400e;">
+        L'audit arrive d'ici 48h. Pour être sûr(e) de le recevoir, ajoutez <strong>hello@tanse.fr</strong> à vos contacts et vérifiez vos courriers indésirables.
+      </p>
+    </div>
+
+    <div style="background-color: ${TANSE_COLORS.gray}; padding: 20px; border-radius: 6px; margin: 30px 0;">
+      <p style="margin: 0 0 10px 0; font-size: 15px; color: ${TANSE_COLORS.black}; font-weight: 600;">
+        💡 En attendant, découvrez :
+      </p>
+      <p style="margin: 0; font-size: 15px; color: ${TANSE_COLORS.black};">
+        <a href="https://tanse.fr/geo" style="color: ${TANSE_COLORS.primary}; text-decoration: none; font-weight: 500;">→ Qu'est-ce que le GEO ?</a><br>
+        <a href="https://tanse.fr/forfaits" style="color: ${TANSE_COLORS.primary}; text-decoration: none; font-weight: 500;">→ Nos forfaits SEO + GEO</a><br>
+        <a href="https://tanse.fr/blog" style="color: ${TANSE_COLORS.primary}; text-decoration: none; font-weight: 500;">→ Blog et ressources</a>
+      </p>
+    </div>
+
+    <p style="margin: 0 0 30px 0; font-size: 16px; color: ${TANSE_COLORS.black}; line-height: 1.6;">
+      À très vite avec votre audit complet,<br>
+      <strong style="color: ${TANSE_COLORS.primary};">L'équipe TANSE</strong>
+    </p>
+
+    <p style="margin: 0; font-size: 13px; color: ${TANSE_COLORS.grayDark}; line-height: 1.5;">
+      <em>Des questions ? Répondez directement à cet email ou contactez-nous à contact@tanse.fr</em>
+    </p>
+  `;
+
+  return emailBaseTemplate({ logoUrl, content });
+}

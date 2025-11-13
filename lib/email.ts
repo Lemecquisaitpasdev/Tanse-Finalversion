@@ -5,7 +5,8 @@ import {
   generateBookingConfirmationEmail,
   generateForfaitConfirmationEmail,
   generateNewsletterWelcomeEmail,
-  generateOffreCinqPlacesConfirmation
+  generateOffreCinqPlacesConfirmation,
+  generateAuditGratuitConfirmation
 } from './email-templates';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -556,6 +557,116 @@ export async function sendOffreCinqPlacesConfirmation(candidature: {
     console.log(`✅ Email de confirmation Offre 5 places envoyé à ${candidature.email}`);
   } catch (error) {
     console.error('❌ Erreur envoi email confirmation offre 5 places:', error);
+    throw error;
+  }
+}
+
+// 11. Notification pour demande d'audit gratuit
+export async function sendAuditGratuitNotification(audit: {
+  nom: string;
+  prenom: string;
+  email: string;
+  telephone: string;
+  entreprise: string;
+  siteWeb: string;
+  concurrent1: string;
+  concurrent2: string;
+  concurrent3: string;
+  commentConnu: string;
+}) {
+  const content = `
+    <div style="margin-bottom: 24px;">
+      <h2 style="color: #1f2937; font-size: 20px; margin: 0 0 8px 0;">
+        🎁 Nouvelle demande d'audit gratuit SEO + GEO
+      </h2>
+      <p style="color: #6b7280; margin: 0; font-size: 14px;">
+        Un prospect souhaite recevoir un audit complet avec benchmark concurrentiel
+      </p>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #e94e87 0%, #d63d73 100%); border-radius: 12px; padding: 20px; margin-bottom: 24px; text-align: center;">
+      <p style="color: rgba(255,255,255,0.9); margin: 0 0 8px 0; font-size: 14px;">Prospect</p>
+      <h3 style="color: #ffffff; margin: 0; font-size: 22px; font-weight: 600;">
+        ${audit.prenom} ${audit.nom}
+      </h3>
+      <p style="color: rgba(255,255,255,0.95); margin: 8px 0 0 0; font-size: 16px;">
+        ${audit.entreprise}
+      </p>
+    </div>
+
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 24px;">
+      ${formatField('Nom complet', `${audit.prenom} ${audit.nom}`)}
+      ${formatField('Email', audit.email)}
+      ${formatField('Téléphone', audit.telephone)}
+      ${formatField('Entreprise', audit.entreprise)}
+      ${formatField('Site web', `<a href="${audit.siteWeb}" style="color: #444684;">${audit.siteWeb}</a>`)}
+      ${formatField('Comment nous a connu', audit.commentConnu)}
+    </table>
+
+    <div style="background-color: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 16px; margin-bottom: 24px;">
+      <p style="margin: 0 0 12px 0; color: #92400e; font-size: 14px; font-weight: 600;">
+        🎯 Concurrents à analyser (benchmark) :
+      </p>
+      <ol style="margin: 0; padding-left: 20px; color: #92400e;">
+        <li style="margin-bottom: 4px;"><a href="${audit.concurrent1}" style="color: #444684;">${audit.concurrent1}</a></li>
+        <li style="margin-bottom: 4px;"><a href="${audit.concurrent2}" style="color: #444684;">${audit.concurrent2}</a></li>
+        <li><a href="${audit.concurrent3}" style="color: #444684;">${audit.concurrent3}</a></li>
+      </ol>
+    </div>
+
+    <div style="background-color: #dbeafe; border: 1px solid #3b82f6; border-radius: 8px; padding: 16px; margin-top: 24px;">
+      <p style="margin: 0; color: #1e40af; font-size: 14px;">
+        ⏰ <strong>Action requise :</strong> Réaliser l'audit SEO + GEO complet et envoyer le rapport PDF sous 48h
+      </p>
+    </div>
+
+    <div style="margin-top: 32px; padding-top: 24px; border-top: 2px solid #e5e7eb;">
+      <a href="mailto:${audit.email}" style="display: inline-block; background: linear-gradient(135deg, #e94e87 0%, #d63d73 100%); color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; margin-right: 12px;">
+        ✉️ Contacter ${audit.prenom}
+      </a>
+      <a href="tel:${audit.telephone}" style="display: inline-block; background-color: #f3f4f6; color: #1f2937; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px;">
+        📞 Appeler
+      </a>
+    </div>
+  `;
+
+  try {
+    await resend.emails.send({
+      from: FROM_EMAIL,
+      to: NOTIFICATION_EMAIL,
+      subject: `[AUDIT GRATUIT] ${audit.prenom} ${audit.nom} - ${audit.entreprise}`,
+      html: getEmailTemplate(content),
+    });
+    console.log('✅ Email de notification Audit Gratuit envoyé');
+  } catch (error) {
+    console.error('❌ Erreur envoi email notification audit gratuit:', error);
+  }
+}
+
+// 12. Email de confirmation - Demande d'audit gratuit
+export async function sendAuditGratuitConfirmation(audit: {
+  email: string;
+  prenom: string;
+  nom: string;
+  entreprise: string;
+}) {
+  const htmlContent = generateAuditGratuitConfirmation({
+    prenom: audit.prenom,
+    nom: audit.nom,
+    email: audit.email,
+    entreprise: audit.entreprise,
+  });
+
+  try {
+    await resend.emails.send({
+      from: FROM_EMAIL_USER,
+      to: audit.email,
+      subject: 'Votre audit SEO + GEO gratuit arrive sous 48h - TANSE',
+      html: htmlContent,
+    });
+    console.log(`✅ Email de confirmation Audit Gratuit envoyé à ${audit.email}`);
+  } catch (error) {
+    console.error('❌ Erreur envoi email confirmation audit gratuit:', error);
     throw error;
   }
 }
