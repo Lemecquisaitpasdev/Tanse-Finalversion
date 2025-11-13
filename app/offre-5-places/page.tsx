@@ -60,6 +60,26 @@ export default function OffreCinqPlacesPage() {
   const [error, setError] = useState("");
   const [formStarted, setFormStarted] = useState(false);
 
+  // FAQ data
+  const faqs = [
+    {
+      question: "Pourquoi c'est gratuit ?",
+      answer: "TANSE cherche à construire 5 études de cas pour prouver l'efficacité du GEO (Generative Engine Optimization). En échange de ce setup premium normalement à 2 990€, nous utiliserons vos résultats comme étude de cas (données anonymisées ou avec votre accord)."
+    },
+    {
+      question: "Dois-je m'engager sur un contrat long ?",
+      answer: "Non, le setup est offert sans engagement. À la fin des 3 mois d'accompagnement, vous décidez librement de continuer avec nous ou non, sans aucun engagement contractuel."
+    },
+    {
+      question: "Que se passe-t-il après le setup ?",
+      answer: "Après le setup initial, nous assurons un suivi de 3 mois pour garantir les résultats. À l'issue, vous pouvez choisir de continuer avec nos forfaits mensuels à partir de 850€/mois, mais c'est entièrement facultatif."
+    },
+    {
+      question: "Comment suis-je sélectionné ?",
+      answer: "Les candidatures sont étudiées selon plusieurs critères : potentiel de croissance, secteur d'activité, qualité du site web existant, et motivation. Nous sélectionnons les entreprises qui peuvent tirer le meilleur parti de cette offre."
+    }
+  ];
+
   // Charger le nombre de places restantes
   useEffect(() => {
     const fetchPlacesRemaining = async () => {
@@ -156,30 +176,11 @@ export default function OffreCinqPlacesPage() {
 
   const toggleFaq = (index: number) => {
     // Track FAQ open (only when opening, not closing)
-    if (faqOpen !== index) {
+    if (faqOpen !== index && faqs[index]) {
       trackFAQOpen(faqs[index].question, index);
     }
     setFaqOpen(faqOpen === index ? null : index);
   };
-
-  const faqs = [
-    {
-      question: "Pourquoi c'est gratuit ?",
-      answer: "TANSE cherche à construire 5 études de cas pour prouver l'efficacité du GEO (Generative Engine Optimization). En échange de ce setup premium normalement à 2 990€, nous utiliserons vos résultats comme étude de cas (données anonymisées ou avec votre accord)."
-    },
-    {
-      question: "Dois-je m'engager sur un contrat long ?",
-      answer: "Non, le setup est offert sans engagement. À la fin des 3 mois d'accompagnement, vous décidez librement de continuer avec nous ou non, sans aucun engagement contractuel."
-    },
-    {
-      question: "Que se passe-t-il après le setup ?",
-      answer: "Après le setup initial, nous assurons un suivi de 3 mois pour garantir les résultats. À l'issue, vous pouvez choisir de continuer avec nos forfaits mensuels à partir de 850€/mois, mais c'est entièrement facultatif."
-    },
-    {
-      question: "Comment suis-je sélectionné ?",
-      answer: "Les candidatures sont étudiées selon plusieurs critères : potentiel de croissance, secteur d'activité, qualité du site web existant, et motivation. Nous sélectionnons les entreprises qui peuvent tirer le meilleur parti de cette offre."
-    }
-  ];
 
   return (
     <main className="bg-[#E4E4E4] text-[#0b0b0c]">
