@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import CookieConsent from "./components/CookieConsent";
 import AnalyticsWrapper from "./components/AnalyticsWrapper";
+import GA4Provider from "./components/GA4Provider";
 import PerformanceModal from "./components/PerformanceModal";
 import { OptimizationProvider } from "./components/OptimizationProvider";
 import { PerformanceProvider } from "./contexts/PerformanceContext";
@@ -120,6 +121,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <CookieConsent />
             {/* Analytics avec respect du consentement RGPD */}
             <AnalyticsWrapper />
+            {/* Google Analytics 4 */}
+            <GA4Provider />
           </OptimizationProvider>
         </PerformanceProvider>
       </body>
