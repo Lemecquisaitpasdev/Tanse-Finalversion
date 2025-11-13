@@ -23,6 +23,7 @@ import {
   Star
 } from "lucide-react";
 import { trackFormStart, trackFormSubmit, trackCTAClick, trackFAQOpen } from "@/lib/analytics";
+import TrustpilotWidget from "@/app/components/TrustpilotWidget";
 
 const COMMENT_CONNU_OPTIONS = [
   "Sélectionnez une option",
@@ -600,12 +601,15 @@ export default function AuditGratuitPage() {
                 <Star className="w-6 h-6 text-yellow-400 fill-yellow-400" />
               </div>
 
-              {/* TODO: Intégrer widget Trustpilot ici */}
-              <div className="text-center py-8 bg-white/5 rounded-xl">
-                <MessageSquare className="w-12 h-12 text-white/40 mx-auto mb-4" />
-                <p className="text-white/60">Widget Trustpilot à intégrer</p>
-                <p className="text-white/40 text-sm mt-2">Carousel des 5 derniers avis</p>
-              </div>
+              <TrustpilotWidget
+                templateId="53aa8912dec7e10d38f59f36"
+                theme="light"
+                stars="5"
+                reviewLanguages="fr"
+                height="400px"
+                width="100%"
+                className="trustpilot-carousel"
+              />
             </div>
           </div>
         </div>
