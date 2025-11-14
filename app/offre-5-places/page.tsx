@@ -182,8 +182,28 @@ export default function OffreCinqPlacesPage() {
     setFaqOpen(faqOpen === index ? null : index);
   };
 
+  // Schema.org JSON-LD pour FAQPage
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
     <main className="bg-[#E4E4E4] text-[#0b0b0c]">
+      {/* Schema.org JSON-LD for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Fallback SEO pour crawlers */}
       <noscript>
         <div className="mx-auto max-w-4xl p-8 bg-white">

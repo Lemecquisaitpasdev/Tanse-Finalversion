@@ -59,7 +59,7 @@ export default function TrustpilotWidget({
       document.head.appendChild(script);
     } else {
       // Si le script est déjà chargé, initialiser le widget
-      if (trustboxRef.current) {
+      if (trustboxRef.current && window.Trustpilot) {
         window.Trustpilot.loadFromElement(trustboxRef.current, true);
       }
     }
@@ -112,13 +112,4 @@ export default function TrustpilotWidget({
       </div>
     </div>
   );
-}
-
-// Type declarations pour TypeScript
-declare global {
-  interface Window {
-    Trustpilot?: {
-      loadFromElement: (element: HTMLElement, force?: boolean) => void;
-    };
-  }
 }
