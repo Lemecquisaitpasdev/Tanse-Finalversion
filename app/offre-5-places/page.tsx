@@ -56,15 +56,15 @@ export default function OffreCinqPlacesPage() {
   const faqs = [
     {
       question: "Pourquoi c'est gratuit ?",
-      answer: "TANSE cherche à construire 5 études de cas pour prouver l'efficacité du GEO (Generative Engine Optimization). En échange de ce setup premium normalement à 2 990€, nous utiliserons vos résultats comme étude de cas (données anonymisées ou avec votre accord)."
+      answer: "TANSE cherche à construire 5 études de cas pour prouver l'efficacité du GEO (Generative Engine Optimization). En échange de ce setup premium normalement à 1 490€, nous utiliserons vos résultats comme étude de cas (données anonymisées ou avec votre accord)."
     },
     {
       question: "Dois-je m'engager sur un contrat long ?",
-      answer: "Non, le setup est offert sans engagement. À la fin des 3 mois d'accompagnement, vous décidez librement de continuer avec nous ou non, sans aucun engagement contractuel."
+      answer: "Non, le setup est offert sans aucun engagement. Après le setup initial, vous décidez librement de continuer avec nous ou non, sans aucun engagement contractuel."
     },
     {
       question: "Que se passe-t-il après le setup ?",
-      answer: "Après le setup initial, nous assurons un suivi de 3 mois pour garantir les résultats. À l'issue, vous pouvez choisir de continuer avec nos forfaits mensuels à partir de 850€/mois, mais c'est entièrement facultatif."
+      answer: "Après le setup initial, vous pouvez choisir de continuer avec nos forfaits mensuels à partir de 850€/mois pour un suivi continu et l'optimisation de vos résultats, mais c'est entièrement facultatif."
     },
     {
       question: "Comment suis-je sélectionné ?",
@@ -199,9 +199,9 @@ export default function OffreCinqPlacesPage() {
       {/* Fallback SEO pour crawlers */}
       <noscript>
         <div className="mx-auto max-w-4xl p-8 bg-white">
-          <h1>Offre Exclusive : 5 entreprises seulement - Setup SEO + GEO offert (valeur 2 990€)</h1>
+          <h1>Offre Exclusive : 5 entreprises seulement - Setup SEO + GEO offert (valeur 1 490€)</h1>
           <p>Soyez parmi les premières PME françaises visibles sur ChatGPT, Perplexity et Claude. TANSE offre gratuitement un setup SEO + GEO complet à 5 entreprises sélectionnées.</p>
-          <h2>Ce qui est inclus (valeur 2 990€)</h2>
+          <h2>Ce qui est inclus (valeur 1 490€)</h2>
           <ul>
             <li>Audit SEO + GEO complet (valeur 990€)</li>
             <li>Optimisation Google Business Profile</li>
@@ -209,7 +209,6 @@ export default function OffreCinqPlacesPage() {
             <li>20 citations locales + correction NAP</li>
             <li>Configuration Schema.org</li>
             <li>10 tests IA (ChatGPT, Perplexity, Claude)</li>
-            <li>3 mois de suivi personnalisé</li>
           </ul>
         </div>
       </noscript>
@@ -239,7 +238,7 @@ export default function OffreCinqPlacesPage() {
                   5 entreprises seulement : Setup SEO + GEO offert
                 </h1>
                 <p className="text-2xl lg:text-3xl text-[#444684] opacity-70 font-light">
-                  (valeur 2 990€)
+                  (valeur 1 490€)
                 </p>
               </div>
 
@@ -335,7 +334,7 @@ export default function OffreCinqPlacesPage() {
               </div>
               <h3 className="text-xl font-bold text-[#444684]">Setup premium offert</h3>
               <p className="text-[#444684] opacity-70 leading-relaxed">
-                Setup normalement facturé 2 990€, offert en échange de votre retour d'expérience.
+                Setup normalement facturé 1 490€, offert en échange de votre retour d'expérience.
               </p>
             </div>
           </div>
@@ -402,19 +401,18 @@ export default function OffreCinqPlacesPage() {
               Ce que vous obtenez GRATUITEMENT
             </h2>
             <p className="text-2xl text-[#444684] opacity-60">
-              Valeur totale : 2 990€
+              Valeur totale : 1 490€
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { icon: Award, text: "Audit SEO + GEO complet", value: "990€" },
-              { icon: Target, text: "Optimisation Google Business Profile", value: "490€" },
-              { icon: Clock, text: "Setup call-tracking + Analytics", value: "290€" },
-              { icon: CheckCircle2, text: "20 citations locales + correction NAP", value: "390€" },
-              { icon: Shield, text: "Configuration Schema.org avancée", value: "190€" },
-              { icon: Sparkles, text: "10 tests IA (ChatGPT, Perplexity, Claude)", value: "290€" },
-              { icon: Users, text: "3 mois de suivi personnalisé", value: "350€" }
+              { icon: Award, text: "Audit SEO + GEO complet", value: "490€" },
+              { icon: Target, text: "Optimisation Google Business Profile", value: "290€" },
+              { icon: Clock, text: "Setup call-tracking + Analytics", value: "190€" },
+              { icon: CheckCircle2, text: "20 citations locales + correction NAP", value: "290€" },
+              { icon: Shield, text: "Configuration Schema.org avancée", value: "140€" },
+              { icon: Sparkles, text: "10 tests IA (ChatGPT, Perplexity, Claude)", value: "90€" }
             ].map((item, index) => (
               <div key={index} className="flex items-start gap-5 p-6 bg-white rounded-xl shadow-sm">
                 <div className="flex-shrink-0">
@@ -448,7 +446,7 @@ export default function OffreCinqPlacesPage() {
               "Entreprise en activité depuis au moins 6 mois",
               "Motivation à partager votre retour d'expérience",
               "Secteur d'activité local (restaurant, commerce, services, etc.)",
-              "Disponibilité pour 2-3h d'échanges sur 3 mois",
+              "Disponibilité pour quelques échanges durant le setup",
               "Accord pour utiliser vos résultats en étude de cas (données anonymisées ou avec consentement)"
             ].map((critere, index) => (
               <div key={index} className="flex items-start gap-4 p-5 bg-[#e4e4e4] rounded-xl">

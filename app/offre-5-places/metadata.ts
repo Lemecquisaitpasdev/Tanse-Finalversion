@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Offre 5 Places : Setup SEO + GEO Gratuit (valeur 2 990€)",
+  title: "Offre 5 Places : Setup SEO + GEO Gratuit (valeur 1 490€)",
   description: "Soyez parmi les 5 premières PME françaises à bénéficier gratuitement d'un setup SEO + GEO complet. Offre limitée pour devenir visible sur ChatGPT, Perplexity et Claude.",
   keywords: [
     "offre gratuite SEO",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "audit SEO offert"
   ],
   openGraph: {
-    title: "5 entreprises seulement : Setup SEO + GEO offert (2 990€)",
+    title: "5 entreprises seulement : Setup SEO + GEO offert (1 490€)",
     description: "Bénéficiez gratuitement d'un setup SEO + GEO complet. Places limitées à 5 entreprises pour garantir un accompagnement premium.",
     type: "website",
     images: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Offre 5 Places : Setup SEO + GEO Gratuit (2 990€)",
+    title: "Offre 5 Places : Setup SEO + GEO Gratuit (1 490€)",
     description: "Soyez parmi les 5 premières PME à bénéficier d'un setup gratuit. Offre limitée.",
     images: ["/twitter-image-offre-5-places.png"]
   },
