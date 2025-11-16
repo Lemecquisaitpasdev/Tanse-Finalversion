@@ -5,27 +5,19 @@ import {
   CheckCircle2,
   Loader2,
   Send,
-  Sparkles,
   Clock,
-  Gift,
   TrendingUp,
   Zap,
   Building2,
-  Globe,
-  Mail,
   Users,
   Target,
-  Store,
-  Briefcase,
-  Heart,
-  Scale,
-  Home,
   ChevronDown,
-  Phone,
-  FileText,
-  Award
+  Award,
+  Sparkles,
+  Shield,
+  Rocket
 } from "lucide-react";
-import { trackFormStart, trackFormSubmit, trackCTAClick, trackFAQOpen } from "@/lib/analytics";
+import { trackFormStart, trackFormSubmit, trackFAQOpen } from "@/lib/analytics";
 
 const SECTEURS = [
   "Sélectionnez votre secteur",
@@ -197,7 +189,7 @@ export default function OffreCinqPlacesPage() {
   };
 
   return (
-    <main className="bg-[#E4E4E4] text-[#0b0b0c]">
+    <main className="bg-[#e4e4e4] min-h-screen">
       {/* Schema.org JSON-LD for SEO */}
       <script
         type="application/ld+json"
@@ -217,512 +209,487 @@ export default function OffreCinqPlacesPage() {
             <li>20 citations locales + correction NAP</li>
             <li>Configuration Schema.org</li>
             <li>10 tests IA (ChatGPT, Perplexity, Claude)</li>
-            <li>Plan d'action 30 jours</li>
+            <li>3 mois de suivi personnalisé</li>
           </ul>
-          <p>Pour candidater, contactez-nous à contact@tanse.fr</p>
         </div>
       </noscript>
 
-      {/* Hero Section */}
-      <section className="relative mx-auto w-full max-w-7xl px-6 py-16 md:py-24 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-[#FFB800]/20 to-[#FF5757]/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-br from-[#444684]/20 to-purple-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }} />
+      {/* Hero Section - Split Layout */}
+      <section className="relative min-h-screen flex items-center px-6 lg:px-32 py-20">
+        {/* Badge places restantes - Position sticky */}
+        {!loadingPlaces && placesRemaining !== null && (
+          <div className="fixed top-8 right-8 z-50 bg-[#444684] text-white px-6 py-3 rounded-full shadow-xl font-bold text-sm">
+            {placesRemaining === 0 ? "PLACES ÉPUISÉES" : `${placesRemaining} PLACE${placesRemaining > 1 ? 'S' : ''} RESTANTE${placesRemaining > 1 ? 'S' : ''}`}
+          </div>
+        )}
 
-        <div className="relative z-10">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="p-1.5 rounded-lg bg-gradient-to-br from-[#FFB800] to-[#FF5757] shadow-lg animate-pulse">
-              <Gift className="h-4 w-4 text-white" />
+        <div className="max-w-[1400px] mx-auto w-full">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            {/* Colonne gauche - Texte */}
+            <div className="space-y-10">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#444684] text-white rounded-full text-sm font-medium">
+                <Sparkles className="w-4 h-4" />
+                OFFRE LIMITÉE
+              </div>
+
+              {/* Titre principal */}
+              <div className="space-y-4">
+                <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-[#444684] leading-[1.1]">
+                  5 entreprises seulement : Setup SEO + GEO offert
+                </h1>
+                <p className="text-2xl lg:text-3xl text-[#444684] opacity-70 font-light">
+                  (valeur 2 990€)
+                </p>
+              </div>
+
+              {/* Description */}
+              <p className="text-xl lg:text-2xl text-[#444684] leading-relaxed opacity-90">
+                Soyez parmi les premières PME françaises visibles sur ChatGPT, Perplexity et Claude.
+              </p>
+
+              {/* CTA */}
+              <button
+                onClick={() => {
+                  document.getElementById("candidature-form")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                  });
+                }}
+                className="inline-flex items-center gap-3 px-10 py-5 bg-[#444684] text-white text-lg font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg"
+              >
+                Candidater maintenant
+                <Send className="w-5 h-5" />
+              </button>
+
+              {/* Points clés */}
+              <div className="flex flex-wrap gap-6 pt-6">
+                <div className="flex items-center gap-2 text-[#444684]">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0" />
+                  <span className="font-medium">100% Gratuit</span>
+                </div>
+                <div className="flex items-center gap-2 text-[#444684]">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0" />
+                  <span className="font-medium">Sans engagement</span>
+                </div>
+                <div className="flex items-center gap-2 text-[#444684]">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0" />
+                  <span className="font-medium">Résultats mesurables</span>
+                </div>
+              </div>
             </div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] bg-gradient-to-r from-[#FF5757] to-[#FFB800] bg-clip-text text-transparent">
-              Offre Limitée — {loadingPlaces ? "..." : `${placesRemaining} place${placesRemaining !== 1 ? 's' : ''} restante${placesRemaining !== 1 ? 's' : ''}`}
+
+            {/* Colonne droite - Animation Spline 3D */}
+            <div className="relative lg:order-last order-first">
+              <div className="aspect-square w-full max-w-[600px] mx-auto">
+                <script type="module" src="https://unpkg.com/@splinetool/viewer@1.11.4/build/spline-viewer.js"></script>
+                <spline-viewer
+                  url="https://prod.spline.design/JekVEQwYRU1hgUoK/scene.splinecode"
+                  className="w-full h-full"
+                ></spline-viewer>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section - Pourquoi cette offre */}
+      <section className="px-6 lg:px-32 py-32">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="text-center mb-20 space-y-6">
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#444684]">
+              Pourquoi cette offre ?
+            </h2>
+            <p className="text-xl text-[#444684] opacity-80 max-w-3xl mx-auto leading-relaxed">
+              TANSE cherche à construire 5 études de cas pour prouver l'efficacité du GEO
             </p>
           </div>
 
-          <h1 className="text-[clamp(36px,5vw,64px)] font-bold leading-[1.1] bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-700 bg-clip-text text-transparent">
-            5 entreprises seulement : Setup SEO + GEO offert (valeur 2 990€)
-          </h1>
-
-          <p className="mt-6 max-w-2xl text-[19px] leading-relaxed text-neutral-700">
-            Soyez parmi les <strong className="text-neutral-900">premières PME françaises</strong> visibles sur{" "}
-            <span className="bg-gradient-to-r from-[#444684] to-[#524e7d] bg-clip-text text-transparent font-bold">
-              ChatGPT, Perplexity et Claude
-            </span>
-          </p>
-
-          {/* Compteur */}
-          <div className="mt-10 inline-block">
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#FFB800] via-[#FF5757] to-[#FF5757] p-1 shadow-2xl">
-              <div className="relative bg-white rounded-xl px-8 py-6">
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#FF5757] to-[#FFB800] shadow-lg">
-                    <span className="text-3xl font-bold text-white">
-                      {loadingPlaces ? "..." : placesRemaining}
-                    </span>
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-neutral-600 uppercase tracking-wide">Places restantes</p>
-                    <p className="text-2xl font-bold bg-gradient-to-r from-[#FF5757] to-[#FFB800] bg-clip-text text-transparent">sur 5 au total</p>
-                  </div>
-                </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Card 1 */}
+            <div className="bg-white p-10 rounded-2xl shadow-sm hover:shadow-md transition-all space-y-4">
+              <div className="w-14 h-14 bg-[#444684]/5 rounded-xl flex items-center justify-center">
+                <Target className="w-7 h-7 text-[#444684]" />
               </div>
-            </div>
-          </div>
-
-          {/* Badge */}
-          <div className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/70 backdrop-blur-sm border border-white shadow-sm">
-            <Award className="h-5 w-5 text-[#444684]" />
-            <span className="font-semibold text-neutral-800">Pionniers du GEO en France</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Section "Pourquoi cette offre ?" */}
-      <section className="mx-auto w-full max-w-5xl px-6 pb-16">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#444684]/5 via-purple-50/50 to-blue-50/30 p-8 md:p-12 border border-white/80 shadow-lg">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#444684]/10 to-purple-200/10 rounded-full blur-3xl" />
-
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#444684] to-[#524e7d] bg-clip-text text-transparent mb-6">
-              Pourquoi cette offre ?
-            </h2>
-
-            <div className="space-y-4 text-neutral-700 leading-relaxed">
-              <p className="text-lg">
-                <strong className="text-neutral-900">TANSE veut construire 5 cas d'étude</strong> pour prouver la puissance du GEO (Generative Engine Optimization) et son impact sur la visibilité des PME françaises.
+              <h3 className="text-xl font-bold text-[#444684]">Visibilité IA</h3>
+              <p className="text-[#444684] opacity-70 leading-relaxed">
+                73% des PME sont invisibles sur ChatGPT. Soyez parmi les pionniers.
               </p>
+            </div>
 
-              <div className="flex items-start gap-3 p-4 rounded-2xl bg-white/60 backdrop-blur-sm">
-                <Gift className="h-6 w-6 text-[#444684] flex-shrink-0 mt-1" />
-                <div>
-                  <p className="font-semibold text-neutral-900 mb-1">🎁 Bénéfice</p>
-                  <p>Setup premium normalement à <strong className="text-[#FF5757]">2 990€</strong> offert intégralement. Vous ne payez rien.</p>
-                </div>
+            {/* Card 2 */}
+            <div className="bg-white p-10 rounded-2xl shadow-sm hover:shadow-md transition-all space-y-4">
+              <div className="w-14 h-14 bg-[#444684]/5 rounded-xl flex items-center justify-center">
+                <TrendingUp className="w-7 h-7 text-[#444684]" />
               </div>
+              <h3 className="text-xl font-bold text-[#444684]">Avantage concurrentiel</h3>
+              <p className="text-[#444684] opacity-70 leading-relaxed">
+                Prenez de l'avance avant que vos concurrents ne découvrent le GEO.
+              </p>
+            </div>
 
-              <div className="flex items-start gap-3 p-4 rounded-2xl bg-white/60 backdrop-blur-sm">
-                <FileText className="h-6 w-6 text-[#444684] flex-shrink-0 mt-1" />
-                <div>
-                  <p className="font-semibold text-neutral-900 mb-1">🤝 Contrepartie</p>
-                  <p>Utilisation de vos résultats comme <strong>étude de cas</strong> (données anonymisées possibles ou avec votre accord explicite). Aucun engagement financier de votre part.</p>
-                </div>
+            {/* Card 3 */}
+            <div className="bg-white p-10 rounded-2xl shadow-sm hover:shadow-md transition-all space-y-4">
+              <div className="w-14 h-14 bg-[#444684]/5 rounded-xl flex items-center justify-center">
+                <Rocket className="w-7 h-7 text-[#444684]" />
+              </div>
+              <h3 className="text-xl font-bold text-[#444684]">Setup premium offert</h3>
+              <p className="text-[#444684] opacity-70 leading-relaxed">
+                Setup normalement facturé 2 990€, offert en échange de votre retour d'expérience.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section - Pour qui */}
+      <section className="px-6 lg:px-32 py-32 bg-white">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="text-center mb-20 space-y-6">
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#444684]">
+              Pour qui ?
+            </h2>
+          </div>
+
+          <div className="space-y-6">
+            {/* Item 1 */}
+            <div className="flex items-start gap-6 p-8 bg-[#e4e4e4] rounded-2xl hover:shadow-sm transition-all">
+              <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
+                <Building2 className="w-6 h-6 text-[#444684]" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-xl font-bold text-[#444684]">PME locales</h3>
+                <p className="text-[#444684] opacity-70 leading-relaxed">
+                  Restaurants, garages, cabinets médicaux, commerces de proximité cherchant à augmenter leur visibilité locale.
+                </p>
+              </div>
+            </div>
+
+            {/* Item 2 */}
+            <div className="flex items-start gap-6 p-8 bg-[#e4e4e4] rounded-2xl hover:shadow-sm transition-all">
+              <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
+                <Users className="w-6 h-6 text-[#444684]" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-xl font-bold text-[#444684]">Services professionnels</h3>
+                <p className="text-[#444684] opacity-70 leading-relaxed">
+                  Avocats, comptables, consultants souhaitant être recommandés par les IA génératives.
+                </p>
+              </div>
+            </div>
+
+            {/* Item 3 */}
+            <div className="flex items-start gap-6 p-8 bg-[#e4e4e4] rounded-2xl hover:shadow-sm transition-all">
+              <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
+                <Zap className="w-6 h-6 text-[#444684]" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-xl font-bold text-[#444684]">Entreprises motivées</h3>
+                <p className="text-[#444684] opacity-70 leading-relaxed">
+                  Vous êtes prêt(e) à investir du temps pour maximiser les résultats et partager votre retour d'expérience.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section "Pour qui ?" */}
-      <section className="mx-auto w-full max-w-7xl px-6 pb-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-700 bg-clip-text text-transparent">Pour qui ?</h2>
-          <p className="mt-3 text-neutral-600 max-w-2xl mx-auto">Cette offre s'adresse aux entreprises locales et multi-sites</p>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <div className="group relative overflow-hidden rounded-3xl bg-white/70 backdrop-blur-sm p-6 border border-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#FFB800]/20 to-[#FF5757]/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative z-10 text-center">
-              <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-[#444684] to-[#524e7d] shadow-lg mb-4">
-                <Store className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-lg font-bold text-neutral-900 mb-2">PME locales</h3>
-              <p className="text-sm text-neutral-600">Restaurants, services, commerce de proximité</p>
-            </div>
+      {/* Section - Ce que vous obtenez GRATUITEMENT */}
+      <section className="px-6 lg:px-32 py-32">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="text-center mb-20 space-y-6">
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#444684]">
+              Ce que vous obtenez GRATUITEMENT
+            </h2>
+            <p className="text-2xl text-[#444684] opacity-60">
+              Valeur totale : 2 990€
+            </p>
           </div>
 
-          <div className="group relative overflow-hidden rounded-3xl bg-white/70 backdrop-blur-sm p-6 border border-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-purple-200/20 to-[#444684]/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative z-10 text-center">
-              <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-[#444684] to-[#524e7d] shadow-lg mb-4">
-                <Building2 className="h-8 w-8 text-white" />
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              { icon: Award, text: "Audit SEO + GEO complet", value: "990€" },
+              { icon: Target, text: "Optimisation Google Business Profile", value: "490€" },
+              { icon: Clock, text: "Setup call-tracking + Analytics", value: "290€" },
+              { icon: CheckCircle2, text: "20 citations locales + correction NAP", value: "390€" },
+              { icon: Shield, text: "Configuration Schema.org avancée", value: "190€" },
+              { icon: Sparkles, text: "10 tests IA (ChatGPT, Perplexity, Claude)", value: "290€" },
+              { icon: Users, text: "3 mois de suivi personnalisé", value: "350€" }
+            ].map((item, index) => (
+              <div key={index} className="flex items-start gap-5 p-6 bg-white rounded-xl shadow-sm">
+                <div className="flex-shrink-0">
+                  <CheckCircle2 className="w-6 h-6 text-green-600" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="text-[#444684] font-medium text-lg">{item.text}</span>
+                    <span className="text-[#444684] opacity-50 text-sm whitespace-nowrap">{item.value}</span>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-lg font-bold text-neutral-900 mb-2">Franchises multi-sites</h3>
-              <p className="text-sm text-neutral-600">Réseaux avec plusieurs établissements</p>
-            </div>
-          </div>
-
-          <div className="group relative overflow-hidden rounded-3xl bg-white/70 backdrop-blur-sm p-6 border border-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-200/20 to-indigo-200/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative z-10 text-center">
-              <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-[#444684] to-[#524e7d] shadow-lg mb-4">
-                <Briefcase className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-lg font-bold text-neutral-900 mb-2">Entreprises B2B</h3>
-              <p className="text-sm text-neutral-600">Services aux professionnels</p>
-            </div>
-          </div>
-
-          <div className="group relative overflow-hidden rounded-3xl bg-white/70 backdrop-blur-sm p-6 border border-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-emerald-200/20 to-teal-200/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative z-10 text-center">
-              <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-[#444684] to-[#524e7d] shadow-lg mb-4">
-                <Heart className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-lg font-bold text-neutral-900 mb-2">Secteurs prioritaires</h3>
-              <p className="text-sm text-neutral-600">Santé, juridique, immobilier</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Critères d'éligibilité */}
-      <section className="mx-auto w-full max-w-4xl px-6 pb-20">
-        <div className="relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-sm p-8 md:p-10 border border-white shadow-xl">
-          <div className="absolute top-0 left-0 w-48 h-48 bg-gradient-to-br from-[#444684]/10 to-transparent rounded-full blur-3xl" />
-
-          <div className="relative z-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-6 flex items-center gap-3">
-              <Target className="h-8 w-8 text-[#444684]" />
+      {/* Section - Critères d'éligibilité */}
+      <section className="px-6 lg:px-32 py-32 bg-white">
+        <div className="max-w-[1000px] mx-auto">
+          <div className="text-center mb-20 space-y-6">
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#444684]">
               Critères d'éligibilité
             </h2>
+          </div>
 
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#444684] flex items-center justify-center mt-0.5">
-                  <CheckCircle2 className="h-4 w-4 text-white" />
-                </div>
-                <span className="text-neutral-700"><strong className="text-neutral-900">Entreprise basée en France</strong> (ou pays francophones)</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#444684] flex items-center justify-center mt-0.5">
-                  <CheckCircle2 className="h-4 w-4 text-white" />
-                </div>
-                <span className="text-neutral-700"><strong className="text-neutral-900">Site web existant</strong> (même basique)</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#444684] flex items-center justify-center mt-0.5">
-                  <CheckCircle2 className="h-4 w-4 text-white" />
-                </div>
-                <span className="text-neutral-700"><strong className="text-neutral-900">Engagement à suivre nos recommandations</strong> pendant 3 mois</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#444684] flex items-center justify-center mt-0.5">
-                  <CheckCircle2 className="h-4 w-4 text-white" />
-                </div>
-                <span className="text-neutral-700"><strong className="text-neutral-900">Acceptation de partager les résultats</strong> (données anonymisées possibles)</span>
-              </li>
-            </ul>
+          <div className="space-y-4">
+            {[
+              "Site web existant (même basique)",
+              "Fiche Google Business Profile active",
+              "Entreprise en activité depuis au moins 6 mois",
+              "Motivation à partager votre retour d'expérience",
+              "Secteur d'activité local (restaurant, commerce, services, etc.)",
+              "Disponibilité pour 2-3h d'échanges sur 3 mois",
+              "Accord pour utiliser vos résultats en étude de cas (données anonymisées ou avec consentement)"
+            ].map((critere, index) => (
+              <div key={index} className="flex items-start gap-4 p-5 bg-[#e4e4e4] rounded-xl">
+                <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
+                <span className="text-[#444684] text-lg">{critere}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Formulaire de candidature */}
-      <section className="mx-auto w-full max-w-4xl px-6 pb-20">
-        {submitted ? (
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 p-8 md:p-12 border border-green-200/50 shadow-xl">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-green-200/20 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl" />
-
-            <div className="relative z-10 text-center">
-              <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-green-400 to-emerald-500 shadow-lg">
-                <CheckCircle2 className="h-14 w-14 text-white" />
-              </div>
-
-              <h3 className="mt-6 text-4xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent">
-                Candidature envoyée ! 🎉
-              </h3>
-
-              <p className="mt-4 text-lg text-neutral-700 max-w-2xl mx-auto">
-                Félicitations ! Votre candidature pour l'offre 5 places a bien été enregistrée.
-                <br />
-                <strong className="text-neutral-900">Notre équipe va l'étudier et vous recontacter sous 48h</strong> pour confirmer votre sélection.
-              </p>
-
-              <div className="mt-8 p-6 rounded-2xl bg-white/70 backdrop-blur-sm border border-white/80 shadow-md inline-block">
-                <Mail className="h-10 w-10 text-green-600 mx-auto mb-3" />
-                <p className="text-sm text-neutral-600 mb-1">Email de confirmation envoyé à</p>
-                <p className="font-bold text-neutral-900 text-lg">{formData.email || "votre adresse"}</p>
-              </div>
-
-              <button
-                onClick={() => setSubmitted(false)}
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-green-500/30 hover:shadow-xl hover:shadow-green-500/40 transition-all duration-300"
-              >
-                Retour
-              </button>
-            </div>
+      {/* Section - Formulaire de candidature */}
+      <section id="candidature-form" className="px-6 lg:px-32 py-32">
+        <div className="max-w-[800px] mx-auto">
+          <div className="text-center mb-16 space-y-6">
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#444684]">
+              Candidatez maintenant
+            </h2>
+            <p className="text-xl text-[#444684] opacity-70">
+              ⏱️ Réponse sous 48h
+            </p>
           </div>
-        ) : (
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-neutral-50 to-white border border-white/80 shadow-2xl">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-[#444684]/10 to-purple-200/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-[#FFB800]/10 to-[#FF5757]/10 rounded-full blur-3xl" />
 
-            <div className="relative z-10 p-8 md:p-10 border-b border-neutral-100 bg-white/60 backdrop-blur-sm">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 rounded-xl bg-gradient-to-br from-[#444684] to-[#524e7d] shadow-lg">
-                  <Sparkles className="h-6 w-6 text-white" />
-                </div>
-                <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#444684] to-[#524e7d] bg-clip-text text-transparent">
-                  Formulaire de candidature
-                </h2>
-              </div>
-              <p className="text-neutral-600">Remplissez ce formulaire pour postuler à l'une des 5 places disponibles.</p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="relative z-10 p-8 md:p-10 space-y-6">
-              {error && (
-                <div className="rounded-2xl bg-gradient-to-br from-red-50 to-rose-50 border-2 border-red-200 p-5 text-sm text-red-800">
-                  <div className="flex items-center gap-2 font-semibold mb-1">
-                    <div className="h-2 w-2 rounded-full bg-red-500" />
-                    Erreur
-                  </div>
-                  {error}
-                </div>
-              )}
-
-              <div className="grid gap-5 md:grid-cols-2">
-                <div className="group">
-                  <label className="mb-2 block text-sm font-semibold text-neutral-700">
-                    Nom de l'entreprise <span className="text-red-500">*</span>
-                  </label>
-                  <div className="relative">
-                    <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-400" />
-                    <input
-                      name="nomEntreprise"
-                      value={formData.nomEntreprise}
-                      onChange={handleChange}
-                      required
-                      className="w-full rounded-xl bg-white border-2 border-neutral-200 pl-11 pr-4 py-3 outline-none focus:border-[#444684] focus:ring-2 focus:ring-[#444684]/20 transition-all duration-300 placeholder:text-neutral-400"
-                      placeholder="TANSE Auto"
-                    />
-                  </div>
-                </div>
-
-                <div className="group">
-                  <label className="mb-2 block text-sm font-semibold text-neutral-700">
-                    Secteur d'activité <span className="text-red-500">*</span>
-                  </label>
-                  <div className="relative">
-                    <select
-                      name="secteurActivite"
-                      value={formData.secteurActivite}
-                      onChange={handleChange}
-                      required
-                      className="w-full rounded-xl bg-white border-2 border-neutral-200 px-4 py-3 outline-none focus:border-[#444684] focus:ring-2 focus:ring-[#444684]/20 transition-all duration-300 appearance-none cursor-pointer"
-                    >
-                      {SECTEURS.map((secteur) => (
-                        <option key={secteur} value={secteur === "Sélectionnez votre secteur" ? "" : secteur}>
-                          {secteur}
-                        </option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-400 pointer-events-none" />
-                  </div>
-                </div>
-
-                <div className="group">
-                  <label className="mb-2 block text-sm font-semibold text-neutral-700">
-                    URL de votre site web <span className="text-red-500">*</span>
-                  </label>
-                  <div className="relative">
-                    <Globe className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-400" />
-                    <input
-                      type="url"
-                      name="urlSite"
-                      value={formData.urlSite}
-                      onChange={handleChange}
-                      required
-                      className="w-full rounded-xl bg-white border-2 border-neutral-200 pl-11 pr-4 py-3 outline-none focus:border-[#444684] focus:ring-2 focus:ring-[#444684]/20 transition-all duration-300 placeholder:text-neutral-400"
-                      placeholder="https://votre-site.fr"
-                    />
-                  </div>
-                </div>
-
-                <div className="group">
-                  <label className="mb-2 block text-sm font-semibold text-neutral-700">
-                    E-mail professionnel <span className="text-red-500">*</span>
-                  </label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-400" />
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full rounded-xl bg-white border-2 border-neutral-200 pl-11 pr-4 py-3 outline-none focus:border-[#444684] focus:ring-2 focus:ring-[#444684]/20 transition-all duration-300 placeholder:text-neutral-400"
-                      placeholder="contact@entreprise.fr"
-                    />
-                  </div>
-                </div>
+          {!submitted ? (
+            <form onSubmit={handleSubmit} className="space-y-8 bg-white p-10 lg:p-16 rounded-3xl shadow-sm">
+              {/* Nom entreprise */}
+              <div className="space-y-3">
+                <label htmlFor="nomEntreprise" className="block text-[#444684] font-medium text-lg">
+                  Nom de votre entreprise *
+                </label>
+                <input
+                  type="text"
+                  id="nomEntreprise"
+                  name="nomEntreprise"
+                  value={formData.nomEntreprise}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-6 py-4 border-2 border-[#444684]/20 rounded-xl focus:border-[#444684] focus:outline-none text-[#444684] text-lg placeholder:text-[#444684]/30 transition-all"
+                  placeholder="Mon Entreprise SARL"
+                />
               </div>
 
-              <div className="group">
-                <label className="mb-2 block text-sm font-semibold text-neutral-700">Téléphone (optionnel)</label>
-                <div className="relative">
-                  <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-400" />
+              {/* Secteur */}
+              <div className="space-y-3">
+                <label htmlFor="secteurActivite" className="block text-[#444684] font-medium text-lg">
+                  Secteur d'activité *
+                </label>
+                <select
+                  id="secteurActivite"
+                  name="secteurActivite"
+                  value={formData.secteurActivite}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-6 py-4 border-2 border-[#444684]/20 rounded-xl focus:border-[#444684] focus:outline-none text-[#444684] text-lg transition-all appearance-none cursor-pointer"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23444684' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right 1.5rem center',
+                    backgroundSize: '1.5rem'
+                  }}
+                >
+                  {SECTEURS.map((secteur) => (
+                    <option key={secteur} value={secteur}>
+                      {secteur}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Email + Téléphone */}
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-3">
+                  <label htmlFor="email" className="block text-[#444684] font-medium text-lg">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-6 py-4 border-2 border-[#444684]/20 rounded-xl focus:border-[#444684] focus:outline-none text-[#444684] text-lg placeholder:text-[#444684]/30 transition-all"
+                    placeholder="contact@entreprise.fr"
+                  />
+                </div>
+
+                <div className="space-y-3">
+                  <label htmlFor="telephone" className="block text-[#444684] font-medium text-lg">
+                    Téléphone *
+                  </label>
                   <input
                     type="tel"
+                    id="telephone"
                     name="telephone"
                     value={formData.telephone}
                     onChange={handleChange}
-                    className="w-full rounded-xl bg-white border-2 border-neutral-200 pl-11 pr-4 py-3 outline-none focus:border-[#444684] focus:ring-2 focus:ring-[#444684]/20 transition-all duration-300 placeholder:text-neutral-400"
-                    placeholder="+33 6 12 34 56 78"
+                    required
+                    className="w-full px-6 py-4 border-2 border-[#444684]/20 rounded-xl focus:border-[#444684] focus:outline-none text-[#444684] text-lg placeholder:text-[#444684]/30 transition-all"
+                    placeholder="06 12 34 56 78"
                   />
                 </div>
               </div>
 
-              <div className="group">
-                <label className="mb-2 block text-sm font-semibold text-neutral-700">
-                  Pourquoi vous voulez être parmi les 5 ? <span className="text-red-500">*</span>
-                  <span className="ml-2 text-xs font-normal text-neutral-500">
-                    ({formData.motivation.length}/200 caractères)
-                  </span>
+              {/* URL Site */}
+              <div className="space-y-3">
+                <label htmlFor="urlSite" className="block text-[#444684] font-medium text-lg">
+                  URL de votre site web *
+                </label>
+                <input
+                  type="url"
+                  id="urlSite"
+                  name="urlSite"
+                  value={formData.urlSite}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-6 py-4 border-2 border-[#444684]/20 rounded-xl focus:border-[#444684] focus:outline-none text-[#444684] text-lg placeholder:text-[#444684]/30 transition-all"
+                  placeholder="https://monentreprise.fr"
+                />
+              </div>
+
+              {/* Motivation */}
+              <div className="space-y-3">
+                <label htmlFor="motivation" className="block text-[#444684] font-medium text-lg">
+                  Pourquoi souhaitez-vous bénéficier de cette offre ? * (max 200 caractères)
                 </label>
                 <textarea
+                  id="motivation"
                   name="motivation"
                   value={formData.motivation}
                   onChange={handleChange}
                   required
                   maxLength={200}
                   rows={4}
-                  className="w-full rounded-xl bg-white border-2 border-neutral-200 px-4 py-3 outline-none focus:border-[#444684] focus:ring-2 focus:ring-[#444684]/20 transition-all duration-300 resize-none placeholder:text-neutral-400"
-                  placeholder="Expliquez-nous en quelques mots pourquoi votre entreprise serait un excellent candidat..."
+                  className="w-full px-6 py-4 border-2 border-[#444684]/20 rounded-xl focus:border-[#444684] focus:outline-none text-[#444684] text-lg placeholder:text-[#444684]/30 transition-all resize-none"
+                  placeholder="Décrivez brièvement votre motivation..."
                 />
-              </div>
-
-              <div className="flex flex-col gap-3 pt-2">
-                <button
-                  type="submit"
-                  disabled={submitting || placesRemaining === 0}
-                  className="group relative inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#444684] to-[#524e7d] hover:from-[#3d3f75] hover:to-[#4a4770] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#444684]/30 hover:shadow-xl hover:shadow-[#444684]/40 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-300 overflow-hidden"
-                >
-                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                  {submitting ? (
-                    <>
-                      <Loader2 className="h-5 w-5 animate-spin" />
-                      <span>Envoi en cours...</span>
-                    </>
-                  ) : placesRemaining === 0 ? (
-                    <span>Places épuisées</span>
-                  ) : (
-                    <>
-                      <Send className="h-5 w-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                      <span>Postuler maintenant</span>
-                    </>
-                  )}
-                </button>
-
-                <p className="text-sm text-center text-[#444684] font-medium">⏱️ Réponse sous 48h</p>
-
-                <p className="text-xs text-center text-neutral-500">
-                  En soumettant ce formulaire, vous acceptez que TANSE traite vos données pour étudier votre candidature.
-                </p>
-              </div>
-            </form>
-          </div>
-        )}
-      </section>
-
-      {/* FAQ Section */}
-      <section className="mx-auto w-full max-w-4xl px-6 pb-20">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-700 bg-clip-text text-transparent">
-            Questions fréquentes
-          </h2>
-        </div>
-
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="relative overflow-hidden rounded-2xl bg-white/70 backdrop-blur-sm border border-white shadow-md hover:shadow-lg transition-all duration-300"
-            >
-              <button
-                onClick={() => toggleFaq(index)}
-                className="w-full p-6 text-left flex items-center justify-between gap-4"
-              >
-                <span className="font-semibold text-neutral-900 text-lg">{faq.question}</span>
-                <div className={`flex-shrink-0 w-8 h-8 rounded-full bg-[#444684]/10 flex items-center justify-center transition-transform duration-300 ${faqOpen === index ? 'rotate-180' : ''}`}>
-                  <ChevronDown className="h-5 w-5 text-[#444684]" />
+                <div className="text-right text-sm text-[#444684] opacity-50">
+                  {formData.motivation.length}/200 caractères
                 </div>
-              </button>
+              </div>
 
-              {faqOpen === index && (
-                <div className="px-6 pb-6 text-neutral-700 leading-relaxed">
-                  {faq.answer}
+              {/* Error message */}
+              {error && (
+                <div className="p-5 bg-red-50 border-2 border-red-200 rounded-xl text-red-600 text-center">
+                  {error}
                 </div>
               )}
+
+              {/* Submit button */}
+              <button
+                type="submit"
+                disabled={submitting}
+                className="w-full px-10 py-5 bg-[#444684] text-white text-xl font-semibold rounded-xl hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 shadow-lg"
+              >
+                {submitting ? (
+                  <>
+                    <Loader2 className="w-6 h-6 animate-spin" />
+                    Envoi en cours...
+                  </>
+                ) : (
+                  <>
+                    Envoyer ma candidature
+                    <Send className="w-5 h-5" />
+                  </>
+                )}
+              </button>
+            </form>
+          ) : (
+            <div className="text-center py-20 px-10 bg-white rounded-3xl shadow-sm space-y-8">
+              <div className="inline-flex items-center justify-center w-24 h-24 bg-green-100 rounded-full">
+                <CheckCircle2 className="w-12 h-12 text-green-600" />
+              </div>
+              <h3 className="text-3xl font-bold text-[#444684]">
+                Candidature envoyée avec succès !
+              </h3>
+              <p className="text-xl text-[#444684] opacity-70 max-w-md mx-auto leading-relaxed">
+                Merci pour votre candidature. Nous étudions votre profil et vous recontacterons sous 48h.
+              </p>
             </div>
-          ))}
+          )}
         </div>
       </section>
 
-      {/* Section "Ce qui est inclus" - LISTE EXACTE DU BRIEF */}
-      <section className="mx-auto w-full max-w-7xl px-6 pb-24">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-700 bg-clip-text text-transparent">
-            Ce que vous obtenez GRATUITEMENT
-          </h2>
-          <p className="mt-3 text-neutral-600 max-w-2xl mx-auto">
-            Checklist visuelle d'un setup complet (valeur 2 990€)
-          </p>
+      {/* Section - FAQ */}
+      <section className="px-6 lg:px-32 py-32 bg-white">
+        <div className="max-w-[900px] mx-auto">
+          <div className="text-center mb-20 space-y-6">
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#444684]">
+              Questions fréquentes
+            </h2>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="bg-[#e4e4e4] rounded-2xl overflow-hidden transition-all"
+              >
+                <button
+                  onClick={() => toggleFaq(index)}
+                  className="w-full flex items-center justify-between p-8 text-left hover:bg-[#444684]/5 transition-all"
+                >
+                  <span className="font-bold text-xl text-[#444684] pr-6">
+                    {faq.question}
+                  </span>
+                  <ChevronDown
+                    className={`w-7 h-7 text-[#444684] transition-transform flex-shrink-0 ${
+                      faqOpen === index ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {faqOpen === index && (
+                  <div className="px-8 pb-8 text-[#444684] opacity-80 text-lg leading-relaxed">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
+      </section>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <div className="flex items-start gap-4 p-6 rounded-2xl bg-white/70 backdrop-blur-sm border border-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-            <CheckCircle2 className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
-            <div>
-              <h3 className="font-bold text-neutral-900 mb-1">✅ Audit SEO + GEO complet</h3>
-              <p className="text-sm text-neutral-600">Valeur 990€</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4 p-6 rounded-2xl bg-white/70 backdrop-blur-sm border border-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-            <CheckCircle2 className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
-            <div>
-              <h3 className="font-bold text-neutral-900 mb-1">✅ Optimisation Google Business Profile</h3>
-              <p className="text-sm text-neutral-600">Setup complet GBP</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4 p-6 rounded-2xl bg-white/70 backdrop-blur-sm border border-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-            <CheckCircle2 className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
-            <div>
-              <h3 className="font-bold text-neutral-900 mb-1">✅ Setup call-tracking + Analytics</h3>
-              <p className="text-sm text-neutral-600">Suivi des appels et conversions</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4 p-6 rounded-2xl bg-white/70 backdrop-blur-sm border border-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-            <CheckCircle2 className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
-            <div>
-              <h3 className="font-bold text-neutral-900 mb-1">✅ 20 citations locales + correction NAP</h3>
-              <p className="text-sm text-neutral-600">Cohérence sur les annuaires</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4 p-6 rounded-2xl bg-white/70 backdrop-blur-sm border border-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-            <CheckCircle2 className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
-            <div>
-              <h3 className="font-bold text-neutral-900 mb-1">✅ Configuration Schema.org</h3>
-              <p className="text-sm text-neutral-600">Données structurées SEO</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4 p-6 rounded-2xl bg-white/70 backdrop-blur-sm border border-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-            <CheckCircle2 className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
-            <div>
-              <h3 className="font-bold text-neutral-900 mb-1">✅ 10 tests IA</h3>
-              <p className="text-sm text-neutral-600">ChatGPT, Perplexity, Claude</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4 p-6 rounded-2xl bg-white/70 backdrop-blur-sm border border-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-            <CheckCircle2 className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
-            <div>
-              <h3 className="font-bold text-neutral-900 mb-1">✅ Plan d'action 30 jours</h3>
-              <p className="text-sm text-neutral-600">Roadmap personnalisée</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4 p-6 rounded-2xl bg-gradient-to-br from-[#FFB800]/10 to-[#FF5757]/10 border-2 border-[#FFB800]/30 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-            <Gift className="h-6 w-6 text-[#FF5757] flex-shrink-0 mt-0.5" />
-            <div>
-              <h3 className="font-bold text-neutral-900 mb-1">🎁 Suivi 3 mois</h3>
-              <p className="text-sm text-neutral-600">Accompagnement personnalisé</p>
-            </div>
-          </div>
+      {/* Footer CTA */}
+      <section className="px-6 lg:px-32 py-32 text-center">
+        <div className="max-w-[800px] mx-auto space-y-10">
+          <h2 className="text-4xl lg:text-5xl font-bold text-[#444684]">
+            Prêt à devenir visible sur les IA génératives ?
+          </h2>
+          <button
+            onClick={() => {
+              document.getElementById("candidature-form")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+              });
+            }}
+            className="inline-flex items-center gap-3 px-12 py-6 bg-[#444684] text-white text-xl font-semibold rounded-xl hover:opacity-90 transition-all shadow-xl"
+          >
+            Candidater maintenant
+            <Send className="w-6 h-6" />
+          </button>
         </div>
       </section>
     </main>
