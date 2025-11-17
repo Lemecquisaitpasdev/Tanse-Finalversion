@@ -21,6 +21,7 @@ import {
   Rocket
 } from "lucide-react";
 import { trackFormStart, trackFormSubmit, trackCTAClick, trackFAQOpen } from "@/lib/analytics";
+import SiteHeader from "@/app/components/SiteHeader";
 
 const COMMENT_CONNU_OPTIONS = [
   "Sélectionnez une option",
@@ -176,6 +177,9 @@ export default function AuditOffertPage() {
 
   return (
     <main className="bg-[#e4e4e4] min-h-screen">
+      {/* Navigation Header */}
+      <SiteHeader />
+
       {/* Schema.org JSON-LD for SEO */}
       <script
         type="application/ld+json"
