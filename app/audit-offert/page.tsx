@@ -198,75 +198,39 @@ export default function AuditOffertPage() {
         </div>
       </noscript>
 
-      {/* Hero Section - Split Layout */}
-      <section className="relative min-h-screen flex items-center px-6 lg:px-32 py-20">
-        <div className="max-w-[1400px] mx-auto w-full">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            {/* Colonne gauche - Texte */}
-            <div className="space-y-10">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#444684] text-white rounded-full text-sm font-medium">
-                <Sparkles className="w-4 h-4" />
-                ANALYSE GRATUITE SOUS 48H
-              </div>
+      {/* Hero Section - Text Overlay on Spline Animation */}
+      <section className="relative min-h-screen flex items-end bg-[#e4e4e4] overflow-hidden">
+        {/* Animation Spline 3D - Background plein écran */}
+        <div className="absolute inset-0 w-full h-full">
+          <script type="module" src="https://unpkg.com/@splinetool/viewer@1.11.4/build/spline-viewer.js"></script>
+          <spline-viewer
+            url="https://prod.spline.design/Pz2yVJN1Qh3wp0np/scene.splinecode"
+            className="w-full h-full"
+          ></spline-viewer>
+        </div>
 
-              {/* Titre principal */}
-              <div className="space-y-4">
-                <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-[#444684] leading-[1.1]">
-                  Votre entreprise est-elle visible sur ChatGPT ?
-                </h1>
-                <p className="text-2xl lg:text-3xl text-[#444684] opacity-70 font-light">
-                  Audit SEO + GEO offert
-                </p>
-              </div>
-
-              {/* Description */}
-              <p className="text-xl lg:text-2xl text-[#444684] leading-relaxed opacity-90">
-                Découvrez votre positionnement sur Google ET les IA génératives (ChatGPT, Perplexity, Claude), avec benchmark de 3 concurrents.
-              </p>
-
-              {/* CTA */}
-              <button
-                onClick={() => {
-                  trackCTAClick("hero-scroll-to-form");
-                  document.getElementById("audit-form")?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                  });
-                }}
-                className="inline-flex items-center gap-3 px-10 py-5 bg-[#444684] text-white text-lg font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg"
-              >
-                Obtenir mon audit gratuit
-                <ArrowRight className="w-5 h-5" />
-              </button>
-
-              {/* Points clés */}
-              <div className="flex flex-wrap gap-6 pt-6">
-                <div className="flex items-center gap-2 text-[#444684]">
-                  <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0" />
-                  <span className="font-medium">100% Gratuit</span>
-                </div>
-                <div className="flex items-center gap-2 text-[#444684]">
-                  <Clock className="w-5 h-5 text-green-600 flex-shrink-0" />
-                  <span className="font-medium">Livré sous 48h</span>
-                </div>
-                <div className="flex items-center gap-2 text-[#444684]">
-                  <Shield className="w-5 h-5 text-green-600 flex-shrink-0" />
-                  <span className="font-medium">Sans engagement</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Colonne droite - Animation Spline 3D */}
-            <div className="relative lg:order-last order-first">
-              <div className="aspect-square w-full max-w-[600px] mx-auto bg-[#e4e4e4] rounded-3xl overflow-hidden">
-                <script type="module" src="https://unpkg.com/@splinetool/viewer@1.11.4/build/spline-viewer.js"></script>
-                <spline-viewer
-                  url="https://prod.spline.design/Pz2yVJN1Qh3wp0np/scene.splinecode"
-                  className="w-full h-full"
-                ></spline-viewer>
-              </div>
-            </div>
+        {/* Texte superposé en bas à gauche */}
+        <div className="relative z-10 px-6 lg:px-16 py-12 lg:py-20 max-w-4xl">
+          <div className="space-y-6">
+            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-[#444684] leading-[1.1]">
+              Votre entreprise est-elle visible sur ChatGPT ?
+            </h1>
+            <p className="text-xl lg:text-2xl text-[#444684] opacity-80 max-w-2xl">
+              Obtenez gratuitement votre audit SEO + GEO complet. Découvrez votre visibilité sur Google et les IA génératives.
+            </p>
+            <button
+              onClick={() => {
+                trackCTAClick("hero-scroll-to-form");
+                document.getElementById("audit-form")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start"
+                });
+              }}
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#444684] text-white text-lg font-semibold rounded-xl hover:opacity-90 transition-all shadow-xl"
+            >
+              OBTENIR L'AUDIT
+              <ArrowRight className="w-5 h-5" />
+            </button>
           </div>
         </div>
       </section>
