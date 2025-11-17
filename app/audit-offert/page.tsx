@@ -212,10 +212,10 @@ export default function AuditOffertPage() {
         {/* Texte superposé en bas à gauche */}
         <div className="relative z-10 px-6 lg:px-16 py-12 lg:py-20 max-w-4xl">
           <div className="space-y-6">
-            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-[#444684] leading-[1.1]">
+            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-[#e4e4e4] leading-[1.1]">
               Votre entreprise est-elle visible sur ChatGPT ?
             </h1>
-            <p className="text-xl lg:text-2xl text-[#444684] opacity-80 max-w-2xl">
+            <p className="text-xl lg:text-2xl text-[#e4e4e4] opacity-90 max-w-2xl">
               Obtenez gratuitement votre audit SEO + GEO complet. Découvrez votre visibilité sur Google et les IA génératives.
             </p>
             <button
@@ -226,7 +226,7 @@ export default function AuditOffertPage() {
                   block: "start"
                 });
               }}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[#444684] text-white text-lg font-semibold rounded-xl hover:opacity-90 transition-all shadow-xl"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#e4e4e4] text-[#444684] text-lg font-semibold rounded-xl hover:opacity-90 transition-all shadow-xl"
             >
               OBTENIR L'AUDIT
               <ArrowRight className="w-5 h-5" />
