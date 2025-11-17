@@ -165,6 +165,11 @@ export default function SiteFooter(): JSX.Element {
                   🎁 Offre 5 places
                 </Link>
               </li>
+              <li>
+                <Link href="/audit-offert" className="inline-flex items-center gap-1 hover:text-slate-950 transition font-medium text-[#444684]">
+                  📊 Audit SEO + GEO offert
+                </Link>
+              </li>
               <li><Link href="/geo" className="hover:text-slate-950 transition">GEO - Optimisation IA</Link></li>
               <li><Link href="/blog-seo-geo" className="hover:text-slate-950 transition">Blog SEO & GEO</Link></li>
               <li><Link href="/#stats" className="hover:text-slate-950 transition">Résultats & chiffres</Link></li>
