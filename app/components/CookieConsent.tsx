@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { X } from "lucide-react";
+import { shouldTreatAsBot } from "@/lib/bot-detection";
 
 type ConsentType = "all" | "essential" | "custom" | null;
 
@@ -22,6 +23,11 @@ export default function CookieConsent() {
   });
 
   useEffect(() => {
+    // Ne jamais afficher la bannière pour les bots (bloque le crawl)
+    if (shouldTreatAsBot()) {
+      return;
+    }
+
     // Vérifier si l'utilisateur a déjà donné son consentement
     const consent = localStorage.getItem("tanse-cookie-consent");
     if (!consent) {

@@ -5,18 +5,24 @@ import { usePerformance } from "../contexts/PerformanceContext";
 import { Zap, Gauge, Sparkles, MonitorSmartphone } from "lucide-react";
 
 export default function PerformanceModal() {
-  const { mode, setMode, hasSelected } = usePerformance();
+  const { mode, setMode, hasSelected, isBot } = usePerformance();
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    // Ne jamais afficher la modale pour les bots
+    if (isBot) {
+      return;
+    }
+
     // Afficher la modale si l'utilisateur n'a pas encore choisi
     if (!hasSelected) {
       // Petit délai pour l'animation d'entrée
       setTimeout(() => setIsOpen(true), 500);
     }
-  }, [hasSelected]);
+  }, [hasSelected, isBot]);
 
-  if (!isOpen || hasSelected) return null;
+  // Ne jamais afficher pour les bots
+  if (isBot || !isOpen || hasSelected) return null;
 
   const handleSelect = (selectedMode: "quality" | "performance") => {
     setMode(selectedMode);

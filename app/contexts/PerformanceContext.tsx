@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { shouldTreatAsBot } from "@/lib/bot-detection";
 
 type PerformanceMode = "quality" | "performance" | null;
 
@@ -8,6 +9,7 @@ interface PerformanceContextType {
   mode: PerformanceMode;
   setMode: (mode: "quality" | "performance") => void;
   hasSelected: boolean;
+  isBot: boolean;
 }
 
 const PerformanceContext = createContext<PerformanceContextType | undefined>(undefined);
@@ -15,9 +17,22 @@ const PerformanceContext = createContext<PerformanceContextType | undefined>(und
 export function PerformanceProvider({ children }: { children: ReactNode }) {
   const [mode, setModeState] = useState<PerformanceMode>(null);
   const [hasSelected, setHasSelected] = useState(false);
+  const [isBot, setIsBot] = useState(false);
 
-  // Charger la préférence depuis localStorage au montage
+  // Charger la préférence depuis localStorage au montage + détecter les bots
   useEffect(() => {
+    // Détecter si c'est un bot
+    const botDetected = shouldTreatAsBot();
+    setIsBot(botDetected);
+
+    if (botDetected) {
+      // Si c'est un bot, forcer le mode performance et marquer comme sélectionné
+      setModeState("performance");
+      setHasSelected(true);
+      return;
+    }
+
+    // Pour les humains, charger la préférence du localStorage
     const saved = localStorage.getItem("tanse-performance-mode");
     if (saved === "quality" || saved === "performance") {
       setModeState(saved);
@@ -32,7 +47,7 @@ export function PerformanceProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <PerformanceContext.Provider value={{ mode, setMode, hasSelected }}>
+    <PerformanceContext.Provider value={{ mode, setMode, hasSelected, isBot }}>
       {children}
     </PerformanceContext.Provider>
   );
