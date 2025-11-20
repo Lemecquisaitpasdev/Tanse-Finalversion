@@ -11,19 +11,23 @@ import { PerformanceProvider } from "./contexts/PerformanceContext";
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://www.tanse.fr"),
   title: {
-    default: "TANSE — Visibilité locale & SEO pour PME et grands groupes",
+    default: "TANSE — Agence GEO + SEO : ChatGPT, Perplexity, Claude & Google",
     template: "%s — TANSE"
   },
-  description: "Optimisation locale SEO + GEO pour être trouvé par vos clients. Fiche Google Business, citations, site web optimisé. Visible, mesurable, rentable.",
+  description: "Agence GEO + SEO : optimisez votre visibilité sur ChatGPT, Perplexity, Claude et Google. Experts en Generative Engine Optimization. Résultats mesurables pour PME et ETI.",
   keywords: [
+    "agence GEO",
+    "Generative Engine Optimization",
+    "ChatGPT visibilité",
+    "Perplexity SEO",
+    "Claude AI",
     "SEO local",
-    "référencement local",
+    "référencement IA",
+    "optimisation IA génératives",
+    "agence SEO",
     "Google Business Profile",
     "visibilité locale",
-    "SEO PME",
-    "agence SEO",
-    "optimisation Google",
-    "marketing local"
+    "SEO PME"
   ],
   authors: [{ name: "TANSE" }],
   creator: "TANSE",
@@ -33,8 +37,14 @@ export const metadata: Metadata = {
     email: true,
   },
   icons: {
-    icon: "/icon.png",
-    apple: "/apple-icon.png"
+    icon: [
+      { url: "/icon.png", sizes: "any" },
+      { url: "/icon.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" }
+    ],
+    apple: "/apple-icon.png",
+    shortcut: "/icon.png"
   },
   manifest: "/site.webmanifest",
   openGraph: {
@@ -42,14 +52,14 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "/",
     siteName: "TANSE",
-    title: "TANSE — Visibilité locale & SEO pour PME",
-    description: "Optimisation locale SEO + GEO pour être trouvé par vos clients. Fiche Google Business, citations, site web optimisé.",
+    title: "TANSE — Agence GEO + SEO : ChatGPT, Perplexity, Claude & Google",
+    description: "Agence GEO + SEO : optimisez votre visibilité sur ChatGPT, Perplexity, Claude et Google. Experts en Generative Engine Optimization. Résultats mesurables pour PME et ETI.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "TANSE — Visibilité locale & SEO",
+        alt: "TANSE — Agence GEO + SEO",
         type: "image/png"
       }
     ]
@@ -58,8 +68,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@tanse",
     creator: "@tanse",
-    title: "TANSE — Visibilité locale & SEO pour PME",
-    description: "Optimisation locale SEO + GEO pour être trouvé par vos clients. Visible, mesurable, rentable.",
+    title: "TANSE — Agence GEO + SEO : ChatGPT, Perplexity, Claude & Google",
+    description: "Agence GEO + SEO : optimisez votre visibilité sur ChatGPT, Perplexity, Claude et Google. Experts en Generative Engine Optimization.",
     images: ["/twitter-image.png"]
   },
   robots: {
