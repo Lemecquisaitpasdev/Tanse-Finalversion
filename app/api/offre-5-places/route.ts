@@ -25,27 +25,21 @@ export async function POST(request: Request) {
       );
     }
 
-    // Créer la candidature
-    const candidature = await prisma.offreCinqPlaces.create({
-      data: {
-        email,
-        nomEntreprise,
-        secteurActivite,
-        urlSite,
-        motivation,
-        telephone,
-        status: 'pending',
-      },
-    });
-
-    // Créer également un lead (pour tracking global)
-    await prisma.lead.create({
+    // Créer un lead avec toutes les informations de la candidature
+    const candidature = await prisma.lead.create({
       data: {
         email,
         name: nomEntreprise,
         company: nomEntreprise,
         phone: telephone,
-        message: `Candidature Offre 5 places - ${secteurActivite}. Motivation: ${motivation}`,
+        message: `🎁 OFFRE 5 PLACES - SETUP SEO + GEO OFFERT
+
+Entreprise: ${nomEntreprise}
+Secteur: ${secteurActivite}
+Site web: ${urlSite}
+
+💬 Motivation (${motivation.length}/200 caractères):
+${motivation}`,
         source: 'offre-5-places',
         status: 'new',
       },
@@ -55,12 +49,12 @@ export async function POST(request: Request) {
     try {
       // 1. Email de notification à l'équipe TANSE
       await sendOffreCinqPlacesNotification({
-        email: candidature.email,
-        nomEntreprise: candidature.nomEntreprise,
-        secteurActivite: candidature.secteurActivite,
-        urlSite: candidature.urlSite,
-        motivation: candidature.motivation,
-        telephone: candidature.telephone,
+        email,
+        nomEntreprise,
+        secteurActivite,
+        urlSite,
+        motivation,
+        telephone: telephone || '',
       });
     } catch (error) {
       console.error('Erreur envoi email notification offre 5 places:', error);
@@ -69,9 +63,9 @@ export async function POST(request: Request) {
     try {
       // 2. Email de confirmation à l'utilisateur
       await sendOffreCinqPlacesConfirmation({
-        email: candidature.email,
-        nomEntreprise: candidature.nomEntreprise,
-        secteurActivite: candidature.secteurActivite,
+        email,
+        nomEntreprise,
+        secteurActivite,
       });
     } catch (error) {
       console.error('Erreur envoi email confirmation offre 5 places:', error);
@@ -101,9 +95,12 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const status = searchParams.get('status');
 
-    const where = status ? { status } : {};
+    const where: any = { source: 'offre-5-places' };
+    if (status) {
+      where.status = status;
+    }
 
-    const candidatures = await prisma.offreCinqPlaces.findMany({
+    const candidatures = await prisma.lead.findMany({
       where,
       orderBy: { createdAt: 'desc' },
       take: 50,

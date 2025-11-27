@@ -42,9 +42,32 @@ export async function POST(request: Request) {
       );
     }
 
-    // Créer la demande d'audit
-    const auditDemand = await prisma.auditGratuit.create({
+    // Créer un lead avec toutes les informations de l'audit
+    const auditDemand = await prisma.lead.create({
       data: {
+        email,
+        name: `${prenom} ${nom}`,
+        company: entreprise,
+        phone: telephone,
+        message: `🎯 AUDIT GRATUIT SEO + GEO
+
+Site web: ${siteWeb}
+
+📊 Concurrents à analyser:
+1. ${concurrent1}
+2. ${concurrent2}
+3. ${concurrent3}
+
+💡 Comment nous avez-vous connu: ${commentConnu}`,
+        source: 'audit-gratuit',
+        status: 'new',
+      },
+    });
+
+    // Envoyer les emails
+    try {
+      // 1. Email de notification à l'équipe TANSE
+      await sendAuditGratuitNotification({
         nom,
         prenom,
         email,
@@ -55,37 +78,6 @@ export async function POST(request: Request) {
         concurrent2,
         concurrent3,
         commentConnu,
-        status: 'pending',
-      },
-    });
-
-    // Créer également un lead (pour tracking global)
-    await prisma.lead.create({
-      data: {
-        email,
-        name: `${prenom} ${nom}`,
-        company: entreprise,
-        phone: telephone,
-        message: `Demande d'audit gratuit SEO + GEO. Concurrents: ${concurrent1}, ${concurrent2}, ${concurrent3}. Source: ${commentConnu}`,
-        source: 'audit-gratuit',
-        status: 'new',
-      },
-    });
-
-    // Envoyer les emails
-    try {
-      // 1. Email de notification à l'équipe TANSE
-      await sendAuditGratuitNotification({
-        nom: auditDemand.nom,
-        prenom: auditDemand.prenom,
-        email: auditDemand.email,
-        telephone: auditDemand.telephone,
-        entreprise: auditDemand.entreprise,
-        siteWeb: auditDemand.siteWeb,
-        concurrent1: auditDemand.concurrent1,
-        concurrent2: auditDemand.concurrent2,
-        concurrent3: auditDemand.concurrent3,
-        commentConnu: auditDemand.commentConnu,
       });
     } catch (error) {
       console.error('Erreur envoi email notification audit gratuit:', error);
@@ -94,10 +86,10 @@ export async function POST(request: Request) {
     try {
       // 2. Email de confirmation à l'utilisateur
       await sendAuditGratuitConfirmation({
-        email: auditDemand.email,
-        prenom: auditDemand.prenom,
-        nom: auditDemand.nom,
-        entreprise: auditDemand.entreprise,
+        email,
+        prenom,
+        nom,
+        entreprise,
       });
     } catch (error) {
       console.error('Erreur envoi email confirmation audit gratuit:', error);
@@ -127,9 +119,12 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const status = searchParams.get('status');
 
-    const where = status ? { status } : {};
+    const where: any = { source: 'audit-gratuit' };
+    if (status) {
+      where.status = status;
+    }
 
-    const audits = await prisma.auditGratuit.findMany({
+    const audits = await prisma.lead.findMany({
       where,
       orderBy: { createdAt: 'desc' },
       take: 50,
