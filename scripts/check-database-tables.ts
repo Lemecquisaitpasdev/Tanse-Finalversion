@@ -12,10 +12,7 @@ async function checkTables() {
 
   const requiredTables = [
     'Lead',
-    'AuditGratuit',
-    'OffreCinqPlaces',
     'Booking',
-    'Campaign',
     'ForfaitRequest',
     'Newsletter',
   ];
@@ -36,17 +33,8 @@ async function checkTables() {
           case 'Lead':
             count = await prisma.lead.count();
             break;
-          case 'AuditGratuit':
-            count = await prisma.auditGratuit.count();
-            break;
-          case 'OffreCinqPlaces':
-            count = await prisma.offreCinqPlaces.count();
-            break;
           case 'Booking':
             count = await prisma.booking.count();
-            break;
-          case 'Campaign':
-            count = await prisma.campaign.count();
             break;
           case 'ForfaitRequest':
             count = await prisma.forfaitRequest.count();
