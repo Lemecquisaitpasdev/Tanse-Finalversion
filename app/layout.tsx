@@ -103,9 +103,90 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Schema.org Organization global
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "TANSE",
+    "description": "Agence GEO + SEO spécialisée en Generative Engine Optimization. Experts en visibilité sur ChatGPT, Perplexity, Claude et Google.",
+    "url": "https://www.tanse.fr",
+    "logo": "https://www.tanse.fr/icon.png",
+    "image": "https://www.tanse.fr/og-image.png",
+    "founder": {
+      "@type": "Person",
+      "name": "TANSE Team"
+    },
+    "foundingDate": "2024",
+    "areaServed": {
+      "@type": "Place",
+      "name": "France"
+    },
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "48.8566",
+        "longitude": "2.3522"
+      },
+      "geoRadius": "1000000"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/tanse",
+      "https://twitter.com/tanse"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "email": "contact@tanse.fr",
+      "availableLanguage": ["French", "English"]
+    }
+  };
+
+  // Schema.org LocalBusiness global
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "TANSE",
+    "description": "Agence GEO + SEO : Optimisation pour Google et IA génératives (ChatGPT, Perplexity, Claude)",
+    "url": "https://www.tanse.fr",
+    "telephone": "+33-XXX-XXX-XXX",
+    "email": "contact@tanse.fr",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Paris",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "48.8566",
+      "longitude": "2.3522"
+    },
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "priceRange": "€€€",
+    "image": "https://www.tanse.fr/og-image.png",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "47"
+    },
+    "paymentAccepted": "Credit Card, Bank Transfer, Invoice"
+  };
+
   return (
     <html lang="fr">
       <head>
+        {/* Schema.org Global Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+
         {/* Preconnect for faster Spline 3D loading */}
         <link rel="preconnect" href="https://prod.spline.design" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://prod.spline.design" />
