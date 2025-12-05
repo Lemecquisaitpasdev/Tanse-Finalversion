@@ -76,7 +76,7 @@ export default function ComparisonTable() {
           {/* Lignes */}
           {comparisons.map((item, i) => (
             <div
-              key={`comparison-${item.critere.slice(0, 20)}`}
+              key={`comparison-${item.criterion.slice(0, 20)}`}
               className={`grid grid-cols-3 gap-4 p-6 md:p-8 border-b border-slate-100 last:border-b-0 hover:bg-slate-50 ${hoverTransition}`}
             >
               <div className="font-semibold text-slate-900 text-left">
