@@ -189,26 +189,16 @@ export default function Page() {
 
       {/* Main Content Grid - Booking + Contact Form */}
       <section className="mx-auto w-full max-w-7xl px-6 pb-20">
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-8 lg:items-start">
           {/* Left: Calendly Booking */}
-          <div className="animate-in fade-in slide-in-from-left duration-700">
-            <div className="relative">
-              <div className="mb-6">
-                <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#444684] to-[#524e7d] bg-clip-text text-transparent">
-                  Réserver un appel
-                </h2>
-                <p className="mt-2 text-neutral-600 text-sm md:text-base">
-                  Choisissez le créneau qui vous convient pour échanger avec notre équipe d'experts GEO.
-                </p>
-              </div>
-              <CalendlyEmbed />
-            </div>
+          <div className="animate-in fade-in slide-in-from-left duration-700 h-full">
+            <CalendlyEmbed />
           </div>
 
           {/* Right: Contact Form */}
-          <div className="animate-in fade-in slide-in-from-right duration-700">
+          <div className="animate-in fade-in slide-in-from-right duration-700 h-full">
           {submitted ? (
-              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 p-8 md:p-10 border border-green-200/50 shadow-xl h-full flex flex-col items-center justify-center">
+              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 p-8 md:p-10 border border-green-200/50 shadow-xl min-h-[900px] flex flex-col items-center justify-center">
                 {/* Decorative elements */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-green-200/20 rounded-full blur-3xl" />
                 <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl" />
@@ -244,7 +234,7 @@ export default function Page() {
                 </div>
               </div>
             ) : (
-              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-neutral-50 to-white border border-white/80 shadow-2xl">
+              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-neutral-50 to-white border border-white/80 shadow-2xl min-h-[900px] flex flex-col">
                 {/* Decorative gradient orbs - using brand colors */}
                 <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-[#444684]/10 to-purple-200/10 rounded-full blur-3xl" />
                 <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-200/10 to-[#444684]/10 rounded-full blur-3xl" />
@@ -265,18 +255,19 @@ export default function Page() {
                 </div>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit} className="relative z-10 p-8 md:p-10 space-y-6">
-                  {error && (
-                    <div className="rounded-2xl bg-gradient-to-br from-red-50 to-rose-50 border-2 border-red-200 p-5 text-sm text-red-800 animate-in fade-in slide-in-from-top-2 duration-300">
-                      <div className="flex items-center gap-2 font-semibold mb-1">
-                        <div className="h-2 w-2 rounded-full bg-red-500" />
-                        Erreur
+                <form onSubmit={handleSubmit} className="relative z-10 p-8 md:p-10 flex-1 flex flex-col">
+                  <div className="flex-1 space-y-6">
+                    {error && (
+                      <div className="rounded-2xl bg-gradient-to-br from-red-50 to-rose-50 border-2 border-red-200 p-5 text-sm text-red-800 animate-in fade-in slide-in-from-top-2 duration-300">
+                        <div className="flex items-center gap-2 font-semibold mb-1">
+                          <div className="h-2 w-2 rounded-full bg-red-500" />
+                          Erreur
+                        </div>
+                        {error}
                       </div>
-                      {error}
-                    </div>
-                  )}
+                    )}
 
-                  <div className="grid gap-5 md:grid-cols-2">
+                    <div className="grid gap-5 md:grid-cols-2">
                     {/* Nom */}
                     <div className="group">
                       <label className="mb-2 block text-sm font-semibold text-neutral-700">
@@ -336,10 +327,10 @@ export default function Page() {
                         placeholder="TANSE Auto"
                       />
                     </div>
-                  </div>
+                    </div>
 
-                  {/* Sujet */}
-                  <div className="group">
+                    {/* Sujet */}
+                    <div className="group">
                     <label className="mb-2 block text-sm font-semibold text-neutral-700">
                       Sujet <span className="text-red-500">*</span>
                     </label>
@@ -353,10 +344,10 @@ export default function Page() {
                       <option value="devis">💰 Demander un devis</option>
                       <option value="question">💬 Une question</option>
                     </select>
-                  </div>
+                    </div>
 
-                  {/* Message */}
-                  <div className="group">
+                    {/* Message */}
+                    <div className="group">
                     <label className="mb-2 block text-sm font-semibold text-neutral-700">
                       Votre message
                     </label>
@@ -368,10 +359,11 @@ export default function Page() {
                       className="w-full rounded-xl bg-white/80 backdrop-blur-sm border-2 border-white/80 px-4 py-3 outline-none focus:border-neutral-400 focus:bg-white focus:shadow-lg focus:shadow-neutral-200/50 transition-all duration-300 resize-none placeholder:text-neutral-400"
                       placeholder="Parlez-nous de vos objectifs, du contexte de votre entreprise, des villes concernées..."
                     />
+                    </div>
                   </div>
 
                   {/* Submit Button */}
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-6 mt-auto">
                     <button
                       type="submit"
                       disabled={submitting}
