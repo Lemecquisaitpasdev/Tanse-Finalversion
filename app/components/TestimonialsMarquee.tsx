@@ -14,7 +14,7 @@ export default function TestimonialsMarquee() {
 
   useEffect(() => {
     // Charger le widget Trustpilot quand le composant est monté
-    if (window.Trustpilot) {
+    if (trustboxRef.current && window.Trustpilot) {
       window.Trustpilot.loadFromElement(trustboxRef.current, true);
     }
   }, []);

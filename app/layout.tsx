@@ -7,6 +7,7 @@ import GA4Provider from "./components/GA4Provider";
 import PerformanceModal from "./components/PerformanceModal";
 import { OptimizationProvider } from "./components/OptimizationProvider";
 import { PerformanceProvider } from "./contexts/PerformanceContext";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://www.tanse.fr"),
@@ -201,21 +202,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.90/build/spline-viewer.js" async />
       </head>
       <body>
-        {/* Performance Provider - Gestion mode Qualité/Performance */}
-        <PerformanceProvider>
-          {/* Optimisations adaptatives Windows/macOS */}
-          <OptimizationProvider>
-            {children}
-            {/* Modal de sélection performance - Première visite */}
-            <PerformanceModal />
-            {/* Pop-up cookies RGPD */}
-            <CookieConsent />
-            {/* Analytics avec respect du consentement RGPD */}
-            <AnalyticsWrapper />
-            {/* Google Analytics 4 */}
-            <GA4Provider />
-          </OptimizationProvider>
-        </PerformanceProvider>
+        {/* Error Boundary - Capture les erreurs React */}
+        <ErrorBoundary>
+          {/* Performance Provider - Gestion mode Qualité/Performance */}
+          <PerformanceProvider>
+            {/* Optimisations adaptatives Windows/macOS */}
+            <OptimizationProvider>
+              {children}
+              {/* Modal de sélection performance - Première visite */}
+              <PerformanceModal />
+              {/* Pop-up cookies RGPD */}
+              <CookieConsent />
+              {/* Analytics avec respect du consentement RGPD */}
+              <AnalyticsWrapper />
+              {/* Google Analytics 4 */}
+              <GA4Provider />
+            </OptimizationProvider>
+          </PerformanceProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );
