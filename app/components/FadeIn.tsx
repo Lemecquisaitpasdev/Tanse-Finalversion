@@ -18,7 +18,7 @@ export default function FadeIn({
   duration = 0.6,
   direction = "up",
 }: FadeInProps) {
-  const { ref, isInView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref, isInView } = useInView<HTMLDivElement>({ threshold: 0.1, triggerOnce: true });
 
   const getTransform = () => {
     if (!isInView) {
