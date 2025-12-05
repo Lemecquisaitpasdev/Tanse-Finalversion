@@ -45,7 +45,7 @@ type Member = {
 
 const TEAM: Member[] = [
   {
-    name: "D. Raphael",
+    name: "Tanse",
     role: "Head of Local SEO",
     bio: "Optimisation locale multi-secteurs (retail, services, B2B). Focus entités et visibilité de proximité.",
     image: "/team/raphpro.png",
