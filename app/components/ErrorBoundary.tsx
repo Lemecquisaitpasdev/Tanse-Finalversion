@@ -32,7 +32,7 @@ export default class ErrorBoundary extends Component<Props, State> {
     console.error("ErrorBoundary caught an error:", error, errorInfo);
   }
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       // Utiliser le fallback personnalisé ou le fallback par défaut
       if (this.props.fallback) {
