@@ -128,7 +128,7 @@ export default function Methodology() {
         <div className="md:hidden grid grid-cols-2 gap-4 max-w-md mx-auto">
           {STEPS.map((step, index) => (
             <div
-              key={`step-${step.num}`}
+              key={`step-${index}`}
               className={`relative bg-gradient-to-br ${step.gradient} backdrop-blur-sm rounded-2xl p-4 border ${step.borderColor} shadow-2xl ${step.shadowColor} transition-all duration-300 hover:scale-105 hover:shadow-3xl overflow-hidden`}
               style={{
                 boxShadow: '0 20px 50px -12px rgba(0, 0, 0, 0.5), 0 10px 20px -10px rgba(0, 0, 0, 0.3)'
