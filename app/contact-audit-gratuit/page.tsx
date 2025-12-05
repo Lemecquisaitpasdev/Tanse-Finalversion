@@ -14,7 +14,7 @@ import {
   Shield
 } from "lucide-react";
 import SplineLazy from "../components/SplineLazy";
-import CallBooking from "../components/CallBooking";
+import CalendlyEmbed from "../components/CalendlyEmbed";
 import { usePerformance } from "../contexts/PerformanceContext";
 
 export default function Page() {
@@ -190,9 +190,19 @@ export default function Page() {
       {/* Main Content Grid - Booking + Contact Form */}
       <section className="mx-auto w-full max-w-7xl px-6 pb-20">
         <div className="grid lg:grid-cols-2 gap-8">
-          {/* Left: Calendar Booking */}
+          {/* Left: Calendly Booking */}
           <div className="animate-in fade-in slide-in-from-left duration-700">
-            <CallBooking />
+            <div className="relative">
+              <div className="mb-6">
+                <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#444684] to-[#524e7d] bg-clip-text text-transparent">
+                  Réserver un appel
+                </h2>
+                <p className="mt-2 text-neutral-600 text-sm md:text-base">
+                  Choisissez le créneau qui vous convient pour échanger avec notre équipe d'experts GEO.
+                </p>
+              </div>
+              <CalendlyEmbed />
+            </div>
           </div>
 
           {/* Right: Contact Form */}
