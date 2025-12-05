@@ -648,7 +648,7 @@ export default function AuditGratuitPage() {
             <div className="space-y-4">
               {faqs.map((faq, index) => (
                 <div
-                  key={index}
+                  key={`faq-${faq.question.slice(0, 30)}`}
                   className="border border-gray-200 rounded-xl overflow-hidden hover:border-[#E94E87] transition-colors"
                 >
                   <button

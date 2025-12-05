@@ -418,7 +418,7 @@ export default function OffreCinqPlacesClient() {
               { icon: Shield, text: "Configuration Schema.org avancée", value: "140€" },
               { icon: Sparkles, text: "10 tests IA (ChatGPT, Perplexity, Claude)", value: "90€" }
             ].map((item, index) => (
-              <div key={index} className="flex items-start gap-5 p-6 bg-white rounded-xl shadow-sm">
+              <div key={`offer-item-${item.text.slice(0, 15)}`} className="flex items-start gap-5 p-6 bg-white rounded-xl shadow-sm">
                 <div className="flex-shrink-0">
                   <CheckCircle2 className="w-6 h-6 text-green-600" />
                 </div>
@@ -453,7 +453,7 @@ export default function OffreCinqPlacesClient() {
               "Disponibilité pour quelques échanges durant le setup",
               "Accord pour utiliser vos résultats en étude de cas (données anonymisées ou avec consentement)"
             ].map((critere, index) => (
-              <div key={index} className="flex items-start gap-4 p-5 bg-[#e4e4e4] rounded-xl">
+              <div key={`critere-${critere.slice(0, 20)}`} className="flex items-start gap-4 p-5 bg-[#e4e4e4] rounded-xl">
                 <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
                 <span className="text-[#444684] text-lg">{critere}</span>
               </div>

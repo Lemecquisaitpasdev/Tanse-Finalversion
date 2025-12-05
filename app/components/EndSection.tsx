@@ -3,27 +3,30 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin, ArrowUpRight } from "lucide-react";
+import { useState } from "react";
 
 export default function EndSection() {
+  const [logoError, setLogoError] = useState(false);
+
   return (
     <footer className="mt-24 border-t border-black/10 bg-neutral-50/60">
       <div className="mx-auto w-full max-w-6xl px-6 py-14 md:py-18">
         {/* entête marque + CTA */}
         <div className="mb-10 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-          {/* Logo image depuis /public/brand, avec bust de cache */}
-          <Image
-            src={"/brand/tanse-logo.png?v=2"}
-            alt="TANSE"
-            width={260}
-            height={60}
-            priority
-            className="h-12 md:h-14 w-auto"
-            onError={(e) => {
-              // petit fallback texte si jamais le PNG ne charge pas
-              (e.currentTarget.parentElement as HTMLElement).innerHTML =
-                '<div class="text-xl font-semibold text-neutral-900">TANSE</div>';
-            }}
-          />
+          {/* Logo image depuis /public/brand, avec fallback React state */}
+          {logoError ? (
+            <div className="text-xl font-semibold text-neutral-900">TANSE</div>
+          ) : (
+            <Image
+              src={"/brand/tanse-logo.png?v=2"}
+              alt="TANSE"
+              width={260}
+              height={60}
+              priority
+              className="h-12 md:h-14 w-auto"
+              onError={() => setLogoError(true)}
+            />
+          )}
 
           <div className="flex items-center gap-3">
             <Link

@@ -115,7 +115,7 @@ export default function FaqAccordion() {
             const isOpen = open === i;
             const panelId = `faq-panel-${i}`;
             return (
-              <div key={i} className="p-0">
+              <div key={`faq-${item.q.slice(0, 30)}-${i}`} className="p-0">
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
                   className="w-full flex items-center justify-between gap-6 px-5 md:px-6 py-5 md:py-6 text-left"

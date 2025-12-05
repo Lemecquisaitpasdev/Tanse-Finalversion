@@ -40,7 +40,7 @@ export default function FadeIn({
 
   return (
     <div
-      ref={ref as any}
+      ref={ref}
       className={className}
       style={{
         opacity: isInView ? 1 : 0,

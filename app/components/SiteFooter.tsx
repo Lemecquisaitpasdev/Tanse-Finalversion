@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Mail, MapPin, ArrowUpRight, Cookie, Settings } from "lucide-react";
 import { useState } from "react";
 import { usePerformance } from "../contexts/PerformanceContext";
 
 export default function SiteFooter(): JSX.Element {
   const pathname = usePathname();
+  const router = useRouter();
   const { mode, setMode } = usePerformance();
   const [showPerformanceModal, setShowPerformanceModal] = useState(false);
   const normalize = (p?: string | null) => (p && p.endsWith("/") && p !== "/" ? p.slice(0, -1) : p) || "";
@@ -25,13 +26,13 @@ export default function SiteFooter(): JSX.Element {
 
   const manageCookies = () => {
     localStorage.removeItem("tanse-cookie-consent");
-    window.location.reload();
+    router.refresh(); // Rafraîchir sans perdre l'état
   };
 
   const handleModeChange = (newMode: "quality" | "performance") => {
     setMode(newMode);
     setShowPerformanceModal(false);
-    window.location.reload(); // Recharger pour appliquer le changement
+    router.refresh(); // Rafraîchir pour appliquer le changement sans perdre l'état
   };
 
   return (

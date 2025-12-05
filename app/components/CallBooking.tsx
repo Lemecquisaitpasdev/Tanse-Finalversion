@@ -187,7 +187,7 @@ export default function CallBooking() {
                 const isSelected = selectedDate?.toDateString() === date.toDateString();
                 return (
                   <button
-                    key={idx}
+                    key={date.toISOString()}
                     onClick={() => handleDateSelect(date)}
                     className={`group relative p-4 rounded-2xl border-2 transition-all duration-300 ${
                       isSelected
