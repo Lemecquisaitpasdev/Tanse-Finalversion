@@ -124,7 +124,7 @@ export default function DataVisualizationCharts({ variant = "wide" }: DataVisual
                   borderRadius: 8,
                   color: "#fff",
                 }}
-                formatter={(v: number) => [`${v}`, "Taux de conv. (%)"]}
+                formatter={(v: number | undefined) => v !== undefined ? [`${v}`, "Taux de conv. (%)"] : ["0", "Taux de conv. (%)"]}
               />
               <Bar
                 dataKey="rate"
