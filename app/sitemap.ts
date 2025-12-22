@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { articles } from './blog-seo-geo/data/articles'
+import { getAllArticles } from '@/lib/blog/articles'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.tanse.fr'
@@ -11,6 +12,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: article.date,
     changeFrequency: 'monthly' as const,
     priority: article.isPinned ? 0.9 : 0.7,
+  }))
+
+  // New blog articles (Lead Generation)
+  const newBlogArticles = getAllArticles().map((article) => ({
+    url: `${baseUrl}/blog/${article.slug}`,
+    lastModified: article.publishedAt,
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
   }))
 
   return [
@@ -39,12 +48,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/blog`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/blog-seo-geo`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     ...blogArticles,
+    ...newBlogArticles,
     {
       url: `${baseUrl}/agence-geo-paris-lyon`,
       lastModified: currentDate,
