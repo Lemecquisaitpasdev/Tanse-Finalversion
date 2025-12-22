@@ -13,7 +13,7 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "noEmit": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -35,7 +35,8 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
