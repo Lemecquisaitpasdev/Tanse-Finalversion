@@ -10,6 +10,15 @@ const nextConfig: NextConfig = {
   // garde la vérif TypeScript si tu veux :
   // typescript: { ignoreBuildErrors: false },
 
+  // Configuration images pour Next.js 16+
+  images: {
+    localPatterns: [
+      {
+        pathname: '/brand/**',
+      },
+    ],
+  },
+
   // Compression Brotli pour optimisation bande passante
   compress: true,
 
