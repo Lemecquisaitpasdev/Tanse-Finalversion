@@ -16,10 +16,10 @@ type Card = {
 
 const cards: readonly Card[] = [
   {
-    k: "seo-geo",
-    titre: "SEO + GEO",
-    prix: "2 490€",
-    sous: "coût unique — puis maintenance 920€/mois",
+    k: "maintenance",
+    titre: "Maintenance SEO + GEO",
+    prix: "920€/mois",
+    sous: "Suivi et optimisation continue",
     points: [
       "Fiche Google Business professionnelle",
       "Pages locales/services clés",
@@ -28,13 +28,13 @@ const cards: readonly Card[] = [
       "Révision rapidité & lecture de page",
       "Optimisation des balises (meta, headings, etc.)",
     ],
-    cta: "Commander l'offre",
+    cta: "Souscrire",
   },
   {
     k: "pack-complet",
     titre: "Pack Complet (SEO + GEO + Refonte)",
-    prix: "Sur mesure",
-    sous: "1 mois de maintenance OFFERT",
+    prix: "2 490€",
+    sous: "coût unique — 1 mois de maintenance OFFERT",
     points: [
       "Tout le SEO + GEO, plus :",
       "Optimisations Web (UX, vitesse, mobile)",
