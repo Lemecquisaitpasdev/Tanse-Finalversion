@@ -19,6 +19,9 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   const articles = getAllArticles();
 
+  // Debug info (will be visible in page source)
+  console.log('Blog articles loaded:', articles.length);
+
   return (
     <main className="min-h-screen bg-[#fafafa]">
       {/* Hero Section */}
@@ -27,6 +30,11 @@ export default function BlogPage() {
           <div className="max-w-3xl">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
               Blog TANSE
+              {process.env.NODE_ENV === 'development' && (
+                <span className="ml-4 text-sm opacity-50">
+                  ({articles.length} article{articles.length > 1 ? 's' : ''})
+                </span>
+              )}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
               Stratégies, guides et cas pratiques pour générer des leads B2B
