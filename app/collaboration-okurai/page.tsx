@@ -56,9 +56,9 @@ export default function CollaborationOkurAIPage() {
               {/* OkurAI Logo */}
               <div className="flex items-center gap-3">
                 <svg width="48" height="48" viewBox="0 0 32 32" fill="none">
-                  <path d="M8 8 L16 4 L24 8" stroke="#444684" strokeWidth="3" strokeLinecap="round"/>
-                  <path d="M8 16 L16 12 L24 16" stroke="#444684" strokeWidth="3" strokeLinecap="round"/>
-                  <path d="M8 24 L16 20 L24 24" stroke="#444684" strokeWidth="3" strokeLinecap="round"/>
+                  <path d="M8 8 L16 4 L24 8" stroke="#000000" strokeWidth="3" strokeLinecap="round"/>
+                  <path d="M8 16 L16 12 L24 16" stroke="#000000" strokeWidth="3" strokeLinecap="round"/>
+                  <path d="M8 24 L16 20 L24 24" stroke="#000000" strokeWidth="3" strokeLinecap="round"/>
                 </svg>
                 <span className="text-2xl font-semibold text-slate-900">OkurAI</span>
               </div>
