@@ -8,6 +8,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: "TANSE × OkurAI | Collaboration Recherche GEO et IA Générative",
@@ -25,14 +26,17 @@ export const metadata: Metadata = {
 export default function CollaborationOkurAIPage() {
   return (
     <>
+      <Script
+        type="module"
+        src="https://unpkg.com/@splinetool/viewer@1.12.28/build/spline-viewer.js"
+        strategy="beforeInteractive"
+      />
+
       {/* Hero Section - Full Screen Spline with Overlay */}
       <section className="h-[110vh] w-full relative overflow-hidden">
         {/* Spline Animation - Full Screen Background */}
-        <iframe
-          src="https://prod.spline.design/QVYsvSsvOGpvPXJt/scene.splinecode"
-          className="w-full h-full border-0"
-          loading="lazy"
-        />
+        {/* @ts-ignore */}
+        <spline-viewer url="https://prod.spline.design/QVYsvSsvOGpvPXJt/scene.splinecode" className="w-full h-full"></spline-viewer>
 
         {/* Content Overlay - Centered */}
         <div className="absolute inset-0 flex flex-col items-center justify-center px-8">
