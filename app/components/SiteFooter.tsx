@@ -150,6 +150,7 @@ export default function SiteFooter(): JSX.Element {
               <li><Link href="/agence-geo-paris-lyon" className="hover:text-slate-950 transition">À propos</Link></li>
               <li><Link href="/agence-geo-paris-lyon#method" className="hover:text-slate-950 transition">Notre méthode</Link></li>
               <li><Link href="/agence-geo-paris-lyon#equipe" className="hover:text-slate-950 transition">Équipe</Link></li>
+              <li><Link href="/collaboration-okurai" className="hover:text-slate-950 transition">Collaboration OkurAI</Link></li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-slate-600" />
                 <span>Paris & Lyon</span>
