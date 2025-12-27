@@ -60,7 +60,10 @@ const ProjectionChart = () => {
                 borderRadius: "12px",
                 boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
               }}
-              formatter={(value: number) => [`${value.toLocaleString()}€`, "CA mensuel"]}
+              formatter={(value: number | undefined) => {
+                if (value === undefined) return ['0€', 'CA mensuel'];
+                return [`${value.toLocaleString()}€`, "CA mensuel"];
+              }}
             />
             <Area
               type="monotone"
