@@ -463,11 +463,19 @@ export default function CollaborationOkurAIPage() {
       <section className="py-16 bg-[#E4E4E4]">
         <div className="max-w-[1680px] mx-auto px-8">
           <div className="max-w-4xl">
-            <h2 className="text-4xl font-bold text-slate-900 mb-8">
+            {/* Spline Animation - IA Keyboard */}
+            <div className="flex justify-center mb-12">
+              <div className="w-full max-w-md h-[400px] relative">
+                {/* @ts-ignore */}
+                <spline-viewer url="https://prod.spline.design/f9QdmbRuBjjU8rNc/scene.splinecode" className="w-full h-full"></spline-viewer>
+              </div>
+            </div>
+
+            <h2 className="text-4xl font-bold text-slate-900 mb-8 text-center">
               Expertise deeptech
             </h2>
             <div className="space-y-6 text-lg text-slate-700 leading-relaxed mb-8">
-              <p>
+              <p className="text-center">
                 OkurAI analyse des sujets techniques complexes avec une profondeur rare dans le paysage médiatique français :
               </p>
             </div>
