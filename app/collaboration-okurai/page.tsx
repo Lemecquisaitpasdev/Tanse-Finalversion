@@ -11,21 +11,211 @@ import Image from 'next/image';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: "TANSE × OkurAI | Collaboration Recherche GEO et IA Générative",
-  description: "OkurAI collabore avec TANSE, première agence GEO en France, pour valider nos recherches sur le terrain et améliorer la visibilité des entreprises françaises.",
+  title: "TANSE × OkurAI : Stratégies GEO Fondées sur la Science | Recherche IA",
+  description: "TANSE s'appuie sur les recherches scientifiques d'OkurAI pour développer des stratégies GEO validées. 30+ modèles IA analysés, 40% d'augmentation de visibilité moyenne, méthodologie rigoureuse. Données vérifiables, benchmarks comparatifs, indépendance éditoriale.",
+  keywords: [
+    "OkurAI",
+    "TANSE",
+    "GEO",
+    "Generative Engine Optimization",
+    "recherche IA",
+    "ChatGPT optimisation",
+    "Claude optimisation",
+    "Perplexity SEO",
+    "benchmarks IA",
+    "citation IA",
+    "visibilité moteurs IA",
+    "données structurées Schema.org",
+    "biais citation IA",
+    "analyse scientifique IA",
+    "indépendance éditoriale",
+    "veille technologique IA",
+    "stratégies data-driven"
+  ],
   openGraph: {
-    title: "TANSE × OkurAI | Collaboration Recherche GEO et IA Générative",
-    description: "Partenariat stratégique entre OkurAI et TANSE pour l'optimisation de la visibilité sur les moteurs IA.",
+    title: "TANSE × OkurAI : Des Stratégies GEO Fondées sur la Science, Pas l'Intuition",
+    description: "Découvrez comment TANSE utilise les recherches d'OkurAI (30+ modèles IA analysés) pour optimiser votre visibilité sur ChatGPT, Claude et Perplexity. +40% de visibilité moyenne, méthodologie scientifique validée.",
     url: 'https://www.tanse.fr/collaboration-okurai',
-    siteName: 'TANSE',
+    siteName: 'TANSE - Agence GEO Paris',
     locale: 'fr_FR',
-    type: 'website',
+    type: 'article',
+    images: [
+      {
+        url: 'https://www.tanse.fr/images/og/collaboration-okurai.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'TANSE × OkurAI - Partenariat Recherche IA et GEO',
+      },
+    ],
+    authors: ['TANSE'],
+    publishedTime: '2025-12-27T09:00:00Z',
+    modifiedTime: new Date().toISOString(),
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "TANSE × OkurAI : Stratégies GEO Validées Scientifiquement",
+    description: "30+ modèles IA analysés • +40% visibilité moyenne • Méthodologie rigoureuse • Indépendance totale",
+    images: ['https://www.tanse.fr/images/og/collaboration-okurai.jpg'],
+  },
+  alternates: {
+    canonical: 'https://www.tanse.fr/collaboration-okurai',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
 export default function CollaborationOkurAIPage() {
+  // Schema.org structured data for GEO optimization
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://www.tanse.fr/collaboration-okurai#article",
+        "headline": "TANSE × OkurAI : Un Partenariat Stratégique pour l'Optimisation IA",
+        "description": "TANSE s'appuie sur les recherches scientifiques d'OkurAI pour développer des stratégies GEO validées. 30+ modèles IA analysés, 40% d'augmentation de visibilité moyenne.",
+        "image": "https://www.tanse.fr/images/og/collaboration-okurai.jpg",
+        "author": {
+          "@type": "Organization",
+          "@id": "https://www.tanse.fr/#organization",
+          "name": "TANSE",
+          "url": "https://www.tanse.fr",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.tanse.fr/brand/tanse-logo.png"
+          }
+        },
+        "publisher": {
+          "@id": "https://www.tanse.fr/#organization"
+        },
+        "datePublished": "2025-12-27T09:00:00+01:00",
+        "dateModified": new Date().toISOString(),
+        "mainEntityOfPage": "https://www.tanse.fr/collaboration-okurai",
+        "about": [
+          {
+            "@type": "Thing",
+            "name": "Generative Engine Optimization",
+            "description": "Optimisation pour les moteurs d'IA générative comme ChatGPT, Claude et Perplexity"
+          },
+          {
+            "@type": "Thing",
+            "name": "Recherche en Intelligence Artificielle",
+            "description": "Analyse scientifique du comportement des modèles d'IA générative"
+          }
+        ],
+        "mentions": [
+          {
+            "@type": "Organization",
+            "name": "OkurAI",
+            "url": "https://www.okurai.fr",
+            "description": "Premier média francophone dédié à l'analyse scientifique de l'intelligence artificielle générative"
+          }
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://www.tanse.fr/#organization",
+        "name": "TANSE",
+        "legalName": "TANSE - Agence GEO Paris",
+        "url": "https://www.tanse.fr",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.tanse.fr/brand/tanse-logo.png"
+        },
+        "description": "Première agence française spécialisée en Generative Engine Optimization (GEO). TANSE optimise la visibilité des entreprises sur les moteurs d'IA comme ChatGPT, Claude et Perplexity.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Paris",
+          "addressCountry": "FR"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/tanse"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Pourquoi TANSE collabore avec OkurAI ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "TANSE s'appuie sur les recherches scientifiques d'OkurAI pour développer des stratégies GEO basées sur des données vérifiables plutôt que sur l'intuition. OkurAI analyse plus de 30 modèles d'IA (ChatGPT, Claude, Perplexity, Gemini) avec une méthodologie de recherche stricte. Cette collaboration a permis d'augmenter de 40% la visibilité moyenne des clients TANSE sur les requêtes professionnelles."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quels sont les bénéfices concrets pour les clients TANSE ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Les clients TANSE bénéficient de stratégies validées scientifiquement : les contenus long-form (800-1200 mots) sont cités 3× plus souvent par Claude, les FAQ explicites augmentent le taux de citation de 58%, et Claude privilégie les sources avec Schema.org à hauteur de 65% contre 42% pour ChatGPT. Le taux d'échec d'optimisation a été réduit de 35% à 12% en un an grâce à la validation scientifique des hypothèses."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "OkurAI est-il indépendant ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "OkurAI n'est affilié à aucun fournisseur d'IA, aucune plateforme, aucun groupe de lobbying. Cette indépendance garantit que leurs analyses ne sont pas orientées par des intérêts commerciaux. Le financement d'OkurAI repose sur des partenariats avec des agences comme TANSE, tout en maintenant une séparation stricte entre financement et ligne éditoriale. Toutes les publications restent gratuites et accessibles."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quelle est la méthodologie de recherche d'OkurAI ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "OkurAI suit une méthodologie de recherche stricte : chaque affirmation renvoie à des papers de recherche, documentation officielle ou données mesurables. Les benchmarks incluent les méthodologies complètes permettant la reproduction des résultats. Les analyses sont publiées sans sensationnalisme, uniquement basées sur des faits documentés. Les données terrain de TANSE (40+ entreprises françaises) valident les hypothèses de recherche."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "name": "Comment TANSE utilise les recherches OkurAI pour optimiser la visibilité IA",
+        "description": "Processus de validation scientifique des stratégies GEO chez TANSE",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Analyse des recherches OkurAI",
+            "text": "TANSE consulte quotidiennement les benchmarks comparatifs de 30+ modèles IA, les analyses de biais de citation et les études sectorielles publiées par OkurAI."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Développement d'hypothèses d'optimisation",
+            "text": "Les besoins clients orientent les questions de recherche. Par exemple : 'augmenter la densité de FAQ améliore la citation IA'."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Validation avec données OkurAI",
+            "text": "Chaque hypothèse est confrontée aux données de recherche OkurAI avant déploiement client. Si validée, déploiement. Si invalidée, pivot stratégique."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Déploiement et mesure",
+            "text": "Les stratégies validées sont déployées. Les résultats terrain (40+ entreprises françaises) valident les hypothèses de recherche d'OkurAI, créant une boucle vertueuse."
+          }
+        ]
+      }
+    ]
+  };
+
   return (
     <>
+      {/* Schema.org JSON-LD for GEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
       <Script
         type="module"
         src="https://unpkg.com/@splinetool/viewer@1.12.28/build/spline-viewer.js"
@@ -78,37 +268,74 @@ export default function CollaborationOkurAIPage() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white" aria-labelledby="pourquoi-okurai">
         <div className="max-w-[1680px] mx-auto px-8">
           <div className="max-w-4xl">
-            <h2 className="text-4xl font-bold text-slate-900 mb-8">
-              Pourquoi OkurAI
+            <h2 id="pourquoi-okurai" className="text-4xl font-bold text-slate-900 mb-8">
+              Pourquoi TANSE collabore avec OkurAI
             </h2>
             <div className="space-y-6 text-lg text-slate-700 leading-relaxed">
               <p>
-                Chez TANSE, nous avons fait le choix de baser nos stratégies GEO sur la recherche scientifique plutôt que sur l'expérimentation empirique. OkurAI est le premier média francophone entièrement dédié à l'analyse rigoureuse de l'intelligence artificielle générative.
+                <strong>Question : Pourquoi TANSE collabore avec OkurAI ?</strong>
               </p>
               <p>
-                Cette collaboration nous permet d'offrir à nos clients des services basés sur des données vérifiables et une méthodologie scientifique stricte. Les recherches d'OkurAI analysent comment plus de 30 modèles d'IA (ChatGPT, Claude, Perplexity, Gemini) sélectionnent et citent l'information.
+                <strong>Réponse :</strong> Chez TANSE, nous avons fait le choix de baser nos stratégies GEO (Generative Engine Optimization) sur la recherche scientifique plutôt que sur l'expérimentation empirique. OkurAI est le premier média francophone entièrement dédié à l'analyse rigoureuse de l'intelligence artificielle générative.
               </p>
+              <p>
+                Cette collaboration nous permet d'offrir à nos clients des services basés sur <strong>des données vérifiables et une méthodologie scientifique stricte</strong>. Les recherches d'OkurAI analysent comment plus de <strong>30 modèles d'IA</strong> (ChatGPT, Claude, Perplexity, Gemini) sélectionnent et citent l'information.
+              </p>
+              <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg my-6">
+                <p className="font-semibold text-blue-900">
+                  Résultat mesurable : Cette approche a permis d'augmenter de 40% la visibilité moyenne de nos clients sur les requêtes professionnelles.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Challenge Section */}
-      <section className="py-16 bg-[#E4E4E4]">
+      <section className="py-16 bg-[#E4E4E4]" aria-labelledby="rigueur-journalistique">
         <div className="max-w-[1680px] mx-auto px-8">
           <div className="max-w-4xl">
-            <h2 className="text-4xl font-bold text-slate-900 mb-8">
-              Rigueur journalistique
+            <h2 id="rigueur-journalistique" className="text-4xl font-bold text-slate-900 mb-8">
+              Quelle est la méthodologie de recherche d'OkurAI ?
             </h2>
             <div className="space-y-6 text-lg text-slate-700 leading-relaxed">
               <p>
-                Les articles d'OkurAI suivent une méthodologie de recherche stricte. Chaque affirmation renvoie à des papers de recherche, de la documentation officielle ou des données mesurables. Les benchmarks incluent les méthodologies complètes, permettant la reproduction des résultats.
+                <strong>Méthodologie de recherche stricte :</strong> Les articles d'OkurAI suivent un processus scientifique rigoureux où chaque affirmation renvoie à des papers de recherche, de la documentation officielle ou des données mesurables. Les benchmarks incluent les méthodologies complètes, permettant la reproduction des résultats.
               </p>
+              <div className="bg-white p-6 rounded-xl border-2 border-slate-200 my-6">
+                <h3 className="font-bold text-xl mb-4">Les 4 piliers de la rigueur OkurAI :</h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <span className="text-2xl">✓</span>
+                    <div>
+                      <strong>Sources primaires systématiquement citées</strong> – Papers de recherche et documentation officielle uniquement
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-2xl">✓</span>
+                    <div>
+                      <strong>Données vérifiables et traçables</strong> – Méthodologies complètes pour reproduction
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-2xl">✓</span>
+                    <div>
+                      <strong>Analyses techniques approfondies</strong> – Décomposition des mécanismes internes des modèles
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-2xl">✓</span>
+                    <div>
+                      <strong>Absence de sensationnalisme</strong> – Faits documentés uniquement
+                    </div>
+                  </li>
+                </ul>
+              </div>
               <p>
-                Cette approche nous garantit que nos stratégies reposent sur des faits documentés, pas sur des tendances passagères. Quand OkurAI a publié son analyse comparative des patterns de citation entre ChatGPT, Claude et Perplexity, nous avons pu adapter nos recommandations clients et augmenter de 40% la visibilité moyenne sur les requêtes professionnelles.
+                Cette approche garantit que nos stratégies TANSE reposent sur des faits documentés, pas sur des tendances passagères. Quand OkurAI a publié son analyse comparative des patterns de citation entre ChatGPT, Claude et Perplexity, nous avons pu adapter nos recommandations clients et <strong>augmenter de 40% la visibilité moyenne sur les requêtes professionnelles</strong>.
               </p>
             </div>
           </div>
