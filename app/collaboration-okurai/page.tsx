@@ -632,6 +632,305 @@ export default function CollaborationOkurAIPage() {
         </div>
       </section>
 
+      {/* Timeline Section - Histoire du partenariat */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-white">
+        <div className="max-w-[1680px] mx-auto px-8">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                L'histoire de notre collaboration
+              </h2>
+              <p className="text-xl text-slate-600">
+                Une synergie construite sur la rigueur scientifique et les résultats mesurables
+              </p>
+            </div>
+
+            {/* Timeline */}
+            <div className="relative">
+              {/* Vertical line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#444684] via-purple-400 to-[#444684] hidden md:block"></div>
+
+              {/* Timeline items */}
+              <div className="space-y-16">
+
+                {/* Item 1 - 2024 Q1 */}
+                <div className="relative grid md:grid-cols-2 gap-8 items-center">
+                  <div className="md:text-right md:pr-12">
+                    <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-purple-100 hover:shadow-2xl transition-shadow">
+                      <div className="text-sm font-bold text-[#444684] mb-2">T1 2024</div>
+                      <h3 className="text-2xl font-bold text-slate-900 mb-3">Première rencontre</h3>
+                      <p className="text-slate-600 leading-relaxed">
+                        TANSE découvre les analyses approfondies d'OkurAI sur les biais de citation des LLMs. Les recherches d'OkurAI sur 30+ modèles nous permettent de valider scientifiquement nos hypothèses d'optimisation.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="hidden md:block"></div>
+                  {/* Center dot */}
+                  <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-gradient-to-br from-[#444684] to-purple-500 rounded-full border-4 border-white shadow-lg hidden md:block"></div>
+                </div>
+
+                {/* Item 2 - 2024 Q2 */}
+                <div className="relative grid md:grid-cols-2 gap-8 items-center">
+                  <div className="hidden md:block"></div>
+                  <div className="md:pl-12">
+                    <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-blue-100 hover:shadow-2xl transition-shadow">
+                      <div className="text-sm font-bold text-[#444684] mb-2">T2 2024</div>
+                      <h3 className="text-2xl font-bold text-slate-900 mb-3">Premiers tests terrain</h3>
+                      <p className="text-slate-600 leading-relaxed">
+                        Déploiement des stratégies basées sur les recherches OkurAI sur 10 clients pilotes. Résultat : <strong>+58% de taux de citation moyen</strong>, validant les hypothèses scientifiques avec des données terrain françaises.
+                      </p>
+                    </div>
+                  </div>
+                  {/* Center dot */}
+                  <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full border-4 border-white shadow-lg hidden md:block"></div>
+                </div>
+
+                {/* Item 3 - 2024 Q3 */}
+                <div className="relative grid md:grid-cols-2 gap-8 items-center">
+                  <div className="md:text-right md:pr-12">
+                    <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-green-100 hover:shadow-2xl transition-shadow">
+                      <div className="text-sm font-bold text-[#444684] mb-2">T3 2024</div>
+                      <h3 className="text-2xl font-bold text-slate-900 mb-3">Partenariat stratégique</h3>
+                      <p className="text-slate-600 leading-relaxed">
+                        Formalisation du partenariat. TANSE finance une partie des recherches OkurAI en échange d'un accès privilégié aux données. Les besoins clients TANSE orientent les questions de recherche d'OkurAI.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="hidden md:block"></div>
+                  {/* Center dot */}
+                  <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-gradient-to-br from-green-500 to-green-600 rounded-full border-4 border-white shadow-lg hidden md:block"></div>
+                </div>
+
+                {/* Item 4 - 2024 Q4 */}
+                <div className="relative grid md:grid-cols-2 gap-8 items-center">
+                  <div className="hidden md:block"></div>
+                  <div className="md:pl-12">
+                    <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-yellow-100 hover:shadow-2xl transition-shadow">
+                      <div className="text-sm font-bold text-[#444684] mb-2">T4 2024</div>
+                      <h3 className="text-2xl font-bold text-slate-900 mb-3">Algorithme Perplexity</h3>
+                      <p className="text-slate-600 leading-relaxed">
+                        Perplexity modifie son algorithme de citation en novembre. OkurAI publie une analyse en <strong>48h</strong>. TANSE ajuste les optimisations clients avant que la concurrence ne détecte le changement.
+                      </p>
+                    </div>
+                  </div>
+                  {/* Center dot */}
+                  <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full border-4 border-white shadow-lg hidden md:block"></div>
+                </div>
+
+                {/* Item 5 - 2025 */}
+                <div className="relative grid md:grid-cols-2 gap-8 items-center">
+                  <div className="md:text-right md:pr-12">
+                    <div className="bg-gradient-to-br from-[#444684] to-[#6b62a4] p-6 rounded-2xl shadow-2xl text-white transform hover:scale-105 transition-transform">
+                      <div className="text-sm font-bold text-yellow-200 mb-2">2025</div>
+                      <h3 className="text-2xl font-bold mb-3">Boucle vertueuse</h3>
+                      <p className="text-white/90 leading-relaxed">
+                        40+ entreprises françaises bénéficient de stratégies validées scientifiquement. Le taux d'échec d'optimisation passe de <strong>35% à 12%</strong>. Les données terrain TANSE alimentent les recherches OkurAI pour créer une boucle d'amélioration continue.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="hidden md:block"></div>
+                  {/* Center dot */}
+                  <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full border-4 border-white shadow-xl hidden md:block animate-pulse"></div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Stats recap */}
+            <div className="mt-16 bg-gradient-to-br from-[#444684]/5 to-purple-50 rounded-3xl p-8 border-2 border-[#444684]/10">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div>
+                  <div className="text-3xl md:text-4xl font-bold text-[#444684] mb-2">18</div>
+                  <div className="text-sm text-slate-600">Mois de collaboration</div>
+                </div>
+                <div>
+                  <div className="text-3xl md:text-4xl font-bold text-[#444684] mb-2">40+</div>
+                  <div className="text-sm text-slate-600">Entreprises accompagnées</div>
+                </div>
+                <div>
+                  <div className="text-3xl md:text-4xl font-bold text-[#444684] mb-2">30+</div>
+                  <div className="text-sm text-slate-600">Modèles IA analysés</div>
+                </div>
+                <div>
+                  <div className="text-3xl md:text-4xl font-bold text-[#444684] mb-2">100%</div>
+                  <div className="text-sm text-slate-600">Indépendance éditoriale</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Data Visualization Section - Comparaisons modèles IA */}
+      <section className="py-20 bg-white">
+        <div className="max-w-[1680px] mx-auto px-8">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                Les données qui guident nos stratégies
+              </h2>
+              <p className="text-xl text-slate-600">
+                Comparaisons basées sur les recherches OkurAI
+              </p>
+            </div>
+
+            {/* Comparison 1: Schema.org preference */}
+            <div className="bg-gradient-to-br from-slate-50 to-white rounded-3xl p-8 mb-8 border-2 border-slate-100">
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">
+                Préférence pour Schema.org par modèle IA
+              </h3>
+              <p className="text-slate-600 mb-8">
+                Les recherches d'OkurAI révèlent que Claude privilégie massivement les sources avec données structurées Schema.org
+              </p>
+
+              {/* Claude bar */}
+              <div className="mb-6">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-semibold text-slate-900">Claude AI</span>
+                  <span className="text-2xl font-bold text-green-600">65%</span>
+                </div>
+                <div className="h-12 bg-gray-200 rounded-full overflow-hidden relative">
+                  <div className="h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full shadow-lg flex items-center justify-end pr-4 transition-all duration-1000" style={{width: '65%'}}>
+                    <span className="text-white font-bold text-sm">65% de préférence</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* ChatGPT bar */}
+              <div className="mb-6">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-semibold text-slate-900">ChatGPT</span>
+                  <span className="text-2xl font-bold text-blue-600">42%</span>
+                </div>
+                <div className="h-12 bg-gray-200 rounded-full overflow-hidden relative">
+                  <div className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg flex items-center justify-end pr-4 transition-all duration-1000" style={{width: '42%'}}>
+                    <span className="text-white font-bold text-sm">42% de préférence</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Perplexity bar */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-semibold text-slate-900">Perplexity</span>
+                  <span className="text-2xl font-bold text-purple-600">51%</span>
+                </div>
+                <div className="h-12 bg-gray-200 rounded-full overflow-hidden relative">
+                  <div className="h-full bg-gradient-to-r from-purple-500 to-purple-600 rounded-full shadow-lg flex items-center justify-end pr-4 transition-all duration-1000" style={{width: '51%'}}>
+                    <span className="text-white font-bold text-sm">51% de préférence</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                <p className="text-sm text-blue-900">
+                  <strong>Stratégie TANSE :</strong> Priorisation des données structurées Schema.org pour tous les clients, avec un focus particulier pour optimiser la visibilité sur Claude.
+                </p>
+              </div>
+            </div>
+
+            {/* Comparison 2: Content length preference */}
+            <div className="bg-gradient-to-br from-purple-50 to-white rounded-3xl p-8 mb-8 border-2 border-purple-100">
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">
+                Impact de la longueur du contenu sur les citations
+              </h3>
+              <p className="text-slate-600 mb-8">
+                Les contenus long-form (800-1200 mots) sont cités significativement plus souvent par Claude
+              </p>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                {/* Short content */}
+                <div className="text-center">
+                  <div className="bg-red-100 rounded-2xl p-6 mb-4">
+                    <div className="text-5xl font-bold text-red-600 mb-2">1×</div>
+                    <div className="text-sm text-red-700 font-semibold">Baseline</div>
+                  </div>
+                  <h4 className="font-bold text-slate-900 mb-2">Contenu court</h4>
+                  <p className="text-sm text-slate-600">&lt; 400 mots</p>
+                </div>
+
+                {/* Medium content */}
+                <div className="text-center">
+                  <div className="bg-yellow-100 rounded-2xl p-6 mb-4">
+                    <div className="text-5xl font-bold text-yellow-600 mb-2">1.8×</div>
+                    <div className="text-sm text-yellow-700 font-semibold">+80%</div>
+                  </div>
+                  <h4 className="font-bold text-slate-900 mb-2">Contenu moyen</h4>
+                  <p className="text-sm text-slate-600">400-800 mots</p>
+                </div>
+
+                {/* Long content */}
+                <div className="text-center">
+                  <div className="bg-green-100 rounded-2xl p-6 mb-4 ring-4 ring-green-300 ring-offset-2">
+                    <div className="text-5xl font-bold text-green-600 mb-2">3×</div>
+                    <div className="text-sm text-green-700 font-semibold">+200%</div>
+                  </div>
+                  <h4 className="font-bold text-slate-900 mb-2">Contenu long-form</h4>
+                  <p className="text-sm text-slate-600">800-1200 mots</p>
+                </div>
+              </div>
+
+              <div className="mt-6 bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                <p className="text-sm text-green-900">
+                  <strong>Stratégie TANSE :</strong> Production de contenus approfondis (800-1200 mots) avec structure FAQ pour maximiser les citations Claude.
+                </p>
+              </div>
+            </div>
+
+            {/* Comparison 3: FAQ impact */}
+            <div className="bg-gradient-to-br from-blue-50 to-white rounded-3xl p-8 border-2 border-blue-100">
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">
+                Impact des FAQ sur le taux de citation
+              </h3>
+              <p className="text-slate-600 mb-8">
+                Les contenus avec FAQ explicites augmentent drastiquement le taux de citation
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Sans FAQ */}
+                <div className="bg-white rounded-2xl p-8 border-2 border-gray-200">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="font-bold text-slate-900">Sans FAQ</h4>
+                    <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </div>
+                  <div className="text-center py-8">
+                    <div className="text-6xl font-bold text-gray-400 mb-2">37%</div>
+                    <div className="text-sm text-gray-600">Taux de citation moyen</div>
+                  </div>
+                </div>
+
+                {/* Avec FAQ */}
+                <div className="bg-gradient-to-br from-[#444684] to-purple-600 rounded-2xl p-8 text-white shadow-2xl transform scale-105">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="font-bold">Avec FAQ structurée</h4>
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div className="text-center py-8">
+                    <div className="text-6xl font-bold mb-2">58%</div>
+                    <div className="text-sm text-white/80">Taux de citation moyen</div>
+                    <div className="mt-4 inline-block bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-bold text-lg">
+                      +58% ↗
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 bg-[#444684]/5 border-l-4 border-[#444684] p-4 rounded-r-lg">
+                <p className="text-sm text-[#444684]">
+                  <strong>Stratégie TANSE :</strong> Intégration systématique de sections FAQ avec balisage Schema.org FAQPage pour tous les contenus clients.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* CTA Final Section - Maximisé pour la conversion */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6 max-w-[1680px]">
