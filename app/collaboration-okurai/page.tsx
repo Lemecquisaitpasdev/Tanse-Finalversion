@@ -267,6 +267,77 @@ export default function CollaborationOkurAIPage() {
         </div>
       </section>
 
+      {/* Hero Section Alternative - Value Proposition */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#444684] via-[#5a5494] to-[#6b62a4] text-white py-24">
+        {/* Pattern de fond subtil */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          }}></div>
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10 max-w-[1680px]">
+          <div className="max-w-4xl">
+            {/* Badge de crédibilité */}
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+              <span className="text-sm font-medium">Premier média francophone dédié à l'IA générative</span>
+            </div>
+
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+              Des stratégies GEO fondées sur la <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-400">science</span>, pas l'intuition
+            </h2>
+
+            <p className="text-xl text-white/90 mb-8 leading-relaxed">
+              TANSE s'appuie sur les recherches rigoureuses d'OkurAI pour optimiser votre visibilité sur ChatGPT, Claude et Perplexity. Plus de 30 modèles d'IA analysés, des centaines d'heures de recherche, une méthodologie scientifique stricte.
+            </p>
+
+            {/* Stats marquantes */}
+            <div className="grid grid-cols-3 gap-8 mb-10">
+              <div>
+                <div className="text-4xl font-bold mb-1">+58%</div>
+                <div className="text-white/70 text-sm">Taux de citation moyen</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold mb-1">30+</div>
+                <div className="text-white/70 text-sm">Modèles IA analysés</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold mb-1">100%</div>
+                <div className="text-white/70 text-sm">Indépendant</div>
+              </div>
+            </div>
+
+            {/* CTAs primaires */}
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/audit-offert"
+                className="bg-white text-[#444684] px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all hover:scale-105 shadow-xl inline-block"
+              >
+                Demander un audit gratuit
+              </Link>
+              <a
+                href="https://www.okurai.fr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all inline-block"
+              >
+                Découvrir OkurAI
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Vague de transition */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="white"/>
+          </svg>
+        </div>
+      </section>
+
       {/* Mission Section */}
       <section className="py-16 bg-white" aria-labelledby="pourquoi-okurai">
         <div className="max-w-[1680px] mx-auto px-8">
@@ -549,6 +620,153 @@ export default function CollaborationOkurAIPage() {
                 </Link>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Final Section - Maximisé pour la conversion */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-[1680px]">
+          <div className="max-w-4xl mx-auto">
+
+            {/* Value proposition claire */}
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                Pendant que vos concurrents testent à l'aveugle, <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#444684] to-purple-400">vous déployez des stratégies validées</span>
+              </h2>
+              <p className="text-xl text-gray-600">
+                TANSE opère sur le terrain de l'optimisation commerciale. OkurAI opère sur le terrain de la recherche académique. Cette complémentarité crée une boucle vertueuse.
+              </p>
+            </div>
+
+            {/* Virtuous circle visualization */}
+            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 mb-12 border-2 border-gray-100">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-2xl shadow-lg">
+                    1
+                  </div>
+                  <h4 className="font-bold mb-2">Nos besoins clients</h4>
+                  <p className="text-sm text-gray-600">
+                    orientent les questions de recherche d'OkurAI
+                  </p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-2xl shadow-lg">
+                    2
+                  </div>
+                  <h4 className="font-bold mb-2">Leurs découvertes</h4>
+                  <p className="text-sm text-gray-600">
+                    améliorent nos méthodologies d'optimisation
+                  </p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-2xl shadow-lg">
+                    3
+                  </div>
+                  <h4 className="font-bold mb-2">Nos résultats terrain</h4>
+                  <p className="text-sm text-gray-600">
+                    valident leurs hypothèses scientifiques
+                  </p>
+                </div>
+
+              </div>
+
+              <div className="mt-8 text-center">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#444684]/10 to-purple-100 rounded-full px-6 py-3">
+                  <svg className="w-5 h-5 text-[#444684]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
+                  </svg>
+                  <span className="font-semibold text-[#444684]">
+                    Le résultat : des stratégies GEO fondées sur la science, pas l'intuition
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Proof social */}
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 mb-12 border-2 border-green-200">
+              <div className="flex items-start gap-4">
+                <svg className="w-12 h-12 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <div className="flex-1">
+                  <h4 className="font-bold text-xl mb-3">Un impact mesurable</h4>
+                  <p className="text-gray-700 mb-4">
+                    Pendant que vos concurrents testent à l'aveugle, vous déployez des stratégies validées par des centaines d'heures de recherche. Quand nous affirmons qu'une stratégie fonctionne, nous pouvons citer la recherche OkurAI qui le démontre.
+                  </p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="text-center bg-white rounded-lg p-3">
+                      <div className="text-2xl font-bold text-green-600">+58%</div>
+                      <div className="text-xs text-gray-600">Citation moyenne</div>
+                    </div>
+                    <div className="text-center bg-white rounded-lg p-3">
+                      <div className="text-2xl font-bold text-green-600">-65%</div>
+                      <div className="text-xs text-gray-600">Taux d'échec</div>
+                    </div>
+                    <div className="text-center bg-white rounded-lg p-3">
+                      <div className="text-2xl font-bold text-green-600">48h</div>
+                      <div className="text-xs text-gray-600">Réactivité</div>
+                    </div>
+                    <div className="text-center bg-white rounded-lg p-3">
+                      <div className="text-2xl font-bold text-green-600">30+</div>
+                      <div className="text-xs text-gray-600">Modèles analysés</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CTAs finaux - Zone de conversion maximale */}
+            <div className="bg-gradient-to-br from-[#444684] to-[#6b62a4] rounded-3xl p-10 text-white text-center shadow-2xl">
+              <h3 className="text-3xl font-bold mb-4">
+                Prêt à baser votre stratégie GEO sur la science ?
+              </h3>
+              <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+                Recevez un audit gratuit de votre visibilité actuelle sur les moteurs IA, accompagné de recommandations basées sur les dernières recherches d'OkurAI.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+                <Link
+                  href="/audit-offert"
+                  className="bg-white text-[#444684] px-10 py-5 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all hover:scale-105 shadow-xl inline-block"
+                >
+                  Demander un audit gratuit →
+                </Link>
+                <Link
+                  href="/forfaits-geo-seo"
+                  className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-white/20 transition-all inline-block"
+                >
+                  Voir nos forfaits
+                </Link>
+              </div>
+
+              {/* Trust signals finaux */}
+              <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-white/80">
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Audit sans engagement</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Réponse sous 24h</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Méthodologie scientifique</span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
