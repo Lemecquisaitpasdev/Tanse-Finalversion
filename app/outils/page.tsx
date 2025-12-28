@@ -1,13 +1,8 @@
 import type { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 import OutilsHero from '../components/outils/OutilsHero';
 import OutilCard from '../components/outils/OutilCard';
-
-// Dynamic imports for Header/Footer (optimize bundle)
-const SiteHeader = dynamic(() => import('../components/SiteHeader'), { ssr: true });
-const SiteFooter = dynamic(() => import('../components/SiteFooter').then(m => m.default), {
-  ssr: false,
-});
+import SiteHeader from '../components/SiteHeader';
+import SiteFooter from '../components/SiteFooter';
 
 export const metadata: Metadata = {
   title: 'Outils GEO Gratuits | TANSE - Optimisez votre Visibilité IA',
@@ -50,7 +45,7 @@ export default function OutilsPage() {
       title: 'Audit Gratuit',
       description:
         'Analyse complète de votre stratégie GEO. Identifiez vos forces, faiblesses et opportunités d\'optimisation en 5 minutes.',
-      href: '/audit-offert',
+      href: '/audit-gratuit',
     },
     {
       icon: '⚡',
