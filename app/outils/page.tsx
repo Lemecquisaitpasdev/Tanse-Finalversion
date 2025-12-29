@@ -26,8 +26,8 @@ export const metadata: Metadata = {
 };
 
 /**
- * Outils Page - Free GEO Tools Hub (REAL diabrowser.com inspired design)
- * Features: WHITE background, minimal design, BLACK buttons, Framer Motion animations
+ * Outils Page - REAL diabrowser.com inspired design
+ * Features: Gradient halos, typewriter animation, generous spacing (96-140px)
  */
 export default function OutilsPage() {
   const outils = [
@@ -59,22 +59,22 @@ export default function OutilsPage() {
       {/* Hero Section */}
       <OutilsHero />
 
-      {/* Tools Section */}
+      {/* Tools Section - diabrowser generous spacing (py-32) */}
       <section
-        className="relative py-24 px-6"
+        className="relative py-32 md:py-40 px-6"
         style={{
-          background: 'linear-gradient(180deg, #FAFAF9 0%, #FFFFFF 100%)',
+          background: 'linear-gradient(180deg, #F5F4F1 0%, #FEFEFE 100%)',
         }}
       >
         <div className="container mx-auto max-w-7xl">
           {/* Section Title */}
-          <div className="mb-20 text-center">
-            <p className="text-xl text-gray-600 mb-6">Ou choisissez un outil spécifique</p>
+          <div className="mb-24 text-center">
+            <p className="text-xl md:text-2xl text-gray-600 mb-8">Ou choisissez un outil spécifique</p>
             <div className="mx-auto h-px w-32 bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
           </div>
 
           {/* Tools Grid */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {outils.map((outil, index) => (
               <OutilCard
                 key={outil.href}
@@ -89,62 +89,70 @@ export default function OutilsPage() {
         </div>
       </section>
 
-      {/* Trust Signals - Minimal Design */}
-      <section className="relative py-24 px-6 bg-white border-t border-gray-200">
+      {/* Trust Signals - diabrowser generous spacing */}
+      <section className="relative py-32 md:py-40 px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid gap-12 md:grid-cols-3 text-center">
+          <div className="grid gap-16 md:grid-cols-3 text-center">
             <div className="group">
-              <div className="text-5xl md:text-6xl font-[800] text-black mb-4 transition-all duration-300 group-hover:scale-110"
-                   style={{ letterSpacing: '-0.04em' }}>
+              <div
+                className="text-6xl md:text-7xl font-[800] text-black mb-6 transition-all duration-300 group-hover:scale-105"
+                style={{ letterSpacing: '-0.04em' }}
+              >
                 30s
               </div>
-              <p className="text-gray-600 text-lg">Temps d'analyse</p>
+              <p className="text-gray-600 text-lg md:text-xl">Temps d'analyse</p>
             </div>
             <div className="group">
-              <div className="text-5xl md:text-6xl font-[800] text-black mb-4 transition-all duration-300 group-hover:scale-110"
-                   style={{ letterSpacing: '-0.04em' }}>
+              <div
+                className="text-6xl md:text-7xl font-[800] text-black mb-6 transition-all duration-300 group-hover:scale-105"
+                style={{ letterSpacing: '-0.04em' }}
+              >
                 100%
               </div>
-              <p className="text-gray-600 text-lg">Gratuit & sans engagement</p>
+              <p className="text-gray-600 text-lg md:text-xl">Gratuit & sans engagement</p>
             </div>
             <div className="group">
-              <div className="text-5xl md:text-6xl font-[800] text-black mb-4 transition-all duration-300 group-hover:scale-110"
-                   style={{ letterSpacing: '-0.04em' }}>
+              <div
+                className="text-6xl md:text-7xl font-[800] text-black mb-6 transition-all duration-300 group-hover:scale-105"
+                style={{ letterSpacing: '-0.04em' }}
+              >
                 1000+
               </div>
-              <p className="text-gray-600 text-lg">Sites analysés</p>
+              <p className="text-gray-600 text-lg md:text-xl">Sites analysés</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Bottom CTA */}
+      {/* Bottom CTA - diabrowser generous spacing */}
       <section
-        className="relative py-32 px-6"
+        className="relative py-40 md:py-48 px-6"
         style={{
-          background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFAF9 100%)',
+          background: 'linear-gradient(180deg, #FEFEFE 0%, #FAF9F7 50%, #F5F4F1 100%)',
         }}
       >
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl md:text-5xl font-[800] text-black mb-6"
-              style={{ letterSpacing: '-0.04em' }}>
-            Besoin d'une stratégie GEO complète ?
+          <h2
+            className="text-5xl md:text-6xl lg:text-7xl font-[800] text-black mb-8"
+            style={{ letterSpacing: '-0.04em' }}
+          >
+            Besoin d'une stratégie
+            <br />
+            GEO complète ?
           </h2>
-          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-600 mb-14 max-w-2xl mx-auto leading-relaxed">
             Découvrez nos forfaits d'accompagnement personnalisés pour maximiser votre visibilité sur les moteurs IA.
           </p>
           <a
             href="/forfaits-geo-seo"
-            className="inline-flex items-center gap-3 rounded-full bg-black px-10 py-5 font-semibold text-white
-                       transition-all duration-200 hover:scale-105 hover:bg-gray-800 hover:shadow-lg shadow-md
-                       active:scale-95"
+            className="inline-flex items-center gap-3 rounded-full bg-black px-12 py-6 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:bg-gray-900 hover:shadow-xl shadow-lg active:scale-95"
           >
             Découvrir nos forfaits
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
+                strokeWidth={2.5}
                 d="M17 8l4 4m0 0l-4 4m4-4H3"
               />
             </svg>
@@ -153,7 +161,7 @@ export default function OutilsPage() {
       </section>
 
       {/* Footer Branding */}
-      <footer className="relative border-t border-gray-200 py-12 px-6 bg-white">
+      <footer className="relative py-16 px-6 bg-white border-t border-gray-200">
         <div className="container mx-auto max-w-7xl text-center">
           <p className="text-sm text-gray-500">
             © 2025 TANSE. Tous droits réservés.
