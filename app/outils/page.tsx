@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import AnimatedMeshBackground from '../components/outils/AnimatedMeshBackground';
 import OutilsHero from '../components/outils/OutilsHero';
 import FeatureSlider from '../components/outils/FeatureSlider';
+import TestimonialsSection from '../components/outils/TestimonialsSection';
 import PrivacySection from '../components/outils/PrivacySection';
 import DiaFooter from '../components/outils/DiaFooter';
 
@@ -96,6 +97,9 @@ export default function OutilsPage() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section - Infinite Marquee */}
+      <TestimonialsSection />
 
       {/* Privacy Section with Glassmorphism */}
       <PrivacySection />
