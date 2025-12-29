@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 
 /**
- * OutilsHero - Hero section with diabrowser.com inspired design
- * Features: Framer Motion reveal animations, pixel-perfect design, ultra-smooth transitions
+ * OutilsHero - Hero section with REAL diabrowser.com inspired design
+ * Features: WHITE background, BLACK text, minimal gradient, Framer Motion animations
  */
 export default function OutilsHero() {
   const [url, setUrl] = useState('');
@@ -29,7 +29,7 @@ export default function OutilsHero() {
     }, 800);
   };
 
-  // Animation variants for title reveal
+  // Animation variants
   const titleVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -42,7 +42,6 @@ export default function OutilsHero() {
     },
   };
 
-  // Stagger container for lines
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -54,7 +53,6 @@ export default function OutilsHero() {
     },
   };
 
-  // Subtitle animation
   const subtitleVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -68,7 +66,6 @@ export default function OutilsHero() {
     },
   };
 
-  // Form animation
   const formVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -83,18 +80,12 @@ export default function OutilsHero() {
   };
 
   return (
-    <section className="relative min-h-screen bg-black pt-40 pb-32 overflow-hidden">
-      {/* Subtle grid background */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `linear-gradient(#FFFFFF 1px, transparent 1px), linear-gradient(90deg, #FFFFFF 1px, transparent 1px)`,
-            backgroundSize: '64px 64px',
-          }}
-        />
-      </div>
-
+    <section
+      className="relative min-h-screen pt-40 pb-32 overflow-hidden"
+      style={{
+        background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFAF9 100%)',
+      }}
+    >
       <div className="container relative z-10 mx-auto max-w-5xl px-6">
         {/* Animated Title */}
         <motion.div
@@ -105,18 +96,18 @@ export default function OutilsHero() {
         >
           <motion.h1
             variants={titleVariants}
-            className="text-6xl md:text-7xl lg:text-8xl font-[800] text-white leading-[1.1] mb-4"
+            className="text-6xl md:text-7xl lg:text-8xl font-[800] text-black leading-[1.1] mb-4"
             style={{ letterSpacing: '-0.04em', fontFamily: 'var(--font-geist-sans), Inter, sans-serif' }}
           >
             Mesurez votre
           </motion.h1>
           <motion.h1
             variants={titleVariants}
-            className="text-6xl md:text-7xl lg:text-8xl font-[800] text-white leading-[1.1]"
+            className="text-6xl md:text-7xl lg:text-8xl font-[800] text-black leading-[1.1]"
             style={{ letterSpacing: '-0.04em', fontFamily: 'var(--font-geist-sans), Inter, sans-serif' }}
           >
             visibilité IA en{' '}
-            <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent">
               30 secondes
             </span>
           </motion.h1>
@@ -127,7 +118,7 @@ export default function OutilsHero() {
           variants={subtitleVariants}
           initial="hidden"
           animate="visible"
-          className="mb-16 text-center text-xl md:text-2xl text-[#A1A1AA] max-w-3xl mx-auto leading-relaxed"
+          className="mb-16 text-center text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
         >
           Découvrez comment ChatGPT, Claude et Perplexity voient votre site.
           <br className="hidden md:block" />
@@ -153,23 +144,23 @@ export default function OutilsHero() {
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="Entrez l'URL de votre site..."
-              className="flex-1 rounded-full border border-[#FFFFFF1A] bg-black/50 backdrop-blur-sm px-8 py-5 text-white
-                         transition-all duration-200 placeholder:text-[#A1A1AA]
-                         focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/10
-                         hover:border-white/30"
+              className="flex-1 rounded-full border border-gray-200 bg-white px-8 py-5 text-gray-900
+                         transition-all duration-200 placeholder:text-gray-400
+                         focus:border-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-100
+                         hover:border-gray-300 shadow-sm"
               disabled={isLoading}
             />
 
-            {/* Submit Button */}
+            {/* Submit Button - BLACK like diabrowser */}
             <motion.button
               type="submit"
               disabled={isLoading}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2, ease: 'easeInOut' }}
-              className="rounded-full bg-white px-10 py-5 font-semibold text-black
+              className="rounded-full bg-black px-10 py-5 font-semibold text-white
                          transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed
-                         hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]
+                         hover:bg-gray-800 shadow-md hover:shadow-lg
                          whitespace-nowrap"
             >
               {isLoading ? (
@@ -206,16 +197,12 @@ export default function OutilsHero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.6 }}
-            className="mt-6 text-center text-sm text-[#A1A1AA]"
+            className="mt-6 text-center text-sm text-gray-500"
           >
             Exemple : https://www.exemple.fr
           </motion.p>
         </motion.form>
       </div>
-
-      {/* Gradient orbs for ambiance */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
     </section>
   );
 }

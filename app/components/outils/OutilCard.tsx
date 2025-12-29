@@ -12,8 +12,8 @@ interface OutilCardProps {
 }
 
 /**
- * OutilCard - Reusable card component with diabrowser.com inspired design
- * Features: Framer Motion animations, pixel-perfect design, scale on hover
+ * OutilCard - Reusable card component with REAL diabrowser.com inspired design
+ * Features: WHITE background, subtle borders, BLACK button, Framer Motion animations
  */
 export default function OutilCard({ icon, title, description, href, index = 0 }: OutilCardProps) {
   // Card animation variants
@@ -38,13 +38,13 @@ export default function OutilCard({ icon, title, description, href, index = 0 }:
     >
       <Link
         href={href}
-        className="group block relative overflow-hidden rounded-3xl bg-black border border-[#FFFFFF1A]
-                   p-8 md:p-10 transition-all duration-200 hover:border-white/30
-                   hover:bg-white/[0.02]"
+        className="group block relative overflow-hidden rounded-3xl bg-white border border-gray-200
+                   p-8 md:p-10 transition-all duration-200 hover:border-gray-300
+                   hover:shadow-lg shadow-sm"
       >
         {/* Hover gradient effect */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-transparent to-transparent" />
         </div>
 
         <div className="relative z-10">
@@ -58,22 +58,22 @@ export default function OutilCard({ icon, title, description, href, index = 0 }:
           </motion.div>
 
           {/* Title */}
-          <h3 className="text-3xl font-bold text-white mb-4 group-hover:text-white/90 transition-colors">
+          <h3 className="text-3xl font-bold text-black mb-4 group-hover:text-gray-800 transition-colors">
             {title}
           </h3>
 
           {/* Description */}
-          <p className="text-[#A1A1AA] text-lg leading-relaxed mb-8">
+          <p className="text-gray-600 text-lg leading-relaxed mb-8">
             {description}
           </p>
 
-          {/* CTA Button */}
+          {/* CTA Button - BLACK like diabrowser */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-black
-                       transition-all duration-200 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+            className="inline-flex items-center gap-2 rounded-full bg-black px-6 py-3 font-semibold text-white
+                       transition-all duration-200 group-hover:bg-gray-800 shadow-md group-hover:shadow-lg"
           >
             <span>Commencer</span>
             <svg
@@ -91,9 +91,6 @@ export default function OutilCard({ icon, title, description, href, index = 0 }:
             </svg>
           </motion.div>
         </div>
-
-        {/* Subtle corner accent */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </Link>
     </motion.div>
   );

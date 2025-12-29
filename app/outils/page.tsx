@@ -26,8 +26,8 @@ export const metadata: Metadata = {
 };
 
 /**
- * Outils Page - Free GEO Tools Hub (diabrowser.com inspired design)
- * Features: Hero with URL analyzer, 3 tool cards, Framer Motion animations
+ * Outils Page - Free GEO Tools Hub (REAL diabrowser.com inspired design)
+ * Features: WHITE background, minimal design, BLACK buttons, Framer Motion animations
  */
 export default function OutilsPage() {
   const outils = [
@@ -55,20 +55,22 @@ export default function OutilsPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-white">
       {/* Hero Section */}
       <OutilsHero />
 
       {/* Tools Section */}
-      <section className="relative py-24 px-6 bg-black">
-        {/* Subtle separator line */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
+      <section
+        className="relative py-24 px-6"
+        style={{
+          background: 'linear-gradient(180deg, #FAFAF9 0%, #FFFFFF 100%)',
+        }}
+      >
         <div className="container mx-auto max-w-7xl">
           {/* Section Title */}
           <div className="mb-20 text-center">
-            <p className="text-xl text-[#A1A1AA] mb-6">Ou choisissez un outil spécifique</p>
-            <div className="mx-auto h-px w-32 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            <p className="text-xl text-gray-600 mb-6">Ou choisissez un outil spécifique</p>
+            <div className="mx-auto h-px w-32 bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
           </div>
 
           {/* Tools Grid */}
@@ -88,54 +90,53 @@ export default function OutilsPage() {
       </section>
 
       {/* Trust Signals - Minimal Design */}
-      <section className="relative py-24 px-6 bg-black">
-        {/* Subtle separator line */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
+      <section className="relative py-24 px-6 bg-white border-t border-gray-200">
         <div className="container mx-auto max-w-6xl">
           <div className="grid gap-12 md:grid-cols-3 text-center">
             <div className="group">
-              <div className="text-5xl md:text-6xl font-[800] text-white mb-4 transition-all duration-300 group-hover:scale-110"
+              <div className="text-5xl md:text-6xl font-[800] text-black mb-4 transition-all duration-300 group-hover:scale-110"
                    style={{ letterSpacing: '-0.04em' }}>
                 30s
               </div>
-              <p className="text-[#A1A1AA] text-lg">Temps d'analyse</p>
+              <p className="text-gray-600 text-lg">Temps d'analyse</p>
             </div>
             <div className="group">
-              <div className="text-5xl md:text-6xl font-[800] text-white mb-4 transition-all duration-300 group-hover:scale-110"
+              <div className="text-5xl md:text-6xl font-[800] text-black mb-4 transition-all duration-300 group-hover:scale-110"
                    style={{ letterSpacing: '-0.04em' }}>
                 100%
               </div>
-              <p className="text-[#A1A1AA] text-lg">Gratuit & sans engagement</p>
+              <p className="text-gray-600 text-lg">Gratuit & sans engagement</p>
             </div>
             <div className="group">
-              <div className="text-5xl md:text-6xl font-[800] text-white mb-4 transition-all duration-300 group-hover:scale-110"
+              <div className="text-5xl md:text-6xl font-[800] text-black mb-4 transition-all duration-300 group-hover:scale-110"
                    style={{ letterSpacing: '-0.04em' }}>
                 1000+
               </div>
-              <p className="text-[#A1A1AA] text-lg">Sites analysés</p>
+              <p className="text-gray-600 text-lg">Sites analysés</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Bottom CTA */}
-      <section className="relative py-32 px-6 bg-black">
-        {/* Subtle separator line */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
+      <section
+        className="relative py-32 px-6"
+        style={{
+          background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFAF9 100%)',
+        }}
+      >
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl md:text-5xl font-[800] text-white mb-6"
+          <h2 className="text-4xl md:text-5xl font-[800] text-black mb-6"
               style={{ letterSpacing: '-0.04em' }}>
             Besoin d'une stratégie GEO complète ?
           </h2>
-          <p className="text-xl text-[#A1A1AA] mb-12 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
             Découvrez nos forfaits d'accompagnement personnalisés pour maximiser votre visibilité sur les moteurs IA.
           </p>
           <a
             href="/forfaits-geo-seo"
-            className="inline-flex items-center gap-3 rounded-full bg-white px-10 py-5 font-semibold text-black
-                       transition-all duration-200 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]
+            className="inline-flex items-center gap-3 rounded-full bg-black px-10 py-5 font-semibold text-white
+                       transition-all duration-200 hover:scale-105 hover:bg-gray-800 hover:shadow-lg shadow-md
                        active:scale-95"
           >
             Découvrir nos forfaits
@@ -152,9 +153,9 @@ export default function OutilsPage() {
       </section>
 
       {/* Footer Branding */}
-      <footer className="relative border-t border-white/10 py-12 px-6 bg-black">
+      <footer className="relative border-t border-gray-200 py-12 px-6 bg-white">
         <div className="container mx-auto max-w-7xl text-center">
-          <p className="text-sm text-[#A1A1AA]">
+          <p className="text-sm text-gray-500">
             © 2025 TANSE. Tous droits réservés.
           </p>
         </div>
