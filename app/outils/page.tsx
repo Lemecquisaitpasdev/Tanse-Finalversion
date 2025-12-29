@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import SiteHeader from '../components/SiteHeader';
+import SiteFooter from '../components/SiteFooter';
 import AnimatedMeshBackground from '../components/outils/AnimatedMeshBackground';
 import OutilsHero from '../components/outils/OutilsHero';
 import FeatureSlider from '../components/outils/FeatureSlider';
@@ -61,12 +63,16 @@ export default function OutilsPage() {
   ];
 
   return (
-    <main className="relative min-h-screen">
-      {/* Animated Mesh Gradient Background */}
-      <AnimatedMeshBackground />
+    <>
+      {/* Site Header */}
+      <SiteHeader />
 
-      {/* Hero Section */}
-      <OutilsHero />
+      <main className="relative min-h-screen">
+        {/* Animated Mesh Gradient Background */}
+        <AnimatedMeshBackground />
+
+        {/* Hero Section */}
+        <OutilsHero />
 
       {/* Feature Slider with Browser Mockups */}
       <FeatureSlider toolName="TANSE" slides={featureSlides} />
@@ -97,11 +103,15 @@ export default function OutilsPage() {
         </div>
       </section>
 
-      {/* Privacy Section with Glassmorphism */}
-      <PrivacySection />
+        {/* Privacy Section with Glassmorphism */}
+        <PrivacySection />
 
-      {/* Dia Footer with Massive Text */}
-      <DiaFooter toolName="TANSE" ctaText="Commencer gratuitement" ctaHref="/geo-score" />
-    </main>
+        {/* Dia Footer with Massive Text */}
+        <DiaFooter toolName="TANSE" ctaText="Commencer gratuitement" ctaHref="/geo-score" />
+      </main>
+
+      {/* Site Footer */}
+      <SiteFooter />
+    </>
   );
 }
