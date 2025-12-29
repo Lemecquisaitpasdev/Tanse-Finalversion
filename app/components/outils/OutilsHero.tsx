@@ -2,32 +2,29 @@
 
 import { useState, FormEvent, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 /**
- * OutilsHero - EXACT diabrowser.com pixel-perfect design
- * Features: Generous spacing (pt-96, pb-140px), large rounded frames, colorful gradient halos
+ * OutilsHero - The Browser Company (Dia) pixel-perfect design
+ * Features: Cycling words with vertical fade, floating search bar with chips
  */
 export default function OutilsHero() {
   const [url, setUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [shake, setShake] = useState(false);
-  const [displayText, setDisplayText] = useState('');
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [chips, setChips] = useState<string[]>([]);
   const router = useRouter();
 
-  // Typewriter effect
-  const fullText = 'visibilité IA';
+  // Cycling words for hero title
+  const cyclingWords = ['Optimiser', 'Analyser', 'Mesurer'];
+
+  // Cycle through words
   useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      if (index <= fullText.length) {
-        setDisplayText(fullText.slice(0, index));
-        index++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 80);
-    return () => clearInterval(timer);
+    const interval = setInterval(() => {
+      setCurrentWordIndex((prev) => (prev + 1) % cyclingWords.length);
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
 
   const handleSubmit = async (e: FormEvent) => {
@@ -41,6 +38,16 @@ export default function OutilsHero() {
     setTimeout(() => {
       router.push(`/geo-score?url=${encodeURIComponent(url)}`);
     }, 800);
+  };
+
+  const addChip = (text: string) => {
+    if (!chips.includes(text)) {
+      setChips([...chips, text]);
+    }
+  };
+
+  const removeChip = (text: string) => {
+    setChips(chips.filter(chip => chip !== text));
   };
 
   // Animation variants
@@ -72,72 +79,82 @@ export default function OutilsHero() {
   };
 
   return (
-    <section className="relative overflow-hidden" style={{ paddingTop: '24rem', paddingBottom: '10rem', background: 'linear-gradient(180deg, #FEFEFE 0%, #FAF9F7 50%, #F5F4F1 100%)' }}>
-      {/* Massive gradient halos - diabrowser exact style */}
-      <div className="absolute top-40 left-[10%] w-[800px] h-[800px] rounded-full opacity-[0.35] blur-[120px]" style={{ background: 'radial-gradient(circle, rgba(255,200,87,0.5) 0%, transparent 70%)' }} />
-      <div className="absolute bottom-20 right-[15%] w-[900px] h-[900px] rounded-full opacity-[0.3] blur-[120px]" style={{ background: 'radial-gradient(circle, rgba(255,107,168,0.4) 0%, transparent 70%)' }} />
-      <div className="absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full opacity-[0.25] blur-[120px]" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%)' }} />
-
+    <section className="relative overflow-hidden py-32 md:py-48">
       <div className="container relative z-10 mx-auto max-w-5xl px-6">
-        {/* Animated Title with Typewriter */}
-        <motion.div variants={titleVariants} initial="hidden" animate="visible" className="mb-16 text-center">
-          <h1 className="text-6xl md:text-7xl lg:text-[96px] font-[800] text-black leading-[1.05]" style={{ letterSpacing: '-0.04em', fontFamily: 'var(--font-geist-sans), Inter, -apple-system, sans-serif' }}>
-            Mesurez votre
+        {/* Animated Title with Cycling Words */}
+        <motion.div variants={titleVariants} initial="hidden" animate="visible" className="mb-12 text-center">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-medium text-black leading-[1.1]" style={{ letterSpacing: '-0.02em', fontFamily: 'var(--font-geist-sans), Inter, -apple-system, sans-serif' }}>
+            <AnimatePresence mode="wait">
+              <motion.span key={currentWordIndex} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} className="inline-block">
+                {cyclingWords[currentWordIndex]}
+              </motion.span>
+            </AnimatePresence>
             <br />
-            <span className="inline-flex items-center gap-3">
-              {displayText}
-              <span className="inline-block w-1.5 h-20 md:h-24 bg-black" style={{ animation: 'blink 1s step-end infinite' }} />
-            </span>
-            {' '}en{' '}
-            <span className="bg-gradient-to-r from-black via-gray-700 to-gray-500 bg-clip-text text-transparent">
-              30 secondes
-            </span>
+            votre visibilité IA
           </h1>
         </motion.div>
 
-        {/* Animated Subtitle */}
-        <motion.p variants={subtitleVariants} initial="hidden" animate="visible" className="mb-20 text-center text-2xl md:text-3xl text-gray-600 max-w-3xl mx-auto leading-[1.4]">
-          Découvrez comment ChatGPT, Claude et Perplexity voient votre site.
-          <br className="hidden md:block" />
-          Analyse gratuite et instantanée de votre score GEO.
+        {/* Subtitle */}
+        <motion.p variants={subtitleVariants} initial="hidden" animate="visible" className="mb-16 text-center text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          Découvrez comment ChatGPT, Claude et Perplexity voient votre site
         </motion.p>
 
-        {/* Animated Form */}
+        {/* Floating Search Bar with Chips - Dia Style */}
         <motion.form variants={formVariants} initial="hidden" animate="visible" onSubmit={handleSubmit} className="mx-auto max-w-3xl">
-          <div className={`flex flex-col gap-5 md:flex-row ${shake ? 'animate-shake' : ''}`}>
-            {/* Input with larger border-radius */}
-            <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} placeholder="Entrez l'URL de votre site..." className="flex-1 rounded-full border-2 border-gray-200 bg-white/90 backdrop-blur-sm px-10 py-6 text-lg text-gray-900 transition-all duration-300 placeholder:text-gray-400 focus:border-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-100 hover:border-gray-300 shadow-lg hover:shadow-xl" disabled={isLoading} />
-
-            {/* Submit Button - BLACK diabrowser style with larger size */}
-            <motion.button type="submit" disabled={isLoading} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }} className="rounded-full bg-black px-12 py-6 text-lg font-semibold text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-900 shadow-xl hover:shadow-2xl whitespace-nowrap">
-              {isLoading ? (
-                <span className="flex items-center gap-3">
-                  <svg className="h-6 w-6 animate-spin" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                  </svg>
-                  Analyse...
-                </span>
-              ) : (
-                'Analyser →'
+          <div className={`relative ${shake ? 'animate-shake' : ''}`}>
+            {/* Search Bar Container */}
+            <div className="flex flex-col gap-3 rounded-[24px] border border-gray-200/80 bg-white/95 backdrop-blur-xl px-6 py-5 shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)]">
+              {/* Chips Display */}
+              {chips.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {chips.map((chip) => (
+                    <motion.span key={chip} initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1.5 text-sm text-gray-700">
+                      <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                      </svg>
+                      <span>{chip}</span>
+                      <button type="button" onClick={() => removeChip(chip)} className="ml-1 rounded-full hover:bg-gray-200 p-0.5 transition-colors">
+                        <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </motion.span>
+                  ))}
+                </div>
               )}
-            </motion.button>
+
+              {/* Input Row */}
+              <div className="flex items-center gap-4">
+                {/* Search Icon */}
+                <svg className="h-5 w-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+
+                {/* Input */}
+                <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} placeholder="Entrez l'URL de votre site..." className="flex-1 bg-transparent text-base text-gray-900 placeholder:text-gray-400 focus:outline-none" disabled={isLoading} />
+
+                {/* Submit Button */}
+                <motion.button type="submit" disabled={isLoading} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="rounded-[20px] bg-black px-8 py-3 text-sm font-medium text-white transition-all duration-200 disabled:opacity-50 hover:bg-gray-900 whitespace-nowrap">
+                  {isLoading ? 'Analyse...' : 'Analyser'}
+                </motion.button>
+              </div>
+            </div>
           </div>
 
-          {/* Help text */}
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8, duration: 0.6 }} className="mt-8 text-center text-base text-gray-500">
-            Exemple : https://www.exemple.fr
-          </motion.p>
+          {/* Quick Action Chips */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8, duration: 0.6 }} className="mt-6 flex flex-wrap justify-center gap-3">
+            <button type="button" onClick={() => addChip('E-commerce')} className="rounded-full border border-gray-200 bg-white/80 px-4 py-2 text-sm text-gray-600 transition-all duration-200 hover:border-gray-300 hover:bg-white hover:shadow-sm">
+              E-commerce
+            </button>
+            <button type="button" onClick={() => addChip('SaaS')} className="rounded-full border border-gray-200 bg-white/80 px-4 py-2 text-sm text-gray-600 transition-all duration-200 hover:border-gray-300 hover:bg-white hover:shadow-sm">
+              SaaS
+            </button>
+            <button type="button" onClick={() => addChip('Blog')} className="rounded-full border border-gray-200 bg-white/80 px-4 py-2 text-sm text-gray-600 transition-all duration-200 hover:border-gray-300 hover:bg-white hover:shadow-sm">
+              Blog
+            </button>
+          </motion.div>
         </motion.form>
       </div>
-
-      {/* Blink animation for cursor */}
-      <style jsx>{`
-        @keyframes blink {
-          0%, 50% { opacity: 1; }
-          51%, 100% { opacity: 0; }
-        }
-      `}</style>
     </section>
   );
 }
