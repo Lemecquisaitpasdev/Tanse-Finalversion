@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
-import SiteHeader from '../components/SiteHeader';
-import SiteFooter from '../components/SiteFooter';
 import AnimatedMeshBackground from '../components/outils/AnimatedMeshBackground';
 import OutilsHero from '../components/outils/OutilsHero';
 import FeatureSlider from '../components/outils/FeatureSlider';
 import PrivacySection from '../components/outils/PrivacySection';
+import DiaFooter from '../components/outils/DiaFooter';
 
 export const metadata: Metadata = {
   title: 'Outils GEO Gratuits | TANSE - Optimisez votre Visibilité IA',
@@ -62,16 +61,12 @@ export default function OutilsPage() {
   ];
 
   return (
-    <>
-      {/* Site Header */}
-      <SiteHeader />
+    <main className="relative min-h-screen">
+      {/* Animated Mesh Gradient Background */}
+      <AnimatedMeshBackground />
 
-      <main className="relative min-h-screen">
-        {/* Animated Mesh Gradient Background */}
-        <AnimatedMeshBackground />
-
-        {/* Hero Section */}
-        <OutilsHero />
+      {/* Hero Section */}
+      <OutilsHero />
 
       {/* Feature Slider with Browser Mockups */}
       <FeatureSlider toolName="TANSE" slides={featureSlides} />
@@ -102,32 +97,11 @@ export default function OutilsPage() {
         </div>
       </section>
 
-        {/* Privacy Section with Glassmorphism */}
-        <PrivacySection />
+      {/* Privacy Section with Glassmorphism */}
+      <PrivacySection />
 
-        {/* Bottom CTA Section */}
-        <section className="relative px-6" style={{ paddingTop: '12rem', paddingBottom: '12rem', background: 'linear-gradient(180deg, #FEFEFE 0%, #FAF9F7 50%, #F5F4F1 100%)' }}>
-          <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="text-6xl md:text-7xl lg:text-8xl font-medium text-black mb-10" style={{ letterSpacing: '-0.02em' }}>
-              Besoin d'une stratégie
-              <br />
-              GEO complète ?
-            </h2>
-            <p className="text-2xl md:text-3xl text-gray-600 mb-16 max-w-2xl mx-auto leading-[1.5]">
-              Découvrez nos forfaits d'accompagnement personnalisés pour maximiser votre visibilité sur les moteurs IA.
-            </p>
-            <a href="/forfaits-geo-seo" className="inline-flex items-center gap-3 rounded-[40px] bg-black px-12 py-6 text-lg font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-gray-900 hover:shadow-2xl shadow-xl">
-              Découvrir nos forfaits
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-          </div>
-        </section>
-      </main>
-
-      {/* Site Footer */}
-      <SiteFooter />
-    </>
+      {/* Dia Footer with Massive Text */}
+      <DiaFooter toolName="TANSE" ctaText="Commencer gratuitement" ctaHref="/geo-score" />
+    </main>
   );
 }
