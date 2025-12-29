@@ -2,10 +2,11 @@
 
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 
 /**
- * OutilsHero - Hero section with URL input and analyze button
- * Features: Form validation, smooth redirect, skeleton loader, easter egg on button
+ * OutilsHero - Hero section with diabrowser.com inspired design
+ * Features: Framer Motion reveal animations, pixel-perfect design, ultra-smooth transitions
  */
 export default function OutilsHero() {
   const [url, setUrl] = useState('');
@@ -16,52 +17,131 @@ export default function OutilsHero() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    // Basic URL validation
     if (!url.trim()) {
       setShake(true);
       setTimeout(() => setShake(false), 500);
       return;
     }
 
-    // Easter egg: Konami code detection (optional enhancement)
     setIsLoading(true);
-
-    // Simulate analysis delay
     setTimeout(() => {
       router.push(`/geo-score?url=${encodeURIComponent(url)}`);
     }, 800);
   };
 
+  // Animation variants for title reveal
+  const titleVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    },
+  };
+
+  // Stagger container for lines
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  // Subtitle animation
+  const subtitleVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        delay: 0.4,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    },
+  };
+
+  // Form animation
+  const formVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        delay: 0.6,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    },
+  };
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#E4E4E4] via-[#f0f0f0] to-[#E4E4E4] py-24 md:py-32">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
+    <section className="relative min-h-screen bg-black pt-40 pb-32 overflow-hidden">
+      {/* Subtle grid background */}
+      <div className="absolute inset-0 opacity-[0.03]">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23444684' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundImage: `linear-gradient(#FFFFFF 1px, transparent 1px), linear-gradient(90deg, #FFFFFF 1px, transparent 1px)`,
+            backgroundSize: '64px 64px',
           }}
         />
       </div>
 
-      <div className="container relative z-10 mx-auto max-w-4xl px-6">
-        {/* Title */}
-        <h1 className="mb-6 text-center text-4xl font-bold leading-tight text-[#444684] md:text-6xl">
-          Mesurez votre visibilité IA en{' '}
-          <span className="bg-gradient-to-r from-[#444684] to-[#6b62a4] bg-clip-text text-transparent">
-            30 secondes
-          </span>
-        </h1>
+      <div className="container relative z-10 mx-auto max-w-5xl px-6">
+        {/* Animated Title */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="mb-8 text-center"
+        >
+          <motion.h1
+            variants={titleVariants}
+            className="text-6xl md:text-7xl lg:text-8xl font-[800] text-white leading-[1.1] mb-4"
+            style={{ letterSpacing: '-0.04em', fontFamily: 'var(--font-geist-sans), Inter, sans-serif' }}
+          >
+            Mesurez votre
+          </motion.h1>
+          <motion.h1
+            variants={titleVariants}
+            className="text-6xl md:text-7xl lg:text-8xl font-[800] text-white leading-[1.1]"
+            style={{ letterSpacing: '-0.04em', fontFamily: 'var(--font-geist-sans), Inter, sans-serif' }}
+          >
+            visibilité IA en{' '}
+            <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+              30 secondes
+            </span>
+          </motion.h1>
+        </motion.div>
 
-        {/* Subtitle */}
-        <p className="mb-12 text-center text-lg text-gray-600 md:text-xl">
+        {/* Animated Subtitle */}
+        <motion.p
+          variants={subtitleVariants}
+          initial="hidden"
+          animate="visible"
+          className="mb-16 text-center text-xl md:text-2xl text-[#A1A1AA] max-w-3xl mx-auto leading-relaxed"
+        >
           Découvrez comment ChatGPT, Claude et Perplexity voient votre site.
-          <br />
+          <br className="hidden md:block" />
           Analyse gratuite et instantanée de votre score GEO.
-        </p>
+        </motion.p>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="mx-auto max-w-2xl">
+        {/* Animated Form */}
+        <motion.form
+          variants={formVariants}
+          initial="hidden"
+          animate="visible"
+          onSubmit={handleSubmit}
+          className="mx-auto max-w-2xl"
+        >
           <div
             className={`flex flex-col gap-4 md:flex-row ${
               shake ? 'animate-shake' : ''
@@ -73,20 +153,24 @@ export default function OutilsHero() {
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="Entrez l'URL de votre site..."
-              className="flex-1 rounded-xl border border-gray-300 bg-white px-6 py-4 text-gray-900
-                         shadow-md transition-all duration-200 placeholder:text-gray-400
-                         focus:border-[#444684] focus:outline-none focus:ring-2 focus:ring-[#444684]/20"
+              className="flex-1 rounded-full border border-[#FFFFFF1A] bg-black/50 backdrop-blur-sm px-8 py-5 text-white
+                         transition-all duration-200 placeholder:text-[#A1A1AA]
+                         focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/10
+                         hover:border-white/30"
               disabled={isLoading}
             />
 
             {/* Submit Button */}
-            <button
+            <motion.button
               type="submit"
               disabled={isLoading}
-              className="group relative overflow-hidden rounded-xl bg-[#444684] px-8 py-4 font-semibold
-                         text-white shadow-lg transition-all duration-300 hover:bg-[#5a5a9e]
-                         hover:shadow-xl hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed
-                         active:translate-y-0"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2, ease: 'easeInOut' }}
+              className="rounded-full bg-white px-10 py-5 font-semibold text-black
+                         transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed
+                         hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]
+                         whitespace-nowrap"
             >
               {isLoading ? (
                 <span className="flex items-center gap-2">
@@ -112,31 +196,26 @@ export default function OutilsHero() {
                   Analyse...
                 </span>
               ) : (
-                <>
-                  Analyser
-                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-white/20 to-transparent
-                                  translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
-                </>
+                'Analyser →'
               )}
-            </button>
+            </motion.button>
           </div>
 
           {/* Help text */}
-          <p className="mt-4 text-center text-sm text-gray-500">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.6 }}
+            className="mt-6 text-center text-sm text-[#A1A1AA]"
+          >
             Exemple : https://www.exemple.fr
-          </p>
-        </form>
+          </motion.p>
+        </motion.form>
       </div>
 
-      {/* Decorative element */}
-      <div className="absolute -bottom-1 left-0 right-0">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
-            fill="white"
-          />
-        </svg>
-      </div>
+      {/* Gradient orbs for ambiance */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
     </section>
   );
 }
