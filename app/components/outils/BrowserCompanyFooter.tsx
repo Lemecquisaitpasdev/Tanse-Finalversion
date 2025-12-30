@@ -40,7 +40,7 @@ export default function BrowserCompanyFooter() {
   };
 
   return (
-    <footer className="relative bg-[#F5F5F5] border-t border-[#E0E0E0] py-12 md:py-16 px-6 md:px-12">
+    <footer className="relative bg-[#F8F8F8] border-t border-[#E0E0E0] py-12 md:py-16 px-6 md:px-12">
       <div className="max-w-[1600px] mx-auto">
         {/* Main Grid - Exactly like TBC */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-8 gap-y-12 mb-16 md:mb-20">
@@ -64,7 +64,7 @@ export default function BrowserCompanyFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[#737373] hover:text-[#1A1A1A] transition-colors duration-150"
+                    className="text-[#737373] hover:bg-black hover:text-white transition-all duration-150 px-1 py-0.5 -ml-1 rounded"
                     style={{
                       fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
                       fontSize: '13px',
@@ -101,7 +101,7 @@ export default function BrowserCompanyFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[#737373] hover:text-[#1A1A1A] transition-colors duration-150"
+                    className="text-[#737373] hover:bg-black hover:text-white transition-all duration-150 px-1 py-0.5 -ml-1 rounded"
                     style={{
                       fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
                       fontSize: '13px',
@@ -138,7 +138,7 @@ export default function BrowserCompanyFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[#737373] hover:text-[#1A1A1A] transition-colors duration-150"
+                    className="text-[#737373] hover:bg-black hover:text-white transition-all duration-150 px-1 py-0.5 -ml-1 rounded"
                     style={{
                       fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
                       fontSize: '13px',
@@ -176,7 +176,7 @@ export default function BrowserCompanyFooter() {
                   <Link
                     href={link.href}
                     {...(link.external && { target: '_blank', rel: 'noopener noreferrer' })}
-                    className="text-[#737373] hover:text-[#1A1A1A] transition-colors duration-150"
+                    className="text-[#737373] hover:bg-black hover:text-white transition-all duration-150 px-1 py-0.5 -ml-1 rounded"
                     style={{
                       fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
                       fontSize: '13px',
