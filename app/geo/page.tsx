@@ -1,19 +1,658 @@
 'use client';
 
+import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Book, Smile, Laptop, HelpCircle, Search, Settings, Puzzle, Pencil } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 
-/**
- * Page GEO - Redesign PIXEL-PERFECT basé sur Dia Browser
- * Recreation exacte du design Dia avec contenu GEO/TANSE
- *
- * SPECS EXACTES:
- * - Titre: "Exposure VAR" 56px weight 650 line-height 62px
- * - Sous-titre: "ABC Oracle" 22px weight 400 line-height 33px
- * - Couleurs: #F8F8F8 (blanc), #EBEBEB (gris)
- * - Hover cards: Blanc -> Gradient overlay
- */
+// ========================================
+// PIXEL ICONS COMPONENTS
+// ========================================
+
+interface PixelIconProps {
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const PixelSmiley = ({ className = "", style }: PixelIconProps) => (
+  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="black"/>
+    <rect x="20" y="24" width="8" height="8" fill="white"/>
+    <rect x="36" y="24" width="8" height="8" fill="white"/>
+    <rect x="20" y="40" width="8" height="4" fill="white"/>
+    <rect x="28" y="44" width="8" height="4" fill="white"/>
+    <rect x="36" y="40" width="8" height="4" fill="white"/>
+  </svg>
+);
+
+const PixelQuestion = ({ className = "", style }: PixelIconProps) => (
+  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="black"/>
+    <rect x="24" y="16" width="16" height="4" fill="white"/>
+    <rect x="40" y="20" width="4" height="12" fill="white"/>
+    <rect x="28" y="32" width="12" height="4" fill="white"/>
+    <rect x="28" y="40" width="8" height="4" fill="white"/>
+    <rect x="28" y="48" width="8" height="4" fill="white"/>
+  </svg>
+);
+
+const PixelTypewriter = ({ className = "", style }: PixelIconProps) => (
+  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="black"/>
+    <rect x="16" y="20" width="32" height="24" rx="2" fill="white"/>
+    <rect x="20" y="24" width="4" height="4" fill="black"/>
+    <rect x="28" y="24" width="4" height="4" fill="black"/>
+    <rect x="36" y="24" width="4" height="4" fill="black"/>
+    <rect x="20" y="32" width="24" height="4" fill="black"/>
+  </svg>
+);
+
+const PixelSearch = ({ className = "", style }: PixelIconProps) => (
+  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="black"/>
+    <circle cx="28" cy="28" r="10" stroke="white" strokeWidth="4" fill="none"/>
+    <rect x="36" y="36" width="12" height="4" transform="rotate(45 36 36)" fill="white"/>
+  </svg>
+);
+
+const PixelGear = ({ className = "", style }: PixelIconProps) => (
+  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="black"/>
+    <rect x="28" y="16" width="8" height="8" fill="white"/>
+    <rect x="40" y="24" width="8" height="8" fill="white"/>
+    <rect x="28" y="40" width="8" height="8" fill="white"/>
+    <rect x="16" y="24" width="8" height="8" fill="white"/>
+    <circle cx="32" cy="32" r="6" fill="white"/>
+  </svg>
+);
+
+const PixelStar = ({ className = "", style }: PixelIconProps) => (
+  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="black"/>
+    <rect x="28" y="16" width="8" height="8" fill="white"/>
+    <rect x="24" y="24" width="16" height="8" fill="white"/>
+    <rect x="20" y="32" width="24" height="8" fill="white"/>
+    <rect x="24" y="40" width="16" height="8" fill="white"/>
+  </svg>
+);
+
+const PixelPencil = ({ className = "", style }: PixelIconProps) => (
+  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="black"/>
+    <rect x="36" y="16" width="8" height="8" fill="white"/>
+    <rect x="28" y="24" width="8" height="8" fill="white"/>
+    <rect x="20" y="32" width="8" height="8" fill="white"/>
+    <rect x="16" y="40" width="8" height="8" fill="white"/>
+  </svg>
+);
+
+const PixelComputer = ({ className = "", style }: PixelIconProps) => (
+  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="black"/>
+    <rect x="16" y="20" width="32" height="20" rx="2" fill="white"/>
+    <rect x="20" y="24" width="24" height="12" fill="black"/>
+    <rect x="28" y="40" width="8" height="4" fill="white"/>
+  </svg>
+);
+
+// ========================================
+// UI COMPONENTS
+// ========================================
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'default' | 'outline';
+  size?: 'default' | 'lg';
+  asChild?: boolean;
+}
+
+const Button = ({ className = "", variant = 'default', size = 'default', children, ...props }: ButtonProps) => {
+  const baseStyles = "inline-flex items-center justify-center gap-2 font-medium transition-all hover:scale-105 active:scale-95";
+  const variants = {
+    default: "bg-foreground text-background",
+    outline: "border-2 border-foreground bg-transparent hover:bg-foreground/5"
+  };
+  const sizes = {
+    default: "px-8 py-3 text-base",
+    lg: "px-10 py-4 text-lg"
+  };
+
+  return (
+    <button
+      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+
+const Tab = ({ label, active = false }: { label: string; active?: boolean }) => (
+  <div className={`px-3 py-1 text-xs rounded-t ${active ? 'bg-white' : 'bg-transparent text-gray-500'}`}>
+    {label}
+  </div>
+);
+
+interface FAQItemProps {
+  question: string;
+  answer: string;
+  isOpen: boolean;
+  onClick: () => void;
+}
+
+const FAQItem = ({ question, answer, isOpen, onClick }: FAQItemProps) => (
+  <div className="border-b border-border">
+    <button
+      onClick={onClick}
+      className="w-full py-6 flex items-center justify-between text-left hover:opacity-70 transition"
+    >
+      <span className="text-lg font-medium" style={{ color: 'rgba(0, 0, 0, 0.85)' }}>{question}</span>
+      <ChevronDown className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+    </button>
+    {isOpen && (
+      <div className="pb-6 text-base" style={{ color: 'rgba(0, 0, 0, 0.6)' }}>
+        {answer}
+      </div>
+    )}
+  </div>
+);
+
+interface SkillCardProps {
+  title: string;
+  description: string;
+  color: string;
+  offset?: number;
+}
+
+const SkillCard = ({ title, description, color, offset = 0 }: SkillCardProps) => (
+  <motion.div
+    initial={{ y: offset }}
+    whileHover={{ y: offset - 10, scale: 1.02 }}
+    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+    className="flex-shrink-0 w-80 p-8 rounded-3xl cursor-pointer"
+    style={{ backgroundColor: color, minHeight: '320px' }}
+  >
+    <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: 'Georgia, serif' }}>{title}</h3>
+    <p style={{ color: 'rgba(0, 0, 0, 0.6)' }}>{description}</p>
+  </motion.div>
+);
+
+const MarqueeText = ({ text }: { text: string }) => {
+  const colors = ["#FF6B6B", "#FF8E53", "#FFD93D", "#6BCB77", "#4D96FF", "#9B59B6", "#FF6B9D", "#00D4AA"];
+  const repeatedText = Array(20).fill(text).join(" ");
+
+  return (
+    <div className="overflow-hidden py-8 border-y border-border my-12">
+      <motion.div
+        animate={{ x: [0, -2000] }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="flex whitespace-nowrap text-4xl font-bold"
+        style={{ fontFamily: 'Georgia, serif' }}
+      >
+        {repeatedText.split("").map((char, i) => (
+          <span
+            key={i}
+            style={{ color: colors[i % colors.length] }}
+          >
+            {char}
+          </span>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
+
+interface FeatureCardProps {
+  title: string;
+  description?: string;
+  bgColor?: string;
+  gradient?: boolean;
+  accentBar?: string;
+  className?: string;
+  children?: React.ReactNode;
+}
+
+const FeatureCard = ({
+  title,
+  description,
+  bgColor = "#E8E4DF",
+  gradient = false,
+  accentBar,
+  className = "",
+  children
+}: FeatureCardProps) => (
+  <motion.div
+    whileHover={{ scale: 1.02, y: -4 }}
+    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+    className={`relative overflow-hidden rounded-3xl p-8 cursor-pointer ${className}`}
+    style={{
+      background: gradient
+        ? 'linear-gradient(135deg, #FF6B35 0%, #F7B731 25%, #FED766 40%, #4FACFE 70%, #00F2FE 100%)'
+        : bgColor,
+      minHeight: '280px'
+    }}
+  >
+    {accentBar && (
+      <div className="absolute top-0 left-0 w-1 h-full" style={{ backgroundColor: accentBar }} />
+    )}
+    <h3 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Georgia, serif', color: gradient ? 'white' : 'rgba(0, 0, 0, 0.85)' }}>
+      {title}
+    </h3>
+    {description && (
+      <p className="text-base" style={{ color: gradient ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.6)' }}>
+        {description}
+      </p>
+    )}
+    {children}
+  </motion.div>
+);
+
+const AccordionItem = ({
+  icon,
+  title,
+  description,
+  isOpen,
+  onClick
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  isOpen: boolean;
+  onClick: () => void;
+}) => (
+  <div className="border-b border-border">
+    <button
+      onClick={onClick}
+      className="w-full py-6 flex items-start gap-4 text-left hover:opacity-70 transition"
+    >
+      <div className="flex-shrink-0">{icon}</div>
+      <div className="flex-1">
+        <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Georgia, serif' }}>{title}</h3>
+        {isOpen && <p className="text-base" style={{ color: 'rgba(0, 0, 0, 0.6)' }}>{description}</p>}
+      </div>
+    </button>
+  </div>
+);
+
+const DiaWindowMockup = () => (
+  <div className="bg-white rounded-2xl border shadow-2xl overflow-hidden" style={{ borderColor: '#EBEBEB' }}>
+    <div className="h-12 bg-gray-100 flex items-center px-4 gap-3 border-b" style={{ borderColor: '#d4d4d4' }}>
+      <div className="flex gap-1.5">
+        <div className="w-3 h-3 rounded-full bg-red-500" />
+        <div className="w-3 h-3 rounded-full bg-yellow-500" />
+        <div className="w-3 h-3 rounded-full bg-green-500" />
+      </div>
+    </div>
+    <div className="p-8 min-h-[300px] flex items-center justify-center">
+      <div className="text-6xl">✨</div>
+    </div>
+  </div>
+);
+
+const BrowserIllustration = () => (
+  <div className="relative">
+    <div className="grid grid-cols-2 gap-4">
+      <FeatureCard title="/outline" gradient />
+      <FeatureCard title="/cite" bgColor="#FFB800" />
+      <FeatureCard title="/flashcards" bgColor="#B8E8D9" />
+      <FeatureCard title="/job-fit" bgColor="#FFB8D9" />
+    </div>
+  </div>
+);
+
+// ========================================
+// MAIN SECTIONS
+// ========================================
+
+const HeroSection = () => {
+  return (
+    <section className="relative min-h-[70vh] flex flex-col items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
+      {/* Floating Pixel Icons */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          className="absolute left-[10%] top-[25%]"
+          animate={{ y: [0, -10, 0], rotate: [0, 5, -5, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <PixelSmiley className="w-16 h-16" />
+        </motion.div>
+
+        <motion.div
+          className="absolute left-[8%] top-[55%]"
+          animate={{ y: [0, -15, 0], rotate: [0, -5, 5, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        >
+          <PixelQuestion className="w-14 h-14" />
+        </motion.div>
+
+        <motion.div
+          className="absolute left-[22%] top-[42%]"
+          animate={{ y: [0, -12, 0], rotate: [0, 3, -3, 0] }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        >
+          <PixelTypewriter className="w-16 h-16" />
+        </motion.div>
+
+        <motion.div
+          className="absolute right-[18%] top-[15%]"
+          animate={{ y: [0, -14, 0], rotate: [0, -4, 4, 0] }}
+          transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+        >
+          <PixelSearch className="w-16 h-16" />
+        </motion.div>
+
+        <motion.div
+          className="absolute right-[8%] top-[30%]"
+          animate={{ y: [0, -11, 0], rotate: [0, 6, -6, 0] }}
+          transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+        >
+          <PixelGear className="w-14 h-14" />
+        </motion.div>
+
+        <motion.div
+          className="absolute right-[18%] top-[45%]"
+          animate={{ y: [0, -13, 0], rotate: [0, -7, 7, 0] }}
+          transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        >
+          <PixelStar className="w-14 h-14" />
+        </motion.div>
+      </div>
+
+      {/* Hero Content */}
+      <div className="relative z-10 text-center max-w-3xl mx-auto">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-5xl md:text-7xl leading-tight mb-8 italic"
+          style={{
+            fontFamily: 'Georgia, "Times New Roman", serif',
+            color: 'rgba(0, 0, 0, 0.85)',
+            fontWeight: 400
+          }}
+        >
+          Vous n'avez pas à tout faire seul.
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-lg md:text-xl max-w-2xl mx-auto mb-10"
+          style={{ color: 'rgba(0, 0, 0, 0.65)' }}
+        >
+          TANSE est l'agence GEO qui vous accompagne vraiment — pour optimiser votre présence,
+          accélérer votre croissance et vous positionner comme référence.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <Link href="/contact-audit-gratuit">
+            <Button className="rounded-full" size="lg">
+              Démarrer avec TANSE
+            </Button>
+          </Link>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+const BrowserMockupSection = () => {
+  return (
+    <section className="px-6 pb-24">
+      <div className="max-w-5xl mx-auto">
+        <div className="bg-white rounded-2xl border shadow-2xl overflow-hidden" style={{ borderColor: '#EBEBEB' }}>
+          {/* Browser Header */}
+          <div className="h-12 bg-gray-100 flex items-center px-4 gap-3 border-b" style={{ borderColor: '#d4d4d4' }}>
+            <div className="flex gap-1.5">
+              <div className="w-3 h-3 rounded-full bg-red-500" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500" />
+              <div className="w-3 h-3 rounded-full bg-green-500" />
+            </div>
+            <div className="flex gap-1">
+              <Tab label="TANSE GEO" active />
+              <Tab label="Nouveau" />
+            </div>
+          </div>
+
+          {/* Browser Content - Feature Cards */}
+          <div className="p-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <FeatureCard title="/audit" gradient />
+            <FeatureCard title="/citations" bgColor="#FFB800" />
+            <FeatureCard title="/optimise" bgColor="#B8E8D9" />
+            <FeatureCard title="/entites" bgColor="#FFB8D9" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const ThoughtPartnerSection = () => {
+  const [openIndex, setOpenIndex] = useState(0);
+
+  const items = [
+    {
+      icon: <PixelGear className="w-12 h-12" />,
+      title: "Vous demandez, TANSE répond.",
+      description: "Notre expertise en GEO permet de répondre à toutes vos questions sur l'optimisation pour les IA génératives."
+    },
+    {
+      icon: <PixelComputer className="w-12 h-12" />,
+      title: "TANSE voit ce que vous voyez.",
+      description: "Analyse complète de votre présence digitale et de votre visibilité sur les moteurs de réponse IA."
+    },
+    {
+      icon: <PixelPencil className="w-12 h-12" />,
+      title: "Le contenu, réinventé.",
+      description: "Création de contenu optimisé pour être cité par ChatGPT, Perplexity et tous les LLMs."
+    },
+    {
+      icon: <PixelTypewriter className="w-12 h-12" />,
+      title: "Intégré dans votre workflow.",
+      description: "Solutions GEO qui s'adaptent à vos processus existants sans friction."
+    },
+  ];
+
+  return (
+    <section className="py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <p className="text-sm font-mono uppercase tracking-wider mb-4" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>
+            Un vrai partenaire stratégique
+          </p>
+          <h2 className="text-4xl md:text-5xl italic" style={{ fontFamily: 'Georgia, serif', color: 'rgba(0, 0, 0, 0.85)' }}>
+            Votre partenaire pour l'optimisation IA.
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-12">
+          {/* Accordion */}
+          <div className="border-t border-border">
+            {items.map((item, index) => (
+              <AccordionItem
+                key={index}
+                icon={item.icon}
+                title={item.title}
+                description={item.description}
+                isOpen={openIndex === index}
+                onClick={() => setOpenIndex(index)}
+              />
+            ))}
+          </div>
+
+          {/* Browser Mockup */}
+          <div className="relative">
+            <DiaWindowMockup />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const SkillsSection = () => {
+  const skills = [
+    { title: "Audit", description: "Analyse complète de votre structure de données", color: "#E8E4DF" },
+    { title: "Recherche", description: "Optimisation pour les moteurs de recherche IA", color: "#FFE4B5" },
+    { title: "Organisation", description: "Structuration de contenu pour citations", color: "#E0F4FF" },
+    { title: "Analyse", description: "Suivi des performances sur les LLMs", color: "#F0E6FF" },
+    { title: "Rédaction", description: "Création de contenu optimisé GEO", color: "#FFE4E4" },
+    { title: "Citation", description: "Maximisation de votre autorité", color: "#E4FFE9" },
+  ];
+
+  return (
+    <section className="py-24">
+      <div className="max-w-6xl mx-auto px-6 mb-12">
+        <div className="grid md:grid-cols-2 gap-12">
+          <div>
+            <p className="text-sm font-mono uppercase tracking-wider mb-4" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>
+              Nos compétences sont vos raccourcis
+            </p>
+            <h2 className="text-4xl md:text-5xl italic" style={{ fontFamily: 'Georgia, serif', color: 'rgba(0, 0, 0, 0.85)' }}>
+              Une approche plus intelligente.
+            </h2>
+          </div>
+          <p className="text-lg" style={{ color: 'rgba(0, 0, 0, 0.6)' }}>
+            Nos expertises GEO sont comme des super-pouvoirs pour votre présence en ligne.
+          </p>
+        </div>
+      </div>
+
+      {/* Horizontal Scroll Cards */}
+      <div className="flex gap-6 overflow-x-auto pb-8 px-6 scrollbar-hide">
+        {skills.map((skill, i) => (
+          <SkillCard key={i} {...skill} offset={i % 2 === 0 ? 0 : 20} />
+        ))}
+      </div>
+
+      {/* Rainbow Marquee */}
+      <MarqueeText text="Optimisez votre présence IA!" />
+    </section>
+  );
+};
+
+const FeaturesSection = () => (
+  <section className="py-24 px-6">
+    <div className="max-w-6xl mx-auto">
+      <div className="text-center mb-16">
+        <p className="text-sm font-mono uppercase tracking-wider mb-4" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>
+          Conçu pour les entreprises
+        </p>
+        <h2 className="text-4xl md:text-5xl italic" style={{ fontFamily: 'Georgia, serif', color: 'rgba(0, 0, 0, 0.85)' }}>
+          Des fonctionnalités qui changent tout.
+        </h2>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-6">
+        <FeatureCard title="Monitoring" bgColor="#E8E4DF" accentBar="#E53935" description="Suivi en temps réel de vos citations" />
+        <FeatureCard title="Analytics" bgColor="#FFB800" description="Tableaux de bord avancés" />
+        <FeatureCard title="Optimisation" bgColor="#FFB8D9" description="Recommandations personnalisées" />
+        <FeatureCard title="API" bgColor="#B8E8D9" description="Intégration complète" />
+        <FeatureCard title="Support 24/7" bgColor="#E8E4DF" className="md:col-span-2" description="Assistance prioritaire" />
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-6 mt-6">
+        <FeatureCard title="Rapports" bgColor="#E6E0F8" description="Export de données complet" />
+        <FeatureCard title="Formation" bgColor="#FFF4E0" description="Accompagnement personnalisé" />
+      </div>
+    </div>
+  </section>
+);
+
+const FAQSection = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "Qu'est-ce que le GEO exactement ?",
+      answer: "Le GEO (Generative Engine Optimization) est l'optimisation de votre contenu pour être cité par les IA génératives comme ChatGPT, Perplexity, Claude, et Google AI."
+    },
+    {
+      question: "Combien de temps faut-il pour voir des résultats ?",
+      answer: "Les premiers résultats sont visibles en 2-3 semaines, avec une amélioration continue sur 3-6 mois."
+    },
+    {
+      question: "Proposez-vous un audit gratuit ?",
+      answer: "Oui, nous offrons un audit GEO complet et gratuit pour analyser votre présence actuelle sur les moteurs IA."
+    },
+    {
+      question: "Quels secteurs accompagnez-vous ?",
+      answer: "Nous travaillons avec tous les secteurs : tech, e-commerce, services, santé, éducation, et plus encore."
+    },
+    {
+      question: "Comment mesurer le ROI du GEO ?",
+      answer: "Nous trackons vos citations, votre autorité perçue, et l'impact sur votre trafic qualifié via nos dashboards analytics."
+    },
+  ];
+
+  return (
+    <section className="py-24 px-6">
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-12">
+          <p className="text-sm font-mono uppercase tracking-wider mb-4" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>FAQ</p>
+          <h2 className="text-4xl md:text-5xl italic" style={{ fontFamily: 'Georgia, serif', color: 'rgba(0, 0, 0, 0.85)' }}>
+            Questions ? Réponses.
+          </h2>
+        </div>
+
+        <div className="border-t border-border">
+          {faqs.map((faq, index) => (
+            <FAQItem
+              key={index}
+              question={faq.question}
+              answer={faq.answer}
+              isOpen={openIndex === index}
+              onClick={() => setOpenIndex(openIndex === index ? null : index)}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const CTASection = () => (
+  <section className="py-24 px-6">
+    <div className="max-w-6xl mx-auto">
+      <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 className="text-4xl md:text-6xl italic leading-tight mb-8" style={{ fontFamily: 'Georgia, serif', color: 'rgba(0, 0, 0, 0.85)' }}>
+            La meilleure décision que vous prendrez ce trimestre.
+          </h2>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link href="/contact-audit-gratuit">
+              <Button className="rounded-full" size="lg">
+                Démarrer avec TANSE
+              </Button>
+            </Link>
+
+            <a
+              href="mailto:contact@tanse.fr"
+              className="inline-flex items-center gap-2 hover:opacity-70 transition py-4"
+              style={{ color: 'rgba(0, 0, 0, 0.65)' }}
+            >
+              <span>Nous contacter directement</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+
+        {/* Browser Illustration with colorful cards */}
+        <BrowserIllustration />
+      </div>
+    </div>
+  </section>
+);
+
+// ========================================
+// MAIN PAGE COMPONENT
+// ========================================
+
 export default function GeoPage() {
   return (
     <main className="relative min-h-screen" style={{ backgroundColor: '#F8F8F8' }}>
@@ -26,7 +665,7 @@ export default function GeoPage() {
               ●TANSE
             </Link>
             <div className="hidden md:flex items-center gap-8 text-sm" style={{ color: 'rgba(0, 0, 0, 0.85)' }}>
-              <Link href="/geo" className="hover:opacity-70 transition">Skills</Link>
+              <Link href="/geo" className="hover:opacity-70 transition">Compétences</Link>
               <Link href="/forfaits-geo-seo" className="hover:opacity-70 transition">Clients</Link>
             </div>
           </div>
@@ -40,348 +679,14 @@ export default function GeoPage() {
         </div>
       </nav>
 
-      {/* Hero Section - PIXEL PERFECT */}
-      <section className="relative overflow-hidden pt-32 pb-20 px-8">
-        <div className="max-w-[900px] mx-auto text-center relative">
-
-          {/* Titre Principal - SPECS EXACTES */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-6"
-            style={{
-              fontFamily: 'Georgia, "Times New Roman", serif',
-              fontSize: '56px',
-              fontWeight: 650,
-              lineHeight: '62px',
-              color: 'rgba(0, 0, 0, 0.85)',
-              letterSpacing: '-0.02em',
-            }}
-          >
-            Vous n'avez pas à <br />
-            tout faire seul.
-          </motion.h1>
-
-          {/* Sous-titre - SPECS EXACTES */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-            className="mb-10 max-w-[680px] mx-auto"
-            style={{
-              fontFamily: 'Helvetica, Arial, sans-serif',
-              fontSize: '22px',
-              fontWeight: 400,
-              lineHeight: '33px',
-              color: 'rgba(0, 0, 0, 0.85)',
-            }}
-          >
-            TANSE est l'agence GEO qui vous accompagne vraiment — pour optimiser votre présence, accélérer votre croissance et vous positionner comme référence.
-          </motion.p>
-
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          >
-            <Link
-              href="/contact-audit-gratuit"
-              className="inline-block px-8 py-4 text-base font-medium rounded-full transition-all hover:scale-105 active:scale-95"
-              style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.85)',
-                color: '#F8F8F8',
-              }}
-            >
-              Démarrer avec TANSE
-            </Link>
-          </motion.div>
-
-          {/* Icônes Flottantes PIXEL-ART - Position exacte */}
-          {/* Livre - Haut gauche */}
-          <motion.div
-            className="absolute hidden lg:block"
-            style={{ top: '8%', left: '2%' }}
-            animate={{
-              y: [0, -12, 0],
-              rotate: [0, 3, -3, 0]
-            }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
-              <Book className="w-8 h-8 text-white" strokeWidth={2} />
-            </div>
-          </motion.div>
-
-          {/* Smiley - Milieu gauche */}
-          <motion.div
-            className="absolute hidden lg:block"
-            style={{ top: '35%', left: '5%' }}
-            animate={{
-              y: [0, -15, 0],
-              rotate: [0, -5, 5, 0]
-            }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          >
-            <div className="w-14 h-14 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
-              <Smile className="w-7 h-7 text-white" strokeWidth={2} />
-            </div>
-          </motion.div>
-
-          {/* Laptop - Bas gauche */}
-          <motion.div
-            className="absolute hidden lg:block"
-            style={{ bottom: '8%', left: '8%' }}
-            animate={{
-              y: [0, -10, 0],
-              rotate: [0, 4, -4, 0]
-            }}
-            transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          >
-            <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
-              <Laptop className="w-8 h-8 text-white" strokeWidth={2} />
-            </div>
-          </motion.div>
-
-          {/* Question - Bas centre gauche */}
-          <motion.div
-            className="absolute hidden lg:block"
-            style={{ bottom: '15%', left: '20%' }}
-            animate={{
-              y: [0, -18, 0],
-              rotate: [0, -6, 6, 0]
-            }}
-            transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-          >
-            <div className="w-12 h-12 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
-              <HelpCircle className="w-6 h-6 text-white" strokeWidth={2} />
-            </div>
-          </motion.div>
-
-          {/* Search - Haut droite */}
-          <motion.div
-            className="absolute hidden lg:block"
-            style={{ top: '12%', right: '8%' }}
-            animate={{
-              y: [0, -14, 0],
-              rotate: [0, 5, -5, 0]
-            }}
-            transition={{ duration: 4.3, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-          >
-            <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
-              <Search className="w-8 h-8 text-white" strokeWidth={2} />
-            </div>
-          </motion.div>
-
-          {/* Gear - Milieu droite */}
-          <motion.div
-            className="absolute hidden lg:block"
-            style={{ top: '38%', right: '3%' }}
-            animate={{
-              y: [0, -16, 0],
-              rotate: [0, 8, -8, 0]
-            }}
-            transition={{ duration: 4.6, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-          >
-            <div className="w-14 h-14 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
-              <Settings className="w-7 h-7 text-white" strokeWidth={2} />
-            </div>
-          </motion.div>
-
-          {/* Puzzle - Bas droite */}
-          <motion.div
-            className="absolute hidden lg:block"
-            style={{ bottom: '5%', right: '12%' }}
-            animate={{
-              y: [0, -13, 0],
-              rotate: [0, -4, 4, 0]
-            }}
-            transition={{ duration: 3.9, repeat: Infinity, ease: "easeInOut", delay: 1.8 }}
-          >
-            <div className="w-14 h-14 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
-              <Puzzle className="w-7 h-7 text-white" strokeWidth={2} />
-            </div>
-          </motion.div>
-
-          {/* Pencil - Bas droite extérieur */}
-          <motion.div
-            className="absolute hidden lg:block"
-            style={{ bottom: '18%', right: '4%' }}
-            animate={{
-              y: [0, -11, 0],
-              rotate: [0, 6, -6, 0]
-            }}
-            transition={{ duration: 4.1, repeat: Infinity, ease: "easeInOut", delay: 2.2 }}
-          >
-            <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
-              <Pencil className="w-8 h-8 text-white" strokeWidth={2} />
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Section Tabs Navigation */}
-      <section className="border-b" style={{ backgroundColor: '#F8F8F8', borderColor: '#EBEBEB' }}>
-        <div className="max-w-[900px] mx-auto px-8">
-          <div className="flex items-center justify-center gap-12 overflow-x-auto">
-            <button className="py-4 text-sm font-medium border-b-2 border-black whitespace-nowrap" style={{ color: 'rgba(0, 0, 0, 0.85)' }}>
-              Nos compétences
-            </button>
-            <button className="py-4 text-sm font-medium whitespace-nowrap" style={{ color: 'rgba(0, 0, 0, 0.45)' }}>
-              Nos réalisations
-            </button>
-            <button className="py-4 text-sm font-medium whitespace-nowrap" style={{ color: 'rgba(0, 0, 0, 0.45)' }}>
-              Nos outils
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Cards Grid - EFFET HOVER GRADIENT */}
-      <section className="py-24 px-8" style={{ backgroundColor: '#F8F8F8' }}>
-        <div className="max-w-[1300px] mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
-
-            {/* Card 1 */}
-            <FeatureCard
-              command="/audit"
-              title="Audit SEO Sémantique"
-              description="Analyse complète de votre structure de données et recommandations d'optimisation pour maximiser votre visibilité sur les moteurs IA."
-            />
-
-            {/* Card 2 */}
-            <FeatureCard
-              command="/citations"
-              title="Tracker de Citations"
-              description="Suivez en temps réel comment votre marque est citée sur ChatGPT, Perplexity, Claude et Google AI avec des rapports détaillés."
-            />
-
-            {/* Card 3 */}
-            <FeatureCard
-              command="/optimise"
-              title="Optimisation de Contenu"
-              description="Structurez vos contenus en formats Q&A, listes et tableaux optimisés pour être cités directement par les IA génératives."
-            />
-
-            {/* Card 4 */}
-            <FeatureCard
-              command="/entites"
-              title="Entity Linking"
-              description="Connectez votre marque aux entités reconnues dans les graphes de connaissances pour renforcer votre autorité et votre E-E-A-T."
-            />
-
-          </div>
-        </div>
-      </section>
-
-      {/* Section Browser Mockup - Style Dia */}
-      <section className="py-20 px-8" style={{ backgroundColor: '#F8F8F8' }}>
-        <div className="max-w-[1000px] mx-auto">
-
-          {/* Browser Window */}
-          <div className="rounded-2xl overflow-hidden border shadow-2xl" style={{ backgroundColor: 'white', borderColor: '#EBEBEB' }}>
-
-            {/* Top Bar avec 3 dots */}
-            <div className="flex items-center gap-3 px-4 py-3 border-b" style={{ backgroundColor: '#EBEBEB', borderColor: '#d4d4d4' }}>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <div className="flex-1 flex justify-center">
-                <div className="flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs" style={{ backgroundColor: 'white', color: 'rgba(0, 0, 0, 0.6)' }}>
-                  <span>🔒</span>
-                  <span>perplexity.ai</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Content Area */}
-            <div className="p-10">
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#EBEBEB' }}>
-                    <span className="text-sm">🤖</span>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm leading-relaxed mb-3" style={{ color: 'rgba(0, 0, 0, 0.85)' }}>
-                      Selon <strong>TANSE</strong>, une agence spécialisée en GEO à Paris et Lyon, l'optimisation pour les moteurs de réponse IA nécessite :
-                    </p>
-                    <ul className="space-y-2 text-sm" style={{ color: 'rgba(0, 0, 0, 0.75)' }}>
-                      <li className="flex items-start gap-2">
-                        <span>•</span>
-                        <span>Une structure de données Schema.org optimale</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span>•</span>
-                        <span>Un contenu structuré en format Q&A pour citations directes</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span>•</span>
-                        <span>Un suivi en temps réel des mentions sur les LLMs</span>
-                      </li>
-                    </ul>
-                    <div className="mt-4 flex items-center gap-2 text-xs" style={{ color: 'rgba(0, 0, 0, 0.45)' }}>
-                      <span>Source:</span>
-                      <Link href="/" className="hover:underline" style={{ color: 'rgba(0, 0, 0, 0.65)' }}>
-                        tanse.fr
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Caption */}
-          <p className="text-center mt-6 text-sm" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>
-            Votre marque citée comme source de référence par les IA
-          </p>
-        </div>
-      </section>
-
-      {/* CTA Final */}
-      <section className="py-24 px-8" style={{ backgroundColor: '#F8F8F8' }}>
-        <div className="max-w-[700px] mx-auto text-center">
-          <h2
-            className="mb-6"
-            style={{
-              fontFamily: 'Georgia, "Times New Roman", serif',
-              fontSize: '48px',
-              fontWeight: 650,
-              lineHeight: '54px',
-              color: 'rgba(0, 0, 0, 0.85)',
-              letterSpacing: '-0.02em',
-            }}
-          >
-            Prêt à être cité <br />
-            par les IA ?
-          </h2>
-          <p
-            className="mb-10"
-            style={{
-              fontFamily: 'Helvetica, Arial, sans-serif',
-              fontSize: '20px',
-              fontWeight: 400,
-              lineHeight: '30px',
-              color: 'rgba(0, 0, 0, 0.65)',
-            }}
-          >
-            Rejoignez les entreprises qui optimisent leur présence pour l'ère de l'IA générative.
-          </p>
-          <Link
-            href="/contact-audit-gratuit"
-            className="inline-block px-8 py-4 text-base font-medium rounded-full transition-all hover:scale-105 active:scale-95"
-            style={{
-              backgroundColor: 'rgba(0, 0, 0, 0.85)',
-              color: '#F8F8F8',
-            }}
-          >
-            Démarrer mon audit GEO gratuit
-          </Link>
-        </div>
-      </section>
+      {/* All Sections */}
+      <HeroSection />
+      <BrowserMockupSection />
+      <ThoughtPartnerSection />
+      <SkillsSection />
+      <FeaturesSection />
+      <FAQSection />
+      <CTASection />
 
       {/* Footer Minimal */}
       <footer className="py-12 px-8 border-t" style={{ backgroundColor: '#F8F8F8', borderColor: '#EBEBEB' }}>
@@ -400,103 +705,5 @@ export default function GeoPage() {
       </footer>
 
     </main>
-  );
-}
-
-/**
- * FeatureCard Component - SOPHISTIQUÉ comme Dia
- * Design premium avec meilleure hiérarchie visuelle
- */
-function FeatureCard({ command, title, description }: {
-  command: string;
-  title: string;
-  description: string;
-}) {
-  return (
-    <motion.div
-      whileHover={{ scale: 1.03, y: -4 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-      className="group relative overflow-hidden rounded-[32px] border cursor-pointer shadow-sm hover:shadow-2xl"
-      style={{
-        backgroundColor: 'white',
-        borderColor: '#EBEBEB',
-        minHeight: '340px',
-      }}
-    >
-      {/* Gradient overlay SOPHISTIQUÉ */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out"
-        style={{
-          background: 'linear-gradient(135deg, #FF6B35 0%, #F7B731 25%, #FED766 40%, #4FACFE 70%, #00F2FE 100%)',
-        }}
-      />
-
-      <div className="relative z-10 p-10 h-full flex flex-col">
-        {/* Icon Badge - GRAND et VISIBLE */}
-        <div className="mb-8">
-          <div
-            className="inline-flex items-center justify-center w-16 h-16 rounded-2xl border-2 group-hover:border-white/30 transition-all duration-500"
-            style={{
-              borderColor: '#EBEBEB',
-              backgroundColor: '#F8F8F8',
-            }}
-          >
-            <span className="text-3xl group-hover:scale-110 transition-transform duration-300">
-              {command === '/audit' ? '📊' : command === '/citations' ? '📈' : command === '/optimise' ? '✨' : '🔗'}
-            </span>
-          </div>
-        </div>
-
-        {/* Command Badge - PROMINENT */}
-        <div className="mb-6">
-          <div
-            className="inline-flex items-center px-4 py-2 rounded-full font-mono text-sm font-medium group-hover:bg-white/25 group-hover:backdrop-blur-sm transition-all duration-500"
-            style={{
-              backgroundColor: '#EBEBEB',
-              color: 'rgba(0, 0, 0, 0.75)',
-            }}
-          >
-            <span className="group-hover:text-white transition-colors duration-500">{command}</span>
-          </div>
-        </div>
-
-        {/* Title - GRAND et BOLD */}
-        <h3
-          className="mb-4 font-bold group-hover:text-white transition-colors duration-500"
-          style={{
-            fontFamily: 'Georgia, "Times New Roman", serif',
-            fontSize: '28px',
-            lineHeight: '34px',
-            color: 'rgba(0, 0, 0, 0.9)',
-            letterSpacing: '-0.02em',
-          }}
-        >
-          {title}
-        </h3>
-
-        {/* Description - LISIBLE avec meilleur line-height */}
-        <p
-          className="leading-relaxed group-hover:text-white/95 transition-colors duration-500 flex-grow"
-          style={{
-            fontFamily: 'Helvetica, Arial, sans-serif',
-            fontSize: '16px',
-            lineHeight: '26px',
-            color: 'rgba(0, 0, 0, 0.6)',
-          }}
-        >
-          {description}
-        </p>
-
-        {/* Arrow indicator on hover */}
-        <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <div className="inline-flex items-center gap-2 text-white text-sm font-medium">
-            <span>En savoir plus</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </motion.div>
   );
 }
