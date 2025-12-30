@@ -241,6 +241,17 @@ export default function ValeursPage() {
           </p>
         </div>
 
+        {/* Person on cliff illustration */}
+        <div className="my-16 flex justify-start">
+          <Image
+            src="/valeurs/Frame-37.svg"
+            alt="Person on cliff"
+            width={120}
+            height={200}
+            className="opacity-80"
+          />
+        </div>
+
         <div
           className="space-y-6"
           style={{
