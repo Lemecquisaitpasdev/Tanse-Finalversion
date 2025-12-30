@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { ChevronDown, ArrowRight } from "lucide-react";
 
 // ========================================
-// PIXEL ICONS COMPONENTS
+// PIXEL ICONS
 // ========================================
 
 interface PixelIconProps {
@@ -14,84 +14,101 @@ interface PixelIconProps {
   style?: React.CSSProperties;
 }
 
-const PixelSmiley = ({ className = "", style }: PixelIconProps) => (
-  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
-    <rect width="64" height="64" rx="12" fill="black"/>
+export const PixelComputer = ({ className = "" }: PixelIconProps) => (
+  <svg className={className} width="64" height="64" viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="currentColor"/>
+    <rect x="12" y="8" width="40" height="32" fill="white"/>
+    <rect x="16" y="12" width="32" height="24" fill="currentColor"/>
+    <rect x="24" y="40" width="16" height="4" fill="white"/>
+    <rect x="20" y="44" width="24" height="4" fill="white"/>
+  </svg>
+);
+
+export const PixelSearch = ({ className = "" }: PixelIconProps) => (
+  <svg className={className} width="64" height="64" viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="currentColor"/>
+    <circle cx="28" cy="28" r="14" stroke="white" strokeWidth="6" fill="none"/>
+    <rect x="40" y="40" width="16" height="6" transform="rotate(45 40 40)" fill="white"/>
+  </svg>
+);
+
+export const PixelSmiley = ({ className = "" }: PixelIconProps) => (
+  <svg className={className} width="64" height="64" viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="currentColor"/>
     <rect x="20" y="24" width="8" height="8" fill="white"/>
     <rect x="36" y="24" width="8" height="8" fill="white"/>
-    <rect x="20" y="40" width="8" height="4" fill="white"/>
-    <rect x="28" y="44" width="8" height="4" fill="white"/>
-    <rect x="36" y="40" width="8" height="4" fill="white"/>
+    <rect x="20" y="40" width="4" height="4" fill="white"/>
+    <rect x="24" y="44" width="16" height="4" fill="white"/>
+    <rect x="40" y="40" width="4" height="4" fill="white"/>
   </svg>
 );
 
-const PixelQuestion = ({ className = "", style }: PixelIconProps) => (
-  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
-    <rect width="64" height="64" rx="12" fill="black"/>
-    <rect x="24" y="16" width="16" height="4" fill="white"/>
-    <rect x="40" y="20" width="4" height="12" fill="white"/>
-    <rect x="28" y="32" width="12" height="4" fill="white"/>
-    <rect x="28" y="40" width="8" height="4" fill="white"/>
-    <rect x="28" y="48" width="8" height="4" fill="white"/>
+export const PixelQuestion = ({ className = "" }: PixelIconProps) => (
+  <svg className={className} width="64" height="64" viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="currentColor"/>
+    <rect x="20" y="8" width="24" height="4" fill="white"/>
+    <rect x="16" y="12" width="8" height="4" fill="white"/>
+    <rect x="40" y="12" width="8" height="4" fill="white"/>
+    <rect x="40" y="16" width="8" height="8" fill="white"/>
+    <rect x="36" y="24" width="8" height="4" fill="white"/>
+    <rect x="28" y="28" width="8" height="8" fill="white"/>
+    <rect x="28" y="44" width="8" height="8" fill="white"/>
   </svg>
 );
 
-const PixelTypewriter = ({ className = "", style }: PixelIconProps) => (
-  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
-    <rect width="64" height="64" rx="12" fill="black"/>
-    <rect x="16" y="20" width="32" height="24" rx="2" fill="white"/>
-    <rect x="20" y="24" width="4" height="4" fill="black"/>
-    <rect x="28" y="24" width="4" height="4" fill="black"/>
-    <rect x="36" y="24" width="4" height="4" fill="black"/>
-    <rect x="20" y="32" width="24" height="4" fill="black"/>
+export const PixelTypewriter = ({ className = "" }: PixelIconProps) => (
+  <svg className={className} width="64" height="64" viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="currentColor"/>
+    <rect x="8" y="24" width="48" height="28" fill="white"/>
+    <rect x="12" y="28" width="40" height="12" fill="currentColor"/>
+    <rect x="16" y="44" width="8" height="4" fill="currentColor"/>
+    <rect x="28" y="44" width="8" height="4" fill="currentColor"/>
+    <rect x="40" y="44" width="8" height="4" fill="currentColor"/>
   </svg>
 );
 
-const PixelSearch = ({ className = "", style }: PixelIconProps) => (
-  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
-    <rect width="64" height="64" rx="12" fill="black"/>
-    <circle cx="28" cy="28" r="10" stroke="white" strokeWidth="4" fill="none"/>
-    <rect x="36" y="36" width="12" height="4" transform="rotate(45 36 36)" fill="white"/>
+export const PixelGear = ({ className = "" }: PixelIconProps) => (
+  <svg className={className} width="64" height="64" viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="currentColor"/>
+    <rect x="24" y="4" width="16" height="8" fill="white"/>
+    <rect x="24" y="52" width="16" height="8" fill="white"/>
+    <rect x="4" y="24" width="8" height="16" fill="white"/>
+    <rect x="52" y="24" width="8" height="16" fill="white"/>
+    <rect x="8" y="8" width="8" height="8" fill="white"/>
+    <rect x="48" y="8" width="8" height="8" fill="white"/>
+    <rect x="8" y="48" width="8" height="8" fill="white"/>
+    <rect x="48" y="48" width="8" height="8" fill="white"/>
+    <circle cx="32" cy="32" r="10" stroke="white" strokeWidth="4" fill="none"/>
   </svg>
 );
 
-const PixelGear = ({ className = "", style }: PixelIconProps) => (
-  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
-    <rect width="64" height="64" rx="12" fill="black"/>
-    <rect x="28" y="16" width="8" height="8" fill="white"/>
-    <rect x="40" y="24" width="8" height="8" fill="white"/>
-    <rect x="28" y="40" width="8" height="8" fill="white"/>
-    <rect x="16" y="24" width="8" height="8" fill="white"/>
-    <circle cx="32" cy="32" r="6" fill="white"/>
+export const PixelStar = ({ className = "" }: PixelIconProps) => (
+  <svg className={className} width="64" height="64" viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="currentColor"/>
+    <rect x="28" y="4" width="8" height="8" fill="white"/>
+    <rect x="24" y="12" width="16" height="4" fill="white"/>
+    <rect x="20" y="16" width="24" height="4" fill="white"/>
+    <rect x="8" y="20" width="48" height="8" fill="white"/>
+    <rect x="16" y="28" width="32" height="4" fill="white"/>
+    <rect x="20" y="32" width="24" height="4" fill="white"/>
+    <rect x="16" y="36" width="12" height="8" fill="white"/>
+    <rect x="36" y="36" width="12" height="8" fill="white"/>
   </svg>
 );
 
-const PixelStar = ({ className = "", style }: PixelIconProps) => (
-  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
-    <rect width="64" height="64" rx="12" fill="black"/>
-    <rect x="28" y="16" width="8" height="8" fill="white"/>
-    <rect x="24" y="24" width="16" height="8" fill="white"/>
-    <rect x="20" y="32" width="24" height="8" fill="white"/>
-    <rect x="24" y="40" width="16" height="8" fill="white"/>
-  </svg>
-);
-
-const PixelPencil = ({ className = "", style }: PixelIconProps) => (
-  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
-    <rect width="64" height="64" rx="12" fill="black"/>
-    <rect x="36" y="16" width="8" height="8" fill="white"/>
-    <rect x="28" y="24" width="8" height="8" fill="white"/>
-    <rect x="20" y="32" width="8" height="8" fill="white"/>
-    <rect x="16" y="40" width="8" height="8" fill="white"/>
-  </svg>
-);
-
-const PixelComputer = ({ className = "", style }: PixelIconProps) => (
-  <svg className={className} style={style} viewBox="0 0 64 64" fill="none">
-    <rect width="64" height="64" rx="12" fill="black"/>
-    <rect x="16" y="20" width="32" height="20" rx="2" fill="white"/>
-    <rect x="20" y="24" width="24" height="12" fill="black"/>
-    <rect x="28" y="40" width="8" height="4" fill="white"/>
+export const PixelPencil = ({ className = "" }: PixelIconProps) => (
+  <svg className={className} width="64" height="64" viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="12" fill="currentColor"/>
+    <rect x="44" y="8" width="8" height="4" fill="white"/>
+    <rect x="40" y="12" width="8" height="4" fill="white"/>
+    <rect x="36" y="16" width="8" height="4" fill="white"/>
+    <rect x="32" y="20" width="8" height="4" fill="white"/>
+    <rect x="28" y="24" width="8" height="4" fill="white"/>
+    <rect x="24" y="28" width="8" height="4" fill="white"/>
+    <rect x="20" y="32" width="8" height="4" fill="white"/>
+    <rect x="16" y="36" width="8" height="4" fill="white"/>
+    <rect x="12" y="40" width="8" height="4" fill="white"/>
+    <rect x="8" y="44" width="8" height="8" fill="white"/>
   </svg>
 );
 
@@ -99,32 +116,14 @@ const PixelComputer = ({ className = "", style }: PixelIconProps) => (
 // UI COMPONENTS
 // ========================================
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'default' | 'outline';
-  size?: 'default' | 'lg';
-  asChild?: boolean;
-}
-
-const Button = ({ className = "", variant = 'default', size = 'default', children, ...props }: ButtonProps) => {
-  const baseStyles = "inline-flex items-center justify-center gap-2 font-medium transition-all hover:scale-105 active:scale-95";
-  const variants = {
-    default: "bg-foreground text-background",
-    outline: "border-2 border-foreground bg-transparent hover:bg-foreground/5"
-  };
-  const sizes = {
-    default: "px-8 py-3 text-base",
-    lg: "px-10 py-4 text-lg"
-  };
-
-  return (
-    <button
-      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
+const Button = ({ children, className = "", ...props }: any) => (
+  <button
+    className={`inline-flex items-center justify-center gap-2 font-medium transition-all hover:scale-105 active:scale-95 ${className}`}
+    {...props}
+  >
+    {children}
+  </button>
+);
 
 const Tab = ({ label, active = false }: { label: string; active?: boolean }) => (
   <div className={`px-3 py-1 text-xs rounded-t ${active ? 'bg-white' : 'bg-transparent text-gray-500'}`}>
@@ -132,47 +131,40 @@ const Tab = ({ label, active = false }: { label: string; active?: boolean }) => 
   </div>
 );
 
-interface FAQItemProps {
-  question: string;
-  answer: string;
-  isOpen: boolean;
-  onClick: () => void;
-}
-
-const FAQItem = ({ question, answer, isOpen, onClick }: FAQItemProps) => (
-  <div className="border-b border-border">
-    <button
-      onClick={onClick}
-      className="w-full py-6 flex items-center justify-between text-left hover:opacity-70 transition"
-    >
-      <span className="text-lg font-medium" style={{ color: 'rgba(0, 0, 0, 0.85)' }}>{question}</span>
-      <ChevronDown className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-    </button>
-    {isOpen && (
-      <div className="pb-6 text-base" style={{ color: 'rgba(0, 0, 0, 0.6)' }}>
-        {answer}
-      </div>
-    )}
+const TabBadge = ({ icon, label, light }: { icon: string; label: string; light?: boolean }) => (
+  <div className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm ${
+    light ? "bg-white/20 text-white" : "bg-gray-200 text-gray-800"
+  }`}>
+    <span>{icon}</span>
+    <span>{label}</span>
   </div>
 );
 
-interface SkillCardProps {
-  title: string;
-  description: string;
-  color: string;
-  offset?: number;
-}
+const FAQItem = ({ question, answer, isOpen, onClick }: any) => (
+  <div className="border-b" style={{ borderColor: '#E5E5E5' }}>
+    <button
+      onClick={onClick}
+      className="w-full flex items-center justify-between py-6 text-left hover:opacity-70 transition-opacity"
+    >
+      <span className="text-lg md:text-xl italic pr-8" style={{ fontFamily: 'Georgia, serif' }}>{question}</span>
+      <ChevronDown className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+    </button>
+    <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 pb-6' : 'max-h-0'}`}>
+      <p className="leading-relaxed pr-12" style={{ color: 'rgba(0, 0, 0, 0.6)' }}>{answer}</p>
+    </div>
+  </div>
+);
 
-const SkillCard = ({ title, description, color, offset = 0 }: SkillCardProps) => (
+const SkillCard = ({ title, description, color, offset = 0 }: any) => (
   <motion.div
     initial={{ y: offset }}
-    whileHover={{ y: offset - 10, scale: 1.02 }}
-    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-    className="flex-shrink-0 w-80 p-8 rounded-3xl cursor-pointer"
-    style={{ backgroundColor: color, minHeight: '320px' }}
+    whileHover={{ y: offset - 10, scale: 1.05 }}
+    transition={{ type: 'spring', stiffness: 300 }}
+    className="flex-shrink-0 w-[280px] rounded-2xl p-6 cursor-pointer"
+    style={{ backgroundColor: color }}
   >
-    <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: 'Georgia, serif' }}>{title}</h3>
-    <p style={{ color: 'rgba(0, 0, 0, 0.6)' }}>{description}</p>
+    <h3 className="text-xl italic mb-2" style={{ fontFamily: 'Georgia, serif' }}>{title}</h3>
+    <p className="text-sm leading-relaxed" style={{ color: 'rgba(0, 0, 0, 0.7)' }}>{description}</p>
   </motion.div>
 );
 
@@ -181,64 +173,38 @@ const MarqueeText = ({ text }: { text: string }) => {
   const repeatedText = Array(20).fill(text).join(" ");
 
   return (
-    <div className="overflow-hidden py-8 border-y border-border my-12">
+    <div className="overflow-hidden py-6" style={{ backgroundColor: '#171717' }}>
       <motion.div
         animate={{ x: [0, -2000] }}
         transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        className="flex whitespace-nowrap text-4xl font-bold"
+        className="whitespace-nowrap flex text-2xl italic"
         style={{ fontFamily: 'Georgia, serif' }}
       >
         {repeatedText.split("").map((char, i) => (
-          <span
-            key={i}
-            style={{ color: colors[i % colors.length] }}
-          >
-            {char}
-          </span>
+          <span key={i} style={{ color: colors[i % colors.length] }}>{char}</span>
         ))}
       </motion.div>
     </div>
   );
 };
 
-interface FeatureCardProps {
-  title: string;
-  description?: string;
-  bgColor?: string;
-  gradient?: boolean;
-  accentBar?: string;
-  className?: string;
-  children?: React.ReactNode;
-}
-
-const FeatureCard = ({
-  title,
-  description,
-  bgColor = "#E8E4DF",
-  gradient = false,
-  accentBar,
-  className = "",
-  children
-}: FeatureCardProps) => (
+const FeatureCard = ({ title, description, color, bgColor, gradient, accentBar, className = "", children }: any) => (
   <motion.div
     whileHover={{ scale: 1.02, y: -4 }}
-    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-    className={`relative overflow-hidden rounded-3xl p-8 cursor-pointer ${className}`}
+    transition={{ type: 'spring', stiffness: 300 }}
+    className={`relative rounded-2xl p-8 h-full min-h-[280px] overflow-hidden cursor-pointer ${className}`}
     style={{
       background: gradient
         ? 'linear-gradient(135deg, #FF6B35 0%, #F7B731 25%, #FED766 40%, #4FACFE 70%, #00F2FE 100%)'
-        : bgColor,
-      minHeight: '280px'
+        : (bgColor || color || '#E8E4DF')
     }}
   >
-    {accentBar && (
-      <div className="absolute top-0 left-0 w-1 h-full" style={{ backgroundColor: accentBar }} />
-    )}
-    <h3 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Georgia, serif', color: gradient ? 'white' : 'rgba(0, 0, 0, 0.85)' }}>
+    {accentBar && <div className="absolute left-0 top-0 bottom-0 w-2" style={{ backgroundColor: accentBar }} />}
+    <h3 className="text-2xl italic mb-3" style={{ fontFamily: 'Georgia, serif', color: gradient ? 'white' : '#000' }}>
       {title}
     </h3>
     {description && (
-      <p className="text-base" style={{ color: gradient ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.6)' }}>
+      <p className="text-sm leading-relaxed" style={{ color: gradient ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.8)' }}>
         {description}
       </p>
     )}
@@ -246,27 +212,15 @@ const FeatureCard = ({
   </motion.div>
 );
 
-const AccordionItem = ({
-  icon,
-  title,
-  description,
-  isOpen,
-  onClick
-}: {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  isOpen: boolean;
-  onClick: () => void;
-}) => (
-  <div className="border-b border-border">
+const AccordionItem = ({ icon, title, description, isOpen, onClick }: any) => (
+  <div className="border-b" style={{ borderColor: '#E5E5E5' }}>
     <button
       onClick={onClick}
-      className="w-full py-6 flex items-start gap-4 text-left hover:opacity-70 transition"
+      className="w-full flex items-start gap-4 py-6 text-left hover:opacity-70 transition-opacity"
     >
       <div className="flex-shrink-0">{icon}</div>
       <div className="flex-1">
-        <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Georgia, serif' }}>{title}</h3>
+        <h3 className="text-xl italic mb-2" style={{ fontFamily: 'Georgia, serif' }}>{title}</h3>
         {isOpen && <p className="text-base" style={{ color: 'rgba(0, 0, 0, 0.6)' }}>{description}</p>}
       </div>
     </button>
@@ -274,7 +228,7 @@ const AccordionItem = ({
 );
 
 const DiaWindowMockup = () => (
-  <div className="bg-white rounded-2xl border shadow-2xl overflow-hidden" style={{ borderColor: '#EBEBEB' }}>
+  <div className="bg-white rounded-2xl border shadow-2xl overflow-hidden" style={{ borderColor: '#E5E5E5' }}>
     <div className="h-12 bg-gray-100 flex items-center px-4 gap-3 border-b" style={{ borderColor: '#d4d4d4' }}>
       <div className="flex gap-1.5">
         <div className="w-3 h-3 rounded-full bg-red-500" />
@@ -289,18 +243,16 @@ const DiaWindowMockup = () => (
 );
 
 const BrowserIllustration = () => (
-  <div className="relative">
-    <div className="grid grid-cols-2 gap-4">
-      <FeatureCard title="/outline" gradient />
-      <FeatureCard title="/cite" bgColor="#FFB800" />
-      <FeatureCard title="/flashcards" bgColor="#B8E8D9" />
-      <FeatureCard title="/job-fit" bgColor="#FFB8D9" />
-    </div>
+  <div className="grid grid-cols-2 gap-4">
+    <FeatureCard title="/outline" gradient />
+    <FeatureCard title="/cite" color="#FFB800" />
+    <FeatureCard title="/flashcards" color="#B8E8D9" />
+    <FeatureCard title="/job-fit" color="#FFB8D9" />
   </div>
 );
 
 // ========================================
-// MAIN SECTIONS
+// SECTIONS
 // ========================================
 
 const HeroSection = () => {
@@ -310,7 +262,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
           className="absolute left-[10%] top-[25%]"
-          animate={{ y: [0, -10, 0], rotate: [0, 5, -5, 0] }}
+          animate={{ y: [0, -10, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         >
           <PixelSmiley className="w-16 h-16" />
@@ -318,40 +270,40 @@ const HeroSection = () => {
 
         <motion.div
           className="absolute left-[8%] top-[55%]"
-          animate={{ y: [0, -15, 0], rotate: [0, -5, 5, 0] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
         >
           <PixelQuestion className="w-14 h-14" />
         </motion.div>
 
         <motion.div
           className="absolute left-[22%] top-[42%]"
-          animate={{ y: [0, -12, 0], rotate: [0, 3, -3, 0] }}
-          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         >
           <PixelTypewriter className="w-16 h-16" />
         </motion.div>
 
         <motion.div
           className="absolute right-[18%] top-[15%]"
-          animate={{ y: [0, -14, 0], rotate: [0, -4, 4, 0] }}
-          transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
         >
           <PixelSearch className="w-16 h-16" />
         </motion.div>
 
         <motion.div
           className="absolute right-[8%] top-[30%]"
-          animate={{ y: [0, -11, 0], rotate: [0, 6, -6, 0] }}
-          transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         >
           <PixelGear className="w-14 h-14" />
         </motion.div>
 
         <motion.div
           className="absolute right-[18%] top-[45%]"
-          animate={{ y: [0, -13, 0], rotate: [0, -7, 7, 0] }}
-          transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
         >
           <PixelStar className="w-14 h-14" />
         </motion.div>
@@ -359,71 +311,47 @@ const HeroSection = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 text-center max-w-3xl mx-auto">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl leading-tight mb-8 italic"
-          style={{
-            fontFamily: 'Georgia, "Times New Roman", serif',
-            color: 'rgba(0, 0, 0, 0.85)',
-            fontWeight: 400
-          }}
-        >
-          Vous n'avez pas à tout faire seul.
-        </motion.h1>
+        <h1 className="text-5xl md:text-7xl leading-tight italic" style={{ fontFamily: 'Georgia, serif' }}>
+          You don't have to do it all alone.
+        </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-lg md:text-xl max-w-2xl mx-auto mb-10"
-          style={{ color: 'rgba(0, 0, 0, 0.65)' }}
-        >
-          TANSE est l'agence GEO qui vous accompagne vraiment — pour optimiser votre présence,
-          accélérer votre croissance et vous positionner comme référence.
-        </motion.p>
+        <p className="mt-8 text-lg md:text-xl max-w-2xl mx-auto" style={{ color: 'rgba(0, 0, 0, 0.8)' }}>
+          Dia is the AI browser that truly gets you — helping you think deeper,
+          move faster, and level up across the board.
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          <Link href="/contact-audit-gratuit">
-            <Button className="rounded-full" size="lg">
-              Démarrer avec TANSE
-            </Button>
-          </Link>
-        </motion.div>
+        <Button className="mt-10 px-8 py-6 rounded-full text-white" style={{ backgroundColor: '#171717' }}>
+          Download Dia
+        </Button>
       </div>
     </section>
   );
 };
 
-const BrowserMockupSection = () => {
+const BrowserMockup = () => {
   return (
     <section className="px-6 pb-24">
       <div className="max-w-5xl mx-auto">
-        <div className="bg-white rounded-2xl border shadow-2xl overflow-hidden" style={{ borderColor: '#EBEBEB' }}>
+        <div className="bg-white rounded-2xl border shadow-2xl overflow-hidden" style={{ borderColor: '#E5E5E5' }}>
           {/* Browser Header */}
-          <div className="h-12 bg-gray-100 flex items-center px-4 gap-3 border-b" style={{ borderColor: '#d4d4d4' }}>
+          <div className="h-12 bg-gray-100 flex items-center px-4 gap-3">
             <div className="flex gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-red-500" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500" />
-              <div className="w-3 h-3 rounded-full bg-green-500" />
+              <div className="w-3 h-3 rounded-full bg-red-400" />
+              <div className="w-3 h-3 rounded-full bg-yellow-400" />
+              <div className="w-3 h-3 rounded-full bg-green-400" />
             </div>
             <div className="flex gap-1">
-              <Tab label="TANSE GEO" active />
-              <Tab label="Nouveau" />
+              <Tab label="Dia" active />
+              <Tab label="New Tab" />
             </div>
           </div>
 
           {/* Browser Content - Feature Cards */}
           <div className="p-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <FeatureCard title="/audit" gradient />
-            <FeatureCard title="/citations" bgColor="#FFB800" />
-            <FeatureCard title="/optimise" bgColor="#B8E8D9" />
-            <FeatureCard title="/entites" bgColor="#FFB8D9" />
+            <FeatureCard title="Outline" gradient />
+            <FeatureCard title="Cite" color="#FFB800" />
+            <FeatureCard title="Flashcards" color="#B8E8D9" />
+            <FeatureCard title="Job-fit" color="#FFB8D9" />
           </div>
         </div>
       </div>
@@ -435,43 +363,27 @@ const ThoughtPartnerSection = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   const items = [
-    {
-      icon: <PixelGear className="w-12 h-12" />,
-      title: "Vous demandez, TANSE répond.",
-      description: "Notre expertise en GEO permet de répondre à toutes vos questions sur l'optimisation pour les IA génératives."
-    },
-    {
-      icon: <PixelComputer className="w-12 h-12" />,
-      title: "TANSE voit ce que vous voyez.",
-      description: "Analyse complète de votre présence digitale et de votre visibilité sur les moteurs de réponse IA."
-    },
-    {
-      icon: <PixelPencil className="w-12 h-12" />,
-      title: "Le contenu, réinventé.",
-      description: "Création de contenu optimisé pour être cité par ChatGPT, Perplexity et tous les LLMs."
-    },
-    {
-      icon: <PixelTypewriter className="w-12 h-12" />,
-      title: "Intégré dans votre workflow.",
-      description: "Solutions GEO qui s'adaptent à vos processus existants sans friction."
-    },
+    { icon: <PixelGear className="w-12 h-12" />, title: "You ask, Dia answers.", description: "Get instant, thoughtful responses to your questions — whether you're brainstorming ideas, solving problems, or exploring new topics." },
+    { icon: <PixelComputer className="w-12 h-12" />, title: "Dia sees what you see.", description: "Dia understands the context of what you're working on, making suggestions and insights that actually make sense for your workflow." },
+    { icon: <PixelPencil className="w-12 h-12" />, title: "Writing, reimagined.", description: "From drafting essays to polishing emails, Dia helps you write better, faster — with your unique voice." },
+    { icon: <PixelTypewriter className="w-12 h-12" />, title: "It's built in the browser.", description: "No switching tabs, no copying and pasting. Dia lives right where you work, ready to help whenever you need it." },
   ];
 
   return (
     <section className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <p className="text-sm font-mono uppercase tracking-wider mb-4" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>
-            Un vrai partenaire stratégique
+          <p className="text-sm font-mono uppercase tracking-wider mb-4" style={{ color: 'rgba(0, 0, 0, 0.6)' }}>
+            A true thought partner
           </p>
-          <h2 className="text-4xl md:text-5xl italic" style={{ fontFamily: 'Georgia, serif', color: 'rgba(0, 0, 0, 0.85)' }}>
-            Votre partenaire pour l'optimisation IA.
+          <h2 className="text-4xl md:text-5xl italic" style={{ fontFamily: 'Georgia, serif' }}>
+            Your thought partner for school.
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Accordion */}
-          <div className="border-t border-border">
+          <div className="border-t" style={{ borderColor: '#E5E5E5' }}>
             {items.map((item, index) => (
               <AccordionItem
                 key={index}
@@ -496,12 +408,12 @@ const ThoughtPartnerSection = () => {
 
 const SkillsSection = () => {
   const skills = [
-    { title: "Audit", description: "Analyse complète de votre structure de données", color: "#E8E4DF" },
-    { title: "Recherche", description: "Optimisation pour les moteurs de recherche IA", color: "#FFE4B5" },
-    { title: "Organisation", description: "Structuration de contenu pour citations", color: "#E0F4FF" },
-    { title: "Analyse", description: "Suivi des performances sur les LLMs", color: "#F0E6FF" },
-    { title: "Rédaction", description: "Création de contenu optimisé GEO", color: "#FFE4E4" },
-    { title: "Citation", description: "Maximisation de votre autorité", color: "#E4FFE9" },
+    { title: "Reading", description: "Summarize articles, highlight key points, and understand complex texts faster.", color: "#E8E4DF" },
+    { title: "Researching", description: "Find sources, compare viewpoints, and organize your findings in one place.", color: "#FFE4B5" },
+    { title: "Organizing", description: "Keep tabs organized, create collections, and never lose track of important links.", color: "#E0F4FF" },
+    { title: "Summarizing", description: "Get the gist of long documents, videos, and web pages in seconds.", color: "#F0E6FF" },
+    { title: "Writing", description: "Draft essays, brainstorm ideas, and refine your writing with AI assistance.", color: "#FFE4E4" },
+    { title: "Citing", description: "Format citations correctly and keep track of all your sources effortlessly.", color: "#E4FFE9" },
   ];
 
   return (
@@ -509,28 +421,28 @@ const SkillsSection = () => {
       <div className="max-w-6xl mx-auto px-6 mb-12">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <p className="text-sm font-mono uppercase tracking-wider mb-4" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>
-              Nos compétences sont vos raccourcis
+            <p className="text-sm font-mono uppercase tracking-wider" style={{ color: 'rgba(0, 0, 0, 0.6)' }}>
+              Skills are your shortcut
             </p>
-            <h2 className="text-4xl md:text-5xl italic" style={{ fontFamily: 'Georgia, serif', color: 'rgba(0, 0, 0, 0.85)' }}>
-              Une approche plus intelligente.
+            <h2 className="text-4xl md:text-5xl italic" style={{ fontFamily: 'Georgia, serif' }}>
+              A smarter way to learn.
             </h2>
           </div>
-          <p className="text-lg" style={{ color: 'rgba(0, 0, 0, 0.6)' }}>
-            Nos expertises GEO sont comme des super-pouvoirs pour votre présence en ligne.
+          <p className="text-lg" style={{ color: 'rgba(0, 0, 0, 0.7)' }}>
+            Skills are like superpowers for your browser.
           </p>
         </div>
       </div>
 
       {/* Horizontal Scroll Cards */}
-      <div className="flex gap-6 overflow-x-auto pb-8 px-6 scrollbar-hide">
+      <div className="flex gap-6 overflow-x-auto pb-8 px-6">
         {skills.map((skill, i) => (
           <SkillCard key={i} {...skill} offset={i % 2 === 0 ? 0 : 20} />
         ))}
       </div>
 
       {/* Rainbow Marquee */}
-      <MarqueeText text="Optimisez votre présence IA!" />
+      <MarqueeText text="Get our Student Pack!" />
     </section>
   );
 };
@@ -539,25 +451,25 @@ const FeaturesSection = () => (
   <section className="py-24 px-6">
     <div className="max-w-6xl mx-auto">
       <div className="text-center mb-16">
-        <p className="text-sm font-mono uppercase tracking-wider mb-4" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>
-          Conçu pour les entreprises
+        <p className="text-sm font-mono uppercase tracking-wider" style={{ color: 'rgba(0, 0, 0, 0.6)' }}>
+          Built for students
         </p>
-        <h2 className="text-4xl md:text-5xl italic" style={{ fontFamily: 'Georgia, serif', color: 'rgba(0, 0, 0, 0.85)' }}>
-          Des fonctionnalités qui changent tout.
+        <h2 className="text-4xl md:text-5xl italic" style={{ fontFamily: 'Georgia, serif' }}>
+          Features so good, they feel illegal.
         </h2>
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
-        <FeatureCard title="Monitoring" bgColor="#E8E4DF" accentBar="#E53935" description="Suivi en temps réel de vos citations" />
-        <FeatureCard title="Analytics" bgColor="#FFB800" description="Tableaux de bord avancés" />
-        <FeatureCard title="Optimisation" bgColor="#FFB8D9" description="Recommandations personnalisées" />
-        <FeatureCard title="API" bgColor="#B8E8D9" description="Intégration complète" />
-        <FeatureCard title="Support 24/7" bgColor="#E8E4DF" className="md:col-span-2" description="Assistance prioritaire" />
+        <FeatureCard title="Memory" bgColor="#E8E4DF" accentBar="#E53935" />
+        <FeatureCard title="Mention Tabs" bgColor="#FFB800" />
+        <FeatureCard title="Split View" bgColor="#FFB8D9" />
+        <FeatureCard title="Command Bar" bgColor="#B8E8D9" />
+        <FeatureCard title="Ad Block" bgColor="#E8E4DF" className="md:col-span-2" />
       </div>
 
       <div className="grid md:grid-cols-2 gap-6 mt-6">
-        <FeatureCard title="Rapports" bgColor="#E6E0F8" description="Export de données complet" />
-        <FeatureCard title="Formation" bgColor="#FFF4E0" description="Accompagnement personnalisé" />
+        <FeatureCard title="Focus Mode" bgColor="#E6E0F8" />
+        <FeatureCard title="Quick Notes" bgColor="#FFF4E0" />
       </div>
     </div>
   </section>
@@ -567,39 +479,24 @@ const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
-    {
-      question: "Qu'est-ce que le GEO exactement ?",
-      answer: "Le GEO (Generative Engine Optimization) est l'optimisation de votre contenu pour être cité par les IA génératives comme ChatGPT, Perplexity, Claude, et Google AI."
-    },
-    {
-      question: "Combien de temps faut-il pour voir des résultats ?",
-      answer: "Les premiers résultats sont visibles en 2-3 semaines, avec une amélioration continue sur 3-6 mois."
-    },
-    {
-      question: "Proposez-vous un audit gratuit ?",
-      answer: "Oui, nous offrons un audit GEO complet et gratuit pour analyser votre présence actuelle sur les moteurs IA."
-    },
-    {
-      question: "Quels secteurs accompagnez-vous ?",
-      answer: "Nous travaillons avec tous les secteurs : tech, e-commerce, services, santé, éducation, et plus encore."
-    },
-    {
-      question: "Comment mesurer le ROI du GEO ?",
-      answer: "Nous trackons vos citations, votre autorité perçue, et l'impact sur votre trafic qualifié via nos dashboards analytics."
-    },
+    { question: "Do students get early access to the beta?", answer: "Yes! We're offering early access to students. Sign up with your .edu email to get priority access." },
+    { question: "Are there any discounts for students?", answer: "Absolutely. Dia is free for students with a valid .edu email address." },
+    { question: "What devices are currently supported?", answer: "Dia is currently available for macOS, with Windows and mobile versions coming soon." },
+    { question: "Is The Browser Company hiring interns?", answer: "Yes! We're always looking for talented students. Check out our careers page for current opportunities." },
+    { question: "How can I get more involved?", answer: "Join our Discord community! It's the best place to connect with other students, share feedback, and stay updated." },
   ];
 
   return (
     <section className="py-24 px-6">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <p className="text-sm font-mono uppercase tracking-wider mb-4" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>FAQ</p>
-          <h2 className="text-4xl md:text-5xl italic" style={{ fontFamily: 'Georgia, serif', color: 'rgba(0, 0, 0, 0.85)' }}>
-            Questions ? Réponses.
+          <p className="text-sm font-mono uppercase tracking-wider">FAQ</p>
+          <h2 className="text-4xl md:text-5xl italic" style={{ fontFamily: 'Georgia, serif' }}>
+            Questions? Answers.
           </h2>
         </div>
 
-        <div className="border-t border-border">
+        <div className="border-t" style={{ borderColor: '#E5E5E5' }}>
           {faqs.map((faq, index) => (
             <FAQItem
               key={index}
@@ -620,23 +517,17 @@ const CTASection = () => (
     <div className="max-w-6xl mx-auto">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 className="text-4xl md:text-6xl italic leading-tight mb-8" style={{ fontFamily: 'Georgia, serif', color: 'rgba(0, 0, 0, 0.85)' }}>
-            La meilleure décision que vous prendrez ce trimestre.
+          <h2 className="text-4xl md:text-6xl italic leading-tight mb-8" style={{ fontFamily: 'Georgia, serif' }}>
+            The smartest thing you can open this semester.
           </h2>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/contact-audit-gratuit">
-              <Button className="rounded-full" size="lg">
-                Démarrer avec TANSE
-              </Button>
-            </Link>
+            <Button className="px-8 py-6 rounded-full text-white" style={{ backgroundColor: '#171717' }}>
+              Download Dia
+            </Button>
 
-            <a
-              href="mailto:contact@tanse.fr"
-              className="inline-flex items-center gap-2 hover:opacity-70 transition py-4"
-              style={{ color: 'rgba(0, 0, 0, 0.65)' }}
-            >
-              <span>Nous contacter directement</span>
+            <a href="#" className="inline-flex items-center gap-2 py-4 hover:opacity-70 transition" style={{ color: 'rgba(0, 0, 0, 0.7)' }}>
+              Dreaming of skills? Join our Discord
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>
@@ -650,60 +541,19 @@ const CTASection = () => (
 );
 
 // ========================================
-// MAIN PAGE COMPONENT
+// MAIN PAGE
 // ========================================
 
 export default function GeoPage() {
   return (
-    <main className="relative min-h-screen" style={{ backgroundColor: '#F8F8F8' }}>
-
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 backdrop-blur-md" style={{ backgroundColor: 'rgba(248, 248, 248, 0.8)' }}>
-        <div className="max-w-[1400px] mx-auto px-8 py-5 flex items-center justify-between">
-          <div className="flex items-center gap-12">
-            <Link href="/" className="text-xl font-semibold" style={{ color: 'rgba(0, 0, 0, 0.85)' }}>
-              ●TANSE
-            </Link>
-            <div className="hidden md:flex items-center gap-8 text-sm" style={{ color: 'rgba(0, 0, 0, 0.85)' }}>
-              <Link href="/geo" className="hover:opacity-70 transition">Compétences</Link>
-              <Link href="/forfaits-geo-seo" className="hover:opacity-70 transition">Clients</Link>
-            </div>
-          </div>
-          <Link
-            href="/contact-audit-gratuit"
-            className="px-5 py-2.5 text-sm font-medium rounded-lg transition hover:opacity-90"
-            style={{ backgroundColor: 'rgba(0, 0, 0, 0.85)', color: '#F8F8F8' }}
-          >
-            Démarrer avec TANSE
-          </Link>
-        </div>
-      </nav>
-
-      {/* All Sections */}
+    <main className="relative min-h-screen" style={{ backgroundColor: '#F5F5F5' }}>
       <HeroSection />
-      <BrowserMockupSection />
+      <BrowserMockup />
       <ThoughtPartnerSection />
       <SkillsSection />
       <FeaturesSection />
       <FAQSection />
       <CTASection />
-
-      {/* Footer Minimal */}
-      <footer className="py-12 px-8 border-t" style={{ backgroundColor: '#F8F8F8', borderColor: '#EBEBEB' }}>
-        <div className="max-w-[1200px] mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-sm" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>
-              © {new Date().getFullYear()} TANSE — Tous droits réservés.
-            </p>
-            <div className="flex items-center gap-8 text-sm" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>
-              <Link href="/mentions-legales" className="hover:opacity-70 transition">Mentions légales</Link>
-              <Link href="/confidentialite" className="hover:opacity-70 transition">Confidentialité</Link>
-              <Link href="/cookies" className="hover:opacity-70 transition">Cookies</Link>
-            </div>
-          </div>
-        </div>
-      </footer>
-
     </main>
   );
 }
