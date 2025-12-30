@@ -111,18 +111,21 @@ export default function ValeursPage() {
       </section>
 
       {/* Value 1: HEARTFELT INTENSITY */}
-      <section className="px-6 py-20 max-w-4xl mx-auto bg-[#F9DA49]">
-        <div className="mb-16 flex items-center justify-center">
-          <Image
-            src="/valeurs/Frame-27.svg"
-            alt="Car illustration"
-            width={400}
-            height={300}
-            className="opacity-80"
-          />
-        </div>
+      <section
+        className="relative w-full min-h-screen py-20"
+        style={{
+          backgroundImage: 'url(/valeurs/small0.5x.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-[#F9DA49]/80"></div>
 
-        <div className="mb-12">
+        {/* Content Container */}
+        <div className="relative z-10 max-w-5xl mx-auto px-6">
+          <div className="mb-12">
           <span
             style={{
               fontFamily: 'system-ui, -apple-system, sans-serif',
@@ -244,6 +247,7 @@ export default function ValeursPage() {
             Et c'est vraiment ça. Puiser dans la 'passion pour la chose elle-même' — quelle que soit cette chose — c'est le
             cœur de l'intensité sincère et la partie que nous trouvons la plus digne d'être célébrée.
           </p>
+        </div>
         </div>
       </section>
 
