@@ -1,289 +1,241 @@
-// app/agence-geo-paris-lyon/page.tsx
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import type { ReactNode } from "react";
-import FadeIn from "../components/FadeIn";
-import SplineLazy from "../components/SplineLazy";
-import { usePerformance } from "../contexts/PerformanceContext";
+import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import PixelTrail from '../components/entreprise/PixelTrail';
 
-type YearItem = { year: string; bullets: ReactNode[]; accent?: string };
-
-const TIMELINE: YearItem[] = [
-  {
-    year: "2025",
-    accent: "bg-[#2E316B]",
-    bullets: [
-      "70 entreprises accompagnées (retail, services, industries)",
-      "Méthode GEO v2 (answer engines + schémas avancés, multi-secteurs)",
-      <>
-        <span className="font-semibold text-[#444684]">+32%</span> de leads / prises de contact en moyenne (90 jours)
-      </>,
-    ],
-  },
-  {
-    year: "2024",
-    accent: "bg-[#444684]",
-    bullets: [
-      "25 entreprises accompagnées (PME & réseaux multi-sites)",
-      "Méthode GEO v1 (fiches locales & entités de marque)",
-      <>
-        <span className="font-semibold text-[#444684]">+18%</span> de leads / prises de contact en moyenne (3–6 mois)
-      </>,
-    ],
-  },
-];
-
-type Member = {
-  name: string;
-  role: string;
-  bio: string;
-  image?: string;
-  imageStyle?: string; // Style personnalisé pour chaque photo
-};
-
-const TEAM: Member[] = [
-  {
-    name: "Tanse",
-    role: "Head of Local SEO",
-    bio: "Optimisation locale multi-secteurs (retail, services, B2B). Focus entités et visibilité de proximité.",
-    image: "/team/raphpro.png",
-    imageStyle: "object-[50%_20%]", // Centré plus haut de 30%
-  },
-  {
-    name: "M. Rayane",
-    role: "Lead GEO (Answer Engines)",
-    bio: "Structure l'information pour les moteurs de réponse (IA). Schémas, graphes de connaissances, gouvernance des sources.",
-    image: "/team/rayane.png",
-    imageStyle: "object-top scale-[1.30]", // Centré tout en haut + zoom 30%
-  },
-  {
-    name: "M. Valentin",
-    role: "UX & Web Performance",
-    bio: "UX et performance produit/web. Expériences très rapides qui convertissent, mobile-first et Core Web Vitals élevés.",
-  },
-  {
-    name: "K. Guillaume",
-    role: "Consultant",
-    bio: "Conseil opérationnel et go to market local. Digital au service des équipes et des objectifs business.",
-  },
-];
-
-export default function Page() {
-  const { mode } = usePerformance();
+/**
+ * Browser Company (Arc/Dia) inspired landing page
+ * Four-corner grid layout with pixel trail effect
+ */
+export default function EntreprisePage() {
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const currentYear = new Date().getFullYear();
 
   return (
-    <main className="bg-[#E4E4E4] text-[#0b0b0c] border-t border-transparent overflow-x-hidden">
-      {/* Intro */}
-      <section className="mx-auto w-full max-w-6xl px-6 pt-0 pb-16 md:pb-20">
-        {/* Bouton retour page principale */}
-        <div className="mb-6 pt-6">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 rounded-full bg-black/5 px-4 py-2 text-sm hover:bg-black/10"
+    <main className="relative min-h-screen bg-[#1B1B1B] text-white overflow-hidden">
+      {/* Pixel Trail Effect */}
+      <PixelTrail />
+
+      {/* Four-Corner Grid Layout */}
+      <div className="fixed inset-0 p-8 md:p-10">
+        {/* Top-Left: Status Indicators */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute top-8 md:top-10 left-8 md:left-10 flex flex-col gap-3"
+          style={{
+            fontFamily: 'JetBrains Mono, monospace',
+            fontSize: '10px',
+            letterSpacing: '0.15em',
+          }}
+        >
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-[#658AFF] rounded-sm animate-pulse" />
+            <span className="text-[#e4e4e4] uppercase">EN LIGNE</span>
+          </div>
+          <button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="flex items-center gap-2 hover:text-[#658AFF] transition-colors group"
           >
-            <span aria-hidden>←</span> Page principale
-          </Link>
-        </div>
+            <div className="w-3 h-3 border border-[#e4e4e4] group-hover:border-[#658AFF] transition-colors" />
+            <span className="text-[#e4e4e4] group-hover:text-[#658AFF] uppercase">THEME</span>
+          </button>
+        </motion.div>
 
-        <div className="grid items-center gap-10 md:grid-cols-12">
-          <div className="md:col-span-6">
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-[#444684]">
-              Notre raison d’être
-            </p>
-            <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
-              Pourquoi nous venons travailler <br className="hidden md:block" /> tous les jours
-            </h1>
-
-            <p className="mt-6 text-[15px] leading-relaxed text-neutral-700">
-              <span className="font-semibold text-[#444684]">
-                Vous faites votre métier, on rend votre savoir-faire immanquable au moment où l’intention est la plus forte.
-              </span>
-            </p>
-            <p className="mt-4 text-[15px] leading-relaxed text-neutral-700">
-              Notre promesse est simple&nbsp;: <span className="font-semibold text-[#444684]">enlever la friction</span>. Les détours, les délais, les portes closes qui
-              transforment une intention claire en opportunité manquée. Nous créons{" "}
-              <span className="font-semibold text-[#444684]">un chemin direct</span> entre les besoins des gens et ce que vous faites le mieux,{" "}
-              <span className="font-semibold text-[#444684]">du local au national</span>, du service à l’industrie.
-            </p>
-          </div>
-
-          {/* Animation Clavier - DESKTOP */}
-          <div className="hidden md:block md:col-span-6">
-            <div className="relative w-full h-[clamp(220px,60vh,500px)]">
-              {mode === "performance" ? (
-                /* Mode Performance - Image statique */
-                <Image
-                  src="/screenclavier2.png"
-                  alt="Clavier d'ordinateur"
-                  width={1360}
-                  height={1360}
-                  className="w-full h-full object-contain"
-                  priority
-                />
-              ) : (
-                /* Mode Qualité - Spline 3D interactif */
-                <spline-viewer
-                  url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
-                  className="w-full h-full"
-                  loading-anim="true"
-                  events-target="local"
-                />
-              )}
-            </div>
-          </div>
-
-          {/* Animation Clavier - MOBILE */}
-          <div className="md:hidden md:col-span-6">
-            <div className="w-full max-w-[280px] h-[240px] mx-auto">
-              {mode === "performance" ? (
-                /* Mode Performance - Image statique */
-                <Image
-                  src="/screenclavier2.png"
-                  alt="Clavier d'ordinateur"
-                  width={720}
-                  height={640}
-                  className="w-full h-full object-contain"
-                  priority
-                />
-              ) : (
-                /* Mode Qualité - Spline 3D avec setZoom */
-                <SplineLazy
-                  url="https://prod.spline.design/87NsySkGhHQFwlAv/scene.splinecode"
-                  className="block w-full h-full"
-                  onLoad={(spline: any) => {
-                    if (spline && spline.setZoom) {
-                      spline.setZoom(0.6);
-                    }
-                  }}
-                />
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline (2 cartes) */}
-      <section className="mx-auto w-full max-w-6xl px-6 pb-6 pt-4 md:py-10">
-        <h2 className="mb-3 text-center text-3xl font-semibold">
-          Ce que nous avons accompli jusqu’à présent
-        </h2>
-        <p className="mx-auto mb-10 max-w-3xl text-center text-neutral-700">
-          <span className="font-semibold text-[#444684]">Avant que ce soit évident</span>, nous avons vu la transition : des listes de liens vers{" "}
-          <span className="font-semibold text-[#444684]">des réponses directes</span>. TANSE est né de cette réalité. Nous avons conçu des systèmes{" "}
-          <span className="font-semibold text-[#444684]">GEO/SEO</span> prêts pour{" "}
-          <span className="font-semibold text-[#444684]">Google, Maps et les moteurs IA</span>, simplifié les parcours et installé{" "}
-          <span className="font-semibold text-[#444684]">un cadre de performance clair</span>.
-        </p>
-
-        <div className="grid gap-6 md:grid-cols-2">
-          {TIMELINE.map((y) => (
-            <div key={y.year} className="overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-black/5">
-              <div className={`px-6 pb-10 pt-12 ${y.accent ?? "bg-[#444684]"} text-white`}>
-                <div className="text-6xl font-extrabold tracking-tight">{y.year}</div>
-              </div>
-              <div className="px-6 py-6">
-                <ul className="space-y-3 text-sm text-neutral-800">
-                  {y.bullets.map((b, i) => (
-                    <li key={i}>• {b}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Équipe */}
-      <section className="mx-auto w-full max-w-6xl px-6 py-16">
-        <div className="mb-8 text-center">
-          <h2 className="text-3xl font-semibold">Notre équipe</h2>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {TEAM.map((m) => (
-            <div key={m.name} className="rounded-3xl bg-white p-6 shadow-md ring-1 ring-black/5">
-              {m.image && (
-                <div className="relative mb-4 h-20 w-20 overflow-hidden rounded-full ring-2 ring-[#444684]/20">
-                  <Image
-                    src={m.image}
-                    alt={`Photo de ${m.name}`}
-                    fill
-                    className={`object-cover ${m.imageStyle || "object-center"}`}
-                    sizes="80px"
-                  />
-                </div>
-              )}
-              <div className="text-base font-semibold">{m.name}</div>
-              <div className="text-sm text-neutral-600">{m.role}</div>
-              <p className="mt-3 text-sm text-neutral-700">{m.bio}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Rejoignez TANSE */}
-      <section className="relative overflow-hidden min-h-[78dvh] py-10 md:py-14 bg-[#E4E4E4]">
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
-          <div className="grid items-center gap-10 md:grid-cols-12">
-            <div className="md:col-span-5">
-              <h2 className="text-[clamp(32px,4.2vw,48px)] font-semibold text-[#444684] leading-tight">
-                Rejoignez TANSE
-              </h2>
-              <p className="mt-4 text-[15px] leading-relaxed text-neutral-700">
-                Ne donnez plus vos clients à la concurrence. TANSE déploie le GEO & SEO nouvelle génération pour que vos futurs clients vous trouvent en premier.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href="/forfaits-geo-seo"
-                  className="rounded-full bg-[#444684] px-5 py-3 text-sm font-medium text-white shadow-md hover:opacity-90"
-                >
-                  Voir nos forfaits
-                </Link>
-                <a
-                  href="mailto:contact@tanse.fr"
-                  className="rounded-full bg-black/5 px-5 py-3 text-sm font-medium hover:bg-black/10"
-                >
-                  Nous contacter
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="pointer-events-auto absolute inset-y-0 right-0 w-[75vw] md:w-[60vw]">
-          {mode === "performance" ? (
-            <div className="w-full h-full rounded-3xl overflow-hidden shadow-lg">
+        {/* Center Hero */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl px-6 text-center">
+          {/* Logo Circle */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="flex justify-center mb-12"
+          >
+            <div className="w-32 h-32 md:w-40 md:h-40 relative rounded-full bg-gradient-to-br from-[#658AFF]/20 to-transparent border border-[#658AFF]/30 backdrop-blur-xl flex items-center justify-center">
               <Image
-                src="/screenrejoignertanse.png"
-                alt="Rejoignez TANSE"
-                width={1920}
-                height={1080}
-                className="w-full h-full object-cover"
-                priority
+                src="/brand/tanse-logo.png?v=3"
+                alt="TANSE"
+                width={120}
+                height={120}
+                className="object-contain opacity-90"
               />
             </div>
-          ) : (
-            <SplineLazy
-              url="https://prod.spline.design/EZYaol9QTCXdiWrh/scene.splinecode"
-              className="block w-full h-full"
-            />
-          )}
-        </div>
-      </section>
+          </motion.div>
 
-      {/* Footer */}
-      <footer className="border-t border-black/10 py-10">
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
-          <span className="text-sm text-neutral-600">© {new Date().getFullYear()} TANSE</span>
-          <div className="flex gap-5 text-sm">
-            <Link href="/forfaits-geo-seo" className="text-[#444684] hover:underline">Forfaits</Link>
-            <Link href="/agence-geo-paris-lyon" className="text-[#444684] hover:underline">Entreprise</Link>
-            <Link href="/geo" className="text-[#444684] hover:underline">GEO</Link>
-            <a href="mailto:contact@tanse.fr" className="text-[#444684] hover:underline">Contact</a>
-          </div>
+          {/* Slogan */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+            className="text-[#658AFF] italic mb-12"
+            style={{
+              fontFamily: 'EB Garamond, Times New Roman, serif',
+              fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+              lineHeight: '1.4',
+            }}
+          >
+            Nous créons de meilleures façons d'utiliser
+            <br />
+            Internet avec{' '}
+            <Link href="/geo" className="underline decoration-1 underline-offset-4 hover:text-[#8AA8FF] transition-colors">
+              GEO
+            </Link>{' '}
+            et{' '}
+            <Link href="/forfaits-geo-seo" className="underline decoration-1 underline-offset-4 hover:text-[#8AA8FF] transition-colors">
+              SEO
+            </Link>
+            .
+          </motion.h1>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+          >
+            <Link
+              href="/forfaits-geo-seo"
+              className="group relative px-8 py-3 bg-transparent border border-white/40 rounded-full hover:border-[#658AFF] hover:bg-[#658AFF]/10 transition-all duration-300 flex items-center gap-3"
+            >
+              <span className="w-5 h-5 rounded-full border border-white/60 group-hover:border-[#658AFF] flex items-center justify-center text-xs">
+                O
+              </span>
+              <span
+                className="text-white group-hover:text-[#658AFF]"
+                style={{
+                  fontFamily: 'JetBrains Mono, monospace',
+                  fontSize: '11px',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                TANSE
+              </span>
+            </Link>
+
+            <Link
+              href="/geo"
+              className="group relative px-8 py-3 bg-transparent border border-white/40 rounded-full hover:border-[#658AFF] hover:bg-[#658AFF]/10 transition-all duration-300 flex items-center gap-3"
+            >
+              <span className="w-5 h-5 rounded-full border border-white/60 group-hover:border-[#658AFF] flex items-center justify-center text-xs">
+                A
+              </span>
+              <span
+                className="text-white group-hover:text-[#658AFF]"
+                style={{
+                  fontFamily: 'JetBrains Mono, monospace',
+                  fontSize: '11px',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                TANSE GEO INDEX
+              </span>
+            </Link>
+          </motion.div>
+
+          {/* Bottom Navigation */}
+          <motion.nav
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
+            className="flex flex-wrap items-center justify-center gap-6"
+            style={{
+              fontFamily: 'JetBrains Mono, monospace',
+              fontSize: '11px',
+              letterSpacing: '0.12em',
+            }}
+          >
+            <Link
+              href="/agence-geo-paris-lyon#values"
+              className="text-[#e4e4e4] hover:text-[#658AFF] transition-colors uppercase relative group"
+            >
+              VALEURS
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#658AFF] group-hover:w-full transition-all duration-300" />
+            </Link>
+            <Link
+              href="/collaboration-okurai"
+              className="text-[#e4e4e4] hover:text-[#658AFF] transition-colors uppercase relative group"
+            >
+              PARTENAIRES
+            <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#658AFF] group-hover:w-full transition-all duration-300" />
+            </Link>
+            <Link
+              href="/blog-seo-geo"
+              className="text-[#e4e4e4] hover:text-[#658AFF] transition-colors uppercase relative group"
+            >
+              BLOG
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#658AFF] group-hover:w-full transition-all duration-300" />
+            </Link>
+            <Link
+              href="/blog-seo-geo#newsletter"
+              className="text-[#e4e4e4] hover:text-[#658AFF] transition-colors uppercase relative group"
+            >
+              NEWSLETTER
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#658AFF] group-hover:w-full transition-all duration-300" />
+            </Link>
+            <a
+              href="https://x.com/tanse_fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1 border border-[#e4e4e4]/30 rounded text-[#e4e4e4] hover:text-[#658AFF] hover:border-[#658AFF] transition-all"
+            >
+              @TANSE
+            </a>
+          </motion.nav>
         </div>
-      </footer>
+
+        {/* Bottom-Left: Logo + Globe */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 1 }}
+          className="absolute bottom-8 md:bottom-10 left-8 md:left-10 flex items-center gap-4"
+        >
+          <Link href="/" className="opacity-60 hover:opacity-100 transition-opacity">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              className="text-[#e4e4e4]"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+          </Link>
+          <div className="w-px h-8 bg-[#e4e4e4]/20" />
+          <div className="relative w-12 h-12">
+            <Image
+              src="/brand/tanse-mark.png?v=3"
+              alt="TANSE"
+              width={48}
+              height={48}
+              className="object-contain opacity-60 hover:opacity-100 transition-opacity"
+            />
+          </div>
+        </motion.div>
+
+        {/* Bottom-Right: Copyright */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 1 }}
+          className="absolute bottom-8 md:bottom-10 right-8 md:right-10 text-right"
+          style={{
+            fontFamily: 'JetBrains Mono, monospace',
+            fontSize: '9px',
+            letterSpacing: '0.1em',
+          }}
+        >
+          <p className="text-[#e4e4e4]/60 uppercase">©PYRIGHT {currentYear}</p>
+        </motion.div>
+      </div>
     </main>
   );
 }
