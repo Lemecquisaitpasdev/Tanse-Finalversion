@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /**
- * SiteHeader - Dia-style navigation
- * Modern header with glassmorphism, sticky behavior, and responsive mobile menu
+ * SiteHeader - Exact Dia-style navigation
+ * Ultra-minimal header positioned top-left with subtle blur
  */
 export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -32,42 +32,43 @@ export default function SiteHeader() {
 
   return (
     <>
-      {/* Desktop & Mobile Header */}
+      {/* Desktop & Mobile Header - Top Left like Dia */}
       <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 pt-4 md:pt-6"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-6 left-6 z-50"
       >
         <nav
-          className={`mx-auto max-w-fit rounded-full transition-all duration-300 ${
+          className={`rounded-full transition-all duration-300 ${
             scrolled
-              ? 'bg-white/90 backdrop-blur-xl shadow-lg'
-              : 'bg-white/70 backdrop-blur-md shadow-md'
-          } border border-gray-200/40 px-4 md:px-6 py-3`}
+              ? 'bg-[#f5f5f5]/95 backdrop-blur-xl'
+              : 'bg-[#f5f5f5]/90 backdrop-blur-lg'
+          } px-5 py-3 shadow-sm`}
         >
-          <div className="flex items-center gap-6 md:gap-8">
-            {/* Logo */}
+          <div className="flex items-center gap-6">
+            {/* Logo - Simple black text like Dia */}
             <Link
               href="/"
-              className="flex items-center gap-2 group"
+              className="flex items-center gap-2.5 group"
             >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                <span className="text-white font-bold text-sm">T</span>
+              <div className="w-7 h-7 rounded-full bg-black flex items-center justify-center">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 0L14 7L7 14L0 7L7 0Z" fill="white"/>
+                </svg>
               </div>
-              <span className="text-lg font-semibold text-black hidden sm:block" style={{ letterSpacing: '-0.02em' }}>
+              <span className="text-[15px] font-semibold text-black hidden sm:block">
                 TANSE
               </span>
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-1">
+            {/* Desktop Navigation - Simple like Dia */}
+            <div className="hidden md:flex items-center gap-5">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-black hover:bg-gray-100/60 rounded-full transition-all duration-200"
-                  style={{ letterSpacing: '-0.01em' }}
+                  className="text-[15px] font-normal text-[#5a5a5a] hover:text-black transition-colors duration-200"
                 >
                   {link.label}
                 </Link>
@@ -77,11 +78,11 @@ export default function SiteHeader() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-full hover:bg-gray-100/60 transition-colors"
+              className="md:hidden p-1.5 text-[#5a5a5a] hover:text-black transition-colors"
               aria-label="Toggle menu"
             >
               <svg
-                className="w-5 h-5 text-gray-700"
+                className="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -117,32 +118,31 @@ export default function SiteHeader() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-black/10 backdrop-blur-sm z-40 md:hidden"
               onClick={() => setMobileMenuOpen(false)}
             />
 
             {/* Mobile Menu */}
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed top-20 left-4 right-4 z-50 md:hidden"
+              initial={{ opacity: 0, scale: 0.95, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -10 }}
+              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed top-20 left-6 right-6 z-50 md:hidden"
             >
-              <div className="bg-white/95 backdrop-blur-xl rounded-[24px] shadow-2xl border border-gray-200/60 overflow-hidden">
-                <div className="p-4 space-y-1">
+              <div className="bg-[#f5f5f5]/95 backdrop-blur-xl rounded-[20px] shadow-lg overflow-hidden">
+                <div className="p-3 space-y-1">
                   {navLinks.map((link, index) => (
                     <motion.div
                       key={link.href}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
+                      transition={{ delay: index * 0.03 }}
                     >
                       <Link
                         href={link.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-black hover:bg-gray-100/60 rounded-[16px] transition-all duration-200"
-                        style={{ letterSpacing: '-0.01em' }}
+                        className="block px-4 py-2.5 text-[15px] font-normal text-[#5a5a5a] hover:text-black hover:bg-white/60 rounded-xl transition-all duration-200"
                       >
                         {link.label}
                       </Link>
