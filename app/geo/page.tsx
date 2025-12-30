@@ -239,9 +239,9 @@ export default function GeoPage() {
       </section>
 
       {/* Cards Grid - EFFET HOVER GRADIENT */}
-      <section className="py-20 px-8" style={{ backgroundColor: '#F8F8F8' }}>
-        <div className="max-w-[1200px] mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+      <section className="py-24 px-8" style={{ backgroundColor: '#F8F8F8' }}>
+        <div className="max-w-[1300px] mx-auto">
+          <div className="grid md:grid-cols-2 gap-8">
 
             {/* Card 1 */}
             <FeatureCard
@@ -404,9 +404,8 @@ export default function GeoPage() {
 }
 
 /**
- * FeatureCard Component - HOVER GRADIENT comme Dia
- * État par défaut: BLANC
- * État Hover: GRADIENT OVERLAY (orange/rouge vers jaune/bleu)
+ * FeatureCard Component - SOPHISTIQUÉ comme Dia
+ * Design premium avec meilleure hiérarchie visuelle
  */
 function FeatureCard({ command, title, description }: {
   command: string;
@@ -415,61 +414,88 @@ function FeatureCard({ command, title, description }: {
 }) {
   return (
     <motion.div
-      whileHover={{ scale: 1.02 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className="group relative overflow-hidden rounded-3xl border p-8 cursor-pointer"
+      whileHover={{ scale: 1.03, y: -4 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+      className="group relative overflow-hidden rounded-[32px] border cursor-pointer shadow-sm hover:shadow-2xl"
       style={{
         backgroundColor: 'white',
         borderColor: '#EBEBEB',
+        minHeight: '340px',
       }}
     >
-      {/* Gradient overlay au hover - EXACTEMENT comme Dia */}
+      {/* Gradient overlay SOPHISTIQUÉ */}
       <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out"
         style={{
-          background: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 25%, #FDC830 50%, #4FACFE 75%, #00F2FE 100%)',
+          background: 'linear-gradient(135deg, #FF6B35 0%, #F7B731 25%, #FED766 40%, #4FACFE 70%, #00F2FE 100%)',
         }}
       />
 
-      <div className="relative z-10">
-        {/* Icons top left */}
-        <div className="mb-6 flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center border-2 group-hover:border-white transition-colors" style={{ borderColor: '#EBEBEB', backgroundColor: 'transparent' }}>
-            <span className="text-sm group-hover:text-white transition-colors" style={{ color: 'rgba(0, 0, 0, 0.85)' }}>
+      <div className="relative z-10 p-10 h-full flex flex-col">
+        {/* Icon Badge - GRAND et VISIBLE */}
+        <div className="mb-8">
+          <div
+            className="inline-flex items-center justify-center w-16 h-16 rounded-2xl border-2 group-hover:border-white/30 transition-all duration-500"
+            style={{
+              borderColor: '#EBEBEB',
+              backgroundColor: '#F8F8F8',
+            }}
+          >
+            <span className="text-3xl group-hover:scale-110 transition-transform duration-300">
               {command === '/audit' ? '📊' : command === '/citations' ? '📈' : command === '/optimise' ? '✨' : '🔗'}
             </span>
           </div>
-          <div className="px-3 py-1 rounded-lg text-xs font-medium group-hover:bg-white/20 transition-colors" style={{ backgroundColor: '#EBEBEB', color: 'rgba(0, 0, 0, 0.75)' }}>
-            <span className="group-hover:text-white">{command}</span>
+        </div>
+
+        {/* Command Badge - PROMINENT */}
+        <div className="mb-6">
+          <div
+            className="inline-flex items-center px-4 py-2 rounded-full font-mono text-sm font-medium group-hover:bg-white/25 group-hover:backdrop-blur-sm transition-all duration-500"
+            style={{
+              backgroundColor: '#EBEBEB',
+              color: 'rgba(0, 0, 0, 0.75)',
+            }}
+          >
+            <span className="group-hover:text-white transition-colors duration-500">{command}</span>
           </div>
         </div>
 
-        {/* Title */}
+        {/* Title - GRAND et BOLD */}
         <h3
-          className="mb-3 font-semibold group-hover:text-white transition-colors"
+          className="mb-4 font-bold group-hover:text-white transition-colors duration-500"
           style={{
             fontFamily: 'Georgia, "Times New Roman", serif',
-            fontSize: '24px',
-            lineHeight: '30px',
-            color: 'rgba(0, 0, 0, 0.85)',
-            letterSpacing: '-0.01em',
+            fontSize: '28px',
+            lineHeight: '34px',
+            color: 'rgba(0, 0, 0, 0.9)',
+            letterSpacing: '-0.02em',
           }}
         >
           {title}
         </h3>
 
-        {/* Description */}
+        {/* Description - LISIBLE avec meilleur line-height */}
         <p
-          className="leading-relaxed group-hover:text-white/90 transition-colors"
+          className="leading-relaxed group-hover:text-white/95 transition-colors duration-500 flex-grow"
           style={{
             fontFamily: 'Helvetica, Arial, sans-serif',
-            fontSize: '15px',
-            lineHeight: '23px',
-            color: 'rgba(0, 0, 0, 0.65)',
+            fontSize: '16px',
+            lineHeight: '26px',
+            color: 'rgba(0, 0, 0, 0.6)',
           }}
         >
           {description}
         </p>
+
+        {/* Arrow indicator on hover */}
+        <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <div className="inline-flex items-center gap-2 text-white text-sm font-medium">
+            <span>En savoir plus</span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
       </div>
     </motion.div>
   );
