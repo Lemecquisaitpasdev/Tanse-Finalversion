@@ -6,6 +6,7 @@ import FeatureSlider from '../components/outils/FeatureSlider';
 import TestimonialsSection from '../components/outils/TestimonialsSection';
 import PrivacySection from '../components/outils/PrivacySection';
 import DiaFooter from '../components/outils/DiaFooter';
+import BrowserCompanyFooter from '../components/outils/BrowserCompanyFooter';
 
 export const metadata: Metadata = {
   title: 'Outils GEO Gratuits | TANSE - Optimisez votre Visibilité IA',
@@ -110,6 +111,9 @@ export default function OutilsPage() {
 
       {/* Dia Footer with Massive Text */}
       <DiaFooter toolName="TANSE" ctaText="Commencer gratuitement" ctaHref="/geo-score" />
+
+      {/* Browser Company Style Footer */}
+      <BrowserCompanyFooter />
     </main>
   );
 }

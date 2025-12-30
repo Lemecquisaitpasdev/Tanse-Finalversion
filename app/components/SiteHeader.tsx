@@ -2,23 +2,42 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 
 /**
  * SiteHeader - Exact Dia-style navigation
  * Ultra-minimal header positioned top-left with subtle blur
+ * Hides on scroll down, shows on scroll up
  */
 export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { scrollY } = useScroll();
 
-  // Handle scroll effect
+  // Track scroll direction
   useEffect(() => {
+    let lastScrollY = 0;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+
+      // Update scrolled state for blur effect
+      setScrolled(currentScrollY > 20);
+
+      // Hide header when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & past 100px
+        setHidden(true);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up
+        setHidden(false);
+      }
+
+      lastScrollY = currentScrollY;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -35,8 +54,11 @@ export default function SiteHeader() {
       {/* Desktop & Mobile Header - Top Left like Dia */}
       <motion.header
         initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        animate={{
+          opacity: hidden ? 0 : 1,
+          y: hidden ? -100 : 0
+        }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         className="fixed top-6 left-6 z-50"
       >
         <nav
