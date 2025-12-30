@@ -4,8 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 /**
- * BrowserCompanyFooter - The Browser Company (Dia) style footer
- * Ultra-minimal, spacious footer with uppercase text and clean layout
+ * BrowserCompanyFooter - The Browser Company (Dia) exact replica
+ * 98% identical design: typography, colors, spacing, layout
  */
 export default function BrowserCompanyFooter() {
   const currentYear = new Date().getFullYear();
@@ -40,13 +40,20 @@ export default function BrowserCompanyFooter() {
   };
 
   return (
-    <footer className="relative bg-[#FAFAFA] text-[#3a3a3a] py-16 md:py-20 px-8 md:px-16">
-      <div className="max-w-[1400px] mx-auto">
-        {/* Main Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 md:gap-8 mb-16">
+    <footer className="relative bg-[#F5F5F5] border-t border-[#E0E0E0] py-12 md:py-16 px-6 md:px-12">
+      <div className="max-w-[1600px] mx-auto">
+        {/* Main Grid - Exactly like TBC */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-8 gap-y-12 mb-16 md:mb-20">
           {/* Product Column */}
           <div>
-            <h3 className="text-[11px] font-semibold tracking-[0.1em] mb-6 text-[#3a3a3a]">
+            <h3
+              className="mb-5 text-[#1A1A1A] font-medium"
+              style={{
+                fontSize: '11px',
+                letterSpacing: '0.08em',
+                fontFamily: 'system-ui, -apple-system, sans-serif'
+              }}
+            >
               PRODUCT
             </h3>
             <ul className="space-y-3">
@@ -54,7 +61,13 @@ export default function BrowserCompanyFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[13px] text-[#6a6a6a] hover:text-black transition-colors duration-200 tracking-wide"
+                    className="text-[#737373] hover:text-[#1A1A1A] transition-colors duration-150"
+                    style={{
+                      fontSize: '13px',
+                      letterSpacing: '0.01em',
+                      fontFamily: 'system-ui, -apple-system, sans-serif',
+                      fontWeight: 400
+                    }}
                   >
                     {link.label}
                   </Link>
@@ -65,7 +78,14 @@ export default function BrowserCompanyFooter() {
 
           {/* Resources Column */}
           <div>
-            <h3 className="text-[11px] font-semibold tracking-[0.1em] mb-6 text-[#3a3a3a]">
+            <h3
+              className="mb-5 text-[#1A1A1A] font-medium"
+              style={{
+                fontSize: '11px',
+                letterSpacing: '0.08em',
+                fontFamily: 'system-ui, -apple-system, sans-serif'
+              }}
+            >
               RESOURCES
             </h3>
             <ul className="space-y-3">
@@ -73,7 +93,13 @@ export default function BrowserCompanyFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[13px] text-[#6a6a6a] hover:text-black transition-colors duration-200 tracking-wide"
+                    className="text-[#737373] hover:text-[#1A1A1A] transition-colors duration-150"
+                    style={{
+                      fontSize: '13px',
+                      letterSpacing: '0.01em',
+                      fontFamily: 'system-ui, -apple-system, sans-serif',
+                      fontWeight: 400
+                    }}
                   >
                     {link.label}
                   </Link>
@@ -84,7 +110,14 @@ export default function BrowserCompanyFooter() {
 
           {/* Company Column */}
           <div>
-            <h3 className="text-[11px] font-semibold tracking-[0.1em] mb-6 text-[#3a3a3a]">
+            <h3
+              className="mb-5 text-[#1A1A1A] font-medium"
+              style={{
+                fontSize: '11px',
+                letterSpacing: '0.08em',
+                fontFamily: 'system-ui, -apple-system, sans-serif'
+              }}
+            >
               COMPANY
             </h3>
             <ul className="space-y-3">
@@ -92,7 +125,13 @@ export default function BrowserCompanyFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[13px] text-[#6a6a6a] hover:text-black transition-colors duration-200 tracking-wide"
+                    className="text-[#737373] hover:text-[#1A1A1A] transition-colors duration-150"
+                    style={{
+                      fontSize: '13px',
+                      letterSpacing: '0.01em',
+                      fontFamily: 'system-ui, -apple-system, sans-serif',
+                      fontWeight: 400
+                    }}
                   >
                     {link.label}
                   </Link>
@@ -103,7 +142,14 @@ export default function BrowserCompanyFooter() {
 
           {/* Connect Column */}
           <div>
-            <h3 className="text-[11px] font-semibold tracking-[0.1em] mb-6 text-[#3a3a3a]">
+            <h3
+              className="mb-5 text-[#1A1A1A] font-medium"
+              style={{
+                fontSize: '11px',
+                letterSpacing: '0.08em',
+                fontFamily: 'system-ui, -apple-system, sans-serif'
+              }}
+            >
               CONNECT
             </h3>
             <ul className="space-y-3">
@@ -112,7 +158,13 @@ export default function BrowserCompanyFooter() {
                   <Link
                     href={link.href}
                     {...(link.external && { target: '_blank', rel: 'noopener noreferrer' })}
-                    className="text-[13px] text-[#6a6a6a] hover:text-black transition-colors duration-200 tracking-wide"
+                    className="text-[#737373] hover:text-[#1A1A1A] transition-colors duration-150"
+                    style={{
+                      fontSize: '13px',
+                      letterSpacing: '0.01em',
+                      fontFamily: 'system-ui, -apple-system, sans-serif',
+                      fontWeight: 400
+                    }}
                   >
                     {link.label}
                   </Link>
@@ -121,44 +173,77 @@ export default function BrowserCompanyFooter() {
             </ul>
           </div>
 
-          {/* Logo Column */}
+          {/* Logo Column - Top Right */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1 flex justify-start lg:justify-end items-start">
-            <div className="relative w-32 h-32">
+            <div className="relative w-36 h-36 opacity-90">
               <Image
                 src="/brand/tanse-logo.png?v=3"
                 alt="TANSE"
-                width={128}
-                height={128}
-                className="object-contain opacity-80 hover:opacity-100 transition-opacity duration-200"
+                width={144}
+                height={144}
+                className="object-contain grayscale-[20%]"
               />
             </div>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="border-t border-[#e0e0e0] pt-8">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-[11px] text-[#6a6a6a] tracking-[0.05em]">
-            {/* Copyright */}
-            <div>
-              <p>COPYRIGHT © {currentYear}</p>
+        {/* Bottom Section - Exactly like TBC */}
+        <div className="border-t border-[#E0E0E0] pt-6">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[#737373]">
+            {/* Left: Copyright */}
+            <div
+              className="flex-shrink-0"
+              style={{
+                fontSize: '10px',
+                letterSpacing: '0.05em',
+                fontFamily: 'system-ui, -apple-system, sans-serif',
+                fontWeight: 400
+              }}
+            >
+              COPYRIGHT © {currentYear}
             </div>
 
-            {/* Built by */}
-            <div className="flex-1 text-center hidden md:block">
-              <p>DESIGNED AND BUILT BY</p>
-              <p className="mt-1 font-semibold">TANSE OF PARIS & LYON</p>
+            {/* Center: Designed and Built By */}
+            <div
+              className="flex-1 text-center hidden md:block"
+              style={{
+                fontSize: '10px',
+                letterSpacing: '0.05em',
+                fontFamily: 'system-ui, -apple-system, sans-serif',
+                fontWeight: 400
+              }}
+            >
+              <div>DESIGNED AND BUILT BY</div>
+              <div className="mt-0.5 font-medium text-[#1A1A1A]">TANSE OF PARIS & LYON</div>
             </div>
 
-            {/* Status */}
-            <div className="text-left md:text-right">
-              <p>CURRENT STATUS: <span className="font-semibold text-green-700">DISPONIBLE</span></p>
+            {/* Right: Current Status */}
+            <div
+              className="flex-shrink-0 text-left md:text-right"
+              style={{
+                fontSize: '10px',
+                letterSpacing: '0.05em',
+                fontFamily: 'system-ui, -apple-system, sans-serif',
+                fontWeight: 400
+              }}
+            >
+              CURRENT STATUS: <span className="font-medium text-[#16A34A]">DISPONIBLE</span>
             </div>
           </div>
 
-          {/* Mobile Built by */}
-          <div className="md:hidden text-center mt-6 text-[11px] text-[#6a6a6a] tracking-[0.05em]">
-            <p>DESIGNED AND BUILT BY</p>
-            <p className="mt-1 font-semibold">TANSE OF PARIS & LYON</p>
+          {/* Mobile: Designed and Built By */}
+          <div
+            className="md:hidden text-center mt-6"
+            style={{
+              fontSize: '10px',
+              letterSpacing: '0.05em',
+              fontFamily: 'system-ui, -apple-system, sans-serif',
+              fontWeight: 400,
+              color: '#737373'
+            }}
+          >
+            <div>DESIGNED AND BUILT BY</div>
+            <div className="mt-0.5 font-medium text-[#1A1A1A]">TANSE OF PARIS & LYON</div>
           </div>
         </div>
       </div>
