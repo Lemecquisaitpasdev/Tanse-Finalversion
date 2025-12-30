@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 /**
  * BrowserCompanyFooter - The Browser Company (Dia) exact replica
- * 98% identical design: typography, colors, spacing, layout
+ * Exact typography: ABC Favorit Mono, 13px, weight 400, line-height 16-17px
  */
 export default function BrowserCompanyFooter() {
   const currentYear = new Date().getFullYear();
@@ -47,11 +47,14 @@ export default function BrowserCompanyFooter() {
           {/* Product Column */}
           <div>
             <h3
-              className="mb-5 text-[#1A1A1A] font-medium"
+              className="mb-5 text-[#1A1A1A]"
               style={{
-                fontSize: '11px',
+                fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
+                fontSize: '13px',
+                fontWeight: 400,
+                lineHeight: '17px',
                 letterSpacing: '0.08em',
-                fontFamily: 'system-ui, -apple-system, sans-serif'
+                fontStyle: 'normal',
               }}
             >
               PRODUCT
@@ -63,10 +66,12 @@ export default function BrowserCompanyFooter() {
                     href={link.href}
                     className="text-[#737373] hover:text-[#1A1A1A] transition-colors duration-150"
                     style={{
+                      fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
                       fontSize: '13px',
+                      fontWeight: 400,
+                      lineHeight: '16px',
                       letterSpacing: '0.01em',
-                      fontFamily: 'system-ui, -apple-system, sans-serif',
-                      fontWeight: 400
+                      fontStyle: 'normal',
                     }}
                   >
                     {link.label}
@@ -79,11 +84,14 @@ export default function BrowserCompanyFooter() {
           {/* Resources Column */}
           <div>
             <h3
-              className="mb-5 text-[#1A1A1A] font-medium"
+              className="mb-5 text-[#1A1A1A]"
               style={{
-                fontSize: '11px',
+                fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
+                fontSize: '13px',
+                fontWeight: 400,
+                lineHeight: '17px',
                 letterSpacing: '0.08em',
-                fontFamily: 'system-ui, -apple-system, sans-serif'
+                fontStyle: 'normal',
               }}
             >
               RESOURCES
@@ -95,10 +103,12 @@ export default function BrowserCompanyFooter() {
                     href={link.href}
                     className="text-[#737373] hover:text-[#1A1A1A] transition-colors duration-150"
                     style={{
+                      fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
                       fontSize: '13px',
+                      fontWeight: 400,
+                      lineHeight: '16px',
                       letterSpacing: '0.01em',
-                      fontFamily: 'system-ui, -apple-system, sans-serif',
-                      fontWeight: 400
+                      fontStyle: 'normal',
                     }}
                   >
                     {link.label}
@@ -111,11 +121,14 @@ export default function BrowserCompanyFooter() {
           {/* Company Column */}
           <div>
             <h3
-              className="mb-5 text-[#1A1A1A] font-medium"
+              className="mb-5 text-[#1A1A1A]"
               style={{
-                fontSize: '11px',
+                fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
+                fontSize: '13px',
+                fontWeight: 400,
+                lineHeight: '17px',
                 letterSpacing: '0.08em',
-                fontFamily: 'system-ui, -apple-system, sans-serif'
+                fontStyle: 'normal',
               }}
             >
               COMPANY
@@ -127,10 +140,12 @@ export default function BrowserCompanyFooter() {
                     href={link.href}
                     className="text-[#737373] hover:text-[#1A1A1A] transition-colors duration-150"
                     style={{
+                      fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
                       fontSize: '13px',
+                      fontWeight: 400,
+                      lineHeight: '16px',
                       letterSpacing: '0.01em',
-                      fontFamily: 'system-ui, -apple-system, sans-serif',
-                      fontWeight: 400
+                      fontStyle: 'normal',
                     }}
                   >
                     {link.label}
@@ -143,11 +158,14 @@ export default function BrowserCompanyFooter() {
           {/* Connect Column */}
           <div>
             <h3
-              className="mb-5 text-[#1A1A1A] font-medium"
+              className="mb-5 text-[#1A1A1A]"
               style={{
-                fontSize: '11px',
+                fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
+                fontSize: '13px',
+                fontWeight: 400,
+                lineHeight: '17px',
                 letterSpacing: '0.08em',
-                fontFamily: 'system-ui, -apple-system, sans-serif'
+                fontStyle: 'normal',
               }}
             >
               CONNECT
@@ -160,10 +178,12 @@ export default function BrowserCompanyFooter() {
                     {...(link.external && { target: '_blank', rel: 'noopener noreferrer' })}
                     className="text-[#737373] hover:text-[#1A1A1A] transition-colors duration-150"
                     style={{
+                      fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
                       fontSize: '13px',
+                      fontWeight: 400,
+                      lineHeight: '16px',
                       letterSpacing: '0.01em',
-                      fontFamily: 'system-ui, -apple-system, sans-serif',
-                      fontWeight: 400
+                      fontStyle: 'normal',
                     }}
                   >
                     {link.label}
@@ -194,10 +214,12 @@ export default function BrowserCompanyFooter() {
             <div
               className="flex-shrink-0"
               style={{
-                fontSize: '10px',
+                fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
+                fontSize: '13px',
+                fontWeight: 400,
+                lineHeight: '16px',
                 letterSpacing: '0.05em',
-                fontFamily: 'system-ui, -apple-system, sans-serif',
-                fontWeight: 400
+                fontStyle: 'normal',
               }}
             >
               COPYRIGHT © {currentYear}
@@ -207,10 +229,12 @@ export default function BrowserCompanyFooter() {
             <div
               className="flex-1 text-center hidden md:block"
               style={{
-                fontSize: '10px',
+                fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
+                fontSize: '13px',
+                fontWeight: 400,
+                lineHeight: '16px',
                 letterSpacing: '0.05em',
-                fontFamily: 'system-ui, -apple-system, sans-serif',
-                fontWeight: 400
+                fontStyle: 'normal',
               }}
             >
               <div>DESIGNED AND BUILT BY</div>
@@ -221,10 +245,12 @@ export default function BrowserCompanyFooter() {
             <div
               className="flex-shrink-0 text-left md:text-right"
               style={{
-                fontSize: '10px',
+                fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
+                fontSize: '13px',
+                fontWeight: 400,
+                lineHeight: '16px',
                 letterSpacing: '0.05em',
-                fontFamily: 'system-ui, -apple-system, sans-serif',
-                fontWeight: 400
+                fontStyle: 'normal',
               }}
             >
               CURRENT STATUS: <span className="font-medium text-[#16A34A]">DISPONIBLE</span>
@@ -235,11 +261,13 @@ export default function BrowserCompanyFooter() {
           <div
             className="md:hidden text-center mt-6"
             style={{
-              fontSize: '10px',
-              letterSpacing: '0.05em',
-              fontFamily: 'system-ui, -apple-system, sans-serif',
+              fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
+              fontSize: '13px',
               fontWeight: 400,
-              color: '#737373'
+              lineHeight: '16px',
+              letterSpacing: '0.05em',
+              fontStyle: 'normal',
+              color: '#737373',
             }}
           >
             <div>DESIGNED AND BUILT BY</div>
