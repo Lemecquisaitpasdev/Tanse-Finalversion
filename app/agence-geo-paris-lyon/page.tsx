@@ -199,7 +199,7 @@ export default function EntreprisePage() {
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#658AFF] group-hover:w-full transition-all duration-300" />
             </Link>
             <Link
-              href="/agence-geo-paris-lyon#method"
+              href="/valeurs"
               className="text-white hover:text-[#658AFF] transition-colors uppercase relative group"
             >
               VALEURS

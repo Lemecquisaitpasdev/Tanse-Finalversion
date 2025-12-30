@@ -28,7 +28,7 @@ export default function BrowserCompanyFooter() {
     ],
     company: [
       { label: 'ABOUT US', href: '/agence-geo-paris-lyon' },
-      { label: 'NOS VALEURS', href: '/agence-geo-paris-lyon#method' },
+      { label: 'NOS VALEURS', href: '/valeurs' },
       { label: 'ÉQUIPE', href: '/agence-geo-paris-lyon#equipe' },
       { label: 'OKURAI', href: '/collaboration-okurai' },
     ],
