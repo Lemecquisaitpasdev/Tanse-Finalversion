@@ -132,8 +132,8 @@ export default function ValeursPage() {
             <Image
               src="/valeurs/Frame-27.svg"
               alt="Car illustration"
-              width={500}
-              height={350}
+              width={420}
+              height={300}
               className="opacity-80"
             />
           </div>
@@ -271,8 +271,8 @@ export default function ValeursPage() {
           <Image
             src="/valeurs/Frame-30.svg"
             alt="Car with map"
-            width={500}
-            height={350}
+            width={550}
+            height={380}
             className="opacity-80"
           />
         </div>
@@ -394,8 +394,8 @@ export default function ValeursPage() {
           <Image
             src="/valeurs/Frame-32.svg"
             alt="Chisel illustration"
-            width={300}
-            height={250}
+            width={280}
+            height={240}
             className="opacity-80"
           />
         </div>
@@ -555,8 +555,8 @@ export default function ValeursPage() {
             <Image
               src="/valeurs/beds.svg"
               alt="Mattresses for sale"
-              width={400}
-              height={300}
+              width={380}
+              height={280}
               className="opacity-80"
             />
           </div>
@@ -622,8 +622,19 @@ export default function ValeursPage() {
           <Image
             src="/valeurs/Frame-37.svg"
             alt="Fishing hook"
-            width={200}
-            height={300}
+            width={180}
+            height={250}
+            className="opacity-80"
+          />
+        </div>
+
+        {/* People by car with cactus illustration */}
+        <div className="my-16 flex justify-center">
+          <Image
+            src="/valeurs/Group-37.svg"
+            alt="People by car with cactus"
+            width={420}
+            height={320}
             className="opacity-80"
           />
         </div>
