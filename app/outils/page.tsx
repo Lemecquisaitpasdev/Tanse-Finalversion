@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import SiteHeader from '../components/SiteHeader';
 import AnimatedMeshBackground from '../components/outils/AnimatedMeshBackground';
 import OutilsHero from '../components/outils/OutilsHero';
 import FeatureSlider from '../components/outils/FeatureSlider';
@@ -63,6 +64,9 @@ export default function OutilsPage() {
 
   return (
     <main className="relative min-h-screen">
+      {/* Dia-style Navigation Header */}
+      <SiteHeader />
+
       {/* Animated Mesh Gradient Background */}
       <AnimatedMeshBackground />
 
