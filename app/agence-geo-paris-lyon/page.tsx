@@ -23,7 +23,7 @@ export default function EntreprisePage() {
       }}
     >
       {/* Pixel Trail Effect - Color #444684 */}
-      <PixelTrail />
+      <PixelTrail theme={theme} />
 
       {/* Four-Corner Grid Layout - 40px from edges */}
       <div className="fixed inset-0 p-10">
@@ -82,13 +82,14 @@ export default function EntreprisePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-            className="text-[#658AFF] mb-12"
+            className="mb-12 transition-colors duration-500"
             style={{
               fontFamily: '"EB Garamond", serif',
               fontStyle: 'italic',
               fontSize: '28px',
               fontWeight: 400,
               lineHeight: '33.6px',
+              color: theme === 'dark' ? '#658AFF' : 'rgb(255, 255, 255)',
             }}
           >
             Nous créons de meilleures façons d'utiliser
