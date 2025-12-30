@@ -89,7 +89,7 @@ export default function EntreprisePage() {
               fontSize: '28px',
               fontWeight: 400,
               lineHeight: '33.6px',
-              color: theme === 'dark' ? '#658AFF' : 'rgb(255, 255, 255)',
+              color: theme === 'dark' ? 'rgb(255, 255, 255)' : '#1B1B1B',
             }}
           >
             Nous créons de meilleures façons d'utiliser

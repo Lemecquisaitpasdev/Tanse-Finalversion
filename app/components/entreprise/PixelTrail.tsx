@@ -9,7 +9,7 @@ import { usePixelTrail } from '@/app/hooks/useMousePosition';
  */
 export default function PixelTrail({ theme }: { theme: 'dark' | 'light' }) {
   const particles = usePixelTrail();
-  const pixelColor = theme === 'dark' ? '#444684' : 'rgb(255, 255, 255)';
+  const pixelColor = theme === 'dark' ? '#444684' : '#1B1B1B';
 
   return (
     <div className="fixed inset-0 pointer-events-none z-50">
