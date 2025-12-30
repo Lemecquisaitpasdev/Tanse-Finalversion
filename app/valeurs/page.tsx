@@ -11,9 +11,20 @@ import Link from 'next/link';
 export default function ValeursPage() {
   return (
     <main className="relative min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 py-20">
-        <div className="max-w-4xl w-full text-center">
+      {/* Hero Section with Background Image */}
+      <section
+        className="relative w-full min-h-screen flex items-center justify-center py-20"
+        style={{
+          backgroundImage: 'url(/valeurs/small0.5x.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40"></div>
+
+        <div className="relative z-10 w-full text-center px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -27,6 +38,7 @@ export default function ValeursPage() {
                 fontWeight: 700,
                 lineHeight: '1.1',
                 letterSpacing: '-0.02em',
+                color: 'white',
               }}
             >
               Notes sur les{' '}
@@ -41,11 +53,11 @@ export default function ValeursPage() {
               </span>
             </h1>
             <p
-              className="text-gray-600"
               style={{
                 fontFamily: 'system-ui, -apple-system, sans-serif',
                 fontSize: '18px',
                 lineHeight: '1.6',
+                color: 'rgba(255, 255, 255, 0.9)',
               }}
             >
               Et ce qu'elles peuvent nous enseigner sur la créativité, l'ingéniosité,
@@ -57,7 +69,8 @@ export default function ValeursPage() {
       </section>
 
       {/* Foreword */}
-      <section className="px-6 py-20 max-w-3xl mx-auto bg-[#232424]">
+      <section className="w-full py-20 bg-[#232424]">
+        <div className="max-w-5xl mx-auto px-6">
         <h2
           className="mb-12"
           style={{
@@ -108,23 +121,12 @@ export default function ValeursPage() {
             parlant de quelque chose d'entièrement différent. Nous allons parler de Road Trips.
           </p>
         </div>
+        </div>
       </section>
 
       {/* Value 1: HEARTFELT INTENSITY */}
-      <section
-        className="relative w-full min-h-screen py-20"
-        style={{
-          backgroundImage: 'url(/valeurs/small0.5x.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-[#F9DA49]/80"></div>
-
-        {/* Content Container */}
-        <div className="relative z-10 max-w-5xl mx-auto px-6">
+      <section className="w-full py-20 bg-[#F9DA49]">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="mb-12">
           <span
             style={{
@@ -252,7 +254,8 @@ export default function ValeursPage() {
       </section>
 
       {/* Value 2: START WITH WHAT COULD BE */}
-      <section className="px-6 py-20 max-w-4xl mx-auto bg-[#5E2320]">
+      <section className="w-full py-20 bg-[#5E2320]">
+        <div className="max-w-5xl mx-auto px-6">
         <div className="mb-16 flex items-center justify-center">
           <Image
             src="/valeurs/Frame-30.svg"
@@ -359,10 +362,12 @@ export default function ValeursPage() {
             certainement pas que c'est juste.
           </p>
         </div>
+        </div>
       </section>
 
       {/* Value 3: ASSUME YOU DON'T KNOW */}
-      <section className="px-6 py-20 max-w-4xl mx-auto bg-[#EADFDD]">
+      <section className="w-full py-20 bg-[#EADFDD]">
+        <div className="max-w-5xl mx-auto px-6">
         <div className="mb-16 flex items-center justify-center">
           <Image
             src="/valeurs/Frame-32.svg"
@@ -478,10 +483,12 @@ export default function ValeursPage() {
             className="opacity-80"
           />
         </div>
+        </div>
       </section>
 
       {/* Value 4: ON THE HOOK FOR THE TEAM */}
-      <section className="px-6 py-20 max-w-4xl mx-auto bg-[#4C5248]">
+      <section className="w-full py-20 bg-[#4C5248]">
+        <div className="max-w-5xl mx-auto px-6">
         <div className="mb-12">
           <span
             style={{
@@ -598,10 +605,12 @@ export default function ValeursPage() {
             className="opacity-80"
           />
         </div>
+        </div>
       </section>
 
       {/* Value 5: MAKE THEM FEEL SOMETHING */}
-      <section className="px-6 py-20 max-w-4xl mx-auto bg-[#DDEDEA]">
+      <section className="w-full py-20 bg-[#DDEDEA]">
+        <div className="max-w-5xl mx-auto px-6">
         <div className="mb-12">
           <span
             style={{
@@ -732,10 +741,11 @@ export default function ValeursPage() {
             className="opacity-80"
           />
         </div>
+        </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16 px-6">
+      <footer className="w-full bg-gray-900 text-white py-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <p
             className="mb-4"
