@@ -28,16 +28,18 @@ export default function EntreprisePage() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="absolute top-10 left-10 flex flex-col gap-3"
           style={{
-            fontFamily: '"ABCDiatypeMono", "JetBrains Mono", "Space Mono", monospace',
+            fontFamily: '"ABCDiatypeMono", monospace',
             fontSize: '14px',
             fontWeight: 400,
-            letterSpacing: '0.15em',
+            fontStyle: 'normal',
+            lineHeight: 'normal',
+            color: 'rgb(255, 255, 255)',
           }}
         >
           {/* Row 1: Blue square + Company count */}
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-[#0047FF]" />
-            <span className="text-white uppercase">46 Entreprises collaborent avec Tanse</span>
+            <span className="uppercase">46 Entreprises collaborent avec Tanse</span>
           </div>
           {/* Row 2: Theme toggle */}
           <button
@@ -45,7 +47,7 @@ export default function EntreprisePage() {
             className="flex items-center gap-2 hover:opacity-70 transition-opacity group"
           >
             <div className="w-3 h-3 border border-white" />
-            <span className="text-white uppercase">THEME</span>
+            <span className="uppercase">THEME</span>
           </button>
         </motion.div>
 
@@ -112,13 +114,14 @@ export default function EntreprisePage() {
                 O
               </span>
               <span
-                className="text-white group-hover:text-[#658AFF]"
+                className="group-hover:text-[#658AFF] uppercase"
                 style={{
-                  fontFamily: '"ABCDiatypeMono", "JetBrains Mono", monospace',
+                  fontFamily: '"ABCDiatypeMono", monospace',
                   fontSize: '14px',
                   fontWeight: 400,
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
+                  fontStyle: 'normal',
+                  lineHeight: 'normal',
+                  color: 'rgb(255, 255, 255)',
                 }}
               >
                 TANSE
@@ -134,13 +137,14 @@ export default function EntreprisePage() {
                 A
               </span>
               <span
-                className="text-white group-hover:text-[#658AFF]"
+                className="group-hover:text-[#658AFF] uppercase"
                 style={{
-                  fontFamily: '"ABCDiatypeMono", "JetBrains Mono", monospace',
+                  fontFamily: '"ABCDiatypeMono", monospace',
                   fontSize: '14px',
                   fontWeight: 400,
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
+                  fontStyle: 'normal',
+                  lineHeight: 'normal',
+                  color: 'rgb(255, 255, 255)',
                 }}
               >
                 TANSE GEO INDEX
@@ -155,10 +159,11 @@ export default function EntreprisePage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
             className="flex flex-wrap items-center justify-center gap-6"
             style={{
-              fontFamily: '"ABCDiatypeMono", "JetBrains Mono", monospace',
+              fontFamily: '"ABCDiatypeMono", monospace',
               fontSize: '14px',
               fontWeight: 400,
-              letterSpacing: '0.15em',
+              fontStyle: 'normal',
+              lineHeight: 'normal',
             }}
           >
             <Link
