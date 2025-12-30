@@ -1,539 +1,381 @@
 'use client';
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { Brain, Sparkles, TrendingUp, Zap, ArrowRight, CheckCircle2, Mail, MapPin, Cookie, Settings } from "lucide-react";
-import { useState } from "react";
+import { Book, Smile, Laptop, HelpCircle, Search, Settings, Puzzle, Pencil } from "lucide-react";
 
 /**
- * Page GEO - Refactorisation PIXEL-PERFECT
- * 98% de fidélité avec Dia Browser
+ * Page GEO - Redesign PIXEL-PERFECT basé sur Dia Browser
+ * Recreation exacte du design Dia avec contenu GEO/TANSE
  *
- * RÈGLES ABSOLUES:
- * - Fraunces/Playfair pour titres avec tracking-tighter
- * - Background #F9F9F8 (off-white chaud)
- * - Cartes: Blanc -> Gradient violent au hover
- * - Icônes: Float + Rotate animations
+ * SPECS EXACTES:
+ * - Titre: "Exposure VAR" 56px weight 650 line-height 62px
+ * - Sous-titre: "ABC Oracle" 22px weight 400 line-height 33px
+ * - Couleurs: #F8F8F8 (blanc), #EBEBEB (gris)
+ * - Hover cards: Blanc -> Gradient overlay
  */
 export default function GeoPage() {
-  const [activeFeature, setActiveFeature] = useState(0);
-
-  const features = [
-    {
-      title: "Audit SEO Sémantique",
-      description: "Analyse complète de votre structure de données et recommandations d'optimisation",
-      mockupContent: (
-        <div className="space-y-4">
-          <div className="p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200">
-            <div className="flex items-start gap-3 mb-3">
-              <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="font-semibold text-sm text-slate-900">Schema.org détecté</p>
-                <p className="text-xs text-slate-600 mt-1">Structure optimale pour les IA</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="font-semibold text-sm text-slate-900">Entités reconnues: 47</p>
-                <p className="text-xs text-slate-600 mt-1">Excellent niveau de citation</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Content Strategy",
-      description: "Création de contenu optimisé pour être cité par les IA génératives",
-      mockupContent: (
-        <div className="space-y-3">
-          <div className="p-4 rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200">
-            <p className="text-sm font-semibold text-slate-900 mb-2">Recommandations IA:</p>
-            <ul className="space-y-2 text-xs text-slate-700">
-              <li className="flex items-start gap-2">
-                <span className="text-purple-600">→</span>
-                <span>Structurer en format Q&A pour citations directes</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-purple-600">→</span>
-                <span>Ajouter des données chiffrées vérifiables</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "LLM Monitoring",
-      description: "Suivi en temps réel de vos citations sur ChatGPT, Perplexity et Google AI",
-      mockupContent: (
-        <div className="space-y-3">
-          <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-semibold text-slate-700">Citations cette semaine</span>
-              <span className="text-2xl font-bold text-emerald-600">127</span>
-            </div>
-            <div className="flex gap-2 text-xs">
-              <div className="px-2 py-1 rounded bg-emerald-100 text-emerald-700">ChatGPT: 45</div>
-              <div className="px-2 py-1 rounded bg-blue-100 text-blue-700">Perplexity: 62</div>
-              <div className="px-2 py-1 rounded bg-purple-100 text-purple-700">Google AI: 20</div>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Entity Linking",
-      description: "Connexion de votre marque aux entités reconnues pour renforcer votre autorité",
-      mockupContent: (
-        <div className="space-y-3">
-          <div className="p-4 rounded-xl bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-200">
-            <p className="text-sm font-semibold text-slate-900 mb-3">Graphe de connaissances:</p>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 rounded-full text-xs bg-white border border-orange-300 text-orange-700">Paris</span>
-              <span className="px-3 py-1 rounded-full text-xs bg-white border border-orange-300 text-orange-700">SEO</span>
-              <span className="px-3 py-1 rounded-full text-xs bg-white border border-orange-300 text-orange-700">IA</span>
-              <span className="px-3 py-1 rounded-full text-xs bg-white border border-orange-300 text-orange-700">Marketing</span>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-  ];
-
   return (
-    <main className="relative min-h-screen" style={{ backgroundColor: '#F9F9F8' }}>
+    <main className="relative min-h-screen" style={{ backgroundColor: '#F8F8F8' }}>
 
-      {/* Navigation Sticky */}
-      <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b" style={{ borderColor: 'rgba(0, 0, 0, 0.08)' }}>
-        <div className="max-w-[1200px] mx-auto px-8 py-4 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold" style={{ fontFamily: 'Playfair Display, Georgia, serif', letterSpacing: '-0.02em', color: '#1A1A1A' }}>
-            TANSE
-          </Link>
+      {/* Navigation */}
+      <nav className="sticky top-0 z-50 backdrop-blur-md" style={{ backgroundColor: 'rgba(248, 248, 248, 0.8)' }}>
+        <div className="max-w-[1400px] mx-auto px-8 py-5 flex items-center justify-between">
+          <div className="flex items-center gap-12">
+            <Link href="/" className="text-xl font-semibold" style={{ color: 'rgba(0, 0, 0, 0.85)' }}>
+              ●TANSE
+            </Link>
+            <div className="hidden md:flex items-center gap-8 text-sm" style={{ color: 'rgba(0, 0, 0, 0.85)' }}>
+              <Link href="/geo" className="hover:opacity-70 transition">Skills</Link>
+              <Link href="/forfaits-geo-seo" className="hover:opacity-70 transition">Clients</Link>
+            </div>
+          </div>
           <Link
             href="/contact-audit-gratuit"
-            className="rounded-full px-6 py-3 font-semibold transition-all active:scale-95"
-            style={{
-              backgroundColor: '#1A1A1A',
-              color: 'white',
-              borderRadius: '12px',
-            }}
+            className="px-5 py-2.5 text-sm font-medium rounded-lg transition hover:opacity-90"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.85)', color: '#F8F8F8' }}
           >
-            Démarrer l'audit
+            Démarrer avec TANSE
           </Link>
         </div>
       </nav>
 
-      {/* Hero Section - MONSTRUEUX */}
-      <section className="relative overflow-hidden py-32 px-8">
-        <div className="max-w-[1200px] mx-auto text-center relative">
+      {/* Hero Section - PIXEL PERFECT */}
+      <section className="relative overflow-hidden pt-32 pb-20 px-8">
+        <div className="max-w-[900px] mx-auto text-center relative">
 
-          {/* Titre MONSTRUEUX */}
+          {/* Titre Principal - SPECS EXACTES */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="font-bold mb-8"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="mb-6"
             style={{
-              fontFamily: 'Playfair Display, Georgia, serif',
-              fontSize: 'clamp(56px, 10vw, 120px)',
-              letterSpacing: '-0.05em',
-              lineHeight: '0.95',
-              color: '#1A1A1A',
-              fontWeight: 700,
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontSize: '56px',
+              fontWeight: 650,
+              lineHeight: '62px',
+              color: 'rgba(0, 0, 0, 0.85)',
+              letterSpacing: '-0.02em',
             }}
           >
-            Devenez la source <br />
-            <span
-              className="inline-block mt-2"
-              style={{
-                background: 'linear-gradient(135deg, #FF4D00 0%, #FF0080 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
-              préférée des IA
-            </span>
+            Vous n'avez pas à <br />
+            tout faire seul.
           </motion.h1>
 
+          {/* Sous-titre - SPECS EXACTES */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="max-w-3xl mx-auto mb-12"
+            transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
+            className="mb-10 max-w-[680px] mx-auto"
             style={{
-              fontFamily: 'Inter, system-ui, sans-serif',
-              fontSize: '20px',
-              lineHeight: '1.6',
-              letterSpacing: '-0.01em',
-              color: '#4A4A4A',
+              fontFamily: 'Helvetica, Arial, sans-serif',
+              fontSize: '22px',
+              fontWeight: 400,
+              lineHeight: '33px',
+              color: 'rgba(0, 0, 0, 0.85)',
             }}
           >
-            Le <strong style={{ color: '#1A1A1A' }}>GEO (Generative Engine Optimization)</strong> optimise votre contenu
-            pour être cité par ChatGPT, Perplexity, Google AI et tous les moteurs de réponse.
+            TANSE est l'agence GEO qui vous accompagne vraiment — pour optimiser votre présence, accélérer votre croissance et vous positionner comme référence.
           </motion.p>
 
+          {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="flex flex-wrap items-center justify-center gap-4"
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           >
             <Link
-              href="/forfaits-geo-seo"
-              className="px-10 py-4 font-semibold transition-all active:scale-95 shadow-lg hover:shadow-xl"
-              style={{
-                backgroundColor: '#1A1A1A',
-                color: 'white',
-                borderRadius: '12px',
-                fontSize: '16px',
-              }}
-            >
-              Découvrir nos forfaits
-            </Link>
-            <Link
               href="/contact-audit-gratuit"
-              className="px-10 py-4 font-medium transition-all active:scale-95 border-2 hover:bg-white"
+              className="inline-block px-8 py-4 text-base font-medium rounded-full transition-all hover:scale-105 active:scale-95"
               style={{
-                borderColor: 'rgba(0, 0, 0, 0.15)',
-                color: '#1A1A1A',
-                borderRadius: '12px',
-                fontSize: '16px',
-                backgroundColor: 'transparent',
+                backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                color: '#F8F8F8',
               }}
             >
-              Audit gratuit
+              Démarrer avec TANSE
             </Link>
           </motion.div>
 
-          {/* Icônes Flottantes PIXEL-ART avec Rotation */}
+          {/* Icônes Flottantes PIXEL-ART - Position exacte */}
+          {/* Livre - Haut gauche */}
           <motion.div
-            className="absolute"
-            style={{ top: '15%', left: '8%' }}
+            className="absolute hidden lg:block"
+            style={{ top: '8%', left: '2%' }}
             animate={{
-              y: [0, -15, 0],
-              rotate: [0, 5, -5, 0]
+              y: [0, -12, 0],
+              rotate: [0, 3, -3, 0]
             }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center shadow-2xl border-4 border-blue-300">
-              <Brain className="w-10 h-10 text-white" strokeWidth={2.5} />
+            <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
+              <Book className="w-8 h-8 text-white" strokeWidth={2} />
             </div>
           </motion.div>
 
+          {/* Smiley - Milieu gauche */}
           <motion.div
-            className="absolute"
-            style={{ top: '12%', right: '10%' }}
+            className="absolute hidden lg:block"
+            style={{ top: '35%', left: '5%' }}
             animate={{
-              y: [0, -20, 0],
-              rotate: [0, -8, 8, 0]
+              y: [0, -15, 0],
+              rotate: [0, -5, 5, 0]
             }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
+            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
           >
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center shadow-2xl border-4 border-purple-300">
-              <Sparkles className="w-8 h-8 text-white" strokeWidth={2.5} />
+            <div className="w-14 h-14 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
+              <Smile className="w-7 h-7 text-white" strokeWidth={2} />
             </div>
           </motion.div>
 
+          {/* Laptop - Bas gauche */}
           <motion.div
-            className="absolute"
-            style={{ bottom: '12%', left: '12%' }}
+            className="absolute hidden lg:block"
+            style={{ bottom: '8%', left: '8%' }}
+            animate={{
+              y: [0, -10, 0],
+              rotate: [0, 4, -4, 0]
+            }}
+            transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          >
+            <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
+              <Laptop className="w-8 h-8 text-white" strokeWidth={2} />
+            </div>
+          </motion.div>
+
+          {/* Question - Bas centre gauche */}
+          <motion.div
+            className="absolute hidden lg:block"
+            style={{ bottom: '15%', left: '20%' }}
             animate={{
               y: [0, -18, 0],
-              rotate: [0, 10, -10, 0]
+              rotate: [0, -6, 6, 0]
             }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+            transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
           >
-            <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl flex items-center justify-center shadow-2xl border-4 border-orange-300">
-              <Zap className="w-7 h-7 text-white" strokeWidth={2.5} />
+            <div className="w-12 h-12 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
+              <HelpCircle className="w-6 h-6 text-white" strokeWidth={2} />
             </div>
           </motion.div>
 
+          {/* Search - Haut droite */}
           <motion.div
-            className="absolute"
-            style={{ bottom: '18%', right: '15%' }}
+            className="absolute hidden lg:block"
+            style={{ top: '12%', right: '8%' }}
             animate={{
-              y: [0, -22, 0],
-              rotate: [0, -12, 12, 0]
+              y: [0, -14, 0],
+              rotate: [0, 5, -5, 0]
             }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.8 }}
+            transition={{ duration: 4.3, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
           >
-            <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center shadow-2xl border-4 border-green-300">
-              <TrendingUp className="w-8 h-8 text-white" strokeWidth={2.5} />
+            <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
+              <Search className="w-8 h-8 text-white" strokeWidth={2} />
             </div>
           </motion.div>
 
+          {/* Gear - Milieu droite */}
           <motion.div
-            className="absolute"
-            style={{ top: '48%', right: '5%' }}
+            className="absolute hidden lg:block"
+            style={{ top: '38%', right: '3%' }}
             animate={{
-              y: [0, -12, 0],
-              rotate: [0, 7, -7, 0]
+              y: [0, -16, 0],
+              rotate: [0, 8, -8, 0]
             }}
-            transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 2.3 }}
+            transition={{ duration: 4.6, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
           >
-            <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-700 rounded-2xl flex items-center justify-center shadow-2xl border-4 border-pink-300">
-              <CheckCircle2 className="w-6 h-6 text-white" strokeWidth={2.5} />
+            <div className="w-14 h-14 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
+              <Settings className="w-7 h-7 text-white" strokeWidth={2} />
+            </div>
+          </motion.div>
+
+          {/* Puzzle - Bas droite */}
+          <motion.div
+            className="absolute hidden lg:block"
+            style={{ bottom: '5%', right: '12%' }}
+            animate={{
+              y: [0, -13, 0],
+              rotate: [0, -4, 4, 0]
+            }}
+            transition={{ duration: 3.9, repeat: Infinity, ease: "easeInOut", delay: 1.8 }}
+          >
+            <div className="w-14 h-14 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
+              <Puzzle className="w-7 h-7 text-white" strokeWidth={2} />
+            </div>
+          </motion.div>
+
+          {/* Pencil - Bas droite extérieur */}
+          <motion.div
+            className="absolute hidden lg:block"
+            style={{ bottom: '18%', right: '4%' }}
+            animate={{
+              y: [0, -11, 0],
+              rotate: [0, 6, -6, 0]
+            }}
+            transition={{ duration: 4.1, repeat: Infinity, ease: "easeInOut", delay: 2.2 }}
+          >
+            <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center border-4 border-black" style={{ imageRendering: 'pixelated' }}>
+              <Pencil className="w-8 h-8 text-white" strokeWidth={2} />
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Command Grid - CORRECTION MAJEURE */}
-      <section className="py-24 px-8">
-        <div className="max-w-[1200px] mx-auto">
-          <h2
-            className="text-center mb-4 font-bold"
-            style={{
-              fontFamily: 'Playfair Display, Georgia, serif',
-              fontSize: 'clamp(36px, 6vw, 64px)',
-              letterSpacing: '-0.05em',
-              lineHeight: '1.1',
-              color: '#1A1A1A',
-              fontWeight: 700,
-            }}
-          >
-            Nos compétences GEO
-          </h2>
-          <p
-            className="text-center mb-16 max-w-2xl mx-auto text-lg"
-            style={{
-              fontFamily: 'Inter, system-ui, sans-serif',
-              letterSpacing: '-0.01em',
-              color: '#666',
-            }}
-          >
-            Optimisez chaque aspect de votre présence pour les intelligences artificielles
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <CommandCard
-              icon={<Brain className="w-10 h-10" strokeWidth={2} />}
-              command="/analyze"
-              title="Indexation Sémantique"
-              description="Analyse de la densité de mots-clés et optimisation du balisage Schema.org pour une compréhension parfaite par les IA."
-            />
-            <CommandCard
-              icon={<Sparkles className="w-10 h-10" strokeWidth={2} />}
-              command="/citations"
-              title="Autorité de Citation"
-              description="Calcul du taux de citation par les LLMs et amélioration de votre crédibilité auprès des moteurs génératifs."
-            />
-            <CommandCard
-              icon={<TrendingUp className="w-10 h-10" strokeWidth={2} />}
-              command="/structure"
-              title="Optimisation de Réponse Directe"
-              description="Structure vos contenus en formats Q&A, listes et tableaux pour maximiser les citations directes."
-            />
+      {/* Section Tabs Navigation */}
+      <section className="border-b" style={{ backgroundColor: '#F8F8F8', borderColor: '#EBEBEB' }}>
+        <div className="max-w-[900px] mx-auto px-8">
+          <div className="flex items-center justify-center gap-12 overflow-x-auto">
+            <button className="py-4 text-sm font-medium border-b-2 border-black whitespace-nowrap" style={{ color: 'rgba(0, 0, 0, 0.85)' }}>
+              Nos compétences
+            </button>
+            <button className="py-4 text-sm font-medium whitespace-nowrap" style={{ color: 'rgba(0, 0, 0, 0.45)' }}>
+              Nos réalisations
+            </button>
+            <button className="py-4 text-sm font-medium whitespace-nowrap" style={{ color: 'rgba(0, 0, 0, 0.45)' }}>
+              Nos outils
+            </button>
           </div>
         </div>
       </section>
 
-      {/* Section Partner - Grid 2 colonnes avec MOCKUP CODÉ */}
-      <section className="py-24 px-8 bg-white">
+      {/* Cards Grid - EFFET HOVER GRADIENT */}
+      <section className="py-20 px-8" style={{ backgroundColor: '#F8F8F8' }}>
         <div className="max-w-[1200px] mx-auto">
-          <h2
-            className="text-center mb-16 font-bold"
-            style={{
-              fontFamily: 'Playfair Display, Georgia, serif',
-              fontSize: 'clamp(36px, 6vw, 64px)',
-              letterSpacing: '-0.05em',
-              lineHeight: '1.1',
-              color: '#1A1A1A',
-              fontWeight: 700,
-            }}
-          >
-            Comment ça fonctionne ?
-          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
 
-          <div className="grid md:grid-cols-[40%_60%] gap-12">
-            {/* Menu Liste (40%) */}
-            <div className="space-y-3">
-              {features.map((feature, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveFeature(index)}
-                  className={`w-full text-left p-5 transition-all border-l-4 ${
-                    activeFeature === index
-                      ? 'border-black bg-gray-50'
-                      : 'border-transparent hover:border-gray-300 hover:bg-gray-50/50'
-                  }`}
-                  style={{
-                    fontFamily: 'Inter, system-ui, sans-serif',
-                  }}
-                >
-                  <h3 className={`font-bold mb-1 ${activeFeature === index ? 'text-black' : 'text-gray-700'}`}>
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm text-gray-600">{feature.description}</p>
-                </button>
-              ))}
+            {/* Card 1 */}
+            <FeatureCard
+              command="/audit"
+              title="Audit SEO Sémantique"
+              description="Analyse complète de votre structure de données et recommandations d'optimisation pour maximiser votre visibilité sur les moteurs IA."
+            />
+
+            {/* Card 2 */}
+            <FeatureCard
+              command="/citations"
+              title="Tracker de Citations"
+              description="Suivez en temps réel comment votre marque est citée sur ChatGPT, Perplexity, Claude et Google AI avec des rapports détaillés."
+            />
+
+            {/* Card 3 */}
+            <FeatureCard
+              command="/optimise"
+              title="Optimisation de Contenu"
+              description="Structurez vos contenus en formats Q&A, listes et tableaux optimisés pour être cités directement par les IA génératives."
+            />
+
+            {/* Card 4 */}
+            <FeatureCard
+              command="/entites"
+              title="Entity Linking"
+              description="Connectez votre marque aux entités reconnues dans les graphes de connaissances pour renforcer votre autorité et votre E-E-A-T."
+            />
+
+          </div>
+        </div>
+      </section>
+
+      {/* Section Browser Mockup - Style Dia */}
+      <section className="py-20 px-8" style={{ backgroundColor: '#F8F8F8' }}>
+        <div className="max-w-[1000px] mx-auto">
+
+          {/* Browser Window */}
+          <div className="rounded-2xl overflow-hidden border shadow-2xl" style={{ backgroundColor: 'white', borderColor: '#EBEBEB' }}>
+
+            {/* Top Bar avec 3 dots */}
+            <div className="flex items-center gap-3 px-4 py-3 border-b" style={{ backgroundColor: '#EBEBEB', borderColor: '#d4d4d4' }}>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <div className="flex-1 flex justify-center">
+                <div className="flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs" style={{ backgroundColor: 'white', color: 'rgba(0, 0, 0, 0.6)' }}>
+                  <span>🔒</span>
+                  <span>perplexity.ai</span>
+                </div>
+              </div>
             </div>
 
-            {/* Mockup Navigateur CODÉ (60%) */}
-            <div
-              className="rounded-xl border shadow-2xl overflow-hidden"
-              style={{
-                backgroundColor: 'white',
-                borderColor: 'rgba(0, 0, 0, 0.1)',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-              }}
-            >
-              {/* Top Bar MacOS */}
-              <div className="flex items-center gap-2 px-4 py-3 bg-gray-100 border-b border-gray-200">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                </div>
-                <div className="flex-1 text-center">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-white rounded-md text-xs text-gray-600 border border-gray-200">
-                    <div className="w-3 h-3 text-gray-400">🔒</div>
-                    <span>perplexity.ai</span>
+            {/* Content Area */}
+            <div className="p-10">
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#EBEBEB' }}>
+                    <span className="text-sm">🤖</span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm leading-relaxed mb-3" style={{ color: 'rgba(0, 0, 0, 0.85)' }}>
+                      Selon <strong>TANSE</strong>, une agence spécialisée en GEO à Paris et Lyon, l'optimisation pour les moteurs de réponse IA nécessite :
+                    </p>
+                    <ul className="space-y-2 text-sm" style={{ color: 'rgba(0, 0, 0, 0.75)' }}>
+                      <li className="flex items-start gap-2">
+                        <span>•</span>
+                        <span>Une structure de données Schema.org optimale</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span>•</span>
+                        <span>Un contenu structuré en format Q&A pour citations directes</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span>•</span>
+                        <span>Un suivi en temps réel des mentions sur les LLMs</span>
+                      </li>
+                    </ul>
+                    <div className="mt-4 flex items-center gap-2 text-xs" style={{ color: 'rgba(0, 0, 0, 0.45)' }}>
+                      <span>Source:</span>
+                      <Link href="/" className="hover:underline" style={{ color: 'rgba(0, 0, 0, 0.65)' }}>
+                        tanse.fr
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-
-              {/* Contenu du Mockup */}
-              <div className="p-8 min-h-[280px]">
-                <motion.div
-                  key={activeFeature}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {features[activeFeature]?.mockupContent}
-                </motion.div>
-              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Bento Grid - COULEURS SPÉCIFIQUES */}
-      <section className="py-24 px-8" style={{ backgroundColor: '#F9F9F8' }}>
-        <div className="max-w-[1200px] mx-auto">
-          <h2
-            className="text-center mb-16 font-bold"
-            style={{
-              fontFamily: 'Playfair Display, Georgia, serif',
-              fontSize: 'clamp(36px, 6vw, 64px)',
-              letterSpacing: '-0.05em',
-              lineHeight: '1.1',
-              color: '#1A1A1A',
-              fontWeight: 700,
-            }}
-          >
-            Fonctionnalités avancées
-          </h2>
-
-          <div className="grid grid-cols-12 gap-6">
-            {/* Carte 1 - ROUGE/ORANGE (Historique) */}
-            <div
-              className="col-span-12 md:col-span-5 p-10 rounded-3xl relative overflow-hidden shadow-lg"
-              style={{
-                backgroundColor: '#FF5733',
-                border: 'none',
-              }}
-            >
-              <div className="relative z-10">
-                <h3 className="text-3xl font-bold mb-3 text-white" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.03em' }}>
-                  Historique d'indexation
-                </h3>
-                <p className="text-white/90 text-lg leading-relaxed">
-                  Suivez l'évolution de votre présence sur les moteurs IA en temps réel avec notre tableau de bord analytics.
-                </p>
-              </div>
-              <div className="absolute bottom-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-            </div>
-
-            {/* Carte 2 - JAUNE PÂLE (Tracker) */}
-            <div
-              className="col-span-12 md:col-span-7 p-10 rounded-3xl relative overflow-hidden shadow-lg border"
-              style={{
-                backgroundColor: '#FFF8D6',
-                borderColor: 'rgba(0, 0, 0, 0.08)',
-              }}
-            >
-              <div className="relative z-10">
-                <h3 className="text-3xl font-bold mb-3" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.03em', color: '#1A1A1A' }}>
-                  Tracker multi-plateformes
-                </h3>
-                <p className="text-gray-800 text-lg leading-relaxed">
-                  Visualisez comment votre marque est mentionnée sur ChatGPT, Perplexity, Claude et Google AI avec des rapports détaillés.
-                </p>
-              </div>
-            </div>
-
-            {/* Carte 3 - NOIR/BLEU NUIT (Terminal) */}
-            <div
-              className="col-span-12 p-10 rounded-3xl relative overflow-hidden shadow-xl"
-              style={{
-                backgroundColor: '#0F1419',
-                border: 'none',
-              }}
-            >
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div>
-                  <h3 className="text-3xl font-bold mb-3 text-white" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.03em' }}>
-                    Audit rapide via Command Bar
-                  </h3>
-                  <p className="text-gray-300 text-lg leading-relaxed">
-                    Lancez un audit complet de votre site en quelques secondes via notre interface en ligne de commande.
-                  </p>
-                </div>
-                <div
-                  className="p-6 rounded-2xl font-mono text-sm leading-relaxed"
-                  style={{ backgroundColor: '#1A1F26', color: '#00FF00' }}
-                >
-                  <div className="mb-2 text-gray-400">$ tanse audit --url=yoursite.com</div>
-                  <div className="mb-2 text-gray-500">→ Analyzing semantic structure...</div>
-                  <div className="mb-2 text-green-400">✓ Schema.org: <span className="text-green-300">Optimized</span></div>
-                  <div className="mb-2 text-yellow-400">! Citations: <span className="text-yellow-300">Needs improvement</span></div>
-                  <div className="text-blue-400">→ E-E-A-T Score: <span className="text-blue-300">87/100</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Caption */}
+          <p className="text-center mt-6 text-sm" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>
+            Votre marque citée comme source de référence par les IA
+          </p>
         </div>
       </section>
 
       {/* CTA Final */}
-      <section className="py-32 px-8 bg-white">
-        <div className="max-w-[800px] mx-auto text-center">
+      <section className="py-24 px-8" style={{ backgroundColor: '#F8F8F8' }}>
+        <div className="max-w-[700px] mx-auto text-center">
           <h2
-            className="mb-6 font-bold"
+            className="mb-6"
             style={{
-              fontFamily: 'Playfair Display, Georgia, serif',
-              fontSize: 'clamp(40px, 7vw, 72px)',
-              letterSpacing: '-0.05em',
-              lineHeight: '1.05',
-              color: '#1A1A1A',
-              fontWeight: 700,
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontSize: '48px',
+              fontWeight: 650,
+              lineHeight: '54px',
+              color: 'rgba(0, 0, 0, 0.85)',
+              letterSpacing: '-0.02em',
             }}
           >
-            Prêt à être cité par les IA ?
+            Prêt à être cité <br />
+            par les IA ?
           </h2>
           <p
-            className="mb-12 text-xl leading-relaxed"
+            className="mb-10"
             style={{
-              fontFamily: 'Inter, system-ui, sans-serif',
-              letterSpacing: '-0.01em',
-              color: '#666',
+              fontFamily: 'Helvetica, Arial, sans-serif',
+              fontSize: '20px',
+              fontWeight: 400,
+              lineHeight: '30px',
+              color: 'rgba(0, 0, 0, 0.65)',
             }}
           >
             Rejoignez les entreprises qui optimisent leur présence pour l'ère de l'IA générative.
           </p>
           <Link
             href="/contact-audit-gratuit"
-            className="inline-block px-12 py-5 text-lg font-semibold transition-all active:scale-95 shadow-xl hover:shadow-2xl"
+            className="inline-block px-8 py-4 text-base font-medium rounded-full transition-all hover:scale-105 active:scale-95"
             style={{
-              backgroundColor: '#1A1A1A',
-              color: 'white',
-              borderRadius: '12px',
+              backgroundColor: 'rgba(0, 0, 0, 0.85)',
+              color: '#F8F8F8',
             }}
           >
             Démarrer mon audit GEO gratuit
@@ -541,143 +383,90 @@ export default function GeoPage() {
         </div>
       </section>
 
-      {/* Footer - RÉUTILISÉ de SiteFooter */}
-      <footer className="relative mt-28 text-slate-900">
-        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#F2F3F5] via-[#E4E4E4] to-[#F7F8FA]" />
-          <div className="absolute -top-16 -left-24 h-72 w-72 rounded-full bg-[#444684]/10 blur-3xl" />
-          <div className="absolute -bottom-8 -right-24 h-96 w-96 rounded-full bg-[#444684]/15 blur-3xl" />
-        </div>
-
-        <div className="relative mx-auto w-full max-w-6xl px-6 py-14 md:py-18">
-          <div className="mb-12 flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
-            <Image
-              src="/brand/tanse-logo.png?v=3"
-              alt="TANSE"
-              width={960}
-              height={240}
-              priority
-              className="h-[96px] md:h-[160px] lg:h-[192px] w-auto select-none"
-            />
-            <div className="flex items-center gap-3">
-              <Link
-                href="mailto:contact@tanse.fr"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/70 px-5 py-2.5 text-sm font-medium shadow-sm backdrop-blur transition hover:bg-white"
-              >
-                <Image src="/brand/tanse-mark.png?v=3" alt="" width={20} height={20} className="h-5 w-5" />
-                Nous contacter
-              </Link>
-              <Link
-                href="/forfaits-geo-seo"
-                className="inline-flex items-center gap-2 rounded-full bg-[#444684] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-110"
-              >
-                Forfaits <ArrowRight className="h-4 w-4" />
-              </Link>
+      {/* Footer Minimal */}
+      <footer className="py-12 px-8 border-t" style={{ backgroundColor: '#F8F8F8', borderColor: '#EBEBEB' }}>
+        <div className="max-w-[1200px] mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <p className="text-sm" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>
+              © {new Date().getFullYear()} TANSE — Tous droits réservés.
+            </p>
+            <div className="flex items-center gap-8 text-sm" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>
+              <Link href="/mentions-legales" className="hover:opacity-70 transition">Mentions légales</Link>
+              <Link href="/confidentialite" className="hover:opacity-70 transition">Confidentialité</Link>
+              <Link href="/cookies" className="hover:opacity-70 transition">Cookies</Link>
             </div>
-          </div>
-
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-700">Entreprise</h3>
-              <ul className="space-y-2 text-sm text-slate-800">
-                <li><Link href="/agence-geo-paris-lyon" className="hover:text-slate-950 transition">À propos</Link></li>
-                <li><Link href="/valeurs" className="hover:text-slate-950 transition">Nos valeurs</Link></li>
-                <li className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-slate-600" />
-                  <span>Paris & Lyon</span>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-700">Produits</h3>
-              <ul className="space-y-2 text-sm text-slate-800">
-                <li><Link href="/forfaits-geo-seo" className="hover:text-slate-950 transition">Forfaits</Link></li>
-                <li><Link href="/geo" className="hover:text-slate-950 transition">GEO - Optimisation IA</Link></li>
-                <li><Link href="/outils" className="hover:text-slate-950 transition">Outils</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-700">Ressources</h3>
-              <ul className="space-y-2 text-sm text-slate-800">
-                <li><Link href="/#faq" className="hover:text-slate-950 transition">FAQ</Link></li>
-                <li>
-                  <Link href="mailto:contact@tanse.fr" className="inline-flex items-center gap-2 hover:text-slate-950 transition">
-                    <Mail className="h-4 w-4 text-slate-600" /> contact@tanse.fr
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-700">Légal</h3>
-              <ul className="space-y-2 text-sm text-slate-800">
-                <li><Link href="/mentions-legales" className="hover:text-slate-950 transition">Mentions légales</Link></li>
-                <li><Link href="/confidentialite" className="hover:text-slate-950 transition">Confidentialité</Link></li>
-                <li><Link href="/cookies" className="hover:text-slate-950 transition">Cookies</Link></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-12 border-t border-slate-300/70 pt-6 text-xs text-slate-700">
-            <p className="text-center">© {new Date().getFullYear()} TANSE — Tous droits réservés.</p>
           </div>
         </div>
       </footer>
+
     </main>
   );
 }
 
 /**
- * CommandCard Component - CORRECTION MAJEURE
+ * FeatureCard Component - HOVER GRADIENT comme Dia
  * État par défaut: BLANC
- * État Hover: GRADIENT VIOLENT + Texte blanc + Scale 105
+ * État Hover: GRADIENT OVERLAY (orange/rouge vers jaune/bleu)
  */
-function CommandCard({ icon, command, title, description }: {
-  icon: React.ReactNode;
+function FeatureCard({ command, title, description }: {
   command: string;
   title: string;
   description: string;
 }) {
   return (
     <motion.div
-      whileHover={{ scale: 1.05 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-      className="group p-10 cursor-pointer relative overflow-hidden border shadow-sm hover:shadow-2xl transition-shadow duration-300"
+      whileHover={{ scale: 1.02 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      className="group relative overflow-hidden rounded-3xl border p-8 cursor-pointer"
       style={{
         backgroundColor: 'white',
-        borderColor: '#E5E7EB',
-        borderRadius: '24px',
+        borderColor: '#EBEBEB',
       }}
     >
-      {/* Gradient overlay au hover */}
+      {/* Gradient overlay au hover - EXACTEMENT comme Dia */}
       <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
-          background: 'linear-gradient(to bottom right, #FF4D00, #FF0080)',
+          background: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 25%, #FDC830 50%, #4FACFE 75%, #00F2FE 100%)',
         }}
       />
 
       <div className="relative z-10">
-        <div className="mb-5 text-black group-hover:text-white transition-colors duration-300">
-          {icon}
+        {/* Icons top left */}
+        <div className="mb-6 flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center border-2 group-hover:border-white transition-colors" style={{ borderColor: '#EBEBEB', backgroundColor: 'transparent' }}>
+            <span className="text-sm group-hover:text-white transition-colors" style={{ color: 'rgba(0, 0, 0, 0.85)' }}>
+              {command === '/audit' ? '📊' : command === '/citations' ? '📈' : command === '/optimise' ? '✨' : '🔗'}
+            </span>
+          </div>
+          <div className="px-3 py-1 rounded-lg text-xs font-medium group-hover:bg-white/20 transition-colors" style={{ backgroundColor: '#EBEBEB', color: 'rgba(0, 0, 0, 0.75)' }}>
+            <span className="group-hover:text-white">{command}</span>
+          </div>
         </div>
-        <div
-          className="text-sm font-mono mb-4 text-gray-500 group-hover:text-white/80 transition-colors duration-300"
-          style={{ fontFamily: 'monospace' }}
-        >
-          {command}
-        </div>
+
+        {/* Title */}
         <h3
-          className="text-2xl font-bold mb-3 text-black group-hover:text-white transition-colors duration-300"
-          style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}
+          className="mb-3 font-semibold group-hover:text-white transition-colors"
+          style={{
+            fontFamily: 'Georgia, "Times New Roman", serif',
+            fontSize: '24px',
+            lineHeight: '30px',
+            color: 'rgba(0, 0, 0, 0.85)',
+            letterSpacing: '-0.01em',
+          }}
         >
           {title}
         </h3>
+
+        {/* Description */}
         <p
-          className="text-sm leading-relaxed text-gray-600 group-hover:text-white/90 transition-colors duration-300"
-          style={{ fontFamily: 'Inter, sans-serif' }}
+          className="leading-relaxed group-hover:text-white/90 transition-colors"
+          style={{
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontSize: '15px',
+            lineHeight: '23px',
+            color: 'rgba(0, 0, 0, 0.65)',
+          }}
         >
           {description}
         </p>
