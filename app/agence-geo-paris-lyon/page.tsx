@@ -15,7 +15,13 @@ export default function EntreprisePage() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <main className="relative min-h-screen bg-[#1B1B1B] text-white overflow-hidden">
+    <main
+      className="relative min-h-screen overflow-hidden transition-colors duration-500"
+      style={{
+        backgroundColor: theme === 'dark' ? '#1B1B1B' : '#658AFF',
+        color: theme === 'dark' ? 'rgb(255, 255, 255)' : '#1B1B1B',
+      }}
+    >
       {/* Pixel Trail Effect - Color #444684 */}
       <PixelTrail />
 
@@ -60,13 +66,13 @@ export default function EntreprisePage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="flex justify-center mb-12"
           >
-            <div className="w-40 h-40 relative rounded-full bg-gradient-to-br from-[#658AFF]/20 to-transparent border border-[#658AFF]/30 backdrop-blur-xl flex items-center justify-center">
+            <div className="w-40 h-40 relative flex items-center justify-center">
               <Image
                 src="/brand/tanse-logo.png?v=3"
                 alt="TANSE"
-                width={120}
-                height={120}
-                className="object-contain opacity-90"
+                width={160}
+                height={160}
+                className="object-contain"
               />
             </div>
           </motion.div>
@@ -107,14 +113,23 @@ export default function EntreprisePage() {
           >
             <Link
               href="/forfaits-geo-seo"
-              className="group relative px-8 py-3 bg-transparent border border-white/30 hover:border-[#658AFF] hover:bg-[#658AFF]/10 transition-all duration-300 flex items-center gap-3"
-              style={{ borderRadius: '50%' }}
+              className="group relative px-8 py-3 bg-transparent border border-white/30 hover:border-[#658AFF] hover:bg-[#658AFF]/10 transition-all duration-300 flex items-center gap-3 rounded-full"
             >
-              <span className="w-5 h-5 rounded-full border border-white/60 group-hover:border-[#658AFF] flex items-center justify-center text-xs">
-                O
-              </span>
+              {/* Chat Bubble Icon */}
+              <svg
+                className="w-5 h-5 text-white/60 group-hover:text-[#658AFF] transition-colors"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" />
+              </svg>
               <span
-                className="group-hover:text-[#658AFF] uppercase"
+                className="group-hover:text-[#658AFF] uppercase transition-colors"
                 style={{
                   fontFamily: '"ABCDiatypeMono", monospace',
                   fontSize: '14px',
@@ -130,14 +145,23 @@ export default function EntreprisePage() {
 
             <Link
               href="/geo"
-              className="group relative px-8 py-3 bg-transparent border border-white/30 hover:border-[#658AFF] hover:bg-[#658AFF]/10 transition-all duration-300 flex items-center gap-3"
-              style={{ borderRadius: '50%' }}
+              className="group relative px-8 py-3 bg-transparent border border-white/30 hover:border-[#658AFF] hover:bg-[#658AFF]/10 transition-all duration-300 flex items-center gap-3 rounded-full"
             >
-              <span className="w-5 h-5 rounded-full border border-white/60 group-hover:border-[#658AFF] flex items-center justify-center text-xs">
-                A
-              </span>
+              {/* Chart/Analytics Icon */}
+              <svg
+                className="w-5 h-5 text-white/60 group-hover:text-[#658AFF] transition-colors"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M3 3v18h18" />
+                <path d="m19 9-5 5-4-4-3 3" />
+              </svg>
               <span
-                className="group-hover:text-[#658AFF] uppercase"
+                className="group-hover:text-[#658AFF] uppercase transition-colors"
                 style={{
                   fontFamily: '"ABCDiatypeMono", monospace',
                   fontSize: '14px',

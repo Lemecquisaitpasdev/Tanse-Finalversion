@@ -15,7 +15,7 @@ export default function PixelTrail() {
       {particles.map((particle) => (
         <div
           key={particle.id}
-          className="absolute w-1.5 h-1.5 bg-[#444684]"
+          className="absolute w-3 h-3 bg-[#444684]"
           style={{
             left: `${particle.x}px`,
             top: `${particle.y}px`,
