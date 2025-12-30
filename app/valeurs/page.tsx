@@ -127,6 +127,17 @@ export default function ValeursPage() {
       {/* Value 1: HEARTFELT INTENSITY */}
       <section className="w-full py-20 bg-[#F9DA49]">
         <div className="max-w-5xl mx-auto px-6">
+          {/* Car illustration at top */}
+          <div className="mb-16 flex items-center justify-center">
+            <Image
+              src="/valeurs/Frame-27.svg"
+              alt="Car illustration"
+              width={500}
+              height={350}
+              className="opacity-80"
+            />
+          </div>
+
           <div className="mb-12">
           <span
             style={{
@@ -361,6 +372,17 @@ export default function ValeursPage() {
             que ça doit l'être et ça ne signifie <br />
             certainement pas que c'est juste.
           </p>
+        </div>
+
+        {/* Map/route illustration */}
+        <div className="my-16 flex justify-center">
+          <Image
+            src="/valeurs/Group-35.svg"
+            alt="Map route illustration"
+            width={450}
+            height={350}
+            className="opacity-80"
+          />
         </div>
         </div>
       </section>
