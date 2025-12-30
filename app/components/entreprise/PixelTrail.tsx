@@ -3,8 +3,9 @@
 import { usePixelTrail } from '@/app/hooks/useMousePosition';
 
 /**
- * PixelTrail - The Browser Company style pixel trail effect
- * Creates trailing pixel squares that follow mouse movement with physics
+ * PixelTrail - Arc/Dia style pixel trail effect
+ * Violet/purple particles (#444684) that follow mouse movement with physics
+ * 4x4 to 6x6 pixel squares with velocity-based decay
  */
 export default function PixelTrail() {
   const particles = usePixelTrail();
@@ -14,7 +15,7 @@ export default function PixelTrail() {
       {particles.map((particle) => (
         <div
           key={particle.id}
-          className="absolute w-1.5 h-1.5 bg-[#e4e4e4]"
+          className="absolute w-1.5 h-1.5 bg-[#444684]"
           style={{
             left: `${particle.x}px`,
             top: `${particle.y}px`,
