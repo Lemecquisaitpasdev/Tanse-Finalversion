@@ -10,34 +10,109 @@ import { motion } from 'framer-motion';
 export default function PrivacySection() {
   const [activeTab, setActiveTab] = useState('confidentialite');
 
+  // Individual checkbox states for each tab
+  const [confidentialiteChecks, setConfidentialiteChecks] = useState([true, true, true, true]);
+  const [securiteChecks, setSecuriteChecks] = useState([true, true, true, true]);
+  const [donneesChecks, setDonneesChecks] = useState([true, true, true, true]);
+
   const tabs = [
     { id: 'confidentialite', label: 'Confidentialité' },
     { id: 'securite', label: 'Sécurité' },
     { id: 'donnees', label: 'Données' },
   ];
 
-  const features = [
-    {
-      title: 'Chiffrement de bout en bout',
-      description: 'Vos données sont chiffrées avec AES-256',
-      checked: true,
-    },
-    {
-      title: 'Aucune vente de données',
-      description: 'Nous ne vendons jamais vos informations',
-      checked: true,
-    },
-    {
-      title: 'Analyse anonyme',
-      description: 'Toutes les analyses sont anonymisées',
-      checked: true,
-    },
-    {
-      title: 'Conformité RGPD',
-      description: 'Conforme aux normes européennes',
-      checked: true,
-    },
-  ];
+  // Different content for each tab
+  const tabContent = {
+    confidentialite: [
+      {
+        title: 'Chiffrement de bout en bout',
+        description: 'Vos données sont chiffrées avec AES-256',
+      },
+      {
+        title: 'Aucune vente de données',
+        description: 'Nous ne vendons jamais vos informations',
+      },
+      {
+        title: 'Analyse anonyme',
+        description: 'Toutes les analyses sont anonymisées',
+      },
+      {
+        title: 'Conformité RGPD',
+        description: 'Conforme aux normes européennes',
+      },
+    ],
+    securite: [
+      {
+        title: 'Authentification à deux facteurs',
+        description: 'Protection renforcée de votre compte',
+      },
+      {
+        title: 'Surveillance 24/7',
+        description: 'Détection des activités suspectes en temps réel',
+      },
+      {
+        title: 'Backups automatiques',
+        description: 'Sauvegarde quotidienne de vos données',
+      },
+      {
+        title: 'Certificat SSL/TLS',
+        description: 'Connexion sécurisée en permanence',
+      },
+    ],
+    donnees: [
+      {
+        title: 'Exportation libre',
+        description: 'Téléchargez vos données à tout moment',
+      },
+      {
+        title: 'Suppression à la demande',
+        description: 'Effacez votre compte et vos données en un clic',
+      },
+      {
+        title: 'Portabilité garantie',
+        description: 'Format standard pour transférer vos données',
+      },
+      {
+        title: 'Transparence totale',
+        description: 'Accès complet à l\'historique de vos données',
+      },
+    ],
+  };
+
+  // Get current features and checkbox states based on active tab
+  const getCurrentFeatures = () => {
+    return tabContent[activeTab as keyof typeof tabContent];
+  };
+
+  const getCurrentChecks = () => {
+    switch (activeTab) {
+      case 'confidentialite':
+        return confidentialiteChecks;
+      case 'securite':
+        return securiteChecks;
+      case 'donnees':
+        return donneesChecks;
+      default:
+        return confidentialiteChecks;
+    }
+  };
+
+  const setCurrentChecks = (index: number, value: boolean) => {
+    switch (activeTab) {
+      case 'confidentialite':
+        setConfidentialiteChecks((prev) => prev.map((check, i) => (i === index ? value : check)));
+        break;
+      case 'securite':
+        setSecuriteChecks((prev) => prev.map((check, i) => (i === index ? value : check)));
+        break;
+      case 'donnees':
+        setDonneesChecks((prev) => prev.map((check, i) => (i === index ? value : check)));
+        break;
+    }
+  };
+
+  const features = getCurrentFeatures();
+  const checkStates = getCurrentChecks();
 
   return (
     <section className="relative py-24 md:py-32 px-6">
@@ -88,29 +163,47 @@ export default function PrivacySection() {
             {/* Content */}
             <div className="p-8 bg-gradient-to-br from-white/90 to-gray-50/50 backdrop-blur-xl">
               <div className="space-y-6">
-                {features.map((feature, index) => (
-                  <motion.div key={index} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: 0.1 * index }} className="flex items-start gap-4 group">
-                    {/* Custom Blue Checkbox - macOS style */}
-                    <div className="relative flex-shrink-0 mt-1">
-                      <input type="checkbox" checked={feature.checked} readOnly className="peer sr-only" />
-                      <div className="w-5 h-5 rounded-md bg-blue-500 flex items-center justify-center shadow-sm cursor-pointer group-hover:bg-blue-600 transition-colors">
-                        <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                        </svg>
+                {features.map((feature, index) => {
+                  const isChecked = checkStates[index];
+                  return (
+                    <motion.div key={index} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: 0.1 * index }} className="flex items-start gap-4 group">
+                      {/* Custom Blue Checkbox - macOS style - Functional */}
+                      <div className="relative flex-shrink-0 mt-1">
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => setCurrentChecks(index, !isChecked)}
+                          className="peer sr-only"
+                          id={`checkbox-${activeTab}-${index}`}
+                        />
+                        <label
+                          htmlFor={`checkbox-${activeTab}-${index}`}
+                          className={`block w-5 h-5 rounded-md flex items-center justify-center shadow-sm cursor-pointer transition-all duration-200 ${
+                            isChecked
+                              ? 'bg-blue-500 group-hover:bg-blue-600'
+                              : 'bg-gray-200 group-hover:bg-gray-300 border border-gray-300'
+                          }`}
+                        >
+                          {isChecked && (
+                            <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                            </svg>
+                          )}
+                        </label>
                       </div>
-                    </div>
 
-                    {/* Feature Info */}
-                    <div className="flex-1">
-                      <h4 className="text-base font-medium text-black mb-1">
-                        {feature.title}
-                      </h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
+                      {/* Feature Info */}
+                      <div className="flex-1">
+                        <h4 className="text-base font-medium text-black mb-1">
+                          {feature.title}
+                        </h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
 
               {/* Footer Actions */}

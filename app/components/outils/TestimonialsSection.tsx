@@ -112,7 +112,7 @@ export default function TestimonialsSection() {
           animate={{ x: ['0%', '-50%'] }}
           transition={{
             ease: 'linear',
-            duration: 50,
+            duration: 35.7,
             repeat: Infinity,
           }}
         >

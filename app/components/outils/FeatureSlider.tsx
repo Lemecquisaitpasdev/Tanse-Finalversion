@@ -20,6 +20,7 @@ interface FeatureSliderProps {
 /**
  * FeatureSlider - The Browser Company (Dia) style
  * "[Tool Name] est fait pour..." carousel with browser window mockups
+ * Each slide has unique mockup design to avoid visual fatigue
  */
 export default function FeatureSlider({ toolName, slides }: FeatureSliderProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -41,6 +42,245 @@ export default function FeatureSlider({ toolName, slides }: FeatureSliderProps) 
   if (!currentSlideData) {
     return null;
   }
+
+  // Different mockup designs for each slide
+  const renderMockupContent = () => {
+    switch (currentSlide) {
+      case 0: // Score GEO - Dashboard with metrics
+        return (
+          <div className="flex h-[400px] bg-gradient-to-br from-gray-50 to-white">
+            {/* Main Dashboard */}
+            <div className="flex-1 p-8 space-y-6">
+              {/* Header with score */}
+              <div className="flex items-center justify-between">
+                <div className="space-y-1">
+                  <div className="h-4 bg-gray-300 rounded w-24" />
+                  <div className="text-5xl font-bold">87<span className="text-2xl text-gray-400">/100</span></div>
+                </div>
+                <div className="w-20 h-20 rounded-full border-8 border-green-400 flex items-center justify-center">
+                  <svg className="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Metrics bars */}
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <div className="flex justify-between text-xs">
+                    <span className="h-3 bg-gray-300 rounded w-20" />
+                    <span className="h-3 bg-gray-200 rounded w-8" />
+                  </div>
+                  <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div className="h-full w-[85%] bg-gradient-to-r from-blue-400 to-blue-600" />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-xs">
+                    <span className="h-3 bg-gray-300 rounded w-24" />
+                    <span className="h-3 bg-gray-200 rounded w-8" />
+                  </div>
+                  <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div className="h-full w-[92%] bg-gradient-to-r from-green-400 to-green-600" />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-xs">
+                    <span className="h-3 bg-gray-300 rounded w-16" />
+                    <span className="h-3 bg-gray-200 rounded w-8" />
+                  </div>
+                  <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div className="h-full w-[78%] bg-gradient-to-r from-orange-400 to-orange-600" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Cards */}
+              <div className="grid grid-cols-2 gap-3 mt-6">
+                <div className="h-20 bg-gradient-to-br from-purple-100 to-pink-100 rounded-[16px] border border-purple-200/40 p-3">
+                  <div className="h-3 bg-purple-300/60 rounded w-16 mb-2" />
+                  <div className="text-2xl font-bold text-purple-600">42</div>
+                </div>
+                <div className="h-20 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-[16px] border border-blue-200/40 p-3">
+                  <div className="h-3 bg-blue-300/60 rounded w-20 mb-2" />
+                  <div className="text-2xl font-bold text-blue-600">156</div>
+                </div>
+              </div>
+            </div>
+
+            {/* AI Insights Panel */}
+            <div className="w-80 bg-gradient-to-br from-white to-gray-50 p-6 space-y-4 border-l border-gray-200/40">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center">
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                </div>
+                <div className="h-4 bg-gray-300 rounded w-24" />
+              </div>
+              <div className="space-y-3">
+                <div className="p-4 bg-green-50 rounded-[12px] border border-green-200/40">
+                  <div className="h-2 bg-green-300/60 rounded w-full mb-2" />
+                  <div className="h-2 bg-green-300/60 rounded w-4/5" />
+                </div>
+                <div className="p-4 bg-blue-50 rounded-[12px] border border-blue-200/40">
+                  <div className="h-2 bg-blue-300/60 rounded w-full mb-2" />
+                  <div className="h-2 bg-blue-300/60 rounded w-3/4" />
+                </div>
+                <div className="p-4 bg-orange-50 rounded-[12px] border border-orange-200/40">
+                  <div className="h-2 bg-orange-300/60 rounded w-full mb-2" />
+                  <div className="h-2 bg-orange-300/60 rounded w-5/6" />
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 1: // Audit - Report with checklist
+        return (
+          <div className="h-[400px] bg-gradient-to-br from-gray-50 to-white p-8">
+            {/* Audit Report */}
+            <div className="space-y-6">
+              {/* Header */}
+              <div className="flex items-start justify-between">
+                <div className="space-y-2">
+                  <div className="h-6 bg-gray-300 rounded w-48" />
+                  <div className="h-4 bg-gray-200 rounded w-32" />
+                </div>
+                <div className="px-4 py-2 bg-green-100 rounded-full">
+                  <div className="h-3 bg-green-600 rounded w-16" />
+                </div>
+              </div>
+
+              {/* Checklist items */}
+              <div className="space-y-3">
+                <div className="flex items-start gap-3 p-4 bg-white rounded-[16px] border border-gray-200/60">
+                  <div className="w-5 h-5 rounded-md bg-green-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div className="flex-1 space-y-2">
+                    <div className="h-3 bg-gray-300 rounded w-full" />
+                    <div className="h-2 bg-gray-200 rounded w-3/4" />
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-4 bg-white rounded-[16px] border border-gray-200/60">
+                  <div className="w-5 h-5 rounded-md bg-green-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div className="flex-1 space-y-2">
+                    <div className="h-3 bg-gray-300 rounded w-5/6" />
+                    <div className="h-2 bg-gray-200 rounded w-2/3" />
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-4 bg-white rounded-[16px] border border-orange-200/60">
+                  <div className="w-5 h-5 rounded-md bg-orange-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-white text-xs font-bold">!</span>
+                  </div>
+                  <div className="flex-1 space-y-2">
+                    <div className="h-3 bg-gray-300 rounded w-full" />
+                    <div className="h-2 bg-gray-200 rounded w-4/5" />
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-4 bg-white rounded-[16px] border border-gray-200/60">
+                  <div className="w-5 h-5 rounded-md bg-green-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div className="flex-1 space-y-2">
+                    <div className="h-3 bg-gray-300 rounded w-4/5" />
+                    <div className="h-2 bg-gray-200 rounded w-3/5" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 2: // Tracking - Timeline view
+        return (
+          <div className="flex h-[400px] bg-gradient-to-br from-gray-50 to-white">
+            {/* Timeline */}
+            <div className="flex-1 p-8 space-y-4">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-5 bg-gray-300 rounded w-32" />
+                <div className="h-4 bg-gray-200 rounded w-24" />
+              </div>
+
+              {/* Timeline entries */}
+              <div className="space-y-4 relative pl-6">
+                {/* Vertical line */}
+                <div className="absolute left-2 top-0 bottom-0 w-0.5 bg-gray-200" />
+
+                <div className="relative">
+                  <div className="absolute -left-6 w-4 h-4 rounded-full bg-blue-500 border-2 border-white" />
+                  <div className="p-4 bg-white rounded-[16px] border border-gray-200/60">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="h-3 bg-blue-300 rounded w-20" />
+                      <div className="h-2 bg-gray-200 rounded w-16" />
+                    </div>
+                    <div className="h-2 bg-gray-200 rounded w-full mb-1" />
+                    <div className="h-2 bg-gray-200 rounded w-4/5" />
+                  </div>
+                </div>
+
+                <div className="relative">
+                  <div className="absolute -left-6 w-4 h-4 rounded-full bg-green-500 border-2 border-white" />
+                  <div className="p-4 bg-white rounded-[16px] border border-gray-200/60">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="h-3 bg-green-300 rounded w-24" />
+                      <div className="h-2 bg-gray-200 rounded w-14" />
+                    </div>
+                    <div className="h-2 bg-gray-200 rounded w-full mb-1" />
+                    <div className="h-2 bg-gray-200 rounded w-3/4" />
+                  </div>
+                </div>
+
+                <div className="relative">
+                  <div className="absolute -left-6 w-4 h-4 rounded-full bg-purple-500 border-2 border-white" />
+                  <div className="p-4 bg-white rounded-[16px] border border-gray-200/60">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="h-3 bg-purple-300 rounded w-28" />
+                      <div className="h-2 bg-gray-200 rounded w-12" />
+                    </div>
+                    <div className="h-2 bg-gray-200 rounded w-full mb-1" />
+                    <div className="h-2 bg-gray-200 rounded w-5/6" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Stats sidebar */}
+            <div className="w-64 bg-gradient-to-br from-white to-gray-50 p-6 space-y-4 border-l border-gray-200/40">
+              <div className="space-y-3">
+                <div className="p-4 bg-blue-50 rounded-[16px] text-center">
+                  <div className="text-3xl font-bold text-blue-600">248</div>
+                  <div className="h-2 bg-blue-200 rounded w-16 mx-auto mt-2" />
+                </div>
+                <div className="p-4 bg-green-50 rounded-[16px] text-center">
+                  <div className="text-3xl font-bold text-green-600">+42%</div>
+                  <div className="h-2 bg-green-200 rounded w-20 mx-auto mt-2" />
+                </div>
+                <div className="p-4 bg-purple-50 rounded-[16px] text-center">
+                  <div className="text-3xl font-bold text-purple-600">1.2k</div>
+                  <div className="h-2 bg-purple-200 rounded w-16 mx-auto mt-2" />
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
 
   return (
     <section className="relative py-24 md:py-32 px-6">
@@ -92,41 +332,13 @@ export default function FeatureSlider({ toolName, slides }: FeatureSliderProps) 
                     </div>
                     <div className="flex-1 mx-4">
                       <div className="bg-white rounded-lg px-4 py-1.5 text-xs text-gray-500 border border-gray-200/60">
-                        {toolName.toLowerCase()}.tanse.fr
+                        tanse.fr/outils
                       </div>
                     </div>
                   </div>
 
-                  {/* Mockup Interface Content */}
-                  <div className="flex h-[400px] bg-gradient-to-br from-gray-50 to-white">
-                    {/* Main Area (Left) */}
-                    <div className="flex-1 p-8 space-y-4 border-r border-gray-200/40">
-                      <div className="h-6 bg-gray-200/60 rounded-lg w-3/4" />
-                      <div className="h-6 bg-gray-200/60 rounded-lg w-full" />
-                      <div className="h-6 bg-gray-200/60 rounded-lg w-2/3" />
-                      <div className="mt-8 space-y-3">
-                        <div className="h-24 bg-gradient-to-br from-blue-100/50 to-purple-100/50 rounded-[20px] border border-gray-200/40" />
-                        <div className="h-24 bg-gradient-to-br from-pink-100/50 to-orange-100/50 rounded-[20px] border border-gray-200/40" />
-                      </div>
-                    </div>
-
-                    {/* AI Panel (Right) */}
-                    <div className="w-80 bg-gradient-to-br from-white to-gray-50 p-6 space-y-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-400" />
-                        <div className="h-4 bg-gray-200/60 rounded w-20" />
-                      </div>
-                      <div className="space-y-2">
-                        <div className="h-3 bg-gray-200/60 rounded w-full" />
-                        <div className="h-3 bg-gray-200/60 rounded w-4/5" />
-                        <div className="h-3 bg-gray-200/60 rounded w-5/6" />
-                      </div>
-                      <div className="mt-4 p-4 bg-blue-50/50 rounded-[16px] border border-blue-200/30">
-                        <div className="h-2 bg-blue-200/60 rounded w-full mb-2" />
-                        <div className="h-2 bg-blue-200/60 rounded w-3/4" />
-                      </div>
-                    </div>
-                  </div>
+                  {/* Mockup Interface Content - Varied per slide */}
+                  {renderMockupContent()}
                 </div>
 
                 {/* Carousel Controls */}
