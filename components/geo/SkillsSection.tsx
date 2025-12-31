@@ -93,7 +93,7 @@ const SkillsSection = () => {
                     </div>
                     <div className="w-48 border-l border-border pl-4">
                       <div className="flex gap-1 mb-4">
-                        <span className="px-2 py-1 bg-muted rounded text-[10px] font-mono">/ {currentSkill.id}</span>
+                        <span className="px-2 py-1 bg-muted rounded text-[10px] font-mono">/ {currentSkill?.id}</span>
                         <span className="px-2 py-1 bg-muted rounded text-[10px] font-mono">+ New</span>
                       </div>
                       <div className="p-3 bg-muted rounded-lg text-xs">
@@ -116,11 +116,11 @@ const SkillsSection = () => {
               <div className="absolute top-1 left-1 w-full h-full border-2 border-border bg-background rounded-lg" />
               <div className="relative w-full h-full border-2 border-foreground bg-background rounded-lg p-6 flex flex-col">
                 <div className="flex-1 flex items-center justify-center">
-                  <span className="text-foreground">{currentSkill.icon}</span>
+                  <span className="text-foreground">{currentSkill?.icon}</span>
                 </div>
                 <div className="mt-auto">
-                  <h3 className="font-mono text-xl font-bold mb-2">{currentSkill.name}</h3>
-                  <p className="font-mono text-sm text-muted-foreground leading-relaxed">{currentSkill.description}</p>
+                  <h3 className="font-mono text-xl font-bold mb-2">{currentSkill?.name}</h3>
+                  <p className="font-mono text-sm text-muted-foreground leading-relaxed">{currentSkill?.description}</p>
                 </div>
               </div>
             </div>
