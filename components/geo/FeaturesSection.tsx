@@ -67,7 +67,7 @@ const FeaturesSection = () => {
           {/* Data & Résultats Card */}
           <div className="lg:col-span-3 bg-[#FFB8D9] rounded-2xl overflow-hidden p-6 min-h-[500px] flex flex-col justify-between">
             <div>
-              <h3 className="font-display text-2xl font-bold mb-4 text-pink-900">Metrics > Opinions</h3>
+              <h3 className="font-display text-2xl font-bold mb-4 text-pink-900">Metrics &gt; Opinions</h3>
               <p className="font-mono text-sm text-pink-900 mb-6">
                 Chaque recommandation vient de nos propres tests, de notre propre data. On documente tout, on mesure tout, on prouve tout.
               </p>

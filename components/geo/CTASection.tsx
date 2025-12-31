@@ -1,52 +1,39 @@
 import { Button } from "./Button";
-import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const CTASection = () => {
   return (
     <section className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl italic leading-tight mb-8">
-              The smartest thing<br />you can open<br />this semester.
-            </h2>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="px-8 py-6 text-base font-medium rounded-full bg-foreground text-background hover:bg-foreground/90">
-                Download Dia
+        <div className="bg-gradient-to-r from-orange-50 to-blue-50 rounded-3xl p-12 md:p-16 text-center border border-border">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl italic leading-tight mb-6">
+            Prêt à dominer<br />le GEO ?
+          </h2>
+
+          <p className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed">
+            Audit gratuit de 50 requêtes stratégiques. Zéro engagement, résultats concrets en 48h.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link href="/contact-audit-gratuit">
+              <Button className="px-8 py-6 text-base font-medium rounded-full bg-foreground text-background hover:bg-foreground/90 transition-all">
+                Réserver mon audit gratuit
               </Button>
-              <a href="#" className="inline-flex items-center gap-2 text-base text-muted-foreground hover:text-foreground transition-colors group">
-                Dreaming of skills? Join our Discord
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
+            </Link>
+            <Link href="/forfaits-geo-seo" className="inline-flex items-center gap-2 text-base text-muted-foreground hover:text-foreground transition-colors">
+              Voir nos forfaits GEO
+            </Link>
           </div>
 
-          <div className="relative">
-            <div className="w-full aspect-[4/3] bg-card rounded-2xl border border-border shadow-2xl overflow-hidden">
-              <div className="h-10 bg-muted flex items-center px-4 gap-3 border-b border-border">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                </div>
-              </div>
-              <div className="p-6 grid grid-cols-2 gap-4">
-                <div className="rounded-xl p-4 h-32" style={{ background: 'linear-gradient(135deg, #FF8A4C 0%, #E86A47 50%, #4F7DDE 100%)' }}>
-                  <div className="text-white text-sm font-medium">Outline</div>
-                </div>
-                <div className="rounded-xl p-4 h-32 bg-[#FFB800]">
-                  <div className="text-foreground text-sm font-medium">Cite</div>
-                </div>
-                <div className="rounded-xl p-4 h-32 bg-[#B8E8D9]">
-                  <div className="text-foreground text-sm font-medium">Flashcards</div>
-                </div>
-                <div className="rounded-xl p-4 h-32 bg-[#FFB8D9]">
-                  <div className="text-foreground text-sm font-medium">Job-fit</div>
-                </div>
-              </div>
-            </div>
-            <div className="absolute -top-4 -right-4 w-16 h-16 bg-[#FFB800] rounded-xl animate-float" style={{ animationDelay: "0.5s" }}></div>
-            <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-[#FFB8D9] rounded-xl animate-float" style={{ animationDelay: "1s" }}></div>
+          {/* Decorative elements */}
+          <div className="mt-12 flex justify-center gap-8 opacity-50">
+            <div className="font-mono text-sm text-foreground/60">ChatGPT</div>
+            <div className="font-mono text-sm text-foreground/60">•</div>
+            <div className="font-mono text-sm text-foreground/60">Claude</div>
+            <div className="font-mono text-sm text-foreground/60">•</div>
+            <div className="font-mono text-sm text-foreground/60">Perplexity</div>
+            <div className="font-mono text-sm text-foreground/60">•</div>
+            <div className="font-mono text-sm text-foreground/60">Gemini</div>
           </div>
         </div>
       </div>
