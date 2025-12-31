@@ -3,68 +3,91 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-interface Skill {
+interface Phase {
   id: string;
   icon: React.ReactNode;
   name: string;
   description: string;
 }
 
-const CheckIcon = () => (
+const DiagnosticIcon = () => (
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="20" cy="20" r="12" stroke="currentColor" strokeWidth="3" fill="none"/>
+    <path d="M29 29L40 40" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M20 14V20L24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+  </svg>
+);
+
+const InfraIcon = () => (
   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect x="8" y="4" width="32" height="40" stroke="currentColor" strokeWidth="3" fill="none"/>
-    <rect x="12" y="8" width="24" height="32" stroke="currentColor" strokeWidth="2" fill="none"/>
-    <path d="M16 24L22 30L32 18" stroke="currentColor" strokeWidth="3" strokeLinecap="square"/>
+    <path d="M14 14H34M14 22H34M14 30H34" stroke="currentColor" strokeWidth="2"/>
+    <rect x="18" y="10" width="12" height="4" fill="currentColor"/>
   </svg>
 );
 
-const DollarIcon = () => (
+const ContentIcon = () => (
   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8" y="12" width="32" height="24" stroke="currentColor" strokeWidth="3" fill="none"/>
-    <rect x="14" y="8" width="4" height="8" fill="currentColor"/>
-    <rect x="30" y="8" width="4" height="8" fill="currentColor"/>
-    <circle cx="24" cy="24" r="6" stroke="currentColor" strokeWidth="2" fill="none"/>
-    <path d="M24 20V28M22 22H26M22 26H26" stroke="currentColor" strokeWidth="2"/>
+    <path d="M6 26L8 20L24 4L28 8L12 24L6 26Z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" fill="none"/>
+    <path d="M20 8L24 12" stroke="currentColor" strokeWidth="2"/>
+    <rect x="8" y="28" width="32" height="16" stroke="currentColor" strokeWidth="2" fill="none"/>
   </svg>
 );
 
-const CiteIcon = () => (
+const MonitorIcon = () => (
   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8" y="4" width="32" height="40" stroke="currentColor" strokeWidth="3" fill="none"/>
-    <rect x="12" y="8" width="24" height="32" stroke="currentColor" strokeWidth="2" fill="none"/>
-    <path d="M16 16H32M16 22H32M16 28H28" stroke="currentColor" strokeWidth="2"/>
+    <rect x="4" y="8" width="40" height="24" stroke="currentColor" strokeWidth="3" fill="none"/>
+    <path d="M12 18L18 24L32 14" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M16 40H32" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M24 32V40" stroke="currentColor" strokeWidth="3"/>
   </svg>
 );
 
-const BagIcon = () => (
-  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8" y="16" width="32" height="28" stroke="currentColor" strokeWidth="3" fill="none"/>
-    <path d="M16 16V12C16 8 20 4 24 4C28 4 32 8 32 12V16" stroke="currentColor" strokeWidth="3" fill="none"/>
-    <rect x="16" y="22" width="16" height="10" stroke="currentColor" strokeWidth="2" fill="none"/>
-  </svg>
-);
-
-const skills: Skill[] = [
-  { id: "fact-check", icon: <CheckIcon />, name: "/fact-check", description: "A one-click fact-checker for students." },
-  { id: "job-fit", icon: <DollarIcon />, name: "/job-fit", description: "See if your resume fits this job listing." },
-  { id: "cite", icon: <CiteIcon />, name: "/cite", description: "Cite this source in APA, MLA, and Chicago formats." },
-  { id: "budget-buddy", icon: <BagIcon />, name: "/budget-buddy", description: "Suggest budget-friendly alternatives for this item." }
+const phases: Phase[] = [
+  {
+    id: "diagnostic",
+    icon: <DiagnosticIcon />,
+    name: "Audit 360° de Visibilité",
+    description: "On teste 50-100 requêtes stratégiques pour votre secteur sur ChatGPT, Claude, Perplexity, et Gemini. On identifie où vous êtes cité, où vous êtes invisible, et surtout : pourquoi."
+  },
+  {
+    id: "fondations",
+    icon: <InfraIcon />,
+    name: "Infrastructure Technique",
+    description: "Implementation de structured data avancé, optimisation Schema.org, semantic markup, knowledge graph foundations. C'est la base technique qui permet aux LLMs de 'comprendre' votre business."
+  },
+  {
+    id: "content",
+    icon: <ContentIcon />,
+    name: "Création de Citations",
+    description: "On cartographie les 50-200 requêtes que vos clients font réellement aux LLMs. Puis on crée du contenu spécifiquement optimisé pour ces questions. Pas du blog générique, du contenu ciblé."
+  },
+  {
+    id: "monitoring",
+    icon: <MonitorIcon />,
+    name: "Amélioration Continue",
+    description: "Dashboard temps réel avec tracking de citations, positions, share of voice vs concurrents. On A/B test, on itère, on optimise. Le GEO n'est jamais 'fini', c'est un jeu continu."
+  }
 ];
 
 const SkillsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextSkill = () => setCurrentIndex((prev) => (prev + 1) % skills.length);
-  const prevSkill = () => setCurrentIndex((prev) => (prev - 1 + skills.length) % skills.length);
+  const nextPhase = () => setCurrentIndex((prev) => (prev + 1) % phases.length);
+  const prevPhase = () => setCurrentIndex((prev) => (prev - 1 + phases.length) % phases.length);
 
-  const currentSkill = skills[currentIndex];
+  const currentPhase = phases[currentIndex];
 
   return (
     <section className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-display italic text-4xl md:text-5xl lg:text-6xl text-center mb-16 leading-tight">
-          Skills are your<br />shortcut to staying one<br />step ahead in class.
+        <h2 className="font-display italic text-4xl md:text-5xl lg:text-6xl text-center mb-4 leading-tight">
+          Comment TANSE transforme<br />votre présence GEO.
         </h2>
+
+        <p className="text-center text-lg text-foreground/70 mb-16 max-w-2xl mx-auto">
+          Notre approche en 4 phases, développée sur 18 mois de R&D.
+        </p>
 
         <div className="flex flex-col lg:flex-row gap-8 items-center">
           <div className="flex-1 relative">
@@ -78,9 +101,9 @@ const SkillsSection = () => {
                   <div className="w-3 h-3 rounded-full bg-yellow-400" />
                   <div className="w-3 h-3 rounded-full bg-green-400" />
                   <div className="flex gap-1 ml-4">
-                    <div className="px-2 py-1 bg-primary/20 rounded text-[10px] font-mono">School</div>
-                    <div className="px-2 py-1 bg-muted-foreground/10 rounded text-[10px] font-mono">Résumé</div>
-                    <div className="px-2 py-1 bg-muted-foreground/10 rounded text-[10px] font-mono">Research</div>
+                    <div className="px-2 py-1 bg-primary/20 rounded text-[10px] font-mono">TANSE</div>
+                    <div className="px-2 py-1 bg-muted-foreground/10 rounded text-[10px] font-mono">Dashboard</div>
+                    <div className="px-2 py-1 bg-muted-foreground/10 rounded text-[10px] font-mono">Analytics</div>
                   </div>
                 </div>
                 <div className="p-6 min-h-[350px]">
@@ -89,15 +112,15 @@ const SkillsSection = () => {
                       <div className="h-4 bg-muted rounded w-3/4" />
                       <div className="h-4 bg-muted rounded w-full" />
                       <div className="h-4 bg-muted rounded w-2/3" />
-                      <div className="mt-6 h-40 bg-muted/50 rounded" />
+                      <div className="mt-6 h-40 bg-gradient-to-r from-orange-100 to-blue-100 rounded" />
                     </div>
                     <div className="w-48 border-l border-border pl-4">
                       <div className="flex gap-1 mb-4">
-                        <span className="px-2 py-1 bg-muted rounded text-[10px] font-mono">/ {currentSkill?.id}</span>
-                        <span className="px-2 py-1 bg-muted rounded text-[10px] font-mono">+ New</span>
+                        <span className="px-2 py-1 bg-muted rounded text-[10px] font-mono">Phase {currentIndex + 1}</span>
+                        <span className="px-2 py-1 bg-muted rounded text-[10px] font-mono">Active</span>
                       </div>
                       <div className="p-3 bg-muted rounded-lg text-xs">
-                        <p className="text-muted-foreground">Ask a question about this page...</p>
+                        <p className="text-muted-foreground">Suivi en temps réel de vos métriques GEO</p>
                       </div>
                     </div>
                   </div>
@@ -107,7 +130,7 @@ const SkillsSection = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <button onClick={prevSkill} className="p-2 hover:bg-muted rounded-full transition-colors">
+            <button onClick={prevPhase} className="p-2 hover:bg-muted rounded-full transition-colors">
               <ChevronLeft className="w-6 h-6" />
             </button>
 
@@ -116,16 +139,16 @@ const SkillsSection = () => {
               <div className="absolute top-1 left-1 w-full h-full border-2 border-border bg-background rounded-lg" />
               <div className="relative w-full h-full border-2 border-foreground bg-background rounded-lg p-6 flex flex-col">
                 <div className="flex-1 flex items-center justify-center">
-                  <span className="text-foreground">{currentSkill?.icon}</span>
+                  <span className="text-foreground">{currentPhase?.icon}</span>
                 </div>
                 <div className="mt-auto">
-                  <h3 className="font-mono text-xl font-bold mb-2">{currentSkill?.name}</h3>
-                  <p className="font-mono text-sm text-muted-foreground leading-relaxed">{currentSkill?.description}</p>
+                  <h3 className="font-mono text-xl font-bold mb-2">{currentPhase?.name}</h3>
+                  <p className="font-mono text-sm text-muted-foreground leading-relaxed">{currentPhase?.description}</p>
                 </div>
               </div>
             </div>
 
-            <button onClick={nextSkill} className="p-2 hover:bg-muted rounded-full transition-colors border-2 border-primary">
+            <button onClick={nextPhase} className="p-2 hover:bg-muted rounded-full transition-colors border-2 border-primary">
               <ChevronRight className="w-6 h-6 text-primary" />
             </button>
           </div>
@@ -137,7 +160,7 @@ const SkillsSection = () => {
             style={{ background: 'linear-gradient(90deg, #FF00FF 0%, #FF6B4A 25%, #FFD700 50%, #00FFFF 75%, #FF00FF 100%)' }}
           >
             <span className="font-mono text-lg font-bold text-black whitespace-nowrap flex items-center gap-2">
-              Get our Student Pack! ➜ ➜ ➜ Get started
+              Audit GEO Gratuit ➜ ➜ ➜ Réservez maintenant ➜ ➜ ➜ Audit GEO Gratuit ➜ ➜ ➜ Réservez maintenant
             </span>
           </div>
         </div>
