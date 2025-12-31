@@ -42,40 +42,44 @@ const TypewriterIcon = () => (
 
 const tabs: TabItem[] = [
   {
-    id: "tutor",
+    id: "authority",
     icon: <GearIcon />,
-    title: "A tutor",
-    description: "Highlight anything — a paragraph, a timestamp, a confusing chart — and ask Dia for explanations and answers, directly in your tab."
+    title: "Construire la Crédibilité",
+    description: "Les LLMs analysent des centaines de signaux de confiance : qui vous cite, votre historique de contenu, vos certifications, votre présence dans des publications de référence. Comme E-E-A-T pour Google, mais en 10x plus profond. Vous devez prouver que vous êtes une source fiable."
   },
   {
-    id: "buddy",
+    id: "structured",
     icon: <ScreenIcon />,
-    title: "A study buddy",
-    description: "Your notes, lectures, and readings are already open — Dia helps you turn them into flashcards, quizzes, and custom study guides."
+    title: "Parler le Langage des Machines",
+    description: "Les LLMs adorent les données structurées. Schema.org avancé, knowledge graphs, metadata sémantique. Plus votre contenu est 'compréhensible' par une machine, plus vous avez de chances d'être cité. C'est technique, c'est précis, c'est mesurable."
   },
   {
-    id: "coach",
+    id: "content",
     icon: <PenIcon />,
-    title: "A writing coach",
-    description: "Outline essays, tighten drafts, and pull in the right references — no messy copy-paste, no losing your voice."
+    title: "Créer du Contenu Citation-Worthy",
+    description: "Ce n'est pas du SEO writing. Les LLMs cherchent des insights uniques, des données propriétaires, des explications claires et complètes. Votre contenu doit être la MEILLEURE réponse à une question, pas juste 'assez bon pour ranker'. Standards beaucoup plus élevés."
   },
   {
-    id: "coding",
+    id: "intent",
     icon: <TypewriterIcon />,
-    title: "A coding partner",
-    description: "Debug, review, and get unstuck faster with feedback right in your flow."
+    title: "Comprendre les Vraies Requêtes",
+    description: "Les gens ne cherchent pas de la même manière sur ChatGPT et sur Google. C'est conversationnel, contextuel, nuancé. Il faut mapper ces nouveaux patterns de recherche et adapter votre stratégie de contenu en conséquence. Data > intuition."
   }
 ];
 
 const ThoughtPartnerSection = () => {
-  const [activeTab, setActiveTab] = useState("tutor");
+  const [activeTab, setActiveTab] = useState("authority");
 
   return (
     <section className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-display italic text-4xl md:text-5xl lg:text-6xl text-center mb-16 leading-tight">
-          A true thought<br />partner, in your tabs.
+        <h2 className="font-display italic text-4xl md:text-5xl lg:text-6xl text-center mb-4 leading-tight">
+          Comment fonctionne<br />réellement la citation<br />par les LLMs.
         </h2>
+
+        <p className="text-center text-lg text-foreground/70 mb-16 max-w-2xl mx-auto">
+          Les 4 Piliers
+        </p>
 
         <div className="flex flex-col lg:flex-row gap-0">
           {/* Left accordion menu */}
@@ -120,9 +124,9 @@ const ThoughtPartnerSection = () => {
                 <div className="w-3 h-3 rounded-full bg-green-400" />
                 <div className="flex-1 mx-4">
                   <div className="flex gap-1">
-                    <div className="px-3 py-1 bg-primary/20 rounded text-xs font-mono">School</div>
-                    <div className="px-3 py-1 bg-muted rounded text-xs font-mono">History</div>
-                    <div className="px-3 py-1 bg-muted rounded text-xs font-mono">MIT</div>
+                    <div className="px-3 py-1 bg-primary/20 rounded text-xs font-mono">TANSE</div>
+                    <div className="px-3 py-1 bg-muted rounded text-xs font-mono">GEO</div>
+                    <div className="px-3 py-1 bg-muted rounded text-xs font-mono">Schema</div>
                   </div>
                 </div>
               </div>
@@ -146,32 +150,15 @@ const ThoughtPartnerSection = () => {
               </div>
               <div className="p-4 space-y-3">
                 <div className="flex gap-2">
-                  <span className="px-2 py-1 bg-muted rounded text-xs font-mono">/ Recap</span>
-                  <span className="px-2 py-1 bg-muted rounded text-xs font-mono">/ Top Quotes</span>
-                  <span className="px-2 py-1 bg-muted rounded text-xs font-mono">+ New Skill</span>
+                  <span className="px-2 py-1 bg-muted rounded text-xs font-mono">/ Authority</span>
+                  <span className="px-2 py-1 bg-muted rounded text-xs font-mono">/ Citations</span>
+                  <span className="px-2 py-1 bg-muted rounded text-xs font-mono">+ Optimiser</span>
                 </div>
-                <div className="mt-8 flex items-center gap-2 p-3 bg-muted rounded-lg">
-                  <div className="w-8 h-8 bg-red-500 rounded flex items-center justify-center">
-                    <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium">How to Speak</p>
-                    <p className="text-xs text-muted-foreground">youtube.com/watch...</p>
-                  </div>
-                </div>
-                <div className="mt-4">
-                  <p className="font-mono text-sm">what is w</p>
-                </div>
-              </div>
-              <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2 p-3 bg-muted rounded-full">
-                <span className="text-muted-foreground">+</span>
-                <div className="flex-1" />
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-primary-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 19V5M5 12l7-7 7 7"/>
-                  </svg>
+                <div className="mt-8 space-y-2">
+                  <div className="h-2 bg-muted rounded w-full" />
+                  <div className="h-2 bg-muted rounded w-5/6" />
+                  <div className="h-2 bg-muted rounded w-4/6" />
+                  <div className="mt-4 h-16 bg-gradient-to-r from-orange-200 to-blue-200 rounded" />
                 </div>
               </div>
             </div>

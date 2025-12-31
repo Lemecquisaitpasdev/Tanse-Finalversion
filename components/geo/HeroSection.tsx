@@ -29,21 +29,19 @@ const HeroSection = () => {
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 text-center max-w-3xl mx-auto">
-        <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tight italic">
-          You don't have to
-          <br />
-          do it all alone.
+      <div className="relative z-10 text-center max-w-4xl mx-auto">
+        <h1 className="font-display text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight italic">
+          Pour la première fois dans l'histoire du web, la part de recherches via navigateur a nettement diminué
         </h1>
 
-        <p className="mt-8 text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto leading-relaxed">
-          Dia is the AI browser that truly gets you — helping you think deeper, move faster, and level up across the board.
+        <p className="mt-8 text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
+          40% des prospects font leurs recherches sur ChatGPT plutôt que Google. Si les LLMs ne connaissent pas votre entreprise, vous perdez un marché considérable. Voici ce qu'est le GEO, pourquoi ça compte, et comment vous y adapter.
         </p>
 
         <Button
           className="mt-10 px-8 py-6 text-base font-medium rounded-full bg-foreground text-background hover:bg-foreground/90 transition-all"
         >
-          Download Dia
+          Avoir un audit gratuit
         </Button>
       </div>
     </section>
