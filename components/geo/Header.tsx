@@ -1,37 +1,42 @@
 import { Button } from "./Button";
+import Link from "next/link";
 
-const DiaLogo = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-    <rect x="4" y="12" width="24" height="8" fill="currentColor"/>
-    <path d="M8 12 L16 4 L24 12" fill="currentColor"/>
-  </svg>
-);
-
-export const Header = () => {
+const Header = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
-      <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-background/80 backdrop-blur-sm">
+      <div className="flex items-center gap-8">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2 font-display italic text-lg">
-          <DiaLogo />
-          <span>Dia</span>
+        <a href="/" className="flex items-center gap-1.5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 14C4 14 5 13 8 13C11 13 13 15 16 15C19 15 20 14 20 14V4C20 4 19 5 16 5C13 5 11 3 8 3C5 3 4 4 4 4V14Z" fill="currentColor"/>
+            <path d="M4 14V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          </svg>
+          <span className="text-xl font-semibold tracking-tight">Dia</span>
         </a>
 
-        {/* Nav Links */}
-        <div className="hidden md:flex items-center gap-8 text-sm">
-          <a href="#skills" className="text-muted-foreground hover:text-foreground transition-colors">
+        {/* Navigation */}
+        <nav className="hidden md:flex items-center gap-6">
+          <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Skills
           </a>
-          <a href="#students" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Students
           </a>
-        </div>
+          <Link href="/blog" className="text-sm font-medium text-foreground hover:text-foreground/80 transition-colors">
+            Blog
+          </Link>
+        </nav>
+      </div>
 
-        {/* CTA Button */}
-        <Button className="rounded-full">
-          Join the Waitlist
-        </Button>
-      </nav>
+      {/* CTA Button */}
+      <Button
+        variant="outline"
+        className="rounded-full border-foreground/20 hover:bg-foreground hover:text-background transition-all"
+      >
+        Join the Waitlist
+      </Button>
     </header>
   );
 };
+
+export default Header;
