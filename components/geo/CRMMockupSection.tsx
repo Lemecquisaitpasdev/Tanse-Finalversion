@@ -1,7 +1,12 @@
 const CRMMockupSection = () => {
   return (
-    <section className="py-24 px-6 bg-muted/30">
-      <div className="max-w-5xl mx-auto">
+    <section className="relative py-24 px-6 overflow-hidden bg-gradient-to-b from-orange-50/40 via-blue-50/40 to-purple-50/40">
+      {/* Colorful blush effects */}
+      <div className="absolute top-20 left-10 w-96 h-96 rounded-full opacity-30 blur-[120px]" style={{ background: 'linear-gradient(135deg, #FF8A4C, #E86A47)' }} />
+      <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full opacity-25 blur-[120px]" style={{ background: 'linear-gradient(135deg, #4F7DDE, #6366F1)' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full opacity-20 blur-[100px]" style={{ background: 'linear-gradient(135deg, #FFB8D9, #A78BFA)' }} />
+
+      <div className="relative max-w-5xl mx-auto">
         <h2 className="font-display italic text-4xl md:text-5xl lg:text-6xl text-center mb-4 leading-tight">
           La réalité de vos<br />clients en 2025.
         </h2>

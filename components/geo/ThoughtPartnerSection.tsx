@@ -161,9 +161,17 @@ const ThoughtPartnerSection = () => {
             ))}
           </div>
 
-          {/* Middle: Description text */}
-          <div className="flex items-start pt-4">
-            <p className="font-mono text-sm text-muted-foreground leading-relaxed">
+          {/* Middle: Description text with colorful blush bubble */}
+          <div className="relative flex items-start pt-4">
+            {/* Deformed bubble blush effect */}
+            <div
+              className="absolute -inset-8 opacity-20 blur-[80px] rounded-[60%_40%_50%_70%/50%_60%_40%_50%]"
+              style={{
+                background: 'linear-gradient(135deg, #FF8A4C 0%, #4F7DDE 50%, #FFB8D9 100%)',
+                transform: 'rotate(-5deg)'
+              }}
+            />
+            <p className="relative font-mono text-sm text-muted-foreground leading-relaxed">
               {activeTabData?.description}
             </p>
           </div>
