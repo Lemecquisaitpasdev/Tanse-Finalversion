@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { Button } from "./Button";
 
 interface Phase {
   id: string;
@@ -52,22 +54,54 @@ const phases: Phase[] = [
     description: "Test de 50-100 requêtes sur ChatGPT, Claude, Perplexity et Gemini.",
     mockupContent: (
       <>
-        <div className="space-y-2 mb-3">
+        {/* Header */}
+        <div className="mb-4 pb-3 border-b border-border">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-mono text-muted-foreground">Taux citation global</span>
-            <span className="text-xs font-bold">16%</span>
-          </div>
-          <div className="h-2 bg-muted rounded-full overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-red-400 to-orange-400 w-[16%]"></div>
+            <h3 className="text-sm font-bold font-mono">Phase 1 - Audit 360° Visibilité</h3>
+            <span className="px-2 py-1 bg-green-500/20 text-green-700 rounded text-[8px] font-bold">ACTIVE</span>
           </div>
         </div>
-        <div className="bg-gradient-to-r from-red-50 to-orange-50 rounded p-3 mb-2 border-l-4 border-red-400">
-          <p className="text-[10px] font-mono font-bold">❌ Non cité: 42/50</p>
-          <p className="text-[9px] font-mono text-muted-foreground mt-1">ChatGPT (0/15) Claude (2/12) Perplexity (4/13)</p>
+
+        {/* Large Citation Rate Alert */}
+        <div className="mb-4 p-4 bg-gradient-to-br from-orange-100 to-red-100 rounded-lg border-2 border-orange-400">
+          <div className="text-center">
+            <p className="text-[10px] font-mono text-muted-foreground mb-1">Taux citation global</p>
+            <p className="text-4xl font-bold text-orange-600">16%</p>
+            <div className="mt-2 h-2 bg-white/50 rounded-full overflow-hidden">
+              <div className="h-full bg-gradient-to-r from-red-500 to-orange-500 w-[16%]"></div>
+            </div>
+          </div>
         </div>
-        <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded p-3 border-l-4 border-green-400">
-          <p className="text-[10px] font-mono font-bold">✓ Cité: 8/50</p>
-          <p className="text-[9px] font-mono text-muted-foreground mt-1">Position moy: #3.2 • Contexte: 87%</p>
+
+        {/* Detailed Breakdown */}
+        <div className="space-y-2 mb-4">
+          <div className="bg-gradient-to-r from-red-50 to-orange-50 rounded-lg p-3 border-l-4 border-red-500">
+            <p className="text-[10px] font-mono font-bold text-red-700 mb-1">❌ Non cité: 42/50 requêtes</p>
+            <p className="text-[9px] font-mono text-muted-foreground">ChatGPT (8/15) • Claude (2/12) • Perplexity (4/13)</p>
+          </div>
+          <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3 border-l-4 border-green-500">
+            <p className="text-[10px] font-mono font-bold text-green-700 mb-1">✅ Cité: 8/50 requêtes</p>
+            <p className="text-[9px] font-mono text-muted-foreground">Position moy: #3.2 • Contexte: 87%</p>
+          </div>
+        </div>
+
+        {/* Competitor Benchmark */}
+        <div className="bg-muted/50 rounded-lg p-3">
+          <p className="text-[9px] font-mono font-bold mb-2 text-muted-foreground">BENCHMARK CONCURRENTS</p>
+          <div className="grid grid-cols-3 gap-2">
+            <div className="bg-background rounded p-2 text-center border border-border">
+              <p className="text-[8px] font-mono text-muted-foreground mb-1">Concurrent A</p>
+              <p className="text-lg font-bold">34%</p>
+            </div>
+            <div className="bg-background rounded p-2 text-center border border-border">
+              <p className="text-[8px] font-mono text-muted-foreground mb-1">Concurrent B</p>
+              <p className="text-lg font-bold">28%</p>
+            </div>
+            <div className="bg-orange-100 rounded p-2 text-center border-2 border-orange-400">
+              <p className="text-[8px] font-mono text-orange-700 mb-1">Vous</p>
+              <p className="text-lg font-bold text-orange-600">16%</p>
+            </div>
+          </div>
         </div>
       </>
     )
@@ -79,18 +113,57 @@ const phases: Phase[] = [
     description: "Schema.org, structured data et knowledge graph.",
     mockupContent: (
       <>
-        <div className="bg-slate-900 rounded p-2 mb-2 text-[9px] font-mono">
+        {/* Header */}
+        <div className="mb-4 pb-3 border-b border-border">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-bold font-mono">Phase 2 - Infrastructure Technique</h3>
+            <span className="px-2 py-1 bg-green-500/20 text-green-700 rounded text-[8px] font-bold">ACTIVE</span>
+          </div>
+        </div>
+
+        {/* Realistic Schema.org/JSON-LD Code */}
+        <div className="mb-4 bg-slate-900 rounded-lg p-3 font-mono text-[9px] overflow-x-auto">
           <div className="text-blue-400">&lt;script type="application/ld+json"&gt;</div>
-          <div className="text-white pl-1">{`{`}</div>
-          <div className="text-white pl-2">"@type": "Organization",</div>
-          <div className="text-green-400 pl-2">"expertise": "SaaS",</div>
-          <div className="text-green-400 pl-2">"score": 94</div>
-          <div className="text-white pl-1">{`}`}</div>
+          <div className="text-white pl-2">{`{`}</div>
+          <div className="text-purple-400 pl-4">"@context": "https://schema.org",</div>
+          <div className="text-purple-400 pl-4">"@type": "Organization",</div>
+          <div className="text-green-400 pl-4">"name": "Votre Entreprise",</div>
+          <div className="text-green-400 pl-4">"expertise": "SaaS B2B",</div>
+          <div className="text-orange-400 pl-4">"score:AI": 94,</div>
+          <div className="text-yellow-400 pl-4">"knowledgeGraph": true</div>
+          <div className="text-white pl-2">{`}`}</div>
           <div className="text-blue-400">&lt;/script&gt;</div>
         </div>
-        <div className="grid grid-cols-2 gap-1 mb-2">
-          <div className="px-2 py-1 bg-green-100 rounded text-[8px] text-center">✓ Schema.org</div>
-          <div className="px-2 py-1 bg-green-100 rounded text-[8px] text-center">✓ E-E-A-T</div>
+
+        {/* 2x2 Status Grid */}
+        <div className="grid grid-cols-2 gap-2 mb-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-2">
+            <p className="text-[8px] font-mono text-green-700 mb-1">✓ Schema.org</p>
+            <p className="text-[10px] font-bold text-green-600">Implémenté</p>
+          </div>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-2">
+            <p className="text-[8px] font-mono text-blue-700 mb-1">✓ E-E-A-T</p>
+            <p className="text-[10px] font-bold text-blue-600">Score 8.7/10</p>
+          </div>
+        </div>
+
+        {/* Active Structured Signals */}
+        <div className="mb-4 bg-muted/50 rounded-lg p-3">
+          <p className="text-[9px] font-mono font-bold mb-2 text-muted-foreground">SIGNAUX STRUCTURÉS ACTIFS</p>
+          <div className="flex flex-wrap gap-1">
+            <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-[8px] font-mono">Knowledge Graph</span>
+            <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-[8px] font-mono">Metadata Sémantique</span>
+            <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-[8px] font-mono">JSON-LD</span>
+            <span className="px-2 py-1 bg-orange-100 text-orange-700 rounded text-[8px] font-mono">Markup Rich</span>
+            <span className="px-2 py-1 bg-pink-100 text-pink-700 rounded text-[8px] font-mono">OpenGraph</span>
+          </div>
+        </div>
+
+        {/* Impact Prediction */}
+        <div className="bg-gradient-to-br from-emerald-50 to-green-100 rounded-lg p-3 border-l-4 border-green-500">
+          <p className="text-[9px] font-mono text-muted-foreground mb-1">Impact prévu</p>
+          <p className="text-xl font-bold text-green-700">+45-60%</p>
+          <p className="text-[8px] font-mono text-green-600 mt-1">citation rate</p>
         </div>
       </>
     )
@@ -102,17 +175,65 @@ const phases: Phase[] = [
     description: "Contenu optimisé pour 50-200 requêtes LLM.",
     mockupContent: (
       <>
-        <div className="bg-gradient-to-br from-orange-100 to-blue-100 rounded p-3 mb-2 shadow-sm">
-          <div className="flex items-start justify-between mb-1">
-            <p className="text-[10px] font-mono font-bold">Guide Expert</p>
-            <span className="text-[8px] px-1 bg-green-500 text-white rounded">NEW</span>
+        {/* Header */}
+        <div className="mb-4 pb-3 border-b border-border">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-bold font-mono">Phase 3 - Création Citations</h3>
+            <span className="px-2 py-1 bg-green-500/20 text-green-700 rounded text-[8px] font-bold">ACTIVE</span>
           </div>
-          <p className="text-[8px] font-mono text-muted-foreground">2500 mots • 15 sources</p>
         </div>
-        <div className="flex items-center gap-1 mb-2">
-          {[...Array(5)].map((_, i) => <div key={i} className="text-sm text-yellow-500">★</div>)}
+
+        {/* Guide Expert Card */}
+        <div className="mb-4 bg-gradient-to-br from-orange-50 to-blue-50 rounded-lg p-3 border border-orange-200">
+          <div className="flex items-start justify-between mb-2">
+            <div className="flex items-center gap-2">
+              <span className="text-lg">📄</span>
+              <p className="text-[10px] font-mono font-bold">Guide Expert SaaS B2B</p>
+            </div>
+            <span className="text-[8px] px-2 py-1 bg-green-500 text-white rounded font-bold">LIVE</span>
+          </div>
+          <p className="text-[9px] font-mono text-muted-foreground mb-2">2500 mots • 15 sources vérifiées</p>
+          <div className="flex items-center gap-1 mb-2">
+            {[...Array(5)].map((_, i) => <div key={i} className="text-sm text-yellow-500">★</div>)}
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-[8px] px-2 py-1 bg-purple-100 text-purple-700 rounded font-mono">/citation-worthy</span>
+            <span className="text-[8px] text-green-600 font-mono">✓ Optimisé LLM</span>
+          </div>
         </div>
-        <div className="text-[10px] font-mono text-green-600">✓ Citation-worthy</div>
+
+        {/* Intent Mapping */}
+        <div className="mb-4 bg-muted/50 rounded-lg p-3">
+          <p className="text-[9px] font-mono font-bold mb-2 text-muted-foreground">INTENT MAPPING</p>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between text-[8px]">
+              <span className="font-mono text-foreground">"Meilleure solution X pour Y"</span>
+              <span className="px-2 py-1 bg-green-100 text-green-700 rounded font-bold">87%</span>
+            </div>
+            <div className="flex items-center justify-between text-[8px]">
+              <span className="font-mono text-foreground">"Comment choisir X pour Z"</span>
+              <span className="px-2 py-1 bg-emerald-100 text-emerald-700 rounded font-bold">92%</span>
+            </div>
+            <div className="flex items-center justify-between text-[8px]">
+              <span className="font-mono text-foreground">"Comparatif X vs Y"</span>
+              <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded font-bold">79%</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats */}
+        <div className="grid grid-cols-2 gap-2">
+          <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-2 border border-blue-200">
+            <p className="text-[8px] font-mono text-muted-foreground mb-1">Contenu créé</p>
+            <p className="text-xl font-bold text-blue-600">42</p>
+            <p className="text-[8px] font-mono text-blue-500">articles</p>
+          </div>
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-2 border border-green-200">
+            <p className="text-[8px] font-mono text-muted-foreground mb-1">Requêtes couvertes</p>
+            <p className="text-xl font-bold text-green-600">156/200</p>
+            <p className="text-[8px] font-mono text-green-500">78% couverture</p>
+          </div>
+        </div>
       </>
     )
   },
@@ -123,26 +244,62 @@ const phases: Phase[] = [
     description: "Dashboard temps réel et A/B tests.",
     mockupContent: (
       <>
-        <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded p-2 mb-2 border border-green-200">
-          <p className="text-[9px] font-mono text-muted-foreground mb-1">Citations ce mois</p>
-          <p className="text-2xl font-bold text-green-600">+142%</p>
-        </div>
-        <div className="relative h-16 bg-gradient-to-t from-blue-200 to-orange-200 rounded mb-2"></div>
-        <div className="grid grid-cols-3 gap-1 text-[8px]">
-          <div className="bg-blue-50 rounded p-1 text-center">
-            <div className="font-bold text-[9px]">GPT</div>
-            <div className="text-blue-600">+89%</div>
-          </div>
-          <div className="bg-purple-50 rounded p-1 text-center">
-            <div className="font-bold text-[9px]">Claude</div>
-            <div className="text-purple-600">+156%</div>
-          </div>
-          <div className="bg-orange-50 rounded p-1 text-center">
-            <div className="font-bold text-[9px]">Perp</div>
-            <div className="text-orange-600">+203%</div>
+        {/* Header */}
+        <div className="mb-4 pb-3 border-b border-border">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-bold font-mono">Phase 4 - Suivi Continu</h3>
+            <span className="px-2 py-1 bg-green-500/20 text-green-700 rounded text-[8px] font-bold">ACTIVE</span>
           </div>
         </div>
-        <p className="text-[8px] font-mono text-muted-foreground mt-1">Màj: il y a 5 min</p>
+
+        {/* Large Growth Card */}
+        <div className="mb-4 bg-gradient-to-br from-green-100 to-emerald-100 rounded-lg p-4 border-2 border-green-400 shadow-lg">
+          <div className="text-center">
+            <p className="text-[10px] font-mono text-muted-foreground mb-1">Croissance globale</p>
+            <p className="text-5xl font-bold text-green-600">+142%</p>
+            <p className="text-[9px] font-mono text-green-700 mt-1">Citations ce mois</p>
+          </div>
+        </div>
+
+        {/* Per-LLM Breakdown */}
+        <div className="mb-4">
+          <p className="text-[9px] font-mono font-bold mb-2 text-muted-foreground">BREAKDOWN PAR LLM</p>
+          <div className="grid grid-cols-3 gap-2">
+            <div className="bg-blue-50 rounded-lg p-2 border border-blue-200 text-center">
+              <div className="font-bold text-[10px] font-mono text-blue-700 mb-1">GPT</div>
+              <div className="text-lg font-bold text-blue-600">+156%</div>
+            </div>
+            <div className="bg-purple-50 rounded-lg p-2 border border-purple-200 text-center">
+              <div className="font-bold text-[10px] font-mono text-purple-700 mb-1">Claude</div>
+              <div className="text-lg font-bold text-purple-600">+128%</div>
+            </div>
+            <div className="bg-orange-50 rounded-lg p-2 border border-orange-200 text-center">
+              <div className="font-bold text-[10px] font-mono text-orange-700 mb-1">Perplexity</div>
+              <div className="text-lg font-bold text-orange-600">+142%</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Active A/B Tests */}
+        <div className="mb-3 bg-muted/50 rounded-lg p-3">
+          <p className="text-[9px] font-mono font-bold mb-2 text-muted-foreground">TESTS A/B ACTIFS</p>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-[8px] font-mono text-foreground">Version Title A vs B</span>
+              <span className="px-2 py-1 bg-blue-500 text-white rounded text-[8px] font-bold">Running</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-[8px] font-mono text-foreground">Schema Variant Test</span>
+              <span className="px-2 py-1 bg-purple-500 text-white rounded text-[8px] font-bold">Analyzing</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Timestamp */}
+        <div className="flex items-center gap-2 text-[9px] font-mono text-muted-foreground">
+          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+          Mise à jour il y a 5 min
+        </div>
       </>
     )
   }
@@ -233,12 +390,12 @@ const SkillsSection = () => {
           </div>
         </div>
 
-        <div className="mt-16 overflow-hidden">
-          <div className="py-3 flex items-center gap-4 animate-marquee bg-transparent">
-            <span className="font-mono text-lg font-bold text-foreground whitespace-nowrap flex items-center gap-2">
-              Audit GEO Gratuit ➜ ➜ ➜ Réservez maintenant ➜ ➜ ➜ Audit GEO Gratuit ➜ ➜ ➜ Réservez maintenant
-            </span>
-          </div>
+        <div className="mt-16 flex justify-center">
+          <Link href="/forfaits-geo-seo">
+            <Button className="px-8 py-6 text-base font-medium rounded-full bg-foreground text-background hover:bg-foreground/90 transition-all shadow-lg hover:shadow-xl border-2 border-foreground">
+              Nos forfaits
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

@@ -13,7 +13,7 @@ import {
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[70vh] flex flex-col items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
+    <section className="relative min-h-[70vh] flex flex-col items-center justify-center pt-24 pb-16 px-6 overflow-hidden bg-gradient-to-b from-muted/30 via-background to-background">
       {/* Floating Pixel Icons */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Left side icons */}
