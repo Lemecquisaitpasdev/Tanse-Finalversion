@@ -1,0 +1,10 @@
+<svg width="100" height="120" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Top chevron -->
+  <path d="M15 35 L50 10 L85 35" stroke="#17B9BE" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Middle chevron -->
+  <path d="M15 65 L50 40 L85 65" stroke="#17B9BE" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Bottom chevron -->
+  <path d="M15 95 L50 70 L85 95" stroke="#17B9BE" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
