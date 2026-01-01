@@ -28,8 +28,9 @@ export default function GeoPage() {
         <FeaturesSection />
         <FAQSection />
         <CTASection />
+
+        <SiteFooter />
       </main>
-      <SiteFooter />
     </>
   );
 }
