@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface TabItem {
   id: string;
@@ -121,7 +121,34 @@ const tabs: TabItem[] = [
 
 const ThoughtPartnerSection = () => {
   const [activeTab, setActiveTab] = useState("authority");
+  const [displayedText, setDisplayedText] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
   const activeTabData = tabs.find(tab => tab.id === activeTab);
+
+  // Typewriter animation effect
+  useEffect(() => {
+    if (!activeTabData?.description) return;
+
+    const fullText = activeTabData.description;
+    const typingDuration = 4000; // 4 seconds total
+    const charactersPerMs = fullText.length / typingDuration;
+
+    setDisplayedText("");
+    setIsTyping(true);
+
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      currentIndex++;
+      if (currentIndex <= fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex));
+      } else {
+        clearInterval(interval);
+        setIsTyping(false);
+      }
+    }, typingDuration / fullText.length);
+
+    return () => clearInterval(interval);
+  }, [activeTab, activeTabData?.description]);
 
   return (
     <section className="py-24 px-6">
@@ -172,7 +199,10 @@ const ThoughtPartnerSection = () => {
               }}
             />
             <p className="relative font-mono text-sm text-muted-foreground leading-relaxed">
-              {activeTabData?.description}
+              {displayedText}
+              {isTyping && (
+                <span className="inline-block w-[2px] h-[1em] ml-1 bg-foreground animate-pulse" />
+              )}
             </p>
           </div>
 
