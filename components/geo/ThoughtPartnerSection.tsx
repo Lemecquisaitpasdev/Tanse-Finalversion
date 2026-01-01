@@ -161,8 +161,11 @@ const ThoughtPartnerSection = () => {
   }, [activeTab, activeTabData?.description, animatedTabs]);
 
   return (
-    <section className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section className="relative py-24 px-6">
+      {/* Smooth transition gradient at top */}
+      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-background/80 via-background/40 to-transparent pointer-events-none" />
+
+      <div className="relative max-w-6xl mx-auto">
         <h2 className="font-display italic text-4xl md:text-5xl lg:text-6xl text-center mb-4 leading-tight">
           Comment fonctionne<br />réellement la citation<br />par les LLMs.
         </h2>

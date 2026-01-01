@@ -49,8 +49,11 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="py-24 px-6">
-      <div className="max-w-3xl mx-auto">
+    <section className="relative py-24 px-6">
+      {/* Smooth transition gradient at top */}
+      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-background/80 via-background/40 to-transparent pointer-events-none" />
+
+      <div className="relative max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <p className="text-sm font-mono uppercase tracking-wider text-muted-foreground mb-4">FAQ</p>
           <h2 className="font-display text-4xl md:text-5xl italic">Questions?<br />Réponses.</h2>
