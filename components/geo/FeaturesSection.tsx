@@ -87,28 +87,26 @@ const FeaturesSection = () => {
           </div>
 
           {/* Okurai Collaboration Card */}
-          <div className="lg:col-span-12 rounded-2xl overflow-hidden p-6 border-2" style={{
+          <div className="lg:col-span-12 rounded-2xl overflow-hidden p-8 border-2" style={{
             background: 'linear-gradient(135deg, #17B9BE 0%, #444684 100%)',
             borderColor: 'rgba(23, 185, 190, 0.3)'
           }}>
-            <div className="flex flex-col md:flex-row items-center gap-6">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="flex-1">
                 <h3 className="font-display text-2xl font-bold mb-3 text-white">Collaboration avec Okurai</h3>
                 <p className="font-mono text-sm text-white/90 leading-relaxed">
                   En partenariat stratégique avec Okurai, Le 1<sup className="text-xs">er</sup> Observatoire de recherche sur L'IA, nous intégrons leurs insights scientifiques pour la stratégie digitale de nos clients. Cette collaboration nous permet d'offrir des approches holistiques très poussées, combinant la compréhension comportementale des LLM et une data précieuse, pour des stratégies qui transcendent le simple référencement.
                 </p>
               </div>
-              <div className="bg-white/90 rounded-xl p-4 shadow-lg">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center bg-white p-1">
-                    <img src="/brand/okurai-logo.svg" alt="Okurai" className="w-10 h-10 object-contain" />
-                  </div>
-                  <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center bg-white">
-                    <img src="/brand/tanse-logo.png" alt="TANSE" className="w-10 h-10 object-contain" />
-                  </div>
+              <div className="flex flex-col items-center gap-4">
+                <div className="flex items-center gap-6">
+                  <img src="/brand/okurai-logo.svg" alt="Okurai" className="w-16 h-16" />
+                  <img src="/brand/tanse-logo.png" alt="TANSE" className="w-16 h-16 object-contain" />
                 </div>
-                <p className="font-mono text-xs text-slate-700 font-semibold">Okurai × TANSE</p>
-                <p className="font-mono text-[10px] text-slate-600">Stratégie unifiée</p>
+                <div className="text-center">
+                  <p className="font-mono text-sm text-white font-semibold">Okurai × TANSE</p>
+                  <p className="font-mono text-xs text-white/80">Stratégie unifiée</p>
+                </div>
               </div>
             </div>
           </div>
