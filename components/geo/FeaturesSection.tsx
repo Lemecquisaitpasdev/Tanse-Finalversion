@@ -85,6 +85,30 @@ const FeaturesSection = () => {
               </div>
             </div>
           </div>
+
+          {/* Okurai Collaboration Card */}
+          <div className="lg:col-span-12 bg-gradient-to-r from-purple-100 to-indigo-100 rounded-2xl overflow-hidden p-6 border-2 border-purple-200">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              <div className="flex-1">
+                <h3 className="font-display text-2xl font-bold mb-3 text-purple-900">Collaboration avec Okurai</h3>
+                <p className="font-mono text-sm text-purple-800 leading-relaxed">
+                  En partenariat stratégique avec Okurai, nous intégrons leurs insights en stratégie digitale avancée dans nos méthodologies GEO. Cette collaboration nous permet d'offrir des approches holistiques combinant visibilité LLM et positionnement de marque, pour des stratégies qui transcendent le simple référencement.
+                </p>
+              </div>
+              <div className="bg-white/60 rounded-xl p-4 shadow-lg">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-lg flex items-center justify-center">
+                    <span className="text-white font-bold text-xl">O</span>
+                  </div>
+                  <div className="w-10 h-10 bg-gradient-to-br from-orange-400 to-blue-400 rounded-lg flex items-center justify-center">
+                    <span className="text-white font-bold text-xl">T</span>
+                  </div>
+                </div>
+                <p className="font-mono text-xs text-purple-700 font-semibold">Okurai × TANSE</p>
+                <p className="font-mono text-[10px] text-purple-600">Stratégie unifiée</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

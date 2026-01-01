@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "./Button";
 import {
   PixelComputer,
@@ -40,11 +41,13 @@ const HeroSection = () => {
           Si les LLMs ne connaissent pas votre entreprise, vous perdez un marché considérable. Voici ce qu'est le GEO, pourquoi ça compte, et comment vous y adapter.
         </p>
 
-        <Button
-          className="mt-10 px-8 py-6 text-base font-medium rounded-full bg-foreground text-background hover:bg-foreground/90 transition-all"
-        >
-          Avoir un audit gratuit
-        </Button>
+        <Link href="/contact-audit-gratuit">
+          <Button
+            className="mt-10 px-8 py-6 text-base font-medium rounded-full bg-foreground text-background hover:bg-foreground/90 transition-all"
+          >
+            Avoir un audit gratuit
+          </Button>
+        </Link>
       </div>
     </section>
   );

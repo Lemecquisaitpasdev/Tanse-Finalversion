@@ -123,14 +123,22 @@ const ThoughtPartnerSection = () => {
   const [activeTab, setActiveTab] = useState("authority");
   const [displayedText, setDisplayedText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [animatedTabs, setAnimatedTabs] = useState<Set<string>>(new Set());
   const activeTabData = tabs.find(tab => tab.id === activeTab);
 
   // Typewriter animation effect
   useEffect(() => {
     if (!activeTabData?.description) return;
 
+    // Skip animation if this tab was already animated
+    if (animatedTabs.has(activeTab)) {
+      setDisplayedText(activeTabData.description);
+      setIsTyping(false);
+      return;
+    }
+
     const fullText = activeTabData.description;
-    const typingDuration = 4000; // 4 seconds total
+    const typingDuration = 2500; // 2.5 seconds total
     const charactersPerMs = fullText.length / typingDuration;
 
     setDisplayedText("");
@@ -144,11 +152,13 @@ const ThoughtPartnerSection = () => {
       } else {
         clearInterval(interval);
         setIsTyping(false);
+        // Mark this tab as animated
+        setAnimatedTabs(prev => new Set(prev).add(activeTab));
       }
     }, typingDuration / fullText.length);
 
     return () => clearInterval(interval);
-  }, [activeTab, activeTabData?.description]);
+  }, [activeTab, activeTabData?.description, animatedTabs]);
 
   return (
     <section className="py-24 px-6">

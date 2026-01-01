@@ -5,10 +5,9 @@ import ThoughtPartnerSection from "@/components/geo/ThoughtPartnerSection";
 import CRMMockupSection from "@/components/geo/CRMMockupSection";
 import SkillsSection from "@/components/geo/SkillsSection";
 import FeaturesSection from "@/components/geo/FeaturesSection";
-import PourQuiSection from "@/components/geo/PourQuiSection";
 import FAQSection from "@/components/geo/FAQSection";
 import CTASection from "@/components/geo/CTASection";
-import Footer from "@/components/geo/Footer";
+import SiteFooter from "@/app/components/SiteFooter";
 
 export default function GeoPage() {
   return (
@@ -21,11 +20,10 @@ export default function GeoPage() {
         <CRMMockupSection />
         <SkillsSection />
         <FeaturesSection />
-        <PourQuiSection />
         <FAQSection />
         <CTASection />
       </main>
-      <Footer />
+      <SiteFooter />
     </>
   );
 }
