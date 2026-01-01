@@ -7,7 +7,7 @@ import SkillsSection from "@/components/geo/SkillsSection";
 import FeaturesSection from "@/components/geo/FeaturesSection";
 import FAQSection from "@/components/geo/FAQSection";
 import CTASection from "@/components/geo/CTASection";
-import GeoFooter from "@/components/geo/GeoFooter";
+import SiteFooter from "@/app/components/SiteFooter";
 
 export default function GeoPage() {
   return (
@@ -23,7 +23,7 @@ export default function GeoPage() {
         <FAQSection />
         <CTASection />
       </main>
-      <GeoFooter />
+      <SiteFooter />
     </>
   );
 }
