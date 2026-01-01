@@ -16,14 +16,20 @@ const Header = () => {
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center gap-6">
-          <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            Skills
-          </a>
-          <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            Students
-          </a>
-          <Link href="/blog" className="text-sm font-medium text-foreground hover:text-foreground/80 transition-colors">
+          <Link href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            Index
+          </Link>
+          <Link href="/forfaits-geo-seo" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            Forfaits
+          </Link>
+          <Link href="/agence-geo-paris-lyon" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            Entreprise
+          </Link>
+          <Link href="/blog-seo-geo" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Blog
+          </Link>
+          <Link href="/contact-audit-gratuit" className="text-sm font-medium text-foreground hover:text-foreground/80 transition-colors">
+            Contactez-nous
           </Link>
         </nav>
       </div>

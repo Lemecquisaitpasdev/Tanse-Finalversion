@@ -155,11 +155,8 @@ const SkillsSection = () => {
         </div>
 
         <div className="mt-16 overflow-hidden">
-          <div
-            className="py-3 flex items-center gap-4 animate-marquee"
-            style={{ background: 'linear-gradient(90deg, #FF00FF 0%, #FF6B4A 25%, #FFD700 50%, #00FFFF 75%, #FF00FF 100%)' }}
-          >
-            <span className="font-mono text-lg font-bold text-black whitespace-nowrap flex items-center gap-2">
+          <div className="py-3 flex items-center gap-4 animate-marquee bg-transparent">
+            <span className="font-mono text-lg font-bold text-foreground whitespace-nowrap flex items-center gap-2">
               Audit GEO Gratuit ➜ ➜ ➜ Réservez maintenant ➜ ➜ ➜ Audit GEO Gratuit ➜ ➜ ➜ Réservez maintenant
             </span>
           </div>

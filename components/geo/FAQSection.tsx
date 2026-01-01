@@ -53,7 +53,7 @@ const FAQSection = () => {
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <p className="text-sm font-mono uppercase tracking-wider text-muted-foreground mb-4">FAQ</p>
-          <h2 className="font-display text-4xl md:text-5xl italic">Questions?<br />Answers.</h2>
+          <h2 className="font-display text-4xl md:text-5xl italic">Questions?<br />Réponses.</h2>
         </div>
         <div className="border-t border-border">
           {faqs.map((faq, index) => (
