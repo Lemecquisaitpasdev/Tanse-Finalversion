@@ -1,3 +1,6 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import Header from "@/components/geo/Header";
 import HeroSection from "@/components/geo/HeroSection";
 import BrowserMockup from "@/components/geo/BrowserMockup";
@@ -7,7 +10,10 @@ import SkillsSection from "@/components/geo/SkillsSection";
 import FeaturesSection from "@/components/geo/FeaturesSection";
 import FAQSection from "@/components/geo/FAQSection";
 import CTASection from "@/components/geo/CTASection";
-import SiteFooter from "@/app/components/SiteFooter";
+
+const SiteFooter = dynamic(() => import("../components/SiteFooter").then(m => m.default), {
+  ssr: false,
+});
 
 export default function GeoPage() {
   return (
