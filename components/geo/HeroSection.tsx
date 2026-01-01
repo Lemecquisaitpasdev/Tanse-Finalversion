@@ -41,9 +41,9 @@ const HeroSection = () => {
           Si les LLMs ne connaissent pas votre entreprise, vous perdez un marché considérable. Voici ce qu'est le GEO, pourquoi ça compte, et comment vous y adapter.
         </p>
 
-        <Link href="/contact-audit-gratuit">
+        <Link href="/contact-audit-gratuit" className="inline-block mt-10">
           <Button
-            className="mt-10 px-8 py-6 text-base font-medium rounded-full bg-foreground text-background hover:bg-foreground/90 transition-all"
+            className="px-8 py-6 text-base font-medium rounded-full bg-foreground text-background hover:bg-foreground/90 transition-all shadow-lg hover:shadow-xl border-2 border-foreground cursor-pointer"
           >
             Avoir un audit gratuit
           </Button>

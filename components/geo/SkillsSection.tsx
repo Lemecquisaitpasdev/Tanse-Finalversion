@@ -8,6 +8,7 @@ interface Phase {
   icon: React.ReactNode;
   name: string;
   description: string;
+  mockupContent: React.ReactNode;
 }
 
 const DiagnosticIcon = () => (
@@ -47,26 +48,77 @@ const phases: Phase[] = [
   {
     id: "diagnostic",
     icon: <DiagnosticIcon />,
-    name: "Audit 360° de Visibilité",
-    description: "On teste 50-100 requêtes stratégiques pour votre secteur sur ChatGPT, Claude, Perplexity, et Gemini. On identifie où vous êtes cité, où vous êtes invisible, et surtout : pourquoi."
+    name: "Audit 360° Visibilité",
+    description: "Test de 50-100 requêtes stratégiques sur ChatGPT, Claude, Perplexity et Gemini pour identifier votre visibilité.",
+    mockupContent: (
+      <>
+        <div className="h-3 bg-muted rounded w-2/3 mb-2" />
+        <div className="h-3 bg-muted rounded w-full mb-2" />
+        <div className="h-3 bg-muted rounded w-1/2 mb-4" />
+        <div className="bg-gradient-to-r from-red-100 to-yellow-100 rounded p-3 mb-2">
+          <p className="text-xs font-mono">❌ Non cité: 42/50</p>
+        </div>
+        <div className="bg-gradient-to-r from-green-100 to-blue-100 rounded p-3">
+          <p className="text-xs font-mono">✓ Cité: 8/50</p>
+        </div>
+      </>
+    )
   },
   {
     id: "fondations",
     icon: <InfraIcon />,
-    name: "Infrastructure Technique",
-    description: "Implementation de structured data avancé, optimisation Schema.org, semantic markup, knowledge graph foundations. C'est la base technique qui permet aux LLMs de 'comprendre' votre business."
+    name: "Infrastructure Tech",
+    description: "Structured data avancé, Schema.org optimisé et semantic markup pour que les LLMs comprennent votre business.",
+    mockupContent: (
+      <>
+        <div className="bg-muted rounded p-2 mb-3 text-[10px] font-mono">
+          <div className="text-blue-600">&lt;script type="application/ld+json"&gt;</div>
+          <div className="pl-2">{`{`}</div>
+          <div className="pl-3">"@type": "Organization",</div>
+          <div className="pl-3">"name": "Votre Entreprise"</div>
+          <div className="pl-2">{`}`}</div>
+          <div className="text-blue-600">&lt;/script&gt;</div>
+        </div>
+        <div className="flex gap-1">
+          <div className="px-2 py-1 bg-green-100 rounded text-[9px]">✓ Schema.org</div>
+          <div className="px-2 py-1 bg-green-100 rounded text-[9px]">✓ E-E-A-T</div>
+        </div>
+      </>
+    )
   },
   {
     id: "content",
     icon: <ContentIcon />,
-    name: "Création de Citations",
-    description: "On cartographie les 50-200 requêtes que vos clients font réellement aux LLMs. Puis on crée du contenu spécifiquement optimisé pour ces questions. Pas du blog générique, du contenu ciblé."
+    name: "Création Citations",
+    description: "Contenu optimisé pour les 50-200 requêtes que vos clients font aux LLMs. Ciblé, pas générique.",
+    mockupContent: (
+      <>
+        <div className="bg-gradient-to-r from-orange-100 to-blue-100 rounded p-3 mb-3">
+          <p className="text-xs font-mono font-bold">Guide Expert</p>
+          <p className="text-[9px] font-mono text-muted-foreground">2500 mots • 15 sources</p>
+        </div>
+        <div className="flex gap-1 mb-2">
+          {[...Array(5)].map((_, i) => <div key={i} className="text-xs">⭐</div>)}
+        </div>
+        <div className="text-[10px] font-mono text-green-600">✓ Citation-worthy</div>
+      </>
+    )
   },
   {
     id: "monitoring",
     icon: <MonitorIcon />,
-    name: "Amélioration Continue",
-    description: "Dashboard temps réel avec tracking de citations, positions, share of voice vs concurrents. On A/B test, on itère, on optimise. Le GEO n'est jamais 'fini', c'est un jeu continu."
+    name: "Suivi Continu",
+    description: "Dashboard temps réel : citations, positions, share of voice. A/B test permanent pour optimiser.",
+    mockupContent: (
+      <>
+        <div className="bg-muted rounded p-2 mb-3">
+          <p className="text-xs font-mono mb-1">Citations ce mois</p>
+          <p className="text-2xl font-bold text-green-600">+142%</p>
+        </div>
+        <div className="h-20 bg-gradient-to-t from-blue-200 to-orange-200 rounded mb-2" />
+        <div className="text-[10px] font-mono text-muted-foreground">Mise à jour: il y a 5 min</div>
+      </>
+    )
   }
 ];
 
@@ -109,18 +161,15 @@ const SkillsSection = () => {
                 <div className="p-6 min-h-[350px]">
                   <div className="flex gap-6">
                     <div className="flex-1 space-y-3">
-                      <div className="h-4 bg-muted rounded w-3/4" />
-                      <div className="h-4 bg-muted rounded w-full" />
-                      <div className="h-4 bg-muted rounded w-2/3" />
-                      <div className="mt-6 h-40 bg-gradient-to-r from-orange-100 to-blue-100 rounded" />
+                      {currentPhase?.mockupContent}
                     </div>
                     <div className="w-48 border-l border-border pl-4">
                       <div className="flex gap-1 mb-4">
                         <span className="px-2 py-1 bg-muted rounded text-[10px] font-mono">Phase {currentIndex + 1}</span>
-                        <span className="px-2 py-1 bg-muted rounded text-[10px] font-mono">Active</span>
+                        <span className="px-2 py-1 bg-primary/20 rounded text-[10px] font-mono">Active</span>
                       </div>
                       <div className="p-3 bg-muted rounded-lg text-xs">
-                        <p className="text-muted-foreground">Suivi en temps réel de vos métriques GEO</p>
+                        <p className="text-muted-foreground font-mono">{currentPhase?.name}</p>
                       </div>
                     </div>
                   </div>
