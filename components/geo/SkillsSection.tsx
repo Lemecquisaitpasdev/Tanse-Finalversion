@@ -49,17 +49,25 @@ const phases: Phase[] = [
     id: "diagnostic",
     icon: <DiagnosticIcon />,
     name: "Audit 360° Visibilité",
-    description: "Test de 50-100 requêtes stratégiques sur ChatGPT, Claude, Perplexity et Gemini pour identifier votre visibilité.",
+    description: "Test de 50-100 requêtes sur ChatGPT, Claude, Perplexity et Gemini.",
     mockupContent: (
       <>
-        <div className="h-3 bg-muted rounded w-2/3 mb-2" />
-        <div className="h-3 bg-muted rounded w-full mb-2" />
-        <div className="h-3 bg-muted rounded w-1/2 mb-4" />
-        <div className="bg-gradient-to-r from-red-100 to-yellow-100 rounded p-3 mb-2">
-          <p className="text-xs font-mono">❌ Non cité: 42/50</p>
+        <div className="space-y-2 mb-3">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-mono text-muted-foreground">Taux citation global</span>
+            <span className="text-xs font-bold">16%</span>
+          </div>
+          <div className="h-2 bg-muted rounded-full overflow-hidden">
+            <div className="h-full bg-gradient-to-r from-red-400 to-orange-400 w-[16%]"></div>
+          </div>
         </div>
-        <div className="bg-gradient-to-r from-green-100 to-blue-100 rounded p-3">
-          <p className="text-xs font-mono">✓ Cité: 8/50</p>
+        <div className="bg-gradient-to-r from-red-50 to-orange-50 rounded p-3 mb-2 border-l-4 border-red-400">
+          <p className="text-[10px] font-mono font-bold">❌ Non cité: 42/50</p>
+          <p className="text-[9px] font-mono text-muted-foreground mt-1">ChatGPT (0/15) Claude (2/12) Perplexity (4/13)</p>
+        </div>
+        <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded p-3 border-l-4 border-green-400">
+          <p className="text-[10px] font-mono font-bold">✓ Cité: 8/50</p>
+          <p className="text-[9px] font-mono text-muted-foreground mt-1">Position moy: #3.2 • Contexte: 87%</p>
         </div>
       </>
     )
@@ -68,20 +76,21 @@ const phases: Phase[] = [
     id: "fondations",
     icon: <InfraIcon />,
     name: "Infrastructure Tech",
-    description: "Structured data avancé, Schema.org optimisé et semantic markup pour que les LLMs comprennent votre business.",
+    description: "Schema.org, structured data et knowledge graph.",
     mockupContent: (
       <>
-        <div className="bg-muted rounded p-2 mb-3 text-[10px] font-mono">
-          <div className="text-blue-600">&lt;script type="application/ld+json"&gt;</div>
-          <div className="pl-2">{`{`}</div>
-          <div className="pl-3">"@type": "Organization",</div>
-          <div className="pl-3">"name": "Votre Entreprise"</div>
-          <div className="pl-2">{`}`}</div>
-          <div className="text-blue-600">&lt;/script&gt;</div>
+        <div className="bg-slate-900 rounded p-2 mb-2 text-[9px] font-mono">
+          <div className="text-blue-400">&lt;script type="application/ld+json"&gt;</div>
+          <div className="text-white pl-1">{`{`}</div>
+          <div className="text-white pl-2">"@type": "Organization",</div>
+          <div className="text-green-400 pl-2">"expertise": "SaaS",</div>
+          <div className="text-green-400 pl-2">"score": 94</div>
+          <div className="text-white pl-1">{`}`}</div>
+          <div className="text-blue-400">&lt;/script&gt;</div>
         </div>
-        <div className="flex gap-1">
-          <div className="px-2 py-1 bg-green-100 rounded text-[9px]">✓ Schema.org</div>
-          <div className="px-2 py-1 bg-green-100 rounded text-[9px]">✓ E-E-A-T</div>
+        <div className="grid grid-cols-2 gap-1 mb-2">
+          <div className="px-2 py-1 bg-green-100 rounded text-[8px] text-center">✓ Schema.org</div>
+          <div className="px-2 py-1 bg-green-100 rounded text-[8px] text-center">✓ E-E-A-T</div>
         </div>
       </>
     )
@@ -90,15 +99,18 @@ const phases: Phase[] = [
     id: "content",
     icon: <ContentIcon />,
     name: "Création Citations",
-    description: "Contenu optimisé pour les 50-200 requêtes que vos clients font aux LLMs. Ciblé, pas générique.",
+    description: "Contenu optimisé pour 50-200 requêtes LLM.",
     mockupContent: (
       <>
-        <div className="bg-gradient-to-r from-orange-100 to-blue-100 rounded p-3 mb-3">
-          <p className="text-xs font-mono font-bold">Guide Expert</p>
-          <p className="text-[9px] font-mono text-muted-foreground">2500 mots • 15 sources</p>
+        <div className="bg-gradient-to-br from-orange-100 to-blue-100 rounded p-3 mb-2 shadow-sm">
+          <div className="flex items-start justify-between mb-1">
+            <p className="text-[10px] font-mono font-bold">Guide Expert</p>
+            <span className="text-[8px] px-1 bg-green-500 text-white rounded">NEW</span>
+          </div>
+          <p className="text-[8px] font-mono text-muted-foreground">2500 mots • 15 sources</p>
         </div>
-        <div className="flex gap-1 mb-2">
-          {[...Array(5)].map((_, i) => <div key={i} className="text-xs">⭐</div>)}
+        <div className="flex items-center gap-1 mb-2">
+          {[...Array(5)].map((_, i) => <div key={i} className="text-sm text-yellow-500">★</div>)}
         </div>
         <div className="text-[10px] font-mono text-green-600">✓ Citation-worthy</div>
       </>
@@ -108,15 +120,29 @@ const phases: Phase[] = [
     id: "monitoring",
     icon: <MonitorIcon />,
     name: "Suivi Continu",
-    description: "Dashboard temps réel : citations, positions, share of voice. A/B test permanent pour optimiser.",
+    description: "Dashboard temps réel et A/B tests.",
     mockupContent: (
       <>
-        <div className="bg-muted rounded p-2 mb-3">
-          <p className="text-xs font-mono mb-1">Citations ce mois</p>
+        <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded p-2 mb-2 border border-green-200">
+          <p className="text-[9px] font-mono text-muted-foreground mb-1">Citations ce mois</p>
           <p className="text-2xl font-bold text-green-600">+142%</p>
         </div>
-        <div className="h-20 bg-gradient-to-t from-blue-200 to-orange-200 rounded mb-2" />
-        <div className="text-[10px] font-mono text-muted-foreground">Mise à jour: il y a 5 min</div>
+        <div className="relative h-16 bg-gradient-to-t from-blue-200 to-orange-200 rounded mb-2"></div>
+        <div className="grid grid-cols-3 gap-1 text-[8px]">
+          <div className="bg-blue-50 rounded p-1 text-center">
+            <div className="font-bold text-[9px]">GPT</div>
+            <div className="text-blue-600">+89%</div>
+          </div>
+          <div className="bg-purple-50 rounded p-1 text-center">
+            <div className="font-bold text-[9px]">Claude</div>
+            <div className="text-purple-600">+156%</div>
+          </div>
+          <div className="bg-orange-50 rounded p-1 text-center">
+            <div className="font-bold text-[9px]">Perp</div>
+            <div className="text-orange-600">+203%</div>
+          </div>
+        </div>
+        <p className="text-[8px] font-mono text-muted-foreground mt-1">Màj: il y a 5 min</p>
       </>
     )
   }
