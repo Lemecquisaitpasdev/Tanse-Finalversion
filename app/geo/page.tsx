@@ -1,5 +1,3 @@
-"use client";
-
 import dynamic from "next/dynamic";
 import Header from "@/components/geo/Header";
 import HeroSection from "@/components/geo/HeroSection";
