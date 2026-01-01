@@ -11,26 +11,35 @@ export default function BrowserCompanyFooter() {
   const currentYear = new Date().getFullYear();
 
   const footerSections = {
-    product: [
-      { label: 'FOR WORK', href: '/forfaits-geo-seo' },
-      { label: 'GEO', href: '/geo' },
-      { label: 'OFFRE 5 PLACES', href: '/offre-5-places' },
-      { label: 'AUDIT OFFERT', href: '/audit-offert' },
-      { label: 'BLOG GEO', href: '/blog-seo-geo' },
-      { label: 'BLOG LEADS', href: '/blog' },
-    ],
-    resources: [
-      { label: 'HELP', href: '/#faq' },
-      { label: 'PRIVACY', href: '/confidentialite' },
-      { label: 'TERMS OF USE', href: '/conditions' },
-      { label: 'SECURITY', href: '/cgv' },
-      { label: 'NEWSLETTER', href: '/blog-seo-geo#newsletter' },
-    ],
-    company: [
-      { label: 'ABOUT US', href: '/agence-geo-paris-lyon' },
-      { label: 'NOS VALEURS', href: '/valeurs' },
+    entreprise: [
+      { label: 'À PROPOS', href: '/agence-geo-paris-lyon' },
+      { label: 'NOTRE MÉTHODE', href: '/agence-geo-paris-lyon#method' },
       { label: 'ÉQUIPE', href: '/agence-geo-paris-lyon#equipe' },
-      { label: 'OKURAI', href: '/collaboration-okurai' },
+      { label: 'COLLABORATION OKURAI', href: '/collaboration-okurai' },
+      { label: 'PARIS & LYON', href: '/agence-geo-paris-lyon' },
+    ],
+    produits: [
+      { label: 'FORFAITS', href: '/forfaits-geo-seo' },
+      { label: 'OFFRE 5 PLACES', href: '/offre-5-places' },
+      { label: 'AUDIT SEO + GEO OFFERT', href: '/audit-offert' },
+      { label: 'GEO - OPTIMISATION IA', href: '/geo' },
+      { label: 'BLOG LEAD GENERATION', href: '/blog' },
+      { label: 'BLOG SEO & GEO', href: '/blog-seo-geo' },
+      { label: 'RÉSULTATS & CHIFFRES', href: '/#stats' },
+      { label: 'INSIGHTS TRAFIC', href: '/#insights' },
+    ],
+    ressources: [
+      { label: 'FAQ', href: '/#faq' },
+      { label: 'NEWSLETTER', href: '/blog-seo-geo#newsletter' },
+      { label: 'CONTACT@TANSE.FR', href: 'mailto:contact@tanse.fr' },
+    ],
+    legal: [
+      { label: 'CGV', href: '/cgv' },
+      { label: 'CGU', href: '/conditions' },
+      { label: 'CONFIDENTIALITÉ', href: '/confidentialite' },
+      { label: 'COOKIES', href: '/cookies' },
+      { label: 'MENTIONS LÉGALES', href: '/mentions-legales' },
+      { label: 'POLITIQUE IA', href: '/ia' },
     ],
     connect: [
       { label: 'X', href: 'https://x.com/tanse_fr', external: true },
@@ -42,9 +51,9 @@ export default function BrowserCompanyFooter() {
   return (
     <footer className="relative bg-[#F8F8F8] border-t border-[#E0E0E0] py-12 md:py-16 px-6 md:px-12">
       <div className="max-w-[1600px] mx-auto">
-        {/* Main Grid - Exactly like TBC */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-8 gap-y-12 mb-16 md:mb-20">
-          {/* Product Column */}
+        {/* Main Grid - 6 colonnes */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-8 gap-y-12 mb-16 md:mb-20">
+          {/* Entreprise Column */}
           <div>
             <h3
               className="mb-5 text-[#1A1A1A]"
@@ -57,10 +66,10 @@ export default function BrowserCompanyFooter() {
                 fontStyle: 'normal',
               }}
             >
-              PRODUCT
+              ENTREPRISE
             </h3>
             <ul className="space-y-3">
-              {footerSections.product.map((link) => (
+              {footerSections.entreprise.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -81,7 +90,7 @@ export default function BrowserCompanyFooter() {
             </ul>
           </div>
 
-          {/* Resources Column */}
+          {/* Produits Column */}
           <div>
             <h3
               className="mb-5 text-[#1A1A1A]"
@@ -94,10 +103,10 @@ export default function BrowserCompanyFooter() {
                 fontStyle: 'normal',
               }}
             >
-              RESOURCES
+              PRODUITS
             </h3>
             <ul className="space-y-3">
-              {footerSections.resources.map((link) => (
+              {footerSections.produits.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -118,7 +127,7 @@ export default function BrowserCompanyFooter() {
             </ul>
           </div>
 
-          {/* Company Column */}
+          {/* Ressources Column */}
           <div>
             <h3
               className="mb-5 text-[#1A1A1A]"
@@ -131,10 +140,47 @@ export default function BrowserCompanyFooter() {
                 fontStyle: 'normal',
               }}
             >
-              COMPANY
+              RESSOURCES
             </h3>
             <ul className="space-y-3">
-              {footerSections.company.map((link) => (
+              {footerSections.ressources.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-[#737373] hover:bg-black hover:text-white transition-all duration-150 px-1 py-0.5 -ml-1 rounded"
+                    style={{
+                      fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
+                      fontSize: '13px',
+                      fontWeight: 400,
+                      lineHeight: '16px',
+                      letterSpacing: '0.01em',
+                      fontStyle: 'normal',
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal Column */}
+          <div>
+            <h3
+              className="mb-5 text-[#1A1A1A]"
+              style={{
+                fontFamily: '"ABC Favorit Mono", "Roboto Mono", monospace',
+                fontSize: '13px',
+                fontWeight: 400,
+                lineHeight: '17px',
+                letterSpacing: '0.08em',
+                fontStyle: 'normal',
+              }}
+            >
+              LÉGAL
+            </h3>
+            <ul className="space-y-3">
+              {footerSections.legal.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -168,7 +214,7 @@ export default function BrowserCompanyFooter() {
                 fontStyle: 'normal',
               }}
             >
-              CONNECT
+              CONTACT
             </h3>
             <ul className="space-y-3">
               {footerSections.connect.map((link) => (
@@ -194,7 +240,7 @@ export default function BrowserCompanyFooter() {
           </div>
 
           {/* Logo Column - Top Right */}
-          <div className="col-span-2 md:col-span-4 lg:col-span-1 flex justify-start lg:justify-end items-start">
+          <div className="col-span-2 md:col-span-3 lg:col-span-1 flex justify-start lg:justify-end items-start">
             <div className="relative w-36 h-36 opacity-90">
               <Image
                 src="/brand/tanse-logo.png?v=3"
@@ -207,7 +253,7 @@ export default function BrowserCompanyFooter() {
           </div>
         </div>
 
-        {/* Bottom Section - Exactly like TBC */}
+        {/* Bottom Section */}
         <div className="border-t border-[#E0E0E0] pt-6">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[#737373]">
             {/* Left: Copyright */}
@@ -222,7 +268,7 @@ export default function BrowserCompanyFooter() {
                 fontStyle: 'normal',
               }}
             >
-              COPYRIGHT © {currentYear}
+              © {currentYear} TANSE — TOUS DROITS RÉSERVÉS
             </div>
 
             {/* Center: Designed and Built By */}
@@ -237,8 +283,8 @@ export default function BrowserCompanyFooter() {
                 fontStyle: 'normal',
               }}
             >
-              <div>DESIGNED AND BUILT BY</div>
-              <div className="mt-0.5 font-medium text-[#1A1A1A]">TANSE OF PARIS & LYON</div>
+              <div>CONÇU ET DÉVELOPPÉ PAR</div>
+              <div className="mt-0.5 font-medium text-[#1A1A1A]">TANSE DE PARIS & LYON</div>
             </div>
 
             {/* Right: Current Status */}
@@ -253,7 +299,7 @@ export default function BrowserCompanyFooter() {
                 fontStyle: 'normal',
               }}
             >
-              CURRENT STATUS: <span className="font-medium text-[#16A34A]">DISPONIBLE</span>
+              STATUT ACTUEL: <span className="font-medium text-[#16A34A]">DISPONIBLE</span>
             </div>
           </div>
 
@@ -270,8 +316,8 @@ export default function BrowserCompanyFooter() {
               color: '#737373',
             }}
           >
-            <div>DESIGNED AND BUILT BY</div>
-            <div className="mt-0.5 font-medium text-[#1A1A1A]">TANSE OF PARIS & LYON</div>
+            <div>CONÇU ET DÉVELOPPÉ PAR</div>
+            <div className="mt-0.5 font-medium text-[#1A1A1A]">TANSE DE PARIS & LYON</div>
           </div>
         </div>
       </div>
