@@ -8,7 +8,7 @@ import CRMMockupSection from "@/components/geo/CRMMockupSection";
 import SkillsSection from "@/components/geo/SkillsSection";
 import FeaturesSection from "@/components/geo/FeaturesSection";
 import FAQSection from "@/components/geo/FAQSection";
-import CTASection from "@/components/geo/CTASection";
+import FinalCta from "@/app/components/FinalCta";
 import BrowserCompanyFooter from "@/app/components/outils/BrowserCompanyFooter";
 
 export default function GeoPage() {
@@ -23,7 +23,7 @@ export default function GeoPage() {
         <SkillsSection />
         <FeaturesSection />
         <FAQSection />
-        <CTASection />
+        <FinalCta />
 
         <BrowserCompanyFooter />
       </main>
