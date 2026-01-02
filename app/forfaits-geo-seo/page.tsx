@@ -2,7 +2,6 @@
 "use client";
 
 import Link from "next/link";
-import { useOptimization } from "../components/OptimizationProvider";
 import SiteHeader from "../components/SiteHeader";
 import BrowserCompanyFooter from "../components/outils/BrowserCompanyFooter";
 
@@ -14,6 +13,7 @@ type Card = {
   points: string[];
   cta: string;
   best?: boolean;
+  color: string;
 };
 
 const cards: readonly Card[] = [
@@ -31,6 +31,7 @@ const cards: readonly Card[] = [
       "Optimisation des balises (meta, headings, etc.)",
     ],
     cta: "Souscrire",
+    color: "from-orange-400/20 to-pink-400/20",
   },
   {
     k: "pack-complet",
@@ -46,6 +47,7 @@ const cards: readonly Card[] = [
     ],
     best: true,
     cta: "Commander le pack",
+    color: "from-blue-400/20 to-purple-400/20",
   },
   {
     k: "grand-groupes",
@@ -59,156 +61,193 @@ const cards: readonly Card[] = [
       "SLA, formations & accompagnement dédié",
     ],
     cta: "Parler à un expert",
+    color: "from-green-400/20 to-teal-400/20",
   },
 ] as const;
 
-function HeaderBand() {
-  return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#444684] via-[#3d3a66] to-[#524e7d] text-white">
-      {/* Gradient overlay effect */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent_50%)]"></div>
-
-      <div className="relative mx-auto w-full max-w-7xl px-6 py-20 md:py-28 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur px-4 py-1.5 text-sm font-medium mb-6">
-          <span className="inline-block h-2 w-2 rounded-full bg-green-400 animate-pulse"></span>
-          Paiement 100% sécurisé via Stripe
-        </div>
-
-        <h1 className="font-display italic text-5xl md:text-6xl lg:text-7xl tracking-tight leading-tight">
-          Nos forfaits
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg md:text-xl text-white/90 leading-relaxed">
-          Des packs simples, adaptés à votre contexte.<br className="hidden md:block" />
-          Démarrage sous 5 jours ouvrés.
-        </p>
-      </div>
-    </section>
-  );
-}
-
 export default function ForfaitsPage() {
-  const config = useOptimization();
-
-  // Adaptive hover shadow - complex on macOS, simple on Windows
-  const hoverShadowClass = config.enableShadows
-    ? "hover:shadow-[0_40px_120px_-30px_rgba(68,70,132,0.4)]"
-    : "hover:shadow-xl";
-
   return (
     <>
       <SiteHeader />
-      <main className="bg-[#E4E4E4] pt-16">
-        <HeaderBand />
+      <main className="relative min-h-screen bg-background pt-16">
+        {/* Background blurs */}
+        <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-orange-200 to-pink-200 rounded-full blur-3xl opacity-20 animate-pulse" />
+          <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-gradient-to-br from-green-200 to-teal-200 rounded-full blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }} />
+        </div>
 
-        {/* Cartes */}
-        <section className="-mt-16 pb-12 md:pb-16">
-          <div className="mx-auto w-full max-w-7xl px-6">
-            <div className="grid gap-6 lg:gap-8 md:grid-cols-3">
-              {cards.map((c) => {
-                const isBest = Boolean(c.best);
-                const href =
-                  c.k === "grand-groupes"
-                    ? "/contact-audit-gratuit?plan=grand-groupes"
-                    : `/checkout/${c.k}`;
+        {/* Hero Section */}
+        <section className="relative min-h-[60vh] flex flex-col items-center justify-center px-6 py-24">
+          <div className="text-center max-w-4xl mx-auto">
+            <p className="text-sm font-mono uppercase tracking-wider text-muted-foreground mb-6">
+              Forfaits & Tarifs
+            </p>
+            <h1 className="font-display italic text-6xl md:text-7xl lg:text-8xl leading-tight tracking-tight mb-8">
+              Choisissez votre forfait.
+            </h1>
+            <p className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto leading-relaxed">
+              Des packs simples, adaptés à votre contexte.<br />
+              Démarrage sous 5 jours ouvrés.
+            </p>
+          </div>
+        </section>
 
-                return (
-                  <div
-                    key={c.k}
-                    className={`group relative rounded-3xl border ${
-                      isBest ? "border-[#444684] ring-2 ring-[#444684]/20" : "border-neutral-200"
-                    } bg-white p-7 md:p-8 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-2 ${hoverShadowClass}`}
-                  >
-                    {isBest && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
-                        <div className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#444684] to-[#524e7d] px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-white shadow-lg">
-                          <span className="inline-block h-1.5 w-1.5 rounded-full bg-yellow-300"></span>
-                          Meilleur choix
+        {/* Forfaits Mockups */}
+        <section className="py-16 px-6">
+          <div className="max-w-7xl mx-auto space-y-24">
+            {cards.map((card, index) => {
+              const href =
+                card.k === "grand-groupes"
+                  ? "/contact-audit-gratuit?plan=grand-groupes"
+                  : `/checkout/${card.k}`;
+
+              const isEven = index % 2 === 0;
+
+              return (
+                <div
+                  key={card.k}
+                  className={`grid md:grid-cols-2 gap-12 items-center ${!isEven ? 'md:flex-row-reverse' : ''}`}
+                >
+                  {/* Mockup Card */}
+                  <div className={`relative ${!isEven ? 'md:order-2' : ''}`}>
+                    <div className={`relative bg-gradient-to-br ${card.color} backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl border border-foreground/10`}>
+                      {card.best && (
+                        <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                          <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-white shadow-lg">
+                            <span className="inline-block h-1.5 w-1.5 rounded-full bg-yellow-300 animate-pulse"></span>
+                            Meilleur choix
+                          </div>
                         </div>
+                      )}
+
+                      <div className="space-y-6">
+                        <div>
+                          <h3 className="font-display italic text-3xl md:text-4xl mb-2">{card.titre}</h3>
+                          <p className="text-sm text-muted-foreground font-mono">{card.sous}</p>
+                        </div>
+
+                        <div className="text-5xl md:text-6xl font-display italic">
+                          {card.prix}
+                        </div>
+
+                        <ul className="space-y-3 text-sm">
+                          {card.points.map((point) => (
+                            <li key={point} className="flex items-start gap-2">
+                              <span className="text-foreground/60 mt-1">✓</span>
+                              <span className="leading-relaxed">{point}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        <a
+                          href={href}
+                          className={`block w-full text-center rounded-full px-8 py-4 font-semibold transition-all duration-200 hover:-translate-y-1 hover:shadow-xl ${
+                            card.best
+                              ? "bg-foreground text-background hover:bg-foreground/90"
+                              : "bg-background text-foreground border-2 border-foreground/20 hover:border-foreground/40"
+                          }`}
+                        >
+                          {card.cta}
+                        </a>
                       </div>
-                    )}
-
-                    <div className="text-lg font-semibold text-neutral-900">{c.titre}</div>
-                    <div className="mt-1 text-4xl font-semibold text-neutral-900">{c.prix}</div>
-                    <div className="text-sm text-neutral-600">{c.sous}</div>
-
-                    <ul className="mt-5 space-y-2 text-sm text-neutral-800">
-                      {c.points.map((p) => (
-                        <li key={p}>• {p}</li>
-                      ))}
-                    </ul>
-
-                    <a
-                      href={href}
-                      className={`mt-8 block w-full rounded-full px-6 py-3.5 text-center text-sm font-semibold shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 min-h-[48px] flex items-center justify-center ${
-                        isBest
-                          ? "bg-[#444684] text-white hover:opacity-90 hover:shadow-xl focus-visible:outline-[#444684]"
-                          : "border-2 border-neutral-300 bg-white text-neutral-900 hover:bg-neutral-50 hover:border-neutral-400 focus-visible:outline-[#444684]"
-                      }`}
-                    >
-                      {c.cta}
-                    </a>
+                    </div>
                   </div>
-                );
-              })}
+
+                  {/* Description */}
+                  <div className={isEven ? 'md:order-2' : ''}>
+                    <div className="space-y-6">
+                      <h2 className="font-display italic text-4xl md:text-5xl leading-tight">
+                        {card.k === "maintenance" && "Optimisation continue."}
+                        {card.k === "pack-complet" && "Tout-en-un."}
+                        {card.k === "grand-groupes" && "À l'échelle."}
+                      </h2>
+                      <p className="text-lg text-foreground/70 leading-relaxed">
+                        {card.k === "maintenance" &&
+                          "Maintenez votre avance locale. Suivi mensuel de vos positions SEO et GEO, gestion proactive de votre présence en ligne et optimisations continues pour rester devant vos concurrents."
+                        }
+                        {card.k === "pack-complet" &&
+                          "La solution complète pour démarrer fort. Site optimisé, présence locale impeccable et stratégie GEO dès le jour 1. Tout ce dont vous avez besoin pour dominer localement."
+                        }
+                        {card.k === "grand-groupes" &&
+                          "Déployez votre stratégie à grande échelle. Multi-marques, multi-régions, gouvernance centralisée et reporting consolidé. Pour les groupes qui veulent industrialiser leur SEO local."
+                        }
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Réassurance Section */}
+        <section className="py-24 px-6">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="font-display italic text-4xl md:text-5xl text-center mb-16">
+              Pourquoi nous choisir ?
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="relative bg-gradient-to-br from-orange-50 to-pink-50 rounded-3xl p-8 border border-foreground/10">
+                <h3 className="font-display italic text-2xl mb-4">Résultats attendus</h3>
+                <p className="text-foreground/70 leading-relaxed">
+                  Quick wins en 2–6 semaines (Google Business, avis). SEO durable sur 3–6 mois selon la
+                  concurrence. Objectif : plus d'essais, d'appels et de RDV atelier.
+                </p>
+              </div>
+
+              <div className="relative bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 border border-foreground/10">
+                <h3 className="font-display italic text-2xl mb-4">Pourquoi TANSE ?</h3>
+                <p className="text-foreground/70 leading-relaxed">
+                  Nous sommes pionniers du GEO et un cabinet spécialisé automobile : nous parlons votre langage métier et focalisons la
+                  stratégie sur vos objectifs commerciaux locaux.
+                </p>
+              </div>
+
+              <div className="relative bg-gradient-to-br from-green-50 to-teal-50 rounded-3xl p-8 border border-foreground/10">
+                <h3 className="font-display italic text-2xl mb-4">Réassurance</h3>
+                <p className="text-foreground/70 leading-relaxed">
+                  Paiement Stripe, transparence totale, reporting clair. Vous restez propriétaire de vos actifs
+                  (site, comptes, contenus).
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Réassurance */}
-        <section className="pb-12 md:pb-16">
-          <div className="mx-auto w-full max-w-7xl px-6 grid gap-6 md:grid-cols-3">
-            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.25)]">
-              <div className="font-display italic text-xl text-neutral-900 mb-3">Résultats attendus</div>
-              <p className="text-sm text-neutral-700 leading-relaxed">
-                Quick wins en 2–6 semaines (Google Business, avis). SEO durable sur 3–6 mois selon la
-                concurrence. Objectif : plus d'essais, d'appels et de RDV atelier.
-              </p>
-            </div>
-            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.25)]">
-              <div className="font-display italic text-xl text-neutral-900 mb-3">Pourquoi TANSE ?</div>
-              <p className="text-sm text-neutral-700 leading-relaxed">
-                Nous sommes pionniers du Geo et un cabinet spécialisé automobile : nous parlons votre langage métier et focalisons la
-                stratégie sur vos objectifs commerciaux locaux.
-              </p>
-            </div>
-            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.25)]">
-              <div className="font-display italic text-xl text-neutral-900 mb-3">Réassurance</div>
-              <p className="text-sm text-neutral-700 leading-relaxed">
-                Paiement Stripe, transparence totale, reporting clair. Vous restez propriétaire de vos actifs
-                (site, comptes, contenus).
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ */}
-        <section className="pb-16">
-          <div className="mx-auto w-full max-w-7xl px-6">
-            <h2 className="font-display italic text-4xl md:text-5xl text-neutral-900 mb-8">FAQ</h2>
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-2xl border border-neutral-200 bg-white p-6">
-                <div className="font-semibold text-lg text-neutral-900 mb-3">Puis-je commencer sans site ?</div>
-                <p className="text-sm text-neutral-700 leading-relaxed">
+        {/* FAQ Section */}
+        <section className="py-24 px-6 bg-muted/30">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="font-display italic text-4xl md:text-5xl text-center mb-16">
+              Questions fréquentes
+            </h2>
+            <div className="space-y-6">
+              <div className="bg-background rounded-2xl p-6 md:p-8 border border-foreground/10">
+                <h3 className="font-semibold text-xl mb-3">Puis-je commencer sans site ?</h3>
+                <p className="text-foreground/70 leading-relaxed">
                   Oui. Le Pack Complet met en place (ou refond) un site vitrine optimisé, votre fiche Google,
                   et les pages locales/services qui comptent.
                 </p>
               </div>
-              <div className="rounded-2xl border border-neutral-200 bg-white p-6">
-                <div className="font-semibold text-lg text-neutral-900 mb-3">Le mois offert du Pack Complet inclut quoi ?</div>
-                <p className="text-sm text-neutral-700 leading-relaxed">
+
+              <div className="bg-background rounded-2xl p-6 md:p-8 border border-foreground/10">
+                <h3 className="font-semibold text-xl mb-3">Le mois offert du Pack Complet inclut quoi ?</h3>
+                <p className="text-foreground/70 leading-relaxed">
                   Suivi positions, gestion avis/posts, 2 contenus GEO-ready, recommandations — idéal pour
                   stabiliser et accélérer après la mise en place.
                 </p>
               </div>
-              <div className="rounded-2xl border border-neutral-200 bg-white p-6">
-                <div className="font-semibold text-lg text-neutral-900 mb-3">La maintenance est-elle sans engagement ?</div>
-                <p className="text-sm text-neutral-700 leading-relaxed">
-                  Oui, mensuelle à <strong>850€</strong> et résiliable. Recommandée pour garder l'avantage concurrentiel local.
+
+              <div className="bg-background rounded-2xl p-6 md:p-8 border border-foreground/10">
+                <h3 className="font-semibold text-xl mb-3">La maintenance est-elle sans engagement ?</h3>
+                <p className="text-foreground/70 leading-relaxed">
+                  Oui, mensuelle à <strong>920€</strong> et résiliable. Recommandée pour garder l'avantage concurrentiel local.
                 </p>
               </div>
-              <div className="rounded-2xl border border-neutral-200 bg-white p-6">
-                <div className="font-semibold text-lg text-neutral-900 mb-3">Et si j'ai déjà un site ?</div>
-                <p className="text-sm text-neutral-700 leading-relaxed">
+
+              <div className="bg-background rounded-2xl p-6 md:p-8 border border-foreground/10">
+                <h3 className="font-semibold text-xl mb-3">Et si j'ai déjà un site ?</h3>
+                <p className="text-foreground/70 leading-relaxed">
                   Nous optimisons l'existant (vitesse, mobile, contenus locaux, schémas), branchons les
                   parcours de conversion et corrigeons les fondamentaux.
                 </p>
