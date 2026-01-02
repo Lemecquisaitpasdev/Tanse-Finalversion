@@ -1,22 +1,12 @@
 import { Button } from "./Button";
 import Link from "next/link";
-import Image from "next/image";
 
 const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-background/80 backdrop-blur-sm">
       <div className="flex items-center gap-8">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2">
-          <div className="relative w-10 h-10">
-            <Image
-              src="/brand/tanse-bubble.png"
-              alt="TANSE"
-              width={40}
-              height={40}
-              className="object-contain"
-            />
-          </div>
+        <a href="/" className="flex items-center">
           <span className="text-xl font-semibold tracking-tight">Tanse</span>
         </a>
 
