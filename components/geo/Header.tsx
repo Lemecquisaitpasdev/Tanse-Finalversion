@@ -7,13 +7,13 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-background/80 backdrop-blur-sm">
       <div className="flex items-center gap-8">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-1.5">
-          <div className="relative w-6 h-6">
+        <a href="/" className="flex items-center gap-2">
+          <div className="relative w-10 h-10">
             <Image
               src="/brand/tanse-bubble.png"
               alt="TANSE"
-              width={24}
-              height={24}
+              width={40}
+              height={40}
               className="object-contain"
             />
           </div>
