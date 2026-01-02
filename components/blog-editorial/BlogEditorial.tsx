@@ -40,7 +40,26 @@ export default function BlogEditorial() {
   const categories = getAllCategories();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div
+      className="min-h-screen"
+      style={{
+        background: `
+          radial-gradient(ellipse 80% 50% at 50% -20%,
+            rgba(147, 51, 234, 0.03),
+            transparent 50%
+          ),
+          radial-gradient(ellipse 60% 50% at 80% 50%,
+            rgba(59, 130, 246, 0.02),
+            transparent 50%
+          ),
+          radial-gradient(ellipse 70% 60% at 20% 80%,
+            rgba(236, 72, 153, 0.02),
+            transparent 50%
+          ),
+          #fafafa
+        `
+      }}
+    >
       <SiteHeader />
 
       {/* Hero Section */}
