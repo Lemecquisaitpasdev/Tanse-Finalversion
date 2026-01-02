@@ -1,5 +1,6 @@
 import { Button } from "./Button";
 import Link from "next/link";
+import Image from "next/image";
 
 const Header = () => {
   return (
@@ -7,10 +8,15 @@ const Header = () => {
       <div className="flex items-center gap-8">
         {/* Logo */}
         <a href="/" className="flex items-center gap-1.5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 14C4 14 5 13 8 13C11 13 13 15 16 15C19 15 20 14 20 14V4C20 4 19 5 16 5C13 5 11 3 8 3C5 3 4 4 4 4V14Z" fill="currentColor"/>
-            <path d="M4 14V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
+          <div className="relative w-6 h-6">
+            <Image
+              src="/brand/tanse-mark.png"
+              alt="TANSE"
+              width={24}
+              height={24}
+              className="object-contain"
+            />
+          </div>
           <span className="text-xl font-semibold tracking-tight">Tanse</span>
         </a>
 
