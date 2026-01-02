@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { articles, getAllCategories, type ArticleCategory } from "@/app/blog-seo-geo/data/articles";
 import BlogHero from "./BlogHero";
 import BentoGrid from "./BentoGrid";
-import FloatingNav from "./FloatingNav";
+import CategorySidebar from "./CategorySidebar";
 import NewsletterSidebar from "./NewsletterSidebar";
 import SiteHeader from "@/app/components/SiteHeader";
 import BrowserCompanyFooter from "@/app/components/outils/BrowserCompanyFooter";
@@ -43,13 +43,6 @@ export default function BlogEditorial() {
     <div className="min-h-screen bg-white">
       <SiteHeader />
 
-      {/* Floating Navigation */}
-      <FloatingNav
-        categories={categories}
-        activeCategory={activeCategory}
-        onCategoryChange={setActiveCategory}
-      />
-
       {/* Hero Section */}
       {featuredArticle && <BlogHero featuredArticle={featuredArticle} />}
 
@@ -61,8 +54,16 @@ export default function BlogEditorial() {
             <BentoGrid articles={gridArticles} />
           </div>
 
-          {/* Newsletter Sidebar */}
-          <div>
+          {/* Right Sidebar */}
+          <div className="space-y-8">
+            {/* Category Filter */}
+            <CategorySidebar
+              categories={categories}
+              activeCategory={activeCategory}
+              onCategoryChange={setActiveCategory}
+            />
+
+            {/* Newsletter */}
             <NewsletterSidebar />
           </div>
         </div>
