@@ -66,8 +66,56 @@ const cards: readonly Card[] = [
 ] as const;
 
 export default function ForfaitsPage() {
+  // Schema.org structured data for pricing
+  const offerSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Maintenance SEO + GEO",
+        "description": "Suivi et optimisation continue de votre présence locale et SEO",
+        "price": "920",
+        "priceCurrency": "EUR",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "920",
+          "priceCurrency": "EUR",
+          "billingDuration": "P1M"
+        },
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Maintenance SEO + GEO",
+          "provider": {
+            "@type": "Organization",
+            "name": "TANSE"
+          }
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Pack Complet (SEO + GEO + Refonte)",
+        "description": "Solution complète : Site optimisé, présence locale impeccable et stratégie GEO dès le jour 1",
+        "price": "2490",
+        "priceCurrency": "EUR",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Pack Complet SEO + GEO + Refonte",
+          "provider": {
+            "@type": "Organization",
+            "name": "TANSE"
+          }
+        }
+      }
+    ]
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(offerSchema) }}
+      />
       <SiteHeader />
       <main className="relative min-h-screen bg-background pt-16">
         {/* Background blurs */}
