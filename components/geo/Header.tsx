@@ -10,7 +10,7 @@ const Header = () => {
         <a href="/" className="flex items-center gap-1.5">
           <div className="relative w-6 h-6">
             <Image
-              src="/brand/tanse-mark.png"
+              src="/brand/tanse-bubble.png"
               alt="TANSE"
               width={24}
               height={24}
