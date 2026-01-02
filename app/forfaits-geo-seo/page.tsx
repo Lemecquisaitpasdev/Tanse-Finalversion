@@ -1,8 +1,10 @@
-// app/forfaits/page.tsx
+// app/forfaits-geo-seo/page.tsx
 "use client";
 
 import Link from "next/link";
 import { useOptimization } from "../components/OptimizationProvider";
+import SiteHeader from "../components/SiteHeader";
+import BrowserCompanyFooter from "../components/outils/BrowserCompanyFooter";
 
 type Card = {
   k: string;
@@ -72,7 +74,7 @@ function HeaderBand() {
           Paiement 100% sécurisé via Stripe
         </div>
 
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+        <h1 className="font-display italic text-5xl md:text-6xl lg:text-7xl tracking-tight leading-tight">
           Nos forfaits
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg md:text-xl text-white/90 leading-relaxed">
@@ -93,134 +95,130 @@ export default function ForfaitsPage() {
     : "hover:shadow-xl";
 
   return (
-    <main className="bg-[#E4E4E4]">
-      <HeaderBand />
+    <>
+      <SiteHeader />
+      <main className="bg-[#E4E4E4] pt-16">
+        <HeaderBand />
 
-      {/* Cartes */}
-      <section className="-mt-16 pb-12 md:pb-16">
-        <div className="mx-auto w-full max-w-7xl px-6">
-          <div className="grid gap-6 lg:gap-8 md:grid-cols-3">
-            {cards.map((c) => {
-              const isBest = Boolean(c.best);
-              const href =
-                c.k === "grand-groupes"
-                  ? "/contact-audit-gratuit?plan=grand-groupes"
-                  : `/checkout/${c.k}`;
+        {/* Cartes */}
+        <section className="-mt-16 pb-12 md:pb-16">
+          <div className="mx-auto w-full max-w-7xl px-6">
+            <div className="grid gap-6 lg:gap-8 md:grid-cols-3">
+              {cards.map((c) => {
+                const isBest = Boolean(c.best);
+                const href =
+                  c.k === "grand-groupes"
+                    ? "/contact-audit-gratuit?plan=grand-groupes"
+                    : `/checkout/${c.k}`;
 
-              return (
-                <div
-                  key={c.k}
-                  className={`group relative rounded-3xl border ${
-                    isBest ? "border-[#444684] ring-2 ring-[#444684]/20" : "border-neutral-200"
-                  } bg-white p-7 md:p-8 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-2 ${hoverShadowClass}`}
-                >
-                  {isBest && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
-                      <div className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#444684] to-[#524e7d] px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-white shadow-lg">
-                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-yellow-300"></span>
-                        Meilleur choix
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="text-lg font-semibold text-neutral-900">{c.titre}</div>
-                  <div className="mt-1 text-4xl font-semibold text-neutral-900">{c.prix}</div>
-                  <div className="text-sm text-neutral-600">{c.sous}</div>
-
-                  <ul className="mt-5 space-y-2 text-sm text-neutral-800">
-                    {c.points.map((p) => (
-                      <li key={p}>• {p}</li>
-                    ))}
-                  </ul>
-
-                  <a
-                    href={href}
-                    className={`mt-8 block w-full rounded-full px-6 py-3.5 text-center text-sm font-semibold shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 min-h-[48px] flex items-center justify-center ${
-                      isBest
-                        ? "bg-[#444684] text-white hover:opacity-90 hover:shadow-xl focus-visible:outline-[#444684]"
-                        : "border-2 border-neutral-300 bg-white text-neutral-900 hover:bg-neutral-50 hover:border-neutral-400 focus-visible:outline-[#444684]"
-                    }`}
+                return (
+                  <div
+                    key={c.k}
+                    className={`group relative rounded-3xl border ${
+                      isBest ? "border-[#444684] ring-2 ring-[#444684]/20" : "border-neutral-200"
+                    } bg-white p-7 md:p-8 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-2 ${hoverShadowClass}`}
                   >
-                    {c.cta}
-                  </a>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+                    {isBest && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+                        <div className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#444684] to-[#524e7d] px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-white shadow-lg">
+                          <span className="inline-block h-1.5 w-1.5 rounded-full bg-yellow-300"></span>
+                          Meilleur choix
+                        </div>
+                      </div>
+                    )}
 
-      {/* Réassurance */}
-      <section className="pb-12 md:pb-16">
-        <div className="mx-auto w-full max-w-7xl px-6 grid gap-6 md:grid-cols-3">
-          <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.25)]">
-            <div className="font-semibold text-neutral-900">Résultats attendus</div>
-            <p className="mt-2 text-sm text-neutral-700">
-              Quick wins en 2–6 semaines (Google Business, avis). SEO durable sur 3–6 mois selon la
-              concurrence. Objectif : plus d’essais, d’appels et de RDV atelier.
-            </p>
-          </div>
-          <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.25)]">
-            <div className="font-semibold text-neutral-900">Pourquoi TANSE ?</div>
-            <p className="mt-2 text-sm text-neutral-700">
-              Nous sommes pionniers du Geo et un cabinet spécialisé automobile : nous parlons votre langage métier et focalisons la
-              stratégie sur vos objectifs commerciaux locaux.
-            </p>
-          </div>
-          <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.25)]">
-            <div className="font-semibold text-neutral-900">Réassurance</div>
-            <p className="mt-2 text-sm text-neutral-700">
-              Paiement Stripe, transparence totale, reporting clair. Vous restez propriétaire de vos actifs
-              (site, comptes, contenus).
-            </p>
-          </div>
-        </div>
-      </section>
+                    <div className="text-lg font-semibold text-neutral-900">{c.titre}</div>
+                    <div className="mt-1 text-4xl font-semibold text-neutral-900">{c.prix}</div>
+                    <div className="text-sm text-neutral-600">{c.sous}</div>
 
-      {/* FAQ */}
-      <section className="pb-16">
-        <div className="mx-auto w-full max-w-7xl px-5">
-          <h2 className="mb-4 text-2xl font-semibold text-neutral-900">FAQ</h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-2xl border border-neutral-200 bg-white p-5">
-              <div className="font-medium text-neutral-900">Puis-je commencer sans site ?</div>
-              <p className="mt-2 text-sm text-neutral-700">
-                Oui. Le Pack Complet met en place (ou refond) un site vitrine optimisé, votre fiche Google,
-                et les pages locales/services qui comptent.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-neutral-200 bg-white p-5">
-              <div className="font-medium text-neutral-900">Le mois offert du Pack Complet inclut quoi ?</div>
-              <p className="mt-2 text-sm text-neutral-700">
-                Suivi positions, gestion avis/posts, 2 contenus GEO-ready, recommandations — idéal pour
-                stabiliser et accélérer après la mise en place.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-neutral-200 bg-white p-5">
-              <div className="font-medium text-neutral-900">La maintenance est-elle sans engagement ?</div>
-              <p className="mt-2 text-sm text-neutral-700">
-                Oui, mensuelle à <strong>850€</strong> et résiliable. Recommandée pour garder l’avantage concurrentiel local.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-neutral-200 bg-white p-5">
-              <div className="font-medium text-neutral-900">Et si j’ai déjà un site ?</div>
-              <p className="mt-2 text-sm text-neutral-700">
-                Nous optimisons l’existant (vitesse, mobile, contenus locaux, schémas), branchons les
-                parcours de conversion et corrigeons les fondamentaux.
-              </p>
-            </div>
-          </div>
+                    <ul className="mt-5 space-y-2 text-sm text-neutral-800">
+                      {c.points.map((p) => (
+                        <li key={p}>• {p}</li>
+                      ))}
+                    </ul>
 
-          <div className="mt-10 text-center">
-            <Link
-              href="/"
-              className="inline-flex items-center rounded-full border border-neutral-300 bg-white px-5 py-2.5 text-sm font-medium text-neutral-900 hover:bg-neutral-50"
-            >
-              Retour à l’accueil
-            </Link>
+                    <a
+                      href={href}
+                      className={`mt-8 block w-full rounded-full px-6 py-3.5 text-center text-sm font-semibold shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 min-h-[48px] flex items-center justify-center ${
+                        isBest
+                          ? "bg-[#444684] text-white hover:opacity-90 hover:shadow-xl focus-visible:outline-[#444684]"
+                          : "border-2 border-neutral-300 bg-white text-neutral-900 hover:bg-neutral-50 hover:border-neutral-400 focus-visible:outline-[#444684]"
+                      }`}
+                    >
+                      {c.cta}
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+
+        {/* Réassurance */}
+        <section className="pb-12 md:pb-16">
+          <div className="mx-auto w-full max-w-7xl px-6 grid gap-6 md:grid-cols-3">
+            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.25)]">
+              <div className="font-display italic text-xl text-neutral-900 mb-3">Résultats attendus</div>
+              <p className="text-sm text-neutral-700 leading-relaxed">
+                Quick wins en 2–6 semaines (Google Business, avis). SEO durable sur 3–6 mois selon la
+                concurrence. Objectif : plus d'essais, d'appels et de RDV atelier.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.25)]">
+              <div className="font-display italic text-xl text-neutral-900 mb-3">Pourquoi TANSE ?</div>
+              <p className="text-sm text-neutral-700 leading-relaxed">
+                Nous sommes pionniers du Geo et un cabinet spécialisé automobile : nous parlons votre langage métier et focalisons la
+                stratégie sur vos objectifs commerciaux locaux.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.25)]">
+              <div className="font-display italic text-xl text-neutral-900 mb-3">Réassurance</div>
+              <p className="text-sm text-neutral-700 leading-relaxed">
+                Paiement Stripe, transparence totale, reporting clair. Vous restez propriétaire de vos actifs
+                (site, comptes, contenus).
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="pb-16">
+          <div className="mx-auto w-full max-w-7xl px-6">
+            <h2 className="font-display italic text-4xl md:text-5xl text-neutral-900 mb-8">FAQ</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="rounded-2xl border border-neutral-200 bg-white p-6">
+                <div className="font-semibold text-lg text-neutral-900 mb-3">Puis-je commencer sans site ?</div>
+                <p className="text-sm text-neutral-700 leading-relaxed">
+                  Oui. Le Pack Complet met en place (ou refond) un site vitrine optimisé, votre fiche Google,
+                  et les pages locales/services qui comptent.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-neutral-200 bg-white p-6">
+                <div className="font-semibold text-lg text-neutral-900 mb-3">Le mois offert du Pack Complet inclut quoi ?</div>
+                <p className="text-sm text-neutral-700 leading-relaxed">
+                  Suivi positions, gestion avis/posts, 2 contenus GEO-ready, recommandations — idéal pour
+                  stabiliser et accélérer après la mise en place.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-neutral-200 bg-white p-6">
+                <div className="font-semibold text-lg text-neutral-900 mb-3">La maintenance est-elle sans engagement ?</div>
+                <p className="text-sm text-neutral-700 leading-relaxed">
+                  Oui, mensuelle à <strong>850€</strong> et résiliable. Recommandée pour garder l'avantage concurrentiel local.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-neutral-200 bg-white p-6">
+                <div className="font-semibold text-lg text-neutral-900 mb-3">Et si j'ai déjà un site ?</div>
+                <p className="text-sm text-neutral-700 leading-relaxed">
+                  Nous optimisons l'existant (vitesse, mobile, contenus locaux, schémas), branchons les
+                  parcours de conversion et corrigeons les fondamentaux.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <BrowserCompanyFooter />
+      </main>
+    </>
   );
 }
