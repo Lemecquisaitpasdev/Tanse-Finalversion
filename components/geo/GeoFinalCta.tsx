@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import SplineLazy from "./SplineLazy";
-import { useOptimization } from "./OptimizationProvider";
-import { usePerformance } from "../contexts/PerformanceContext";
+import SplineLazy from "@/app/components/SplineLazy";
+import { useOptimization } from "@/app/components/OptimizationProvider";
+import { usePerformance } from "@/app/contexts/PerformanceContext";
 
 /**
  * OPTIMISÉ WINDOWS:
