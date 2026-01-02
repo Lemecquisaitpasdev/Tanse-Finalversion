@@ -1,7 +1,7 @@
 "use client";
 
-import BlogSection from "@/components/blog-seo-geo/BlogSeoGeoSection";
+import BlogEditorial from "@/components/blog-editorial/BlogEditorial";
 
 export default function BlogSeoGeoPage() {
-  return <BlogSection />;
+  return <BlogEditorial />;
 }
