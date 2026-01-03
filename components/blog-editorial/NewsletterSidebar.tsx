@@ -78,7 +78,7 @@ export default function NewsletterSidebar() {
             }}
             className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-3xl"
             style={{
-              background: "radial-gradient(circle, rgba(99, 102, 241, 0.5), rgba(168, 85, 247, 0.4))",
+              background: "linear-gradient(180deg, rgba(255, 138, 76, 0.5) 0%, rgba(232, 106, 71, 0.45) 35%, rgba(79, 125, 222, 0.4) 100%)",
             }}
           />
 
@@ -90,8 +90,8 @@ export default function NewsletterSidebar() {
               transition={{ type: "spring", delay: 0.4, damping: 15 }}
               className="w-14 h-14 rounded-2xl mb-4 flex items-center justify-center"
               style={{
-                background: "linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7)",
-                boxShadow: "0 8px 24px rgba(99, 102, 241, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
+                background: "linear-gradient(180deg, #FF8A4C 0%, #E86A47 35%, #4F7DDE 100%)",
+                boxShadow: "0 8px 24px rgba(255, 138, 76, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
               }}
             >
               <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -154,8 +154,8 @@ export default function NewsletterSidebar() {
                   className="w-full px-6 py-3 rounded-xl font-semibold text-white transition-all disabled:opacity-50 text-sm"
                   aria-label={isLoading ? "Inscription en cours..." : "S'abonner à la newsletter gratuitement"}
                   style={{
-                    background: "linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7)",
-                    boxShadow: "0 4px 16px rgba(99, 102, 241, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+                    background: "linear-gradient(180deg, #FF8A4C 0%, #E86A47 35%, #4F7DDE 100%)",
+                    boxShadow: "0 4px 16px rgba(255, 138, 76, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
                   }}
                 >
                   {isLoading ? (

@@ -1,14 +1,11 @@
-// app/blog/[slug]/page.tsx
-
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar, Clock, ChevronRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getArticleBySlug, articles } from "../data/articles";
-import CategoryBadge from "@/app/components/blog/CategoryBadge";
-import TableOfContents from "@/app/components/blog/TableOfContents";
-import ArticleContent from "@/app/components/blog/ArticleContent";
-import SiteFooter from "@/app/components/SiteFooter";
+import SiteHeader from "@/app/components/SiteHeader";
+import BrowserCompanyFooter from "@/app/components/outils/BrowserCompanyFooter";
 
 // Generate static params for all articles
 export async function generateStaticParams() {
@@ -80,47 +77,66 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   };
 
   return (
-    <main className="bg-[#E4E4E4]">
+    <div className="min-h-screen bg-[#fafafa]">
       {/* Schema.org JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#444684] via-[#3d3a66] to-[#524e7d] text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent_50%)]"></div>
+      <SiteHeader />
 
-        <div className="relative mx-auto w-full max-w-5xl px-6 py-12 md:py-20">
+      {/* Hero Section - Simplified and consistent */}
+      <section className="relative pt-32 pb-16 px-6">
+        <div className="max-w-4xl mx-auto">
           {/* Breadcrumb */}
-          <nav className="mb-6 flex items-center gap-2 text-sm text-white/80">
-            <Link href="/" className="hover:text-white transition-colors">
+          <nav className="mb-8 flex items-center gap-2 text-sm text-gray-600" aria-label="Breadcrumb">
+            <Link href="/" className="hover:text-gray-900 transition-colors">
               Accueil
             </Link>
             <ChevronRight className="h-4 w-4" />
-            <Link href="/blog-seo-geo" className="hover:text-white transition-colors">
+            <Link href="/blog-seo-geo" className="hover:text-gray-900 transition-colors">
               Blog
             </Link>
             <ChevronRight className="h-4 w-4" />
-            <span className="text-white font-medium line-clamp-1">{article.title}</span>
+            <span className="text-gray-900 font-medium truncate">{article.title}</span>
           </nav>
 
           {/* Categories */}
           <div className="flex flex-wrap gap-2 mb-6">
             {article.category.map((cat) => (
-              <CategoryBadge key={cat} category={cat} />
+              <span
+                key={cat}
+                className="px-3 py-1 text-xs font-semibold rounded-full text-white"
+                style={{
+                  background: "linear-gradient(135deg, rgba(99, 102, 241, 0.95), rgba(168, 85, 247, 0.9))",
+                  backdropFilter: "blur(16px)",
+                  boxShadow: "0 4px 24px rgba(99, 102, 241, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.2)",
+                  border: "1px solid rgba(255, 255, 255, 0.2)",
+                }}
+              >
+                {cat}
+              </span>
             ))}
           </div>
 
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+          <h1
+            className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-6"
+            style={{
+              background: "linear-gradient(135deg, #000 0%, #333 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
             {article.title}
           </h1>
 
           {/* Meta Information */}
-          <div className="flex flex-wrap items-center gap-4 md:gap-6 text-sm text-white/90">
+          <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
             <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4" />
+              <Calendar className="h-4 w-4" aria-hidden="true" />
               <time dateTime={article.date}>
                 {new Date(article.date).toLocaleDateString("fr-FR", {
                   day: "numeric",
@@ -130,8 +146,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               </time>
             </div>
             <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4" />
-              <span>{article.readingTime} de lecture</span>
+              <Clock className="h-4 w-4" aria-hidden="true" />
+              <span>{article.readingTime}</span>
             </div>
             <div className="flex items-center gap-2">
               <span>Par {article.author}</span>
@@ -140,60 +156,98 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
-      {/* Article Content */}
-      <section className="-mt-8 pb-16 md:pb-24">
-        <div className="mx-auto w-full max-w-7xl px-6">
-          <div className="grid gap-8 lg:grid-cols-[1fr_280px]">
-            {/* Main Content */}
-            <div className="order-2 lg:order-1">
-              <div className="rounded-3xl border border-neutral-200 bg-white p-8 md:p-12 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)]">
-                <ArticleContent content={article.content} />
-              </div>
-
-              {/* CTA at bottom of article */}
-              <div className="mt-8 rounded-3xl border border-neutral-200 bg-white p-8 shadow-md text-center">
-                <h2 className="text-2xl font-semibold text-neutral-900 mb-4">
-                  Besoin d'aide pour votre visibilité locale ?
-                </h2>
-                <p className="text-neutral-600 mb-6 max-w-2xl mx-auto">
-                  TANSE accompagne les PME françaises dans leur optimisation SEO Local et GEO.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link
-                    href="/forfaits-geo-seo"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#444684] px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 min-h-[48px]"
-                  >
-                    Voir nos forfaits
-                  </Link>
-                  <Link
-                    href="/contact-audit-gratuit"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-900 shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-50 min-h-[48px]"
-                  >
-                    Nous contacter
-                  </Link>
-                </div>
-              </div>
-
-              {/* Back to blog */}
-              <div className="mt-8 text-center">
-                <Link
-                  href="/blog-seo-geo"
-                  className="inline-flex items-center gap-2 text-sm text-neutral-600 hover:text-[#444684] transition-colors"
-                >
-                  ← Retour au blog
-                </Link>
-              </div>
+      {/* Featured Image */}
+      {article.image && (
+        <section className="px-6 pb-16">
+          <div className="max-w-4xl mx-auto">
+            <div
+              className="relative aspect-[16/9] rounded-3xl overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(255, 255, 255, 0.2)",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.08)",
+              }}
+            >
+              <Image
+                src={article.image}
+                alt={`Illustration pour l'article : ${article.title}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 896px"
+                priority
+                quality={90}
+              />
             </div>
+          </div>
+        </section>
+      )}
 
-            {/* Sidebar - Table of Contents */}
-            <aside className="order-1 lg:order-2">
-              <TableOfContents />
-            </aside>
+      {/* Article Content */}
+      <article className="px-6 pb-24">
+        <div className="max-w-4xl mx-auto">
+          <div
+            className="rounded-3xl p-8 md:p-12"
+            style={{
+              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))",
+              backdropFilter: "blur(40px) saturate(180%)",
+              WebkitBackdropFilter: "blur(40px) saturate(180%)",
+              border: "1px solid rgba(255, 255, 255, 0.3)",
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
+            }}
+          >
+            {/* Article prose content */}
+            <div className="prose prose-lg prose-gray max-w-none">
+              <div dangerouslySetInnerHTML={{ __html: article.content }} />
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div
+            className="mt-12 rounded-3xl p-8 md:p-12 text-center"
+            style={{
+              background: "linear-gradient(180deg, #FF8A4C 0%, #E86A47 35%, #4F7DDE 100%)",
+              boxShadow: "0 8px 32px rgba(255, 138, 76, 0.3)",
+            }}
+          >
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Besoin d'aide pour votre visibilité locale ?
+            </h2>
+            <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+              TANSE accompagne les PME françaises dans leur optimisation SEO Local et GEO.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/forfaits-geo-seo"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-gray-900 shadow-lg transition-all duration-200 hover:scale-105"
+                aria-label="Voir nos forfaits SEO et GEO"
+              >
+                Voir nos forfaits
+              </Link>
+              <Link
+                href="/contact-audit-gratuit"
+                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white bg-transparent px-8 py-4 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:bg-white hover:text-gray-900"
+                aria-label="Nous contacter pour un audit gratuit"
+              >
+                Nous contacter
+              </Link>
+            </div>
+          </div>
+
+          {/* Back to blog */}
+          <div className="mt-8 text-center">
+            <Link
+              href="/blog-seo-geo"
+              className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+              aria-label="Retourner à la liste des articles du blog"
+            >
+              ← Retour au blog
+            </Link>
           </div>
         </div>
-      </section>
+      </article>
 
-      <SiteFooter />
-    </main>
+      <BrowserCompanyFooter />
+    </div>
   );
 }

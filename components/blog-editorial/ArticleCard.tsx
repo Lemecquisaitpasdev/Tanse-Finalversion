@@ -146,8 +146,8 @@ export default function ArticleCard({ article, size }: ArticleCardProps) {
 
         {/* Content */}
         <div className="relative p-6 h-1/3 flex flex-col justify-between" style={{ transform: "translateZ(20px)" }}>
-          <div>
-            <h3 className={`font-display font-bold mb-2 line-clamp-2 ${
+          <div className="space-y-2">
+            <h3 className={`font-display font-bold line-clamp-2 ${
               size === "large" ? "text-2xl md:text-3xl" :
               size === "medium" ? "text-xl" :
               "text-lg"
@@ -155,7 +155,7 @@ export default function ArticleCard({ article, size }: ArticleCardProps) {
               {article.title}
             </h3>
             {size !== "small" && (
-              <p className="text-sm text-gray-600 line-clamp-2 mb-3">
+              <p className="text-sm text-gray-600 line-clamp-2">
                 {article.description}
               </p>
             )}
