@@ -1,14 +1,23 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import dynamic from "next/dynamic";
 import { articles, getAllCategories, type ArticleCategory } from "@/app/blog-seo-geo/data/articles";
 import BlogHero from "./BlogHero";
 import BentoGrid from "./BentoGrid";
 import CategorySidebar from "./CategorySidebar";
 import NewsletterSidebar from "./NewsletterSidebar";
-import { BlogBackground } from "./BlogBackground";
 import SiteHeader from "@/app/components/SiteHeader";
 import BrowserCompanyFooter from "@/app/components/outils/BrowserCompanyFooter";
+
+// Dynamic import for BlogBackground with SSR disabled (client-only animations)
+const BlogBackground = dynamic(
+  () => import("./BlogBackground").then((mod) => ({ default: mod.BlogBackground })),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
 
 export default function BlogEditorial() {
   const [activeCategory, setActiveCategory] = useState<string>("all");

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import type { Article } from "@/app/blog-seo-geo/data/articles";
@@ -11,13 +11,16 @@ interface BlogHeroProps {
 
 export default function BlogHero({ featuredArticle }: BlogHeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0]);
+  // Disable parallax if user prefers reduced motion
+  const y = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? ["0%", "0%"] : ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], shouldReduceMotion ? [1, 1, 1] : [1, 0.8, 0]);
 
   return (
     <section
@@ -29,11 +32,15 @@ export default function BlogHero({ featuredArticle }: BlogHeroProps) {
       <div className="absolute inset-0 -z-10">
         {/* Main gradient orb */}
         <motion.div
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.2, 1],
-          }}
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  x: [0, 100, 0],
+                  y: [0, -50, 0],
+                  scale: [1, 1.2, 1],
+                }
+          }
           transition={{
             duration: 20,
             repeat: Infinity,
@@ -42,16 +49,21 @@ export default function BlogHero({ featuredArticle }: BlogHeroProps) {
           className="absolute top-1/4 left-1/3 w-[800px] h-[600px] rounded-full blur-3xl opacity-20"
           style={{
             background: "radial-gradient(ellipse at center, rgba(99, 102, 241, 0.4), rgba(236, 72, 153, 0.3), transparent 70%)",
+            willChange: shouldReduceMotion ? "auto" : "transform",
           }}
         />
 
         {/* Secondary orb */}
         <motion.div
-          animate={{
-            x: [0, -80, 0],
-            y: [0, 60, 0],
-            scale: [1, 1.15, 1],
-          }}
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  x: [0, -80, 0],
+                  y: [0, 60, 0],
+                  scale: [1, 1.15, 1],
+                }
+          }
           transition={{
             duration: 25,
             repeat: Infinity,
@@ -61,6 +73,7 @@ export default function BlogHero({ featuredArticle }: BlogHeroProps) {
           className="absolute top-1/2 right-1/4 w-[600px] h-[600px] rounded-full blur-3xl opacity-15"
           style={{
             background: "radial-gradient(ellipse at center, rgba(168, 85, 247, 0.4), rgba(59, 130, 246, 0.3), transparent 70%)",
+            willChange: shouldReduceMotion ? "auto" : "transform",
           }}
         />
 
@@ -130,6 +143,8 @@ export default function BlogHero({ featuredArticle }: BlogHeroProps) {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                     priority
                     quality={90}
+                    placeholder="blur"
+                    blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2VlZSIvPjwvc3ZnPg=="
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-gray-500">

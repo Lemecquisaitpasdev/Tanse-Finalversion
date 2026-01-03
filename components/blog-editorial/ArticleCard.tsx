@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
 import { useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import type { Article } from "@/app/blog-seo-geo/data/articles";
 
 interface ArticleCardProps {
@@ -11,19 +12,27 @@ interface ArticleCardProps {
 }
 
 export default function ArticleCard({ article, size }: ArticleCardProps) {
-  const cardRef = useRef<HTMLAnchorElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   // Mouse position for 3D tilt
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
   const springConfig = { damping: 25, stiffness: 300 };
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), springConfig);
+  // Disable 3D tilt if user prefers reduced motion
+  const rotateX = useSpring(
+    useTransform(mouseY, [-0.5, 0.5], shouldReduceMotion ? [0, 0] : [5, -5]),
+    springConfig
+  );
+  const rotateY = useSpring(
+    useTransform(mouseX, [-0.5, 0.5], shouldReduceMotion ? [0, 0] : [-5, 5]),
+    springConfig
+  );
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!cardRef.current) return;
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current || shouldReduceMotion) return;
     const rect = cardRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
@@ -32,8 +41,10 @@ export default function ArticleCard({ article, size }: ArticleCardProps) {
   };
 
   const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
+    if (!shouldReduceMotion) {
+      mouseX.set(0);
+      mouseY.set(0);
+    }
     setIsHovered(false);
   };
 
@@ -43,18 +54,22 @@ export default function ArticleCard({ article, size }: ArticleCardProps) {
     "min-h-[250px]";
 
   return (
-    <motion.a
-      ref={cardRef}
+    <Link
       href={`/blog-seo-geo/${article.slug}`}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        perspective: "1000px",
-      }}
-      className={`block ${heightClass} h-full group cursor-pointer`}
+      className={`block ${heightClass} h-full`}
       aria-label={`Lire l'article : ${article.title}`}
+      prefetch={true}
     >
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          perspective: "1000px",
+        }}
+        className="h-full group cursor-pointer"
+      >
       <motion.div
         style={{
           rotateX,
@@ -113,6 +128,8 @@ export default function ArticleCard({ article, size }: ArticleCardProps) {
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 quality={85}
+                placeholder="blur"
+                blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2VlZSIvPjwvc3ZnPg=="
               />
             </motion.div>
           ) : (
@@ -194,6 +211,7 @@ export default function ArticleCard({ article, size }: ArticleCardProps) {
           }}
         />
       </motion.div>
-    </motion.a>
+      </motion.div>
+    </Link>
   );
 }
