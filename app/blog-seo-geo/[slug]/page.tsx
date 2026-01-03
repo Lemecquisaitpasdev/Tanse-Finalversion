@@ -47,24 +47,68 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-// Extract headings from content for TOC
-function extractHeadings(content: string) {
-  const headingRegex = /<h([2-3])[^>]*id="([^"]*)"[^>]*>([^<]*)<\/h\1>/g;
+// Slugify function to create URL-friendly IDs
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // Remove accents
+    .replace(/[^a-z0-9\s-]/g, "") // Remove special chars
+    .trim()
+    .replace(/\s+/g, "-") // Replace spaces with -
+    .replace(/-+/g, "-"); // Remove duplicate -
+}
+
+// Extract headings from content and add IDs if missing
+function processContentAndExtractHeadings(content: string): {
+  content: string;
+  headings: { id: string; text: string; level: number }[];
+} {
   const headings: { id: string; text: string; level: number }[] = [];
+  let processedContent = content;
+
+  // Find all h2 and h3 tags (with or without IDs)
+  const headingRegex = /<h([2-3])([^>]*)>([^<]+)<\/h\1>/g;
   let match;
+  const usedIds = new Set<string>();
 
   while ((match = headingRegex.exec(content)) !== null) {
-    // Type guard: ensure match groups exist
-    if (match[1] && match[2] && match[3]) {
-      headings.push({
-        level: parseInt(match[1]),
-        id: match[2],
-        text: match[3],
-      });
+    if (match[1] && match[3]) {
+      const level = parseInt(match[1]);
+      const attributes = match[2] || "";
+      const text = match[3].replace(/<[^>]*>/g, "").trim(); // Remove any inner HTML tags
+
+      // Check if ID already exists in attributes
+      const existingIdMatch = attributes.match(/id=["']([^"']+)["']/);
+      let id: string;
+
+      if (existingIdMatch && existingIdMatch[1]) {
+        id = existingIdMatch[1];
+      } else {
+        // Generate ID from text
+        id = slugify(text);
+
+        // Ensure uniqueness
+        let finalId = id;
+        let counter = 1;
+        while (usedIds.has(finalId)) {
+          finalId = `${id}-${counter}`;
+          counter++;
+        }
+        id = finalId;
+
+        // Add ID to the heading in content
+        const oldHeading = match[0];
+        const newHeading = `<h${level} id="${id}"${attributes}>${text}</h${level}>`;
+        processedContent = processedContent.replace(oldHeading, newHeading);
+      }
+
+      usedIds.add(id);
+      headings.push({ id, text, level });
     }
   }
 
-  return headings;
+  return { content: processedContent, headings };
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -75,7 +119,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     notFound();
   }
 
-  const headings = extractHeadings(article.content);
+  // Process content to add IDs to headings and extract them for TOC
+  const { content: processedContent, headings } = processContentAndExtractHeadings(article.content);
 
   // Schema.org JSON-LD for article
   const articleSchema = {
@@ -258,7 +303,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 }}
               >
                 {/* Article rich content with enhanced components */}
-                <ArticleContent content={article.content} />
+                <ArticleContent content={processedContent} />
               </div>
 
               {/* CTA Section */}

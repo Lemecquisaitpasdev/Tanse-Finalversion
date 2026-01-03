@@ -183,8 +183,8 @@ spline-viewer.spline-cover canvas {
   line-height: 1.8;
 }
 
-/* Drop cap for first paragraph */
-.prose > p:first-of-type::first-letter {
+/* Drop cap for first paragraph - Fixed selector to work with nested content */
+.prose p:first-of-type::first-letter {
   float: left;
   font-size: 4.5rem;
   line-height: 0.85;
@@ -194,6 +194,15 @@ spline-viewer.spline-cover canvas {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Highlighted keywords used in article content */
+.prose :where(.highlight-keyword) {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.08));
+  padding: 0.15em 0.4em;
+  border-radius: 0.25em;
+  font-weight: 500;
+  border: 1px solid rgba(99, 102, 241, 0.15);
 }
 
 /* Headings */
