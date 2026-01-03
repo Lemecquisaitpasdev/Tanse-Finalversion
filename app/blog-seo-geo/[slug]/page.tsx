@@ -8,6 +8,7 @@ import { ArticleBackground } from "@/components/article/ArticleBackground";
 import { ReadingProgressBar } from "@/components/article/ReadingProgressBar";
 import { TableOfContents } from "@/components/article/TableOfContents";
 import { FloatingSocial } from "@/components/article/FloatingSocial";
+import { ArticleContent } from "@/components/article/ArticleContent";
 import SiteHeader from "@/app/components/SiteHeader";
 import BrowserCompanyFooter from "@/app/components/outils/BrowserCompanyFooter";
 
@@ -256,10 +257,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                   boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6)',
                 }}
               >
-                {/* Article prose content */}
-                <div className="prose prose-lg prose-gray max-w-none">
-                  <div dangerouslySetInnerHTML={{ __html: article.content }} />
-                </div>
+                {/* Article rich content with enhanced components */}
+                <ArticleContent content={article.content} />
               </div>
 
               {/* CTA Section */}
