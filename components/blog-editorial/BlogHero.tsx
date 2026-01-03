@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import type { Article } from "@/app/blog-seo-geo/data/articles";
 
 interface BlogHeroProps {
@@ -22,6 +23,7 @@ export default function BlogHero({ featuredArticle }: BlogHeroProps) {
     <section
       ref={containerRef}
       className="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
+      aria-label="Article mis en avant"
     >
       {/* Animated Blur Gradients */}
       <div className="absolute inset-0 -z-10">
@@ -88,25 +90,49 @@ export default function BlogHero({ featuredArticle }: BlogHeroProps) {
             style={{ perspective: "1000px" }}
           >
             <div
-              className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10"
+              className="relative rounded-3xl overflow-hidden shadow-2xl group"
               style={{
                 transform: "rotateY(-5deg) rotateX(2deg)",
                 transformStyle: "preserve-3d",
+                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(255, 255, 255, 0.2)",
               }}
             >
-              {/* Glassmorphic frame */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-sm border border-white/20 rounded-3xl" />
+              {/* Enhanced Glassmorphic frame with shimmer */}
+              <div
+                className="absolute inset-0 rounded-3xl"
+                style={{
+                  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%)",
+                  backdropFilter: "blur(20px)",
+                  border: "1px solid rgba(255, 255, 255, 0.18)",
+                }}
+              />
+
+              {/* Shimmer effect on hover */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                style={{
+                  background: "linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.2) 50%, transparent 75%)",
+                  backgroundSize: "200% 100%",
+                  animation: "shimmer 3s ease-in-out infinite",
+                }}
+              />
 
               {/* Article image */}
               <div className="relative aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200">
                 {featuredArticle.image ? (
-                  <img
+                  <Image
                     src={featuredArticle.image}
-                    alt={featuredArticle.title}
-                    className="w-full h-full object-cover"
+                    alt={`Illustration pour l'article : ${featuredArticle.title}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+                    priority
+                    quality={90}
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-gray-400">
+                  <div className="w-full h-full flex items-center justify-center text-gray-500">
                     <svg className="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                     </svg>
@@ -172,7 +198,7 @@ export default function BlogHero({ featuredArticle }: BlogHeroProps) {
                 {featuredArticle.description}
               </p>
 
-              <div className="flex items-center gap-6 text-sm text-gray-500">
+              <div className="flex items-center gap-6 text-sm text-gray-600">
                 <span className="flex items-center gap-2">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -196,9 +222,10 @@ export default function BlogHero({ featuredArticle }: BlogHeroProps) {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              aria-label={`Lire l'article complet : ${featuredArticle.title}`}
             >
               Lire l'article
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </motion.a>

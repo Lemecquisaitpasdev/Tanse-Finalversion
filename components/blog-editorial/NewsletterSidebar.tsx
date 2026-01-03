@@ -31,6 +31,7 @@ export default function NewsletterSidebar() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
       className="sticky top-32 hidden lg:block"
+      aria-label="Inscription à la newsletter"
     >
       {/* Mac Window Mockup */}
       <div
@@ -58,7 +59,7 @@ export default function NewsletterSidebar() {
             <div className="w-3 h-3 rounded-full bg-green-400" />
           </div>
           <div className="flex-1 text-center">
-            <span className="text-xs font-medium text-gray-500">Newsletter GEO</span>
+            <span className="text-xs font-medium text-gray-600">Newsletter GEO</span>
           </div>
         </div>
 
@@ -93,7 +94,7 @@ export default function NewsletterSidebar() {
                 boxShadow: "0 8px 24px rgba(99, 102, 241, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
               }}
             >
-              <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </motion.div>
@@ -127,7 +128,7 @@ export default function NewsletterSidebar() {
                 </div>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-3">
+              <form onSubmit={handleSubmit} className="space-y-3" aria-label="Formulaire d'inscription à la newsletter">
                 <div className="relative">
                   <motion.input
                     whileFocus={{ scale: 1.01 }}
@@ -136,6 +137,7 @@ export default function NewsletterSidebar() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="votre@email.com"
                     className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all"
+                    aria-label="Votre adresse e-mail"
                     style={{
                       background: "rgba(255, 255, 255, 0.8)",
                       border: "1px solid rgba(0, 0, 0, 0.08)",
@@ -150,6 +152,7 @@ export default function NewsletterSidebar() {
                   whileHover={{ scale: 1.02, y: -1 }}
                   whileTap={{ scale: 0.98 }}
                   className="w-full px-6 py-3 rounded-xl font-semibold text-white transition-all disabled:opacity-50 text-sm"
+                  aria-label={isLoading ? "Inscription en cours..." : "S'abonner à la newsletter gratuitement"}
                   style={{
                     background: "linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7)",
                     boxShadow: "0 4px 16px rgba(99, 102, 241, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)",

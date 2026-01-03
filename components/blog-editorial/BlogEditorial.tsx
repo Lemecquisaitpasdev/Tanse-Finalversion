@@ -6,6 +6,7 @@ import BlogHero from "./BlogHero";
 import BentoGrid from "./BentoGrid";
 import CategorySidebar from "./CategorySidebar";
 import NewsletterSidebar from "./NewsletterSidebar";
+import { BlogBackground } from "./BlogBackground";
 import SiteHeader from "@/app/components/SiteHeader";
 import BrowserCompanyFooter from "@/app/components/outils/BrowserCompanyFooter";
 
@@ -40,33 +41,26 @@ export default function BlogEditorial() {
   const categories = getAllCategories();
 
   return (
-    <div
-      className="min-h-screen"
-      style={{
-        background: `
-          radial-gradient(ellipse 80% 50% at 50% -20%,
-            rgba(147, 51, 234, 0.03),
-            transparent 50%
-          ),
-          radial-gradient(ellipse 60% 50% at 80% 50%,
-            rgba(59, 130, 246, 0.02),
-            transparent 50%
-          ),
-          radial-gradient(ellipse 70% 60% at 20% 80%,
-            rgba(236, 72, 153, 0.02),
-            transparent 50%
-          ),
-          #fafafa
-        `
-      }}
-    >
+    <div className="min-h-screen relative">
+      {/* Skip to main content link for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-6 focus:py-3 focus:bg-indigo-600 focus:text-white focus:rounded-lg focus:font-semibold focus:shadow-lg"
+        style={{
+          transition: "all 0.2s ease",
+        }}
+      >
+        Aller au contenu principal
+      </a>
+
+      <BlogBackground />
       <SiteHeader />
 
       {/* Hero Section */}
       {featuredArticle && <BlogHero featuredArticle={featuredArticle} />}
 
       {/* Main Content with Sidebar */}
-      <div className="max-w-[1600px] mx-auto px-6 py-16">
+      <div id="main-content" className="max-w-[1600px] mx-auto px-6 py-16">
         <div className="grid lg:grid-cols-[1fr_320px] gap-12">
           {/* Bento Grid */}
           <div>

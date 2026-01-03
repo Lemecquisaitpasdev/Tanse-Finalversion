@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
+import Image from "next/image";
 import type { Article } from "@/app/blog-seo-geo/data/articles";
 
 interface ArticleCardProps {
@@ -52,38 +53,68 @@ export default function ArticleCard({ article, size }: ArticleCardProps) {
         perspective: "1000px",
       }}
       className={`block ${heightClass} h-full group cursor-pointer`}
+      aria-label={`Lire l'article : ${article.title}`}
     >
       <motion.div
         style={{
           rotateX,
           rotateY,
           transformStyle: "preserve-3d",
+          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          border: "1px solid rgba(255, 255, 255, 0.3)",
+          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04)",
         }}
         whileHover={{
           scale: 1.02,
+          boxShadow: "0 16px 48px rgba(0, 0, 0, 0.12), 0 8px 24px rgba(99, 102, 241, 0.08)",
           transition: { type: "spring", damping: 15, stiffness: 300 },
         }}
-        className="relative h-full rounded-3xl overflow-hidden bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-xl border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-300"
+        className="relative h-full rounded-3xl overflow-hidden transition-all duration-300"
       >
-        {/* Glassmorphic overlay on hover */}
+        {/* Enhanced Glassmorphic overlay on hover */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: isHovered ? 1 : 0 }}
-          className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 backdrop-blur-sm z-10"
+          className="absolute inset-0 z-10 pointer-events-none"
+          style={{
+            background: "linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(168, 85, 247, 0.08) 50%, rgba(236, 72, 153, 0.08) 100%)",
+            backdropFilter: "blur(8px)",
+          }}
+        />
+
+        {/* Shimmer effect on hover */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          className="absolute inset-0 z-10 pointer-events-none"
+          style={{
+            background: "linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.3) 50%, transparent 75%)",
+            backgroundSize: "200% 100%",
+            animation: isHovered ? "shimmer 2s ease-in-out infinite" : "none",
+          }}
         />
 
         {/* Article image mockup */}
         <div className="relative h-2/3 overflow-hidden">
           {article.image ? (
-            <motion.img
-              src={article.image}
-              alt={article.title}
-              className="w-full h-full object-cover"
+            <motion.div
+              className="relative w-full h-full"
               animate={{
                 scale: isHovered ? 1.05 : 1,
               }}
               transition={{ duration: 0.6 }}
-            />
+            >
+              <Image
+                src={article.image}
+                alt={`Illustration pour l'article : ${article.title}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                quality={85}
+              />
+            </motion.div>
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
               <svg className="w-16 h-16 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -95,15 +126,17 @@ export default function ArticleCard({ article, size }: ArticleCardProps) {
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
-          {/* Colored blur tag */}
+          {/* Enhanced colored blur tag */}
           <div className="absolute top-4 left-4 z-20">
             <motion.span
               whileHover={{ scale: 1.05 }}
               className="relative inline-block px-3 py-1 text-xs font-semibold text-white rounded-full"
               style={{
-                background: "rgba(99, 102, 241, 0.8)",
-                backdropFilter: "blur(10px)",
-                boxShadow: "0 0 20px rgba(99, 102, 241, 0.4)",
+                background: "linear-gradient(135deg, rgba(99, 102, 241, 0.95), rgba(168, 85, 247, 0.9))",
+                backdropFilter: "blur(16px)",
+                WebkitBackdropFilter: "blur(16px)",
+                boxShadow: "0 4px 24px rgba(99, 102, 241, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.2)",
+                border: "1px solid rgba(255, 255, 255, 0.2)",
               }}
             >
               {article.category[0]}
@@ -128,9 +161,9 @@ export default function ArticleCard({ article, size }: ArticleCardProps) {
             )}
           </div>
 
-          <div className="flex items-center justify-between text-xs text-gray-500">
-            <span className="flex items-center gap-1">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="flex items-center justify-between text-xs text-gray-600">
+            <span className="flex items-center gap-1" aria-label={`Temps de lecture : ${article.readingTime}`}>
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               {article.readingTime}
@@ -140,9 +173,10 @@ export default function ArticleCard({ article, size }: ArticleCardProps) {
               animate={{
                 x: isHovered ? 5 : 0,
               }}
+              aria-hidden="true"
             >
               Lire
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </motion.span>

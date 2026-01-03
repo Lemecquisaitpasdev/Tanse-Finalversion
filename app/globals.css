@@ -461,3 +461,120 @@ html {
 .highlight-keyword:hover {
   background: rgba(68, 70, 132, 0.15);
 }
+
+/* ===== Blog Background Blob Animations ===== */
+
+@keyframes blob-1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+@keyframes blob-2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-40px, 30px) scale(0.95);
+  }
+  66% {
+    transform: translate(25px, -25px) scale(1.05);
+  }
+}
+
+@keyframes blob-3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(35px, 40px) scale(1.08);
+  }
+  66% {
+    transform: translate(-30px, -20px) scale(0.92);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Add animations to Tailwind theme */
+@theme {
+  --animate-blob-1: blob-1 20s ease-in-out infinite;
+  --animate-blob-2: blob-2 25s ease-in-out infinite;
+  --animate-blob-3: blob-3 22s ease-in-out infinite;
+  --animate-shimmer: shimmer 3s ease-in-out infinite;
+}
+
+/* ===== Global Focus-Visible States (WCAG 2.1 AA) ===== */
+
+/* Remove default outlines and use our custom focus styles */
+*:focus {
+  outline: none;
+}
+
+/* Enhanced focus-visible styles for keyboard navigation */
+*:focus-visible {
+  outline: 3px solid #6366f1;
+  outline-offset: 3px;
+  border-radius: 4px;
+  transition: outline 0.2s ease, outline-offset 0.2s ease;
+}
+
+/* Button-specific focus styles */
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid #6366f1;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.15);
+}
+
+/* Link-specific focus styles */
+a:focus-visible {
+  outline: 3px solid #6366f1;
+  outline-offset: 3px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* Input field focus styles */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #6366f1;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* Card/Interactive container focus styles */
+[tabindex="0"]:focus-visible,
+[tabindex="-1"]:focus-visible {
+  outline: 3px solid #6366f1;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.1);
+}
+
+/* Screen reader only utility (already used for skip link) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

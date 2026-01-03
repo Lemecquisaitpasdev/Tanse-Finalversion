@@ -22,8 +22,9 @@ export default function CategorySidebar({
       transition={{ delay: 0.2 }}
       className="sticky top-24 mb-8"
     >
-      <div
+      <nav
         className="rounded-3xl p-6"
+        aria-label="Filtres de catégories d'articles"
         style={{
           background: "linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))",
           backdropFilter: "blur(40px) saturate(180%)",
@@ -35,11 +36,11 @@ export default function CategorySidebar({
         {/* Header */}
         <div className="mb-6">
           <h3 className="text-lg font-bold text-gray-900 mb-1">Catégories</h3>
-          <p className="text-xs text-gray-500">Filtrez par thématique</p>
+          <p className="text-xs text-gray-600">Filtrez par thématique</p>
         </div>
 
         {/* Category List */}
-        <div className="space-y-2">
+        <div className="space-y-2" role="group" aria-label="Liste des catégories">
           {allCategories.map((category, index) => {
             const isActive = category === "Tout" ? activeCategory === "all" : activeCategory === category;
 
@@ -53,6 +54,8 @@ export default function CategorySidebar({
                 transition={{ delay: index * 0.05 }}
                 whileHover={{ scale: 1.02, x: 4 }}
                 whileTap={{ scale: 0.98 }}
+                aria-label={`Filtrer par ${category}`}
+                aria-pressed={isActive}
                 style={{
                   background: isActive
                     ? "linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7)"
@@ -72,8 +75,9 @@ export default function CategorySidebar({
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: "spring", damping: 15, stiffness: 300 }}
+                      aria-hidden="true"
                     >
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                         <path
                           fillRule="evenodd"
                           d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -99,7 +103,7 @@ export default function CategorySidebar({
             );
           })}
         </div>
-      </div>
+      </nav>
     </motion.div>
   );
 }
