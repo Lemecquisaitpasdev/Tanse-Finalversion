@@ -53,11 +53,14 @@ function extractHeadings(content: string) {
   let match;
 
   while ((match = headingRegex.exec(content)) !== null) {
-    headings.push({
-      level: parseInt(match[1]),
-      id: match[2],
-      text: match[3],
-    });
+    // Type guard: ensure match groups exist
+    if (match[1] && match[2] && match[3]) {
+      headings.push({
+        level: parseInt(match[1]),
+        id: match[2],
+        text: match[3],
+      });
+    }
   }
 
   return headings;
